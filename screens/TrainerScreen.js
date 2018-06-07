@@ -20,17 +20,18 @@ class TrainingMembership extends React.Component{
     }
     render(){
         return(
-            <View style={{justifyContent:'center', borderBottomWidth:1}}>
+            <View style={{alignItems:'center', borderBottomWidth:1}}>
                 <View style={{marginTop: 18, marginLeft: 10}}>
-                    <Text style={{color:"#000", fontWeight:"bold", fontSize: 15}}>{this.props.title}</Text>
-                    <View style={{flexDirection: "row"}}>
-                        <Text style={{color:"#535353", fontStyle:"italic"}}>Member Rate: </Text>
-                        <Text style={{color:"#000"}}>{this.props.memberRate}</Text>
+                    <Text style={{color:"#000", fontWeight:"bold", fontSize: 13}}>{this.props.title}</Text>
+                    <View style={{flexDirection: "row", marginTop: 3}}>
+                        <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>Member Rate: </Text>
+                        <Text style={{color:"#000", fontSize: 12}}>{this.props.memberRate}</Text>
                     </View>
-                    <View style={{flexDirection: "row"}}>
-                        <Text style={{color:"#535353", fontStyle:"italic"}}>Unit Cost: </Text>
-                        <Text style={{color:"#000"}}>{this.props.memberRateUnitPrice}</Text>
+
+                    <View style={{flexDirection: "row", marginTop: 3}}>
+                        <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>{this.props.memberRateUnitPrice}</Text>
                     </View>
+
                 </View>
                 <TouchableOpacity onPress={() => {this.showPTRegisterModal(true)}}
                                   style={{marginTop: 5, marginLeft:10, marginBottom: 4,
@@ -110,73 +111,78 @@ class TrainerScreen extends React.Component{
                             />
                         </TouchableOpacity>
                     </View>
-                    <View style={{width: WIDTH*.5, height: HEIGHT*.5,backgroundColor: '#ffffff', borderWidth: 1,
+                    <ScrollView style={{width: WIDTH*.5, height: HEIGHT*.5,backgroundColor: '#ffffff', borderWidth: 1,
                     borderRadius: 10,}}>
                         <TrainingMembership
                             title={"20 Session Package"}
                             memberRate={"$550"}
-                            memberRateUnitPrice={"$27.5/session"}
+                            memberRateUnitPrice={"Unit Cost: $27.5/session"}
                             registerUrl={"74"}
                         />
                         <TrainingMembership
                             title={"10 Session Package"}
                             memberRate={"$310"}
-                            memberRateUnitPrice={"$31/session"}
+                            memberRateUnitPrice={"Unit Cost: $31/session"}
                             registerUrl={"73"}
                         />
                         <TrainingMembership
                             title={"5 Session Package"}
                             memberRate={"$180"}
-                            memberRateUnitPrice={"$36/session"}
+                            memberRateUnitPrice={"Unit Cost: $36/session"}
                             registerUrl={"70"}
                         />
                         <TrainingMembership
                             title={"3 Session Package"}
                             memberRate={"$120"}
-                            memberRateUnitPrice={"$40/session"}
+                            memberRateUnitPrice={"Unit Cost: $40/session"}
                             registerUrl={"72"}
                         />
-                    </View>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-
-                    <ScrollView
-
-                        style={{flex:1 ,width: WIDTH*.5, height: HEIGHT*.5,backgroundColor: '#ffffff', borderWidth: 1,
-                            borderRadius: 10, marginBottom: 60}}
-                    >
                         <TrainingMembership
-                            title={"Monthly Subscription Level 1"}
-                            memberRate={"$140/month"}
-                            registerUrl={"122"}
+                            title={"Monthly Subscription 3"}
+                            memberRate={"$300/month"}
+                            registerUrl={"124"}
                         />
                         <TrainingMembership
-                            title={"Monthly Subscription Level 2"}
+                            title={"Monthly Subscription 2"}
                             memberRate={"$250/month"}
                             registerUrl={"123"}
                         />
                         <TrainingMembership
-                            title={"Monthly Subscription Level 3"}
-                            memberRate={"$300/month"}
-                            registerUrl={"124"}
+                            title={"Monthly Subscription 1"}
+                            memberRate={"$140/month"}
+                            registerUrl={"122"}
                         />
-
                     </ScrollView>
-                    <View style={{width: WIDTH*.5, height: HEIGHT*.5,backgroundColor: '#cdcdcd'}}>
-                        <Image
-                            resizeMode={"cover"}
-                            source={require("../assets/images/girl-dumbbell-step-ups-800x400.png")}
-                            style={{width: WIDTH*.5, height: HEIGHT*.25}}
-                        />
-                        <Text>Explore Trainers</Text>
-                    </View>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                    <View style={{width: WIDTH, height: HEIGHT*(1/4), backgroundColor: '#535353'}}>
+                    <View
+                        style={{flex:1, width: WIDTH*.5, height: HEIGHT*.5,
+                            backgroundColor: '#ffffff', borderWidth: 1,
+                            borderRadius: 10, marginBottom: 60, alignItems: "center"}}
+                    >
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('Workouts')}
+                            style={{marginTop: 8, width: WIDTH*.45, alignItems:"center",
+                                backgroundColor: '#000',}}
+                        >
+                            <Text style={{ color: "#fff"}}>Find a Workout</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{width: WIDTH*.5, height: HEIGHT*.5,backgroundColor: '#cdcdcd',
+                                alignItems:"pull-left",
+                    }}>
+                        <TouchableOpacity>
+                            <Text>Explore Trainers</Text>
+                        </TouchableOpacity>
+                        <Image
+                            resizeMode={"cover"}
+                            source={require("../assets/images/DSC_0466.jpg")}
+                            style={{width: WIDTH*.5, height: HEIGHT*.3 ,}}
+                        />
 
                     </View>
-
                 </View>
+
                 <Modal
                     transparent={false}
                     animationType={"fade"}

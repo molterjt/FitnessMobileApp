@@ -277,7 +277,8 @@ const GET_ALL_GF_CLASSES = gql`
 const MONDAY_QUERY = gql`
     query MondayScheduleQuery{
         mondays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Monday"}
+            days_some: {name_contains: "Monday"},
+            isPublished: true,
         }, orderBy: sortTime_ASC){
             id
             title
@@ -293,7 +294,8 @@ const MONDAY_QUERY = gql`
 const TUESDAY_QUERY = gql`
     query TuesdayScheduleQuery{
         tuesdays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Tuesday"}
+            days_some: {name_contains: "Tuesday"},
+            isPublished: true,
         }, orderBy: sortTime_ASC){
             id
             title
@@ -309,7 +311,8 @@ const TUESDAY_QUERY = gql`
 const WEDNESDAY_QUERY = gql`
     query WednesdayScheduleQuery{
         wednesdays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Wednesday"}
+            days_some: {name_contains: "Wednesday"},
+            isPublished: true,
         }, orderBy: sortTime_ASC){
             id
             title
@@ -325,7 +328,8 @@ const WEDNESDAY_QUERY = gql`
 const THURSDAY_QUERY = gql`
     query ThursdayScheduleQuery{
         thursdays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Thursday"}
+            days_some: {name_contains: "Thursday"},
+            isPublished: true,
         }, orderBy: sortTime_ASC){
             id
             title
@@ -341,7 +345,8 @@ const THURSDAY_QUERY = gql`
 const FRIDAY_QUERY = gql`
     query FridayScheduleQuery{
         fridays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Friday"}
+            days_some: {name_contains: "Friday"},
+            isPublished: true,
         }, orderBy: sortTime_ASC){
             id
             title
@@ -350,6 +355,7 @@ const FRIDAY_QUERY = gql`
             days{name}
             instructor{firstName,lastName,email, id}
             imageUrl
+            isPublished
         }
     }
 
@@ -357,7 +363,8 @@ const FRIDAY_QUERY = gql`
 const SATURDAY_QUERY = gql`
     query SaturdayScheduleQuery{
         saturdays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Saturday"}
+            days_some: {name_contains: "Saturday"},
+            isPublished: true,
         }, orderBy: sortTime_ASC){
             id
             title
@@ -366,6 +373,7 @@ const SATURDAY_QUERY = gql`
             days{name}
             instructor{firstName,lastName,email, id}
             imageUrl
+            isPublished
         }
     }
 
@@ -373,7 +381,8 @@ const SATURDAY_QUERY = gql`
 const SUNDAY_QUERY = gql`
     query SundayScheduleQuery{
         sundays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Sunday"}
+            days_some: {name_contains: "Sunday"},
+            isPublished: true,
         }, orderBy: sortTime_ASC){
             id
             title
@@ -382,6 +391,7 @@ const SUNDAY_QUERY = gql`
             days{name}
             instructor{firstName,lastName,email, id}
             imageUrl
+            isPublished
         }
     }
 

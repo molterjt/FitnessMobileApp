@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84add5d6-5475-4d48-ac6e-e803819a3c68" name="Default" comment="" />
+    <list default="true" id="84add5d6-5475-4d48-ac6e-e803819a3c68" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/components/GroupFitnessClass.js" afterPath="$PROJECT_DIR$/components/GroupFitnessClass.js" />
+      <change beforePath="$PROJECT_DIR$/fitapp-server/types.graphql" afterPath="$PROJECT_DIR$/fitapp-server/types.graphql" />
+      <change beforePath="$PROJECT_DIR$/router.js" afterPath="$PROJECT_DIR$/router.js" />
+      <change beforePath="$PROJECT_DIR$/screens/ScheduleScreen.js" afterPath="$PROJECT_DIR$/screens/ScheduleScreen.js" />
+      <change beforePath="$PROJECT_DIR$/screens/SingleClassDetailScreen.js" afterPath="$PROJECT_DIR$/screens/SingleClassDetailScreen.js" />
+      <change beforePath="$PROJECT_DIR$/screens/TrainerScreen.js" afterPath="$PROJECT_DIR$/screens/TrainerScreen.js" />
+      <change beforePath="$PROJECT_DIR$/screens/WorkoutScreen.js" afterPath="$PROJECT_DIR$/screens/WorkoutScreen.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -16,78 +25,264 @@
     <favorites_list name="FitnessApp" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="TrainerScreen.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/screens/TrainerScreen.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="138">
-                  <caret line="144" column="74" lean-forward="false" selection-start-line="144" selection-start-column="74" selection-end-line="144" selection-end-column="74" />
-                  <folding>
-                    <element signature="e#0#25#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/router.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1665">
-                  <caret line="127" column="29" lean-forward="false" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Workout.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/Workout.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="22" column="68" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="68" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HomeScreen.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/screens/HomeScreen.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3615">
-                  <caret line="253" column="22" lean-forward="false" selection-start-line="248" selection-start-column="20" selection-end-line="253" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Event.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/Event.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="900">
-                  <caret line="62" column="43" lean-forward="false" selection-start-line="50" selection-start-column="24" selection-end-line="62" selection-end-column="43" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Event.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/components/Event.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
-                  <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="GroupFitClassList.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/GroupFitClassList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="701">
+              <caret line="972" column="40" lean-forward="true" selection-start-line="972" selection-start-column="40" selection-end-line="972" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <marker date="1528398514426" expanded="true" signature="526:633" ph="mutation...{&#10;        deleteGroupFitClass(id:$id){&#10;            id&#10;        }&#10;    }" />
+                <marker date="1528398514426" expanded="true" signature="535:554" ph="deleteGroupFitClass...deleteGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="554:564" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="560:562" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="564:633" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="574:593" ph="deleteGroupFitClass...deleteGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="574:627" ph="deleteGroupFitClass...{&#10;            id&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="593:601" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="594:596" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="601:627" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="615:617" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="668:1044" ph="query...{&#10;        allGroupFitClasses(orderBy:title_ASC){&#10;            id&#10;            imageUrl&#10;            title&#10;            instructor{firstName, email}&#10;            days{name}&#10;            time&#10;            createdAt&#10;        }&#10;    }" />
+                <marker date="1528398514426" expanded="true" signature="673:1044" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="683:701" ph="allGroupFitClasses...allGroupFitClasses" />
+                <marker date="1528398514426" expanded="true" signature="683:958" ph="allGroupFitClasses...{&#10;            id&#10;            imageUrl&#10;            title&#10;            instructor{firstName, email}&#10;            days{name}&#10;            time&#10;            createdAt&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="701:720" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="702:709" ph="orderBy...orderBy" />
+                <marker date="1528398514426" expanded="true" signature="720:958" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="734:736" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="749:757" ph="imageUrl...imageUrl" />
+                <marker date="1528398514426" expanded="true" signature="770:775" ph="title...title" />
+                <marker date="1528398514426" expanded="true" signature="788:798" ph="instructor...instructor" />
+                <marker date="1528398514426" expanded="true" signature="788:820" ph="instructor...{firstName, email}" />
+                <marker date="1528398514426" expanded="true" signature="798:820" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="799:808" ph="firstName...firstName" />
+                <marker date="1528398514426" expanded="true" signature="810:815" ph="email...email" />
+                <marker date="1528398514426" expanded="true" signature="817:819" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="833:837" ph="days...days" />
+                <marker date="1528398514426" expanded="true" signature="833:843" ph="days...{name}" />
+                <marker date="1528398514426" expanded="true" signature="837:843" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="838:842" ph="name...name" />
+                <marker date="1528398514426" expanded="true" signature="856:860" ph="time...time" />
+                <marker date="1528398514426" expanded="true" signature="873:882" ph="startTime...startTime" />
+                <marker date="1528398514426" expanded="true" signature="895:902" ph="endTime...endTime" />
+                <marker date="1528398514426" expanded="true" signature="915:924" ph="createdAt...createdAt" />
+                <marker date="1528398514426" expanded="true" signature="937:948" ph="isPublished...isPublished" />
+                <marker date="1528398514426" expanded="true" signature="967:974" ph="allDays...allDays" />
+                <marker date="1528398514426" expanded="true" signature="967:983" ph="allDays...{id,name}" />
+                <marker date="1528398514426" expanded="true" signature="974:983" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="975:977" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="978:982" ph="name...name" />
+                <marker date="1528398514426" expanded="true" signature="993:1007" ph="allInstructors...allInstructors" />
+                <marker date="1528398514426" expanded="true" signature="993:1038" ph="allInstructors...{id, firstName, lastName email}" />
+                <marker date="1528398514426" expanded="true" signature="1007:1038" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1008:1010" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1012:1021" ph="firstName...firstName" />
+                <marker date="1528398514426" expanded="true" signature="1023:1031" ph="lastName...lastName" />
+                <marker date="1528398514426" expanded="true" signature="1032:1037" ph="email...email" />
+                <marker date="1528398514426" expanded="true" signature="1081:1458" ph="query...{&#10;        GroupFitClass(id:$id){&#10;            id&#10;            title&#10;            time&#10;            sortTime&#10;            instructor{firstName, email}&#10;            isPublished&#10;            days{name}&#10;        }&#10;    }" />
+                <marker date="1528398514426" expanded="true" signature="1087:1106" ph="SingleGroupFitClass...SingleGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="1106:1115" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="1111:1113" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="1115:1458" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1125:1138" ph="GroupFitClass...GroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="1125:1371" ph="GroupFitClass...{&#10;            id&#10;            title&#10;            time&#10;            sortTime&#10;            instructor{firstName, email}&#10;            isPublished&#10;            days{name}&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="1138:1146" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="1139:1141" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1146:1371" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1160:1162" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1175:1180" ph="title...title" />
+                <marker date="1528398514426" expanded="true" signature="1193:1197" ph="time...time" />
+                <marker date="1528398514426" expanded="true" signature="1210:1219" ph="startTime...startTime" />
+                <marker date="1528398514426" expanded="true" signature="1232:1239" ph="endTime...endTime" />
+                <marker date="1528398514426" expanded="true" signature="1252:1260" ph="sortTime...sortTime" />
+                <marker date="1528398514426" expanded="true" signature="1273:1283" ph="instructor...instructor" />
+                <marker date="1528398514426" expanded="true" signature="1273:1314" ph="instructor...{firstName, email}" />
+                <marker date="1528398514426" expanded="true" signature="1283:1314" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1284:1293" ph="firstName...firstName" />
+                <marker date="1528398514426" expanded="true" signature="1295:1303" ph="lastName...lastName" />
+                <marker date="1528398514426" expanded="true" signature="1304:1309" ph="email...email" />
+                <marker date="1528398514426" expanded="true" signature="1311:1313" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1327:1338" ph="isPublished...isPublished" />
+                <marker date="1528398514426" expanded="true" signature="1351:1355" ph="days...days" />
+                <marker date="1528398514426" expanded="true" signature="1351:1361" ph="days...{name}" />
+                <marker date="1528398514426" expanded="true" signature="1355:1361" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1356:1360" ph="name...name" />
+                <marker date="1528398514426" expanded="true" signature="1381:1388" ph="allDays...allDays" />
+                <marker date="1528398514426" expanded="true" signature="1381:1397" ph="allDays...{name}" />
+                <marker date="1528398514426" expanded="true" signature="1388:1397" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1389:1391" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1392:1396" ph="name...name" />
+                <marker date="1528398514426" expanded="true" signature="1407:1421" ph="allInstructors...allInstructors" />
+                <marker date="1528398514426" expanded="true" signature="1407:1452" ph="allInstructors...{id, firstName, lastName email}" />
+                <marker date="1528398514426" expanded="true" signature="1421:1452" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1422:1424" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1426:1435" ph="firstName...firstName" />
+                <marker date="1528398514426" expanded="true" signature="1437:1445" ph="lastName...lastName" />
+                <marker date="1528398514426" expanded="true" signature="1446:1451" ph="email...email" />
+                <marker date="1528398514426" expanded="true" signature="1500:1650" ph="mutation...{&#10;        updateGroupFitClass(id:$id, isPublished: $show){&#10;            isPublished&#10;        }&#10;    }" />
+                <marker date="1528398514426" expanded="true" signature="1509:1526" ph="updateIsPublished...updateIsPublished" />
+                <marker date="1528398514426" expanded="true" signature="1526:1552" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="1532:1534" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="1544:1551" ph="Boolean...Boolean" />
+                <marker date="1528398514426" expanded="true" signature="1552:1650" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1562:1581" ph="updateGroupFitClass...updateGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="1562:1644" ph="updateGroupFitClass...{&#10;            isPublished&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="1581:1609" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="1582:1584" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1590:1601" ph="isPublished...isPublished" />
+                <marker date="1528398514426" expanded="true" signature="1609:1644" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1623:1634" ph="isPublished...isPublished" />
+                <marker date="1528398514426" expanded="true" signature="1699:1947" ph="mutation...{&#10;        updateGroupFitClass(id: $id, startTime: $startTime, endTime: $endTime) {&#10;            id&#10;            startTime&#10;            endTime&#10;        }&#10;    }" />
+                <marker date="1528398514426" expanded="true" signature="1708:1739" ph="updateGroupFitClassStartEndTime...updateGroupFitClassStartEndTime" />
+                <marker date="1528398514426" expanded="true" signature="1739:1791" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="1745:1747" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="1762:1770" ph="DateTime...DateTime" />
+                <marker date="1528398514426" expanded="true" signature="1782:1790" ph="DateTime...DateTime" />
+                <marker date="1528398514426" expanded="true" signature="1792:1947" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1802:1821" ph="updateGroupFitClass...updateGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="1802:1941" ph="updateGroupFitClass...{&#10;            id&#10;            startTime&#10;            endTime&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="1821:1872" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="1822:1824" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1831:1840" ph="startTime...startTime" />
+                <marker date="1528398514426" expanded="true" signature="1854:1861" ph="endTime...endTime" />
+                <marker date="1528398514426" expanded="true" signature="1873:1941" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="1887:1889" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="1902:1911" ph="startTime...startTime" />
+                <marker date="1528398514426" expanded="true" signature="1924:1931" ph="endTime...endTime" />
+                <marker date="1528398514426" expanded="true" signature="1983:2905" ph="mutation...{&#10;        updateGroupFitClass(id: $id, title: $title, time: $time, daysIds: $daysArr) {&#10;            id&#10;            title&#10;            time&#10;            instructor {&#10;                firstName&#10;            }&#10;            days {&#10;                name&#10;            }&#10;        }&#10;        addToInstructorsClasses(instructorInstructorId: $idGFI, classesGroupFitClassId: $id) {&#10;            classesGroupFitClass {&#10;                title&#10;                days {&#10;                    name&#10;                }&#10;                id&#10;            }&#10;            instructorInstructor {&#10;                firstName&#10;                id&#10;            }&#10;        }&#10;    }" />
+                <marker date="1528398514426" expanded="true" signature="1992:2018" ph="updateGroupFitClassListing...updateGroupFitClassListing" />
+                <marker date="1528398514426" expanded="true" signature="2018:2132" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="2024:2026" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="2037:2043" ph="String...String" />
+                <marker date="1528398514426" expanded="true" signature="2052:2058" ph="String...String" />
+                <marker date="1528398514426" expanded="true" signature="2069:2071" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="2084:2089" ph="[...]" />
+                <marker date="1528398514426" expanded="true" signature="2085:2087" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="2103:2111" ph="DateTime...DateTime" />
+                <marker date="1528398514426" expanded="true" signature="2123:2131" ph="DateTime...DateTime" />
+                <marker date="1528398514426" expanded="true" signature="2133:2905" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="2143:2162" ph="updateGroupFitClass...updateGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="2143:2521" ph="updateGroupFitClass...{&#10;            id&#10;            title&#10;            time&#10;            instructor {&#10;                firstName&#10;            }&#10;            days {&#10;                name&#10;            }&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="2162:2260" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="2163:2165" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="2172:2177" ph="title...title" />
+                <marker date="1528398514426" expanded="true" signature="2187:2191" ph="time...time" />
+                <marker date="1528398514426" expanded="true" signature="2200:2207" ph="daysIds...daysIds" />
+                <marker date="1528398514426" expanded="true" signature="2219:2228" ph="startTime...startTime" />
+                <marker date="1528398514426" expanded="true" signature="2242:2249" ph="endTime...endTime" />
+                <marker date="1528398514426" expanded="true" signature="2261:2521" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="2275:2277" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="2290:2295" ph="title...title" />
+                <marker date="1528398514426" expanded="true" signature="2308:2312" ph="time...time" />
+                <marker date="1528398514426" expanded="true" signature="2325:2334" ph="startTime...startTime" />
+                <marker date="1528398514426" expanded="true" signature="2347:2354" ph="endTime...endTime" />
+                <marker date="1528398514426" expanded="true" signature="2367:2377" ph="instructor...instructor" />
+                <marker date="1528398514426" expanded="true" signature="2367:2438" ph="instructor...{&#10;                firstName&#10;            }" />
+                <marker date="1528398514426" expanded="true" signature="2378:2438" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="2396:2398" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="2415:2424" ph="firstName...firstName" />
+                <marker date="1528398514426" expanded="true" signature="2451:2455" ph="days...days" />
+                <marker date="1528398514426" expanded="true" signature="2451:2511" ph="days...{&#10;                name&#10;            }" />
+                <marker date="1528398514426" expanded="true" signature="2456:2511" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="2474:2476" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="2493:2497" ph="name...name" />
+                <marker date="1528398514426" expanded="true" signature="2530:2553" ph="addToInstructorsClasses...addToInstructorsClasses" />
+                <marker date="1528398514426" expanded="true" signature="2530:2899" ph="addToInstructorsClasses...{&#10;            classesGroupFitClass {&#10;                title&#10;                days {&#10;                    name&#10;                }&#10;                id&#10;            }&#10;            instructorInstructor {&#10;                firstName&#10;                id&#10;            }&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="2553:2614" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="2554:2576" ph="instructorInstructorId...instructorInstructorId" />
+                <marker date="1528398514426" expanded="true" signature="2586:2608" ph="classesGroupFitClassId...classesGroupFitClassId" />
+                <marker date="1528398514426" expanded="true" signature="2615:2899" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="2629:2649" ph="classesGroupFitClass...classesGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="2629:2795" ph="classesGroupFitClass...{&#10;                title&#10;                days {&#10;                    name&#10;                }&#10;                id&#10;            }" />
+                <marker date="1528398514426" expanded="true" signature="2650:2795" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="2668:2673" ph="title...title" />
+                <marker date="1528398514426" expanded="true" signature="2690:2694" ph="days...days" />
+                <marker date="1528398514426" expanded="true" signature="2690:2762" ph="days...{&#10;                    name&#10;                }" />
+                <marker date="1528398514426" expanded="true" signature="2695:2762" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="2717:2719" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="2740:2744" ph="name...name" />
+                <marker date="1528398514426" expanded="true" signature="2779:2781" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="2808:2828" ph="instructorInstructor...instructorInstructor" />
+                <marker date="1528398514426" expanded="true" signature="2808:2889" ph="instructorInstructor...{&#10;                firstName&#10;                id&#10;            }" />
+                <marker date="1528398514426" expanded="true" signature="2829:2889" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="2847:2856" ph="firstName...firstName" />
+                <marker date="1528398514426" expanded="true" signature="2873:2875" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="2941:3855" ph="mutation...{&#10;        createGroupFitClass(id: $id, title: $title, time: $time, daysIds: $daysArr, startTime: $startTime, endTime: $endTime) {&#10;            id&#10;            title&#10;            time&#10;            startTime&#10;            endTime&#10;            instructor {&#10;                id&#10;                firstName&#10;            }&#10;            days {&#10;                id&#10;                name&#10;            }&#10;        }&#10;        addToInstructorsClasses(instructorInstructorId: $idGFI, classesGroupFitClassId: $id) {&#10;            classesGroupFitClass {&#10;                title&#10;                days {&#10;                    id&#10;                    name&#10;                }&#10;                id&#10;            }&#10;            instructorInstructor {&#10;                firstName&#10;                id&#10;            }&#10;        }&#10;    }" />
+                <marker date="1528398514426" expanded="true" signature="2950:2968" ph="CreateroupFitClass...CreateroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="2968:3082" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="2974:2976" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="2987:2993" ph="String...String" />
+                <marker date="1528398514426" expanded="true" signature="3002:3008" ph="String...String" />
+                <marker date="1528398514426" expanded="true" signature="3019:3021" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="3034:3039" ph="[...]" />
+                <marker date="1528398514426" expanded="true" signature="3035:3037" ph="ID...ID" />
+                <marker date="1528398514426" expanded="true" signature="3053:3061" ph="DateTime...DateTime" />
+                <marker date="1528398514426" expanded="true" signature="3073:3081" ph="DateTime...DateTime" />
+                <marker date="1528398514426" expanded="true" signature="3083:3855" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="3093:3112" ph="createGroupFitClass...createGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="3093:3471" ph="createGroupFitClass...{&#10;            id&#10;            title&#10;            time&#10;            startTime&#10;            endTime&#10;            instructor {&#10;                id&#10;                firstName&#10;            }&#10;            days {&#10;                id&#10;                name&#10;            }&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="3112:3210" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="3113:3115" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="3122:3127" ph="title...title" />
+                <marker date="1528398514426" expanded="true" signature="3137:3141" ph="time...time" />
+                <marker date="1528398514426" expanded="true" signature="3150:3157" ph="daysIds...daysIds" />
+                <marker date="1528398514426" expanded="true" signature="3169:3178" ph="startTime...startTime" />
+                <marker date="1528398514426" expanded="true" signature="3192:3199" ph="endTime...endTime" />
+                <marker date="1528398514426" expanded="true" signature="3211:3471" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="3225:3227" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="3240:3245" ph="title...title" />
+                <marker date="1528398514426" expanded="true" signature="3258:3262" ph="time...time" />
+                <marker date="1528398514426" expanded="true" signature="3275:3284" ph="startTime...startTime" />
+                <marker date="1528398514426" expanded="true" signature="3297:3304" ph="endTime...endTime" />
+                <marker date="1528398514426" expanded="true" signature="3317:3327" ph="instructor...instructor" />
+                <marker date="1528398514426" expanded="true" signature="3317:3388" ph="instructor...{&#10;                id&#10;                firstName&#10;            }" />
+                <marker date="1528398514426" expanded="true" signature="3328:3388" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="3346:3348" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="3365:3374" ph="firstName...firstName" />
+                <marker date="1528398514426" expanded="true" signature="3401:3405" ph="days...days" />
+                <marker date="1528398514426" expanded="true" signature="3401:3461" ph="days...{&#10;                id&#10;                name&#10;            }" />
+                <marker date="1528398514426" expanded="true" signature="3406:3461" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="3424:3426" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="3443:3447" ph="name...name" />
+                <marker date="1528398514426" expanded="true" signature="3480:3503" ph="addToInstructorsClasses...addToInstructorsClasses" />
+                <marker date="1528398514426" expanded="true" signature="3480:3849" ph="addToInstructorsClasses...{&#10;            classesGroupFitClass {&#10;                title&#10;                days {&#10;                    id&#10;                    name&#10;                }&#10;                id&#10;            }&#10;            instructorInstructor {&#10;                firstName&#10;                id&#10;            }&#10;        }" />
+                <marker date="1528398514426" expanded="true" signature="3503:3564" ph="(...)" />
+                <marker date="1528398514426" expanded="true" signature="3504:3526" ph="instructorInstructorId...instructorInstructorId" />
+                <marker date="1528398514426" expanded="true" signature="3536:3558" ph="classesGroupFitClassId...classesGroupFitClassId" />
+                <marker date="1528398514426" expanded="true" signature="3565:3849" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="3579:3599" ph="classesGroupFitClass...classesGroupFitClass" />
+                <marker date="1528398514426" expanded="true" signature="3579:3745" ph="classesGroupFitClass...{&#10;                title&#10;                days {&#10;                    id&#10;                    name&#10;                }&#10;                id&#10;            }" />
+                <marker date="1528398514426" expanded="true" signature="3600:3745" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="3618:3623" ph="title...title" />
+                <marker date="1528398514426" expanded="true" signature="3640:3644" ph="days...days" />
+                <marker date="1528398514426" expanded="true" signature="3640:3712" ph="days...{&#10;                    id&#10;                    name&#10;                }" />
+                <marker date="1528398514426" expanded="true" signature="3645:3712" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="3667:3669" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="3690:3694" ph="name...name" />
+                <marker date="1528398514426" expanded="true" signature="3729:3731" ph="id...id" />
+                <marker date="1528398514426" expanded="true" signature="3758:3778" ph="instructorInstructor...instructorInstructor" />
+                <marker date="1528398514426" expanded="true" signature="3758:3839" ph="instructorInstructor...{&#10;                firstName&#10;                id&#10;            }" />
+                <marker date="1528398514426" expanded="true" signature="3779:3839" ph="{...}" />
+                <marker date="1528398514426" expanded="true" signature="3797:3806" ph="firstName...firstName" />
+                <marker date="1528398514426" expanded="true" signature="3823:3825" ph="id...id" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/App.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -104,20 +299,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fitapp-server/src/authenticate.graphql" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/loggedInUser.graphql" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/signup.graphql" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/singup.js" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/authenticate.js" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/loggedInUser.js" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/signup.js" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/authenticate.ts" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/loggedInUser.ts" />
-        <option value="$PROJECT_DIR$/fitapp-server/package.json" />
-        <option value="$PROJECT_DIR$/fitapp-server/graphcool.yml" />
-        <option value="$PROJECT_DIR$/constants/auth.js" />
-        <option value="$PROJECT_DIR$/fitapp-server/src/email-password/signup.graphql" />
-        <option value="$PROJECT_DIR$/screens/SignUpScreen.js" />
         <option value="$PROJECT_DIR$/fitapp-server/src/resolvers/Mutation.js" />
         <option value="$PROJECT_DIR$/fitapp-server/src/email-password/loggedInUser.ts" />
         <option value="$PROJECT_DIR$/fitapp-server/src/email-password/signup.ts" />
@@ -127,7 +308,6 @@
         <option value="$PROJECT_DIR$/CodeDrafts/GFSchedule.js" />
         <option value="$PROJECT_DIR$/screens/EditScreen.js" />
         <option value="$PROJECT_DIR$/components/NewsItem.js" />
-        <option value="$PROJECT_DIR$/screens/ScheduleScreen.js" />
         <option value="$PROJECT_DIR$/FitnessApp.js" />
         <option value="$PROJECT_DIR$/fitapp-server/src/email-password/authenticate.graphql" />
         <option value="$PROJECT_DIR$/fitapp-server/src/email-password/authenticate.ts" />
@@ -137,7 +317,6 @@
         <option value="$PROJECT_DIR$/screens/DetailsScreen.js" />
         <option value="$PROJECT_DIR$/screens/FacilitiesScreen.js" />
         <option value="$PROJECT_DIR$/screens/EventsScreen.js" />
-        <option value="$PROJECT_DIR$/fitapp-server/types.graphql" />
         <option value="$PROJECT_DIR$/components/UserProfile.js" />
         <option value="$PROJECT_DIR$/screens/ProfileScreen.js" />
         <option value="$PROJECT_DIR$/screens/IntroScreen.js" />
@@ -148,13 +327,29 @@
         <option value="$PROJECT_DIR$/screens/InstructorScreen.js" />
         <option value="$PROJECT_DIR$/components/Workout.js" />
         <option value="$PROJECT_DIR$/components/Exercise.js" />
-        <option value="$PROJECT_DIR$/screens/WorkoutScreen.js" />
-        <option value="$PROJECT_DIR$/screens/SingleClassDetailScreen.js" />
         <option value="$PROJECT_DIR$/app.json" />
-        <option value="$PROJECT_DIR$/components/GroupFitnessClass.js" />
         <option value="$PROJECT_DIR$/components/ScheduleItem.js" />
-        <option value="$PROJECT_DIR$/router.js" />
+        <option value="$PROJECT_DIR$/screens/SingleClassDetailScreen.js" />
+        <option value="$PROJECT_DIR$/components/GroupFitnessClass.js" />
         <option value="$PROJECT_DIR$/screens/TrainerScreen.js" />
+        <option value="$PROJECT_DIR$/router.js" />
+        <option value="$PROJECT_DIR$/screens/WorkoutScreen.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/public/index.html" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/index.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/CreateGroupFitClass.js" />
+        <option value="$PROJECT_DIR$/screens/ScheduleScreen.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/App.css" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/App.js" />
+        <option value="$PROJECT_DIR$/fitapp-server/types.graphql" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/WorkoutList.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/CommentList.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/InstructorList.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/UserLIst.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/NavigationBar.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/HeaderComponent.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/TrainerList.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/ExerciseList.js" />
+        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/GroupFitClassList.js" />
       </list>
     </option>
   </component>
@@ -174,17 +369,18 @@
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/fitapp-server/node_modules" />
+    <handled-path value="$PROJECT_DIR$/fitness-app-admin/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-16" />
-    <option name="y" value="61" />
-    <option name="width" value="1370" />
-    <option name="height" value="786" />
+    <option name="x" value="1683" />
+    <option name="y" value="-83" />
+    <option name="width" value="1616" />
+    <option name="height" value="941" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -197,7 +393,45 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="FitnessApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FitnessApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FitnessApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FitnessApp" type="462c0819:PsiDirectoryNode" />
+              <item name="fitness-app-admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FitnessApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FitnessApp" type="462c0819:PsiDirectoryNode" />
+              <item name="fitness-app-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FitnessApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FitnessApp" type="462c0819:PsiDirectoryNode" />
+              <item name="fitness-app-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FitnessApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FitnessApp" type="462c0819:PsiDirectoryNode" />
+              <item name="fitness-app-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -212,10 +446,11 @@
     <property name="node.js.selected.package.tslint" value="" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fitness-app-admin/src" />
       <recent name="$PROJECT_DIR$/assets/images" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/images" />
     </key>
   </component>
@@ -277,26 +512,34 @@
       <workItem from="1525540381319" duration="3785000" />
       <workItem from="1525651538385" duration="16778000" />
       <workItem from="1525727223649" duration="20205000" />
-      <workItem from="1525877472794" duration="127000" />
+      <workItem from="1525877472794" duration="4511000" />
+      <workItem from="1525917228949" duration="2978000" />
+      <workItem from="1525971520695" duration="13474000" />
+      <workItem from="1526098591029" duration="32848000" />
+      <workItem from="1526352610409" duration="20685000" />
+      <workItem from="1526568506249" duration="38192000" />
+      <workItem from="1527614936278" duration="94000" />
+      <workItem from="1527803653831" duration="9294000" />
+      <workItem from="1528119387398" duration="44540000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="498865000" />
+    <option name="totallyTimeSpent" value="665354000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-16" y="61" width="1370" height="786" extended-state="0" />
+    <frame x="1683" y="-83" width="1616" height="941" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32621083" sideWeight="0.50661767" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="GraphQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32763532" sideWeight="0.49338236" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="GraphQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33183858" sideWeight="0.49338236" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13002191" sideWeight="0.505698" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1985294" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16426332" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24835646" sideWeight="0.494302" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943755" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -315,21 +558,21 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32621083" sideWeight="0.50661767" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="GraphQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.49338236" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="GraphQL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33190882" sideWeight="0.49338236" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13002191" sideWeight="0.505698" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18972659" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09386503" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24835646" sideWeight="0.494302" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943755" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,160 +593,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="35" />
+      <option name="time" value="113" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/loggedInUser.ts" />
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/signup.ts" />
-    <entry file="file://$PROJECT_DIR$/.babelrc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/hello.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-982">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/graphcool.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="24" column="2" lean-forward="false" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/hello.graphql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/validateEmail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/keys.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/constants/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/graphql/error/GraphQLError.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1109">
-          <caret line="152" column="22" lean-forward="true" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CodeDrafts/GFSchedule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-532">
-          <caret line="78" column="52" lean-forward="false" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/SignUpScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="8" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="717">
-          <caret line="71" column="17" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FitnessApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/resolvers/Mutation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/authenticate.graphql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/authenticate.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="55" column="16" lean-forward="true" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.graphql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="59" column="3" lean-forward="true" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/ScheduleScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3181">
-          <caret line="230" column="16" lean-forward="false" selection-start-line="230" selection-start-column="16" selection-end-line="230" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Logout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
@@ -511,39 +605,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/DetailsScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1935">
-          <caret line="137" column="130" lean-forward="false" selection-start-line="137" selection-start-column="130" selection-end-line="137" selection-end-column="130" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Facility.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/types.graphql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4170">
-          <caret line="278" column="72" lean-forward="false" selection-start-line="278" selection-start-column="72" selection-end-line="278" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/FacilitiesScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="70" column="35" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/UserProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1269">
-          <caret line="30" column="47" lean-forward="false" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -575,54 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="127" column="78" lean-forward="false" selection-start-line="127" selection-start-column="78" selection-end-line="127" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/EditProfileScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/EventsScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="9" column="42" lean-forward="false" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-            <marker date="1525541953000" expanded="true" signature="255:546" ph="query...{&#10;        allEvents{&#10;            id&#10;            name&#10;            imageUrl&#10;            registerUrl&#10;            location{facilityName, buildingName}&#10;            fees&#10;            time&#10;            description&#10;            date&#10;            days{name}&#10;        }&#10;    }" />
-            <marker date="1525541953000" expanded="true" signature="260:546" ph="{...}" />
-            <marker date="1525541953000" expanded="true" signature="270:279" ph="allEvents...allEvents" />
-            <marker date="1525541953000" expanded="true" signature="270:540" ph="allEvents...{&#10;            id&#10;            name&#10;            imageUrl&#10;            registerUrl&#10;            location{facilityName, buildingName}&#10;            fees&#10;            time&#10;            description&#10;            date&#10;            days{name}&#10;        }" />
-            <marker date="1525541953000" expanded="true" signature="279:305" ph="(...)" />
-            <marker date="1525541953000" expanded="true" signature="280:287" ph="orderBy...orderBy" />
-            <marker date="1525541953000" expanded="true" signature="305:540" ph="{...}" />
-            <marker date="1525541953000" expanded="true" signature="319:321" ph="id...id" />
-            <marker date="1525541953000" expanded="true" signature="334:338" ph="name...name" />
-            <marker date="1525541953000" expanded="true" signature="351:359" ph="imageUrl...imageUrl" />
-            <marker date="1525541953000" expanded="true" signature="372:383" ph="registerUrl...registerUrl" />
-            <marker date="1525541953000" expanded="true" signature="396:404" ph="location...location" />
-            <marker date="1525541953000" expanded="true" signature="396:432" ph="location...{facilityName, buildingName}" />
-            <marker date="1525541953000" expanded="true" signature="404:432" ph="{...}" />
-            <marker date="1525541953000" expanded="true" signature="405:417" ph="facilityName...facilityName" />
-            <marker date="1525541953000" expanded="true" signature="419:431" ph="buildingName...buildingName" />
-            <marker date="1525541953000" expanded="true" signature="445:449" ph="fees...fees" />
-            <marker date="1525541953000" expanded="true" signature="462:466" ph="time...time" />
-            <marker date="1525541953000" expanded="true" signature="479:490" ph="description...description" />
-            <marker date="1525541953000" expanded="true" signature="503:507" ph="date...date" />
-            <marker date="1525541953000" expanded="true" signature="520:524" ph="days...days" />
-            <marker date="1525541953000" expanded="true" signature="520:530" ph="days...{name}" />
-            <marker date="1525541953000" expanded="true" signature="524:530" ph="{...}" />
-            <marker date="1525541953000" expanded="true" signature="525:529" ph="name...name" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Instructor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2040">
@@ -651,20 +668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/ExerciseDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/WorkoutScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="67" column="82" lean-forward="false" selection-start-line="67" selection-start-column="82" selection-end-line="67" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -679,59 +682,831 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/GroupFitnessClass.js">
+    <entry file="file://$PROJECT_DIR$/components/Event.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="730">
-          <caret line="92" column="31" lean-forward="true" selection-start-line="92" selection-start-column="31" selection-end-line="92" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/SingleClassDetailScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Workout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="22" column="68" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="68" />
-          <folding />
+        <state relative-caret-position="900">
+          <caret line="62" column="43" lean-forward="false" selection-start-line="50" selection-start-column="24" selection-end-line="62" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1665">
-          <caret line="127" column="29" lean-forward="false" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
-          <folding />
+        <state relative-caret-position="201">
+          <caret line="133" column="31" lean-forward="false" selection-start-line="133" selection-start-column="31" selection-end-line="133" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/HomeScreen.js">
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3615">
-          <caret line="253" column="22" lean-forward="false" selection-start-line="248" selection-start-column="20" selection-end-line="253" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/App.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="17" column="69" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/TrainerScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="144" column="74" lean-forward="false" selection-start-line="144" selection-start-column="74" selection-end-line="144" selection-end-column="74" />
+        <state relative-caret-position="634">
+          <caret line="165" column="56" lean-forward="false" selection-start-line="165" selection-start-column="56" selection-end-line="165" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/UserProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Workout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="22" column="68" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/ExerciseDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-617">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1149">
+          <caret line="127" column="78" lean-forward="false" selection-start-line="127" selection-start-column="78" selection-end-line="127" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/EventsScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="9" column="42" lean-forward="false" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/WorkoutScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="605">
+          <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/HomeScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="253" column="22" lean-forward="false" selection-start-line="248" selection-start-column="20" selection-end-line="253" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/FacilitiesScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="70" column="35" lean-forward="false" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/CategoryScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/MiamiFitness.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/icons/MiamiUniversityLogo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/MiamiFitness.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/CreateGroupFitClass.js" />
+    <entry file="file://$PROJECT_DIR$/screens/EditProfileScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/ScheduleScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="269" column="22" lean-forward="true" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitapp-server/types.graphql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="265" column="15" lean-forward="true" selection-start-line="265" selection-start-column="15" selection-end-line="265" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/SingleClassDetailScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1510">
+          <caret line="230" column="22" lean-forward="false" selection-start-line="230" selection-start-column="22" selection-end-line="230" selection-end-column="22" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <marker date="1525879655000" expanded="true" signature="470:896" ph="query...{&#10;        GroupFitClass(id: $id){&#10;            id&#10;            title&#10;            time&#10;            description&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email,id}&#10;            imageUrl&#10;            videoUrl&#10;            category{title}&#10;            comments(orderBy: createdAt_DESC){content, userComment{username, id}}&#10;        }&#10;    }" />
+            <marker date="1525879655000" expanded="true" signature="476:487" ph="SingleClass...SingleClass" />
+            <marker date="1525879655000" expanded="true" signature="487:497" ph="(...)" />
+            <marker date="1525879655000" expanded="true" signature="493:495" ph="ID...ID" />
+            <marker date="1525879655000" expanded="true" signature="497:896" ph="{...}" />
+            <marker date="1525879655000" expanded="true" signature="507:520" ph="GroupFitClass...GroupFitClass" />
+            <marker date="1525879655000" expanded="true" signature="507:890" ph="GroupFitClass...{&#10;            id&#10;            title&#10;            time&#10;            description&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email,id}&#10;            imageUrl&#10;            videoUrl&#10;            category{title}&#10;            comments(orderBy: createdAt_DESC){content, userComment{username, id}}&#10;        }" />
+            <marker date="1525879655000" expanded="true" signature="520:529" ph="(...)" />
+            <marker date="1525879655000" expanded="true" signature="521:523" ph="id...id" />
+            <marker date="1525879655000" expanded="true" signature="529:890" ph="{...}" />
+            <marker date="1525879655000" expanded="true" signature="543:545" ph="id...id" />
+            <marker date="1525879655000" expanded="true" signature="558:563" ph="title...title" />
+            <marker date="1525879655000" expanded="true" signature="576:580" ph="time...time" />
+            <marker date="1525879655000" expanded="true" signature="593:604" ph="description...description" />
+            <marker date="1525879655000" expanded="true" signature="617:625" ph="location...location" />
+            <marker date="1525879655000" expanded="true" signature="617:653" ph="location...{buildingName, facilityName}" />
+            <marker date="1525879655000" expanded="true" signature="625:653" ph="{...}" />
+            <marker date="1525879655000" expanded="true" signature="626:638" ph="buildingName...buildingName" />
+            <marker date="1525879655000" expanded="true" signature="640:652" ph="facilityName...facilityName" />
+            <marker date="1525879655000" expanded="true" signature="666:670" ph="days...days" />
+            <marker date="1525879655000" expanded="true" signature="666:676" ph="days...{name}" />
+            <marker date="1525879655000" expanded="true" signature="670:676" ph="{...}" />
+            <marker date="1525879655000" expanded="true" signature="671:675" ph="name...name" />
+            <marker date="1525879655000" expanded="true" signature="689:699" ph="instructor...instructor" />
+            <marker date="1525879655000" expanded="true" signature="689:728" ph="instructor...{firstName,lastName,email,id}" />
+            <marker date="1525879655000" expanded="true" signature="699:728" ph="{...}" />
+            <marker date="1525879655000" expanded="true" signature="700:709" ph="firstName...firstName" />
+            <marker date="1525879655000" expanded="true" signature="710:718" ph="lastName...lastName" />
+            <marker date="1525879655000" expanded="true" signature="719:724" ph="email...email" />
+            <marker date="1525879655000" expanded="true" signature="725:727" ph="id...id" />
+            <marker date="1525879655000" expanded="true" signature="741:749" ph="imageUrl...imageUrl" />
+            <marker date="1525879655000" expanded="true" signature="762:770" ph="videoUrl...videoUrl" />
+            <marker date="1525879655000" expanded="true" signature="783:791" ph="category...category" />
+            <marker date="1525879655000" expanded="true" signature="783:798" ph="category...{title}" />
+            <marker date="1525879655000" expanded="true" signature="791:798" ph="{...}" />
+            <marker date="1525879655000" expanded="true" signature="792:797" ph="title...title" />
+            <marker date="1525879655000" expanded="true" signature="811:819" ph="comments...comments" />
+            <marker date="1525879655000" expanded="true" signature="811:880" ph="comments...{content, userComment{username, id}}" />
+            <marker date="1525879655000" expanded="true" signature="819:844" ph="(...)" />
+            <marker date="1525879655000" expanded="true" signature="820:827" ph="orderBy...orderBy" />
+            <marker date="1525879655000" expanded="true" signature="844:880" ph="{...}" />
+            <marker date="1525879655000" expanded="true" signature="845:852" ph="content...content" />
+            <marker date="1525879655000" expanded="true" signature="854:865" ph="userComment...userComment" />
+            <marker date="1525879655000" expanded="true" signature="854:879" ph="userComment...{username, id}" />
+            <marker date="1525879655000" expanded="true" signature="865:879" ph="{...}" />
+            <marker date="1525879655000" expanded="true" signature="866:874" ph="username...username" />
+            <marker date="1525879655000" expanded="true" signature="876:878" ph="id...id" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Event.js">
+    <entry file="file://$PROJECT_DIR$/screens/DetailsScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="350">
+          <caret line="137" column="130" lean-forward="false" selection-start-line="137" selection-start-column="130" selection-end-line="137" selection-end-column="130" />
+          <folding>
+            <marker date="1525107778000" expanded="true" signature="6160:6460" ph="query...{&#10;        allFacilities{&#10;            facilityName&#10;            buildingName&#10;            classes(orderBy: sortTime_ASC){title, days{name}, time, sortTime}&#10;            id&#10;            open&#10;            hours&#10;            events(orderBy: date_ASC){name, date, time}&#10;            imageUrl&#10;        }&#10;    }" />
+            <marker date="1525107778000" expanded="true" signature="6165:6460" ph="{...}" />
+            <marker date="1525107778000" expanded="true" signature="6175:6188" ph="allFacilities...allFacilities" />
+            <marker date="1525107778000" expanded="true" signature="6175:6454" ph="allFacilities...{&#10;            facilityName&#10;            buildingName&#10;            classes(orderBy: sortTime_ASC){title, days{name}, time, sortTime}&#10;            id&#10;            open&#10;            hours&#10;            events(orderBy: date_ASC){name, date, time}&#10;            imageUrl&#10;        }" />
+            <marker date="1525107778000" expanded="true" signature="6188:6454" ph="{...}" />
+            <marker date="1525107778000" expanded="true" signature="6202:6214" ph="facilityName...facilityName" />
+            <marker date="1525107778000" expanded="true" signature="6227:6239" ph="buildingName...buildingName" />
+            <marker date="1525107778000" expanded="true" signature="6252:6259" ph="classes...classes" />
+            <marker date="1525107778000" expanded="true" signature="6252:6317" ph="classes...{title, days{name}, time, sortTime}" />
+            <marker date="1525107778000" expanded="true" signature="6259:6282" ph="(...)" />
+            <marker date="1525107778000" expanded="true" signature="6260:6267" ph="orderBy...orderBy" />
+            <marker date="1525107778000" expanded="true" signature="6282:6317" ph="{...}" />
+            <marker date="1525107778000" expanded="true" signature="6283:6288" ph="title...title" />
+            <marker date="1525107778000" expanded="true" signature="6290:6294" ph="days...days" />
+            <marker date="1525107778000" expanded="true" signature="6290:6300" ph="days...{name}" />
+            <marker date="1525107778000" expanded="true" signature="6294:6300" ph="{...}" />
+            <marker date="1525107778000" expanded="true" signature="6295:6299" ph="name...name" />
+            <marker date="1525107778000" expanded="true" signature="6302:6306" ph="time...time" />
+            <marker date="1525107778000" expanded="true" signature="6308:6316" ph="sortTime...sortTime" />
+            <marker date="1525107778000" expanded="true" signature="6330:6332" ph="id...id" />
+            <marker date="1525107778000" expanded="true" signature="6345:6349" ph="open...open" />
+            <marker date="1525107778000" expanded="true" signature="6362:6367" ph="hours...hours" />
+            <marker date="1525107778000" expanded="true" signature="6380:6386" ph="events...events" />
+            <marker date="1525107778000" expanded="true" signature="6380:6423" ph="events...{name, date, time}" />
+            <marker date="1525107778000" expanded="true" signature="6386:6405" ph="(...)" />
+            <marker date="1525107778000" expanded="true" signature="6387:6394" ph="orderBy...orderBy" />
+            <marker date="1525107778000" expanded="true" signature="6405:6423" ph="{...}" />
+            <marker date="1525107778000" expanded="true" signature="6406:6410" ph="name...name" />
+            <marker date="1525107778000" expanded="true" signature="6412:6416" ph="date...date" />
+            <marker date="1525107778000" expanded="true" signature="6418:6422" ph="time...time" />
+            <marker date="1525107778000" expanded="true" signature="6436:6444" ph="imageUrl...imageUrl" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/GroupFitnessClass.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+          <folding>
+            <marker date="1525881138000" expanded="true" signature="467:821" ph="mutation...{&#10;        createComment(&#10;            content: $content,&#10;            userCommentId: $userCommentId,&#10;            classCommentId: $classCommentId&#10;        ){&#10;            id&#10;            content&#10;            classComment{title}&#10;            userComment{username}&#10;        }&#10;    }" />
+            <marker date="1525881138000" expanded="true" signature="476:489" ph="createComment...createComment" />
+            <marker date="1525881138000" expanded="true" signature="489:551" ph="(...)" />
+            <marker date="1525881138000" expanded="true" signature="500:506" ph="String...String" />
+            <marker date="1525881138000" expanded="true" signature="525:527" ph="ID...ID" />
+            <marker date="1525881138000" expanded="true" signature="547:549" ph="ID...ID" />
+            <marker date="1525881138000" expanded="true" signature="551:821" ph="{...}" />
+            <marker date="1525881138000" expanded="true" signature="561:574" ph="createComment...createComment" />
+            <marker date="1525881138000" expanded="true" signature="561:815" ph="createComment...{&#10;            id&#10;            content&#10;            classComment{title}&#10;            userComment{username}&#10;        }" />
+            <marker date="1525881138000" expanded="true" signature="574:703" ph="(...)" />
+            <marker date="1525881138000" expanded="true" signature="588:595" ph="content...content" />
+            <marker date="1525881138000" expanded="true" signature="619:632" ph="userCommentId...userCommentId" />
+            <marker date="1525881138000" expanded="true" signature="662:676" ph="classCommentId...classCommentId" />
+            <marker date="1525881138000" expanded="true" signature="703:815" ph="{...}" />
+            <marker date="1525881138000" expanded="true" signature="717:719" ph="id...id" />
+            <marker date="1525881138000" expanded="true" signature="732:739" ph="content...content" />
+            <marker date="1525881138000" expanded="true" signature="752:764" ph="classComment...classComment" />
+            <marker date="1525881138000" expanded="true" signature="752:771" ph="classComment...{title}" />
+            <marker date="1525881138000" expanded="true" signature="764:771" ph="{...}" />
+            <marker date="1525881138000" expanded="true" signature="765:770" ph="title...title" />
+            <marker date="1525881138000" expanded="true" signature="784:795" ph="userComment...userComment" />
+            <marker date="1525881138000" expanded="true" signature="784:805" ph="userComment...{username}" />
+            <marker date="1525881138000" expanded="true" signature="795:805" ph="{...}" />
+            <marker date="1525881138000" expanded="true" signature="796:804" ph="username...username" />
+            <marker date="1525881138000" expanded="true" signature="9387:9517" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/WorkoutList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding>
+            <marker date="1528237064937" expanded="true" signature="233:328" ph="mutation...{&#10;        deleteWorkout(id:$id){&#10;            id&#10;        }&#10;    }" />
+            <marker date="1528237064937" expanded="true" signature="242:255" ph="deleteWorkout...deleteWorkout" />
+            <marker date="1528237064937" expanded="true" signature="255:265" ph="(...)" />
+            <marker date="1528237064937" expanded="true" signature="261:263" ph="ID...ID" />
+            <marker date="1528237064937" expanded="true" signature="265:328" ph="{...}" />
+            <marker date="1528237064937" expanded="true" signature="275:288" ph="deleteWorkout...deleteWorkout" />
+            <marker date="1528237064937" expanded="true" signature="275:322" ph="deleteWorkout...{&#10;            id&#10;        }" />
+            <marker date="1528237064937" expanded="true" signature="288:296" ph="(...)" />
+            <marker date="1528237064937" expanded="true" signature="289:291" ph="id...id" />
+            <marker date="1528237064937" expanded="true" signature="296:322" ph="{...}" />
+            <marker date="1528237064937" expanded="true" signature="310:312" ph="id...id" />
+            <marker date="1528237064937" expanded="true" signature="364:569" ph="query...{&#10;        allWorkouts{&#10;            id&#10;            title&#10;            exercises{id, name, sets, reps}&#10;            imageUrl&#10;            createdAt&#10;            author{firstName}&#10;        }&#10;    }" />
+            <marker date="1528237064937" expanded="true" signature="370:381" ph="allWorkouts...allWorkouts" />
+            <marker date="1528237064937" expanded="true" signature="381:569" ph="{...}" />
+            <marker date="1528237064937" expanded="true" signature="391:402" ph="allWorkouts...allWorkouts" />
+            <marker date="1528237064937" expanded="true" signature="391:563" ph="allWorkouts...{&#10;            id&#10;            title&#10;            exercises{id, name, sets, reps}&#10;            imageUrl&#10;            createdAt&#10;            author{firstName}&#10;        }" />
+            <marker date="1528237064937" expanded="true" signature="402:563" ph="{...}" />
+            <marker date="1528237064937" expanded="true" signature="416:418" ph="id...id" />
+            <marker date="1528237064937" expanded="true" signature="431:436" ph="title...title" />
+            <marker date="1528237064937" expanded="true" signature="449:458" ph="exercises...exercises" />
+            <marker date="1528237064937" expanded="true" signature="449:480" ph="exercises...{id, name, sets, reps}" />
+            <marker date="1528237064937" expanded="true" signature="458:480" ph="{...}" />
+            <marker date="1528237064937" expanded="true" signature="459:461" ph="id...id" />
+            <marker date="1528237064937" expanded="true" signature="463:467" ph="name...name" />
+            <marker date="1528237064937" expanded="true" signature="469:473" ph="sets...sets" />
+            <marker date="1528237064937" expanded="true" signature="475:479" ph="reps...reps" />
+            <marker date="1528237064937" expanded="true" signature="493:501" ph="imageUrl...imageUrl" />
+            <marker date="1528237064937" expanded="true" signature="514:523" ph="createdAt...createdAt" />
+            <marker date="1528237064937" expanded="true" signature="536:542" ph="author...author" />
+            <marker date="1528237064937" expanded="true" signature="536:553" ph="author...{firstName}" />
+            <marker date="1528237064937" expanded="true" signature="542:553" ph="{...}" />
+            <marker date="1528237064937" expanded="true" signature="543:552" ph="firstName...firstName" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/CommentList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding>
+            <marker date="1528237088192" expanded="true" signature="235:350" ph="mutation...{&#10;        deleteComment(id:$id){&#10;            id&#10;            content&#10;        }&#10;    }" />
+            <marker date="1528237088192" expanded="true" signature="244:257" ph="deleteComment...deleteComment" />
+            <marker date="1528237088192" expanded="true" signature="257:267" ph="(...)" />
+            <marker date="1528237088192" expanded="true" signature="263:265" ph="ID...ID" />
+            <marker date="1528237088192" expanded="true" signature="267:350" ph="{...}" />
+            <marker date="1528237088192" expanded="true" signature="277:290" ph="deleteComment...deleteComment" />
+            <marker date="1528237088192" expanded="true" signature="277:344" ph="deleteComment...{&#10;            id&#10;            content&#10;        }" />
+            <marker date="1528237088192" expanded="true" signature="290:298" ph="(...)" />
+            <marker date="1528237088192" expanded="true" signature="291:293" ph="id...id" />
+            <marker date="1528237088192" expanded="true" signature="298:344" ph="{...}" />
+            <marker date="1528237088192" expanded="true" signature="312:314" ph="id...id" />
+            <marker date="1528237088192" expanded="true" signature="327:334" ph="content...content" />
+            <marker date="1528237088192" expanded="true" signature="385:604" ph="query...{&#10;        allComments(orderBy:createdAt_DESC){&#10;            id&#10;            content&#10;            userComment{username, email}&#10;            classComment{title,instructor{firstName}}&#10;            createdAt&#10;        }&#10;    }" />
+            <marker date="1528237088192" expanded="true" signature="390:604" ph="{...}" />
+            <marker date="1528237088192" expanded="true" signature="400:411" ph="allComments...allComments" />
+            <marker date="1528237088192" expanded="true" signature="400:598" ph="allComments...{&#10;            id&#10;            content&#10;            userComment{username, email}&#10;            classComment{title,instructor{firstName}}&#10;            createdAt&#10;        }" />
+            <marker date="1528237088192" expanded="true" signature="411:435" ph="(...)" />
+            <marker date="1528237088192" expanded="true" signature="412:419" ph="orderBy...orderBy" />
+            <marker date="1528237088192" expanded="true" signature="435:598" ph="{...}" />
+            <marker date="1528237088192" expanded="true" signature="449:451" ph="id...id" />
+            <marker date="1528237088192" expanded="true" signature="464:471" ph="content...content" />
+            <marker date="1528237088192" expanded="true" signature="484:495" ph="userComment...userComment" />
+            <marker date="1528237088192" expanded="true" signature="484:512" ph="userComment...{username, email}" />
+            <marker date="1528237088192" expanded="true" signature="495:512" ph="{...}" />
+            <marker date="1528237088192" expanded="true" signature="496:504" ph="username...username" />
+            <marker date="1528237088192" expanded="true" signature="506:511" ph="email...email" />
+            <marker date="1528237088192" expanded="true" signature="525:537" ph="classComment...classComment" />
+            <marker date="1528237088192" expanded="true" signature="525:566" ph="classComment...{title,instructor{firstName}}" />
+            <marker date="1528237088192" expanded="true" signature="537:566" ph="{...}" />
+            <marker date="1528237088192" expanded="true" signature="538:543" ph="title...title" />
+            <marker date="1528237088192" expanded="true" signature="544:554" ph="instructor...instructor" />
+            <marker date="1528237088192" expanded="true" signature="544:565" ph="instructor...{firstName}" />
+            <marker date="1528237088192" expanded="true" signature="554:565" ph="{...}" />
+            <marker date="1528237088192" expanded="true" signature="555:564" ph="firstName...firstName" />
+            <marker date="1528237088192" expanded="true" signature="579:588" ph="createdAt...createdAt" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/InstructorList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding>
+            <marker date="1528237103400" expanded="true" signature="267:369" ph="mutation...{&#10;        deleteIntrsuctor(id: $id){&#10;            id&#10;        }&#10;    }" />
+            <marker date="1528237103400" expanded="true" signature="276:292" ph="deleteIntrsuctor...deleteIntrsuctor" />
+            <marker date="1528237103400" expanded="true" signature="292:302" ph="(...)" />
+            <marker date="1528237103400" expanded="true" signature="298:300" ph="ID...ID" />
+            <marker date="1528237103400" expanded="true" signature="302:369" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="312:328" ph="deleteIntrsuctor...deleteIntrsuctor" />
+            <marker date="1528237103400" expanded="true" signature="312:363" ph="deleteIntrsuctor...{&#10;            id&#10;        }" />
+            <marker date="1528237103400" expanded="true" signature="328:337" ph="(...)" />
+            <marker date="1528237103400" expanded="true" signature="329:331" ph="id...id" />
+            <marker date="1528237103400" expanded="true" signature="337:363" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="351:353" ph="id...id" />
+            <marker date="1528237103400" expanded="true" signature="404:781" ph="query...{&#10;        allInstructors(orderBy: lastName_DESC){&#10;            id&#10;            firstName&#10;            lastName&#10;            email&#10;            classes{title, category{title}}&#10;            instructorId&#10;            alsoTrainer{workouts{title}}&#10;            imageUrl&#10;            isTrainer&#10;            createdAt&#10;            description&#10;            _classesMeta{count}&#10;        }&#10;    }" />
+            <marker date="1528237103400" expanded="true" signature="409:781" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="419:433" ph="allInstructors...allInstructors" />
+            <marker date="1528237103400" expanded="true" signature="419:775" ph="allInstructors...{&#10;            id&#10;            firstName&#10;            lastName&#10;            email&#10;            classes{title, category{title}}&#10;            instructorId&#10;            alsoTrainer{workouts{title}}&#10;            imageUrl&#10;            isTrainer&#10;            createdAt&#10;            description&#10;            _classesMeta{count}&#10;        }" />
+            <marker date="1528237103400" expanded="true" signature="433:457" ph="(...)" />
+            <marker date="1528237103400" expanded="true" signature="434:441" ph="orderBy...orderBy" />
+            <marker date="1528237103400" expanded="true" signature="457:775" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="471:473" ph="id...id" />
+            <marker date="1528237103400" expanded="true" signature="486:495" ph="firstName...firstName" />
+            <marker date="1528237103400" expanded="true" signature="508:516" ph="lastName...lastName" />
+            <marker date="1528237103400" expanded="true" signature="529:534" ph="email...email" />
+            <marker date="1528237103400" expanded="true" signature="547:554" ph="classes...classes" />
+            <marker date="1528237103400" expanded="true" signature="547:578" ph="classes...{title, category{title}}" />
+            <marker date="1528237103400" expanded="true" signature="554:578" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="555:560" ph="title...title" />
+            <marker date="1528237103400" expanded="true" signature="562:570" ph="category...category" />
+            <marker date="1528237103400" expanded="true" signature="562:577" ph="category...{title}" />
+            <marker date="1528237103400" expanded="true" signature="570:577" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="571:576" ph="title...title" />
+            <marker date="1528237103400" expanded="true" signature="591:603" ph="instructorId...instructorId" />
+            <marker date="1528237103400" expanded="true" signature="616:627" ph="alsoTrainer...alsoTrainer" />
+            <marker date="1528237103400" expanded="true" signature="616:644" ph="alsoTrainer...{workouts{title}}" />
+            <marker date="1528237103400" expanded="true" signature="627:644" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="628:636" ph="workouts...workouts" />
+            <marker date="1528237103400" expanded="true" signature="628:643" ph="workouts...{title}" />
+            <marker date="1528237103400" expanded="true" signature="636:643" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="637:642" ph="title...title" />
+            <marker date="1528237103400" expanded="true" signature="657:665" ph="imageUrl...imageUrl" />
+            <marker date="1528237103400" expanded="true" signature="678:687" ph="isTrainer...isTrainer" />
+            <marker date="1528237103400" expanded="true" signature="700:709" ph="createdAt...createdAt" />
+            <marker date="1528237103400" expanded="true" signature="722:733" ph="description...description" />
+            <marker date="1528237103400" expanded="true" signature="746:758" ph="_classesMeta..._classesMeta" />
+            <marker date="1528237103400" expanded="true" signature="746:765" ph="_classesMeta...{count}" />
+            <marker date="1528237103400" expanded="true" signature="758:765" ph="{...}" />
+            <marker date="1528237103400" expanded="true" signature="759:764" ph="count...count" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/HeaderComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/ExerciseList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <marker date="1528237223227" expanded="true" signature="236:334" ph="mutation...{&#10;        deleteExercise(id: $id){&#10;            id&#10;        }&#10;    }" />
+            <marker date="1528237223227" expanded="true" signature="245:259" ph="deleteExercise...deleteExercise" />
+            <marker date="1528237223227" expanded="true" signature="259:269" ph="(...)" />
+            <marker date="1528237223227" expanded="true" signature="265:267" ph="ID...ID" />
+            <marker date="1528237223227" expanded="true" signature="269:334" ph="{...}" />
+            <marker date="1528237223227" expanded="true" signature="279:293" ph="deleteExercise...deleteExercise" />
+            <marker date="1528237223227" expanded="true" signature="279:328" ph="deleteExercise...{&#10;            id&#10;        }" />
+            <marker date="1528237223227" expanded="true" signature="293:302" ph="(...)" />
+            <marker date="1528237223227" expanded="true" signature="294:296" ph="id...id" />
+            <marker date="1528237223227" expanded="true" signature="302:328" ph="{...}" />
+            <marker date="1528237223227" expanded="true" signature="316:318" ph="id...id" />
+            <marker date="1528237223227" expanded="true" signature="369:525" ph="query...{&#10;        allExercises{&#10;            name&#10;            sets&#10;            reps&#10;            createdAt&#10;            id&#10;            description&#10;        }&#10;    }" />
+            <marker date="1528237223227" expanded="true" signature="374:525" ph="{...}" />
+            <marker date="1528237223227" expanded="true" signature="384:396" ph="allExercises...allExercises" />
+            <marker date="1528237223227" expanded="true" signature="384:519" ph="allExercises...{&#10;            name&#10;            sets&#10;            reps&#10;            createdAt&#10;            id&#10;            description&#10;        }" />
+            <marker date="1528237223227" expanded="true" signature="396:519" ph="{...}" />
+            <marker date="1528237223227" expanded="true" signature="410:414" ph="name...name" />
+            <marker date="1528237223227" expanded="true" signature="427:431" ph="sets...sets" />
+            <marker date="1528237223227" expanded="true" signature="444:448" ph="reps...reps" />
+            <marker date="1528237223227" expanded="true" signature="461:470" ph="createdAt...createdAt" />
+            <marker date="1528237223227" expanded="true" signature="483:485" ph="id...id" />
+            <marker date="1528237223227" expanded="true" signature="498:509" ph="description...description" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/TrainerList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding>
+            <marker date="1528237211192" expanded="true" signature="235:331" ph="mutation...{&#10;        deleteTrainer(id: $id){&#10;            id&#10;        }&#10;    }" />
+            <marker date="1528237211192" expanded="true" signature="244:257" ph="deleteTrainer...deleteTrainer" />
+            <marker date="1528237211192" expanded="true" signature="257:267" ph="(...)" />
+            <marker date="1528237211192" expanded="true" signature="263:265" ph="ID...ID" />
+            <marker date="1528237211192" expanded="true" signature="267:331" ph="{...}" />
+            <marker date="1528237211192" expanded="true" signature="277:290" ph="deleteTrainer...deleteTrainer" />
+            <marker date="1528237211192" expanded="true" signature="277:325" ph="deleteTrainer...{&#10;            id&#10;        }" />
+            <marker date="1528237211192" expanded="true" signature="290:299" ph="(...)" />
+            <marker date="1528237211192" expanded="true" signature="291:293" ph="id...id" />
+            <marker date="1528237211192" expanded="true" signature="299:325" ph="{...}" />
+            <marker date="1528237211192" expanded="true" signature="313:315" ph="id...id" />
+            <marker date="1528237211192" expanded="true" signature="363:653" ph="query...{&#10;        allTrainers{&#10;            id&#10;            firstName&#10;            lastName&#10;            email&#10;            alsoInstructor{classes{title}}&#10;            description&#10;            imageUrl&#10;            createdAt&#10;            workouts{title}&#10;            _workoutsMeta{count}&#10;        }&#10;    }" />
+            <marker date="1528237211192" expanded="true" signature="368:653" ph="{...}" />
+            <marker date="1528237211192" expanded="true" signature="378:389" ph="allTrainers...allTrainers" />
+            <marker date="1528237211192" expanded="true" signature="378:647" ph="allTrainers...{&#10;            id&#10;            firstName&#10;            lastName&#10;            email&#10;            alsoInstructor{classes{title}}&#10;            description&#10;            imageUrl&#10;            createdAt&#10;            workouts{title}&#10;            _workoutsMeta{count}&#10;        }" />
+            <marker date="1528237211192" expanded="true" signature="389:647" ph="{...}" />
+            <marker date="1528237211192" expanded="true" signature="403:405" ph="id...id" />
+            <marker date="1528237211192" expanded="true" signature="418:427" ph="firstName...firstName" />
+            <marker date="1528237211192" expanded="true" signature="440:448" ph="lastName...lastName" />
+            <marker date="1528237211192" expanded="true" signature="461:466" ph="email...email" />
+            <marker date="1528237211192" expanded="true" signature="479:493" ph="alsoInstructor...alsoInstructor" />
+            <marker date="1528237211192" expanded="true" signature="479:509" ph="alsoInstructor...{classes{title}}" />
+            <marker date="1528237211192" expanded="true" signature="493:509" ph="{...}" />
+            <marker date="1528237211192" expanded="true" signature="494:501" ph="classes...classes" />
+            <marker date="1528237211192" expanded="true" signature="494:508" ph="classes...{title}" />
+            <marker date="1528237211192" expanded="true" signature="501:508" ph="{...}" />
+            <marker date="1528237211192" expanded="true" signature="502:507" ph="title...title" />
+            <marker date="1528237211192" expanded="true" signature="522:533" ph="description...description" />
+            <marker date="1528237211192" expanded="true" signature="546:554" ph="imageUrl...imageUrl" />
+            <marker date="1528237211192" expanded="true" signature="567:576" ph="createdAt...createdAt" />
+            <marker date="1528237211192" expanded="true" signature="589:597" ph="workouts...workouts" />
+            <marker date="1528237211192" expanded="true" signature="589:604" ph="workouts...{title}" />
+            <marker date="1528237211192" expanded="true" signature="597:604" ph="{...}" />
+            <marker date="1528237211192" expanded="true" signature="598:603" ph="title...title" />
+            <marker date="1528237211192" expanded="true" signature="617:630" ph="_workoutsMeta..._workoutsMeta" />
+            <marker date="1528237211192" expanded="true" signature="617:637" ph="_workoutsMeta...{count}" />
+            <marker date="1528237211192" expanded="true" signature="630:637" ph="{...}" />
+            <marker date="1528237211192" expanded="true" signature="631:636" ph="count...count" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/NavigationBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/UserLIst.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding>
+            <marker date="1528237118311" expanded="true" signature="232:321" ph="mutation...{&#10;        deleteUser(id:$id){&#10;            id&#10;        }&#10;    }" />
+            <marker date="1528237118311" expanded="true" signature="241:251" ph="deleteUser...deleteUser" />
+            <marker date="1528237118311" expanded="true" signature="251:261" ph="(...)" />
+            <marker date="1528237118311" expanded="true" signature="257:259" ph="ID...ID" />
+            <marker date="1528237118311" expanded="true" signature="261:321" ph="{...}" />
+            <marker date="1528237118311" expanded="true" signature="271:281" ph="deleteUser...deleteUser" />
+            <marker date="1528237118311" expanded="true" signature="271:315" ph="deleteUser...{&#10;            id&#10;        }" />
+            <marker date="1528237118311" expanded="true" signature="281:289" ph="(...)" />
+            <marker date="1528237118311" expanded="true" signature="282:284" ph="id...id" />
+            <marker date="1528237118311" expanded="true" signature="289:315" ph="{...}" />
+            <marker date="1528237118311" expanded="true" signature="303:305" ph="id...id" />
+            <marker date="1528237118311" expanded="true" signature="353:526" ph="query...{&#10;        allUsers(orderBy:createdAt_DESC){&#10;            email&#10;            id&#10;            username&#10;            createdAt&#10;            _commentsMeta{count}&#10;        }&#10;    }" />
+            <marker date="1528237118311" expanded="true" signature="358:526" ph="{...}" />
+            <marker date="1528237118311" expanded="true" signature="368:376" ph="allUsers...allUsers" />
+            <marker date="1528237118311" expanded="true" signature="368:520" ph="allUsers...{&#10;            email&#10;            id&#10;            username&#10;            createdAt&#10;            _commentsMeta{count}&#10;        }" />
+            <marker date="1528237118311" expanded="true" signature="376:400" ph="(...)" />
+            <marker date="1528237118311" expanded="true" signature="377:384" ph="orderBy...orderBy" />
+            <marker date="1528237118311" expanded="true" signature="400:520" ph="{...}" />
+            <marker date="1528237118311" expanded="true" signature="414:419" ph="email...email" />
+            <marker date="1528237118311" expanded="true" signature="432:434" ph="id...id" />
+            <marker date="1528237118311" expanded="true" signature="447:455" ph="username...username" />
+            <marker date="1528237118311" expanded="true" signature="468:477" ph="createdAt...createdAt" />
+            <marker date="1528237118311" expanded="true" signature="490:503" ph="_commentsMeta..._commentsMeta" />
+            <marker date="1528237118311" expanded="true" signature="490:510" ph="_commentsMeta...{count}" />
+            <marker date="1528237118311" expanded="true" signature="503:510" ph="{...}" />
+            <marker date="1528237118311" expanded="true" signature="504:509" ph="count...count" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="79" lean-forward="true" selection-start-line="17" selection-start-column="79" selection-end-line="17" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/GroupFitClassList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="701">
+          <caret line="972" column="40" lean-forward="true" selection-start-line="972" selection-start-column="40" selection-end-line="972" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <marker date="1528398514426" expanded="true" signature="526:633" ph="mutation...{&#10;        deleteGroupFitClass(id:$id){&#10;            id&#10;        }&#10;    }" />
+            <marker date="1528398514426" expanded="true" signature="535:554" ph="deleteGroupFitClass...deleteGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="554:564" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="560:562" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="564:633" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="574:593" ph="deleteGroupFitClass...deleteGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="574:627" ph="deleteGroupFitClass...{&#10;            id&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="593:601" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="594:596" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="601:627" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="615:617" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="668:1044" ph="query...{&#10;        allGroupFitClasses(orderBy:title_ASC){&#10;            id&#10;            imageUrl&#10;            title&#10;            instructor{firstName, email}&#10;            days{name}&#10;            time&#10;            createdAt&#10;        }&#10;    }" />
+            <marker date="1528398514426" expanded="true" signature="673:1044" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="683:701" ph="allGroupFitClasses...allGroupFitClasses" />
+            <marker date="1528398514426" expanded="true" signature="683:958" ph="allGroupFitClasses...{&#10;            id&#10;            imageUrl&#10;            title&#10;            instructor{firstName, email}&#10;            days{name}&#10;            time&#10;            createdAt&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="701:720" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="702:709" ph="orderBy...orderBy" />
+            <marker date="1528398514426" expanded="true" signature="720:958" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="734:736" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="749:757" ph="imageUrl...imageUrl" />
+            <marker date="1528398514426" expanded="true" signature="770:775" ph="title...title" />
+            <marker date="1528398514426" expanded="true" signature="788:798" ph="instructor...instructor" />
+            <marker date="1528398514426" expanded="true" signature="788:820" ph="instructor...{firstName, email}" />
+            <marker date="1528398514426" expanded="true" signature="798:820" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="799:808" ph="firstName...firstName" />
+            <marker date="1528398514426" expanded="true" signature="810:815" ph="email...email" />
+            <marker date="1528398514426" expanded="true" signature="817:819" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="833:837" ph="days...days" />
+            <marker date="1528398514426" expanded="true" signature="833:843" ph="days...{name}" />
+            <marker date="1528398514426" expanded="true" signature="837:843" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="838:842" ph="name...name" />
+            <marker date="1528398514426" expanded="true" signature="856:860" ph="time...time" />
+            <marker date="1528398514426" expanded="true" signature="873:882" ph="startTime...startTime" />
+            <marker date="1528398514426" expanded="true" signature="895:902" ph="endTime...endTime" />
+            <marker date="1528398514426" expanded="true" signature="915:924" ph="createdAt...createdAt" />
+            <marker date="1528398514426" expanded="true" signature="937:948" ph="isPublished...isPublished" />
+            <marker date="1528398514426" expanded="true" signature="967:974" ph="allDays...allDays" />
+            <marker date="1528398514426" expanded="true" signature="967:983" ph="allDays...{id,name}" />
+            <marker date="1528398514426" expanded="true" signature="974:983" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="975:977" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="978:982" ph="name...name" />
+            <marker date="1528398514426" expanded="true" signature="993:1007" ph="allInstructors...allInstructors" />
+            <marker date="1528398514426" expanded="true" signature="993:1038" ph="allInstructors...{id, firstName, lastName email}" />
+            <marker date="1528398514426" expanded="true" signature="1007:1038" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1008:1010" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1012:1021" ph="firstName...firstName" />
+            <marker date="1528398514426" expanded="true" signature="1023:1031" ph="lastName...lastName" />
+            <marker date="1528398514426" expanded="true" signature="1032:1037" ph="email...email" />
+            <marker date="1528398514426" expanded="true" signature="1081:1458" ph="query...{&#10;        GroupFitClass(id:$id){&#10;            id&#10;            title&#10;            time&#10;            sortTime&#10;            instructor{firstName, email}&#10;            isPublished&#10;            days{name}&#10;        }&#10;    }" />
+            <marker date="1528398514426" expanded="true" signature="1087:1106" ph="SingleGroupFitClass...SingleGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="1106:1115" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="1111:1113" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="1115:1458" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1125:1138" ph="GroupFitClass...GroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="1125:1371" ph="GroupFitClass...{&#10;            id&#10;            title&#10;            time&#10;            sortTime&#10;            instructor{firstName, email}&#10;            isPublished&#10;            days{name}&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="1138:1146" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="1139:1141" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1146:1371" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1160:1162" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1175:1180" ph="title...title" />
+            <marker date="1528398514426" expanded="true" signature="1193:1197" ph="time...time" />
+            <marker date="1528398514426" expanded="true" signature="1210:1219" ph="startTime...startTime" />
+            <marker date="1528398514426" expanded="true" signature="1232:1239" ph="endTime...endTime" />
+            <marker date="1528398514426" expanded="true" signature="1252:1260" ph="sortTime...sortTime" />
+            <marker date="1528398514426" expanded="true" signature="1273:1283" ph="instructor...instructor" />
+            <marker date="1528398514426" expanded="true" signature="1273:1314" ph="instructor...{firstName, email}" />
+            <marker date="1528398514426" expanded="true" signature="1283:1314" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1284:1293" ph="firstName...firstName" />
+            <marker date="1528398514426" expanded="true" signature="1295:1303" ph="lastName...lastName" />
+            <marker date="1528398514426" expanded="true" signature="1304:1309" ph="email...email" />
+            <marker date="1528398514426" expanded="true" signature="1311:1313" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1327:1338" ph="isPublished...isPublished" />
+            <marker date="1528398514426" expanded="true" signature="1351:1355" ph="days...days" />
+            <marker date="1528398514426" expanded="true" signature="1351:1361" ph="days...{name}" />
+            <marker date="1528398514426" expanded="true" signature="1355:1361" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1356:1360" ph="name...name" />
+            <marker date="1528398514426" expanded="true" signature="1381:1388" ph="allDays...allDays" />
+            <marker date="1528398514426" expanded="true" signature="1381:1397" ph="allDays...{name}" />
+            <marker date="1528398514426" expanded="true" signature="1388:1397" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1389:1391" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1392:1396" ph="name...name" />
+            <marker date="1528398514426" expanded="true" signature="1407:1421" ph="allInstructors...allInstructors" />
+            <marker date="1528398514426" expanded="true" signature="1407:1452" ph="allInstructors...{id, firstName, lastName email}" />
+            <marker date="1528398514426" expanded="true" signature="1421:1452" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1422:1424" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1426:1435" ph="firstName...firstName" />
+            <marker date="1528398514426" expanded="true" signature="1437:1445" ph="lastName...lastName" />
+            <marker date="1528398514426" expanded="true" signature="1446:1451" ph="email...email" />
+            <marker date="1528398514426" expanded="true" signature="1500:1650" ph="mutation...{&#10;        updateGroupFitClass(id:$id, isPublished: $show){&#10;            isPublished&#10;        }&#10;    }" />
+            <marker date="1528398514426" expanded="true" signature="1509:1526" ph="updateIsPublished...updateIsPublished" />
+            <marker date="1528398514426" expanded="true" signature="1526:1552" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="1532:1534" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="1544:1551" ph="Boolean...Boolean" />
+            <marker date="1528398514426" expanded="true" signature="1552:1650" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1562:1581" ph="updateGroupFitClass...updateGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="1562:1644" ph="updateGroupFitClass...{&#10;            isPublished&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="1581:1609" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="1582:1584" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1590:1601" ph="isPublished...isPublished" />
+            <marker date="1528398514426" expanded="true" signature="1609:1644" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1623:1634" ph="isPublished...isPublished" />
+            <marker date="1528398514426" expanded="true" signature="1699:1947" ph="mutation...{&#10;        updateGroupFitClass(id: $id, startTime: $startTime, endTime: $endTime) {&#10;            id&#10;            startTime&#10;            endTime&#10;        }&#10;    }" />
+            <marker date="1528398514426" expanded="true" signature="1708:1739" ph="updateGroupFitClassStartEndTime...updateGroupFitClassStartEndTime" />
+            <marker date="1528398514426" expanded="true" signature="1739:1791" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="1745:1747" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="1762:1770" ph="DateTime...DateTime" />
+            <marker date="1528398514426" expanded="true" signature="1782:1790" ph="DateTime...DateTime" />
+            <marker date="1528398514426" expanded="true" signature="1792:1947" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1802:1821" ph="updateGroupFitClass...updateGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="1802:1941" ph="updateGroupFitClass...{&#10;            id&#10;            startTime&#10;            endTime&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="1821:1872" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="1822:1824" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1831:1840" ph="startTime...startTime" />
+            <marker date="1528398514426" expanded="true" signature="1854:1861" ph="endTime...endTime" />
+            <marker date="1528398514426" expanded="true" signature="1873:1941" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="1887:1889" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="1902:1911" ph="startTime...startTime" />
+            <marker date="1528398514426" expanded="true" signature="1924:1931" ph="endTime...endTime" />
+            <marker date="1528398514426" expanded="true" signature="1983:2905" ph="mutation...{&#10;        updateGroupFitClass(id: $id, title: $title, time: $time, daysIds: $daysArr) {&#10;            id&#10;            title&#10;            time&#10;            instructor {&#10;                firstName&#10;            }&#10;            days {&#10;                name&#10;            }&#10;        }&#10;        addToInstructorsClasses(instructorInstructorId: $idGFI, classesGroupFitClassId: $id) {&#10;            classesGroupFitClass {&#10;                title&#10;                days {&#10;                    name&#10;                }&#10;                id&#10;            }&#10;            instructorInstructor {&#10;                firstName&#10;                id&#10;            }&#10;        }&#10;    }" />
+            <marker date="1528398514426" expanded="true" signature="1992:2018" ph="updateGroupFitClassListing...updateGroupFitClassListing" />
+            <marker date="1528398514426" expanded="true" signature="2018:2132" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="2024:2026" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="2037:2043" ph="String...String" />
+            <marker date="1528398514426" expanded="true" signature="2052:2058" ph="String...String" />
+            <marker date="1528398514426" expanded="true" signature="2069:2071" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="2084:2089" ph="[...]" />
+            <marker date="1528398514426" expanded="true" signature="2085:2087" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="2103:2111" ph="DateTime...DateTime" />
+            <marker date="1528398514426" expanded="true" signature="2123:2131" ph="DateTime...DateTime" />
+            <marker date="1528398514426" expanded="true" signature="2133:2905" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="2143:2162" ph="updateGroupFitClass...updateGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="2143:2521" ph="updateGroupFitClass...{&#10;            id&#10;            title&#10;            time&#10;            instructor {&#10;                firstName&#10;            }&#10;            days {&#10;                name&#10;            }&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="2162:2260" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="2163:2165" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="2172:2177" ph="title...title" />
+            <marker date="1528398514426" expanded="true" signature="2187:2191" ph="time...time" />
+            <marker date="1528398514426" expanded="true" signature="2200:2207" ph="daysIds...daysIds" />
+            <marker date="1528398514426" expanded="true" signature="2219:2228" ph="startTime...startTime" />
+            <marker date="1528398514426" expanded="true" signature="2242:2249" ph="endTime...endTime" />
+            <marker date="1528398514426" expanded="true" signature="2261:2521" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="2275:2277" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="2290:2295" ph="title...title" />
+            <marker date="1528398514426" expanded="true" signature="2308:2312" ph="time...time" />
+            <marker date="1528398514426" expanded="true" signature="2325:2334" ph="startTime...startTime" />
+            <marker date="1528398514426" expanded="true" signature="2347:2354" ph="endTime...endTime" />
+            <marker date="1528398514426" expanded="true" signature="2367:2377" ph="instructor...instructor" />
+            <marker date="1528398514426" expanded="true" signature="2367:2438" ph="instructor...{&#10;                firstName&#10;            }" />
+            <marker date="1528398514426" expanded="true" signature="2378:2438" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="2396:2398" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="2415:2424" ph="firstName...firstName" />
+            <marker date="1528398514426" expanded="true" signature="2451:2455" ph="days...days" />
+            <marker date="1528398514426" expanded="true" signature="2451:2511" ph="days...{&#10;                name&#10;            }" />
+            <marker date="1528398514426" expanded="true" signature="2456:2511" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="2474:2476" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="2493:2497" ph="name...name" />
+            <marker date="1528398514426" expanded="true" signature="2530:2553" ph="addToInstructorsClasses...addToInstructorsClasses" />
+            <marker date="1528398514426" expanded="true" signature="2530:2899" ph="addToInstructorsClasses...{&#10;            classesGroupFitClass {&#10;                title&#10;                days {&#10;                    name&#10;                }&#10;                id&#10;            }&#10;            instructorInstructor {&#10;                firstName&#10;                id&#10;            }&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="2553:2614" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="2554:2576" ph="instructorInstructorId...instructorInstructorId" />
+            <marker date="1528398514426" expanded="true" signature="2586:2608" ph="classesGroupFitClassId...classesGroupFitClassId" />
+            <marker date="1528398514426" expanded="true" signature="2615:2899" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="2629:2649" ph="classesGroupFitClass...classesGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="2629:2795" ph="classesGroupFitClass...{&#10;                title&#10;                days {&#10;                    name&#10;                }&#10;                id&#10;            }" />
+            <marker date="1528398514426" expanded="true" signature="2650:2795" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="2668:2673" ph="title...title" />
+            <marker date="1528398514426" expanded="true" signature="2690:2694" ph="days...days" />
+            <marker date="1528398514426" expanded="true" signature="2690:2762" ph="days...{&#10;                    name&#10;                }" />
+            <marker date="1528398514426" expanded="true" signature="2695:2762" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="2717:2719" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="2740:2744" ph="name...name" />
+            <marker date="1528398514426" expanded="true" signature="2779:2781" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="2808:2828" ph="instructorInstructor...instructorInstructor" />
+            <marker date="1528398514426" expanded="true" signature="2808:2889" ph="instructorInstructor...{&#10;                firstName&#10;                id&#10;            }" />
+            <marker date="1528398514426" expanded="true" signature="2829:2889" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="2847:2856" ph="firstName...firstName" />
+            <marker date="1528398514426" expanded="true" signature="2873:2875" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="2941:3855" ph="mutation...{&#10;        createGroupFitClass(id: $id, title: $title, time: $time, daysIds: $daysArr, startTime: $startTime, endTime: $endTime) {&#10;            id&#10;            title&#10;            time&#10;            startTime&#10;            endTime&#10;            instructor {&#10;                id&#10;                firstName&#10;            }&#10;            days {&#10;                id&#10;                name&#10;            }&#10;        }&#10;        addToInstructorsClasses(instructorInstructorId: $idGFI, classesGroupFitClassId: $id) {&#10;            classesGroupFitClass {&#10;                title&#10;                days {&#10;                    id&#10;                    name&#10;                }&#10;                id&#10;            }&#10;            instructorInstructor {&#10;                firstName&#10;                id&#10;            }&#10;        }&#10;    }" />
+            <marker date="1528398514426" expanded="true" signature="2950:2968" ph="CreateroupFitClass...CreateroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="2968:3082" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="2974:2976" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="2987:2993" ph="String...String" />
+            <marker date="1528398514426" expanded="true" signature="3002:3008" ph="String...String" />
+            <marker date="1528398514426" expanded="true" signature="3019:3021" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="3034:3039" ph="[...]" />
+            <marker date="1528398514426" expanded="true" signature="3035:3037" ph="ID...ID" />
+            <marker date="1528398514426" expanded="true" signature="3053:3061" ph="DateTime...DateTime" />
+            <marker date="1528398514426" expanded="true" signature="3073:3081" ph="DateTime...DateTime" />
+            <marker date="1528398514426" expanded="true" signature="3083:3855" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="3093:3112" ph="createGroupFitClass...createGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="3093:3471" ph="createGroupFitClass...{&#10;            id&#10;            title&#10;            time&#10;            startTime&#10;            endTime&#10;            instructor {&#10;                id&#10;                firstName&#10;            }&#10;            days {&#10;                id&#10;                name&#10;            }&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="3112:3210" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="3113:3115" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="3122:3127" ph="title...title" />
+            <marker date="1528398514426" expanded="true" signature="3137:3141" ph="time...time" />
+            <marker date="1528398514426" expanded="true" signature="3150:3157" ph="daysIds...daysIds" />
+            <marker date="1528398514426" expanded="true" signature="3169:3178" ph="startTime...startTime" />
+            <marker date="1528398514426" expanded="true" signature="3192:3199" ph="endTime...endTime" />
+            <marker date="1528398514426" expanded="true" signature="3211:3471" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="3225:3227" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="3240:3245" ph="title...title" />
+            <marker date="1528398514426" expanded="true" signature="3258:3262" ph="time...time" />
+            <marker date="1528398514426" expanded="true" signature="3275:3284" ph="startTime...startTime" />
+            <marker date="1528398514426" expanded="true" signature="3297:3304" ph="endTime...endTime" />
+            <marker date="1528398514426" expanded="true" signature="3317:3327" ph="instructor...instructor" />
+            <marker date="1528398514426" expanded="true" signature="3317:3388" ph="instructor...{&#10;                id&#10;                firstName&#10;            }" />
+            <marker date="1528398514426" expanded="true" signature="3328:3388" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="3346:3348" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="3365:3374" ph="firstName...firstName" />
+            <marker date="1528398514426" expanded="true" signature="3401:3405" ph="days...days" />
+            <marker date="1528398514426" expanded="true" signature="3401:3461" ph="days...{&#10;                id&#10;                name&#10;            }" />
+            <marker date="1528398514426" expanded="true" signature="3406:3461" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="3424:3426" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="3443:3447" ph="name...name" />
+            <marker date="1528398514426" expanded="true" signature="3480:3503" ph="addToInstructorsClasses...addToInstructorsClasses" />
+            <marker date="1528398514426" expanded="true" signature="3480:3849" ph="addToInstructorsClasses...{&#10;            classesGroupFitClass {&#10;                title&#10;                days {&#10;                    id&#10;                    name&#10;                }&#10;                id&#10;            }&#10;            instructorInstructor {&#10;                firstName&#10;                id&#10;            }&#10;        }" />
+            <marker date="1528398514426" expanded="true" signature="3503:3564" ph="(...)" />
+            <marker date="1528398514426" expanded="true" signature="3504:3526" ph="instructorInstructorId...instructorInstructorId" />
+            <marker date="1528398514426" expanded="true" signature="3536:3558" ph="classesGroupFitClassId...classesGroupFitClassId" />
+            <marker date="1528398514426" expanded="true" signature="3565:3849" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="3579:3599" ph="classesGroupFitClass...classesGroupFitClass" />
+            <marker date="1528398514426" expanded="true" signature="3579:3745" ph="classesGroupFitClass...{&#10;                title&#10;                days {&#10;                    id&#10;                    name&#10;                }&#10;                id&#10;            }" />
+            <marker date="1528398514426" expanded="true" signature="3600:3745" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="3618:3623" ph="title...title" />
+            <marker date="1528398514426" expanded="true" signature="3640:3644" ph="days...days" />
+            <marker date="1528398514426" expanded="true" signature="3640:3712" ph="days...{&#10;                    id&#10;                    name&#10;                }" />
+            <marker date="1528398514426" expanded="true" signature="3645:3712" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="3667:3669" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="3690:3694" ph="name...name" />
+            <marker date="1528398514426" expanded="true" signature="3729:3731" ph="id...id" />
+            <marker date="1528398514426" expanded="true" signature="3758:3778" ph="instructorInstructor...instructorInstructor" />
+            <marker date="1528398514426" expanded="true" signature="3758:3839" ph="instructorInstructor...{&#10;                firstName&#10;                id&#10;            }" />
+            <marker date="1528398514426" expanded="true" signature="3779:3839" ph="{...}" />
+            <marker date="1528398514426" expanded="true" signature="3797:3806" ph="firstName...firstName" />
+            <marker date="1528398514426" expanded="true" signature="3823:3825" ph="id...id" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,11 +1,15 @@
 import React from 'react';
 import {
     View, Text, TouchableOpacity, StyleSheet, Image,
-    Button, Alert, Modal, TextInput, WebView
+    Dimensions, Alert, Modal, TextInput, WebView
 } from 'react-native';
 import gql from 'graphql-tag';
 import {graphql } from 'react-apollo';
 import {FontAwesome, MaterialCommunityIcons, MaterialIcons, Ionicons} from '@expo/vector-icons';
+
+
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
 const CreateClassCommentByUser = gql`
     mutation createComment($content: String!, $userCommentId: ID!, $classCommentId: ID!){
@@ -58,7 +62,8 @@ class GroupFitnessClass extends React.Component{
                 <View style={styles.imageRowContainer}>
                     <Image source={{uri: this.props.image}}
                            style={styles.image}
-                           resizeMode="contain" />
+                           resizeMode="cover"
+                    />
                 </View>
                 <View style={styles.rowContainer}>
                     <View style={styles.rowText}>
@@ -67,23 +72,24 @@ class GroupFitnessClass extends React.Component{
                                 {this.props.title}
                             </Text>
                         </View>
+                        <Text style={styles.time} numberOfLines={1} ellipsizeMode ={'tail'}>
+                            {this.props.time}
+                        </Text>
                         <Text style={styles.instructor} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.instructor}
                         </Text>
                         <Text style={styles.days} numberOfLines={2} ellipsizeMode ={'tail'}>
                             {this.props.days}
                         </Text>
-                        <Text style={styles.days} numberOfLines={1} ellipsizeMode ={'tail'}>
-                            {this.props.time}
-                        </Text>
+
                         <Text style={styles.location} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.location}
                         </Text>
-                        <Text style={styles.location} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.description} numberOfLines={1} ellipsizeMode ={'tail'}>
                             Type: {this.props.category}
                         </Text>
                         <Text style={styles.description} numberOfLines={4} ellipsizeMode ={'tail'}>
-                            {this.props.description}
+                            Description: {this.props.description}
                         </Text>
                         <View style={{flexDirection: "row",justifyContent:"center", alignItems:"center", marginTop: 25, }}>
                             <TouchableOpacity
@@ -233,8 +239,8 @@ const styles = StyleSheet.create({
         height: 400 ,
         width: '90%',
         borderRadius:10,
-        borderWidth: 2,
-        borderColor: 'red',
+        borderWidth: 3,
+        borderColor: '#931414',
         opacity: "0.96",
         padding: 5,
     },
@@ -328,6 +334,12 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#ACACAC'
     },
+    time: {
+        paddingLeft: 10,
+        marginTop: 8,
+        fontSize: 14,
+        color: '#ACACAC'
+    },
     description: {
         paddingLeft: 10,
         marginTop: 8,
@@ -350,7 +362,7 @@ const styles = StyleSheet.create({
     image: {
        flex: 4,
         height: undefined,
-        width: 160,
+        width: WIDTH*.93,
         backgroundColor: 'transparent',
     },
     rowText: {

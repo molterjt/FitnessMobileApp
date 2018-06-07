@@ -63,7 +63,7 @@ class WorkoutView extends React.Component{
                                             </Text>
                                             <Ionicons
                                                 name={'ios-arrow-dropright-outline'}
-                                                color={'#931414'}
+                                                color={'red'}
                                                 size={15}
                                                 style={{marginLeft: 3, marginTop:5}}
                                             />

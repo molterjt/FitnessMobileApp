@@ -227,7 +227,11 @@ type GroupFitClass @model {
   classId: String! @isUnique
   title: String!
   time: String
+  isPublished: Boolean @defaultValue(value: "false")
   sortTime: DateTime
+  startTime: DateTime
+  endTime: DateTime
+  season: String
   days: [Day!]! @relation(name: "ClassDays")
   location: Facility  @relation(name: "FacilityClasses")
   capacity: Int
@@ -256,10 +260,10 @@ type GroupFitnessClassCategory @model{
 
 type Instructor @model {
   id: ID! @isUnique
-  instructorId: String! @isUnique
-  firstName: String!
-  lastName: String!
-  email: String! @isUnique
+  instructorId: String @isUnique
+  firstName: String
+  lastName: String
+  email: String @isUnique
   classes: [GroupFitClass!]! @relation(name: "InstructorsClasses")
   isTrainer: Boolean @defaultValue(value: false)
   alsoTrainer: [Trainer!]! @relation(name: "TrainerANDInstructor")

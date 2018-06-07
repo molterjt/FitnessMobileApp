@@ -132,7 +132,9 @@ const PersonalFITStack = StackNavigator(
             screen: WorkoutScreen,
             path: '/workouts',
             navigationOptions:{
-                header: null,
+                headerStyle: {
+                    backgroundColor: "#000"
+                }
             },
         },
         ExerciseDetail: {
