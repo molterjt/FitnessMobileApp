@@ -3,10 +3,12 @@
 }
 
 .td {
+  width: 60px;
   font-weight: 500;
-  padding: 0 20px;
+  padding: 10px;
   border: 1px solid #000000;
   text-align: center;
+  font-size: 12px;
 }
 .th {
   font-weight: 900;
@@ -30,7 +32,6 @@
   white-space: nowrap;
   margin: 10px 0;
   padding: 10px;
-  border: 1px solid #222;
   color: greenyellow;
 }
 

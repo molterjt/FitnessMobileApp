@@ -3,7 +3,8 @@ import { Query, Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
 import {HeaderComponent} from "./HeaderComponent";
 import NavigationBar from './NavigationBar';
-
+import moment from 'moment';
+import Ionicon from 'react-ionicons';
 
 const DELETE_TRAINER = gql`
     mutation deleteTrainer($id: ID!){
@@ -30,24 +31,24 @@ const TRAINER_LIST=gql`
     }
 `
 
-const RemoveTrainer = ({id}) => {
+const RemoveTrainer = ({id, firstName}) => {
     return (
         <Mutation
             mutation={DELETE_TRAINER}
         >
-            {(deleteInstructor, {data}) => (
-                <button
-                    onClick={ e => {
-                        if(window.confirm("Are you sure you want to DELETE?")){
-                            deleteInstructor({
-                                variables: {
-                                    id
-                                }
-                            });
-                            console.log("Trainer with id: " + id + " was deleted");
-                        }
-                    }}
-                >Delete</button>
+            {(deleteTrainer, {data}) => (
+                <Ionicon icon="ios-trash" onClick={ () => {
+                if(window.confirm("Are you really, really sure you want to DELETE " + `${firstName}` +"?" +
+                        " There's no take backs!")){
+                    deleteTrainer({
+                        variables: {
+                            id
+                        },
+                        refetchQueries: [ { query: TRAINER_LIST }],
+                    });
+                    alert(`${firstName}`+ " with id: " + id + " was deleted");
+                }
+            }} fontSize="35px" color="black"/>
             )}
         </Mutation>
     );
@@ -64,47 +65,43 @@ class TrainerList extends React.Component{
                         <div style={{alignItems:"center", justifyContent:"center"}}>
                             <HeaderComponent/>
                             <NavigationBar/>
-                            <h1>Instructor:</h1>
+                            <h1>Trainer:</h1>
                             <div >
-                                <table style={{margin: 10, padding: 20, border:'1px solid black', alignContent:"center", justifyContent: "center"}}>
-                                    <title>Instructor</title>
+                                <table style={{margin: 10, padding: 20, border:'1px solid black', alignContent:"center", textAlign: "center"}}>
                                     <tbody>
                                     <tr >
-                                        <th>Image:</th>
-                                        <th>FirstName:</th>
-                                        <th>LastName:</th>
-                                        <th>Email:</th>
-                                        <th>Description:</th>
-                                        <th>Created_At:</th>
-                                        <th> Workout_Count:</th>
-                                        <th>ClassList:</th>
-                                        <th>TrainerWorkouts:</th>
+                                        <th className={'th'}>Image:</th>
+                                        <th className={'th'}>FirstName:</th>
+                                        <th className={'th'}>LastName:</th>
+                                        <th className={'th'}>Email:</th>
+                                        <th className={'th'}>Description:</th>
+                                        <th className={'th'}>Created_At:</th>
+                                        <th className={'th'}> Workout_Count:</th>
+                                        <th className={'th'}>ClassList:</th>
+                                        <th className={'th'}>TrainerWorkouts:</th>
 
                                     </tr>
                                     {data.allTrainers.map(({id, firstName, lastName, email, description, createdAt,
                                                                  workouts, alsoInstructor , imageUrl, _workoutsMeta}) => (
                                             <tr key={id}>
-                                                <td style={{ border:'2px solid black',  width: 100, }}><img style={{height: 100, width: 100}} src={imageUrl} alt={firstName} /></td>
-                                                <td style={{ border:'2px solid black', width: 70, }}>{firstName}</td>
-                                                <td style={{ border:'1px solid black',  width: 80, }}>{lastName}</td>
-                                                <td style={{ border:'1px solid black',  width: 100, }}>{email}</td>
-                                                <td style={{ border:'1px solid black',  width: 300, }}>{description}</td>
-                                                <td style={{ border:'1px solid black',  width: 100, }}>{createdAt.toString().substring(0, 10)} {createdAt.substring(11,19)}</td>
-                                                <td style={{ border:'1px solid black',  width: 30, }}>{_workoutsMeta.count}</td>
-                                                <td style={{ border:'1px solid black',  width: 200, }}>
-                                                    <tr><th>ClassName:</th></tr>
-                                                    {alsoInstructor.map(({classes}) => (
-                                                        <tr>
-                                                            <td style={{ border:'1px solid black',  width: 1000, }}>{classes.map(({title}) => title).join("; ")}</td>
-                                                        </tr>
-
+                                                <td style={{ border:'2px solid black',  width: 100, }}><img style={{height: 100, width: 'auto'}} src={imageUrl} alt={firstName} /></td>
+                                                <td style={{ border:'2px solid black', width: 70, padding:1 }}>{firstName}</td>
+                                                <td style={{ border:'1px solid black',  width: 80, padding:1 }}>{lastName}</td>
+                                                <td style={{ border:'1px solid black',  width: 100, padding:2}}>{email}</td>
+                                                <td style={{ border:'1px solid black',  width: 100, padding:1}}>{description}</td>
+                                                <td style={{ border:'1px solid black',  width: 100,padding:1 }}>{moment(createdAt).format('M/D/Y')}</td>
+                                                <td style={{ border:'1px solid black',  width: 30, padding:1 }}>{_workoutsMeta.count}</td>
+                                                <td style={{ border:'1px solid black',  width: 200, padding:1 }}>
+                                                    {alsoInstructor.map(({classes}, index) => (
+                                                        <p key={index}>{classes.map(({title}) => title).join("; ")}</p>
                                                     ))}
                                                 </td>
-                                                <td style={{ border:'1px solid black',  width: 200, }}>
-                                                    <td style={{ border:'1px solid black',  width: 200, }}>{workouts.map(({title}) => title).join("; ") + "\n"} </td>
+                                                <td style={{ border:'1px solid black',  width: 100, padding:1 }}>
+                                                    <p style={{width: 200, }}>{workouts.map(({title}) => title).join("; ") + "\n"} </p>
                                                 </td>
-
-                                                <td style={{ border:'1px solid black',  width: 70, }}><RemoveTrainer id={id}/></td>
+                                                <td style={{ border:'1px solid black',  width: 70, padding:1 }}>
+                                                    <RemoveTrainer id={id} firstName={firstName}/>
+                                                </td>
                                             </tr>
                                         )
                                     )}

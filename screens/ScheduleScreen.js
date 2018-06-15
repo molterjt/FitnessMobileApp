@@ -279,7 +279,7 @@ const MONDAY_QUERY = gql`
         mondays: allGroupFitClasses(filter:{
             days_some: {name_contains: "Monday"},
             isPublished: true,
-        }, orderBy: sortTime_ASC){
+        }, orderBy: startTime_ASC){
             id
             title
             time
@@ -296,7 +296,7 @@ const TUESDAY_QUERY = gql`
         tuesdays: allGroupFitClasses(filter:{
             days_some: {name_contains: "Tuesday"},
             isPublished: true,
-        }, orderBy: sortTime_ASC){
+        }, orderBy: startTime_ASC){
             id
             title
             time
@@ -313,7 +313,7 @@ const WEDNESDAY_QUERY = gql`
         wednesdays: allGroupFitClasses(filter:{
             days_some: {name_contains: "Wednesday"},
             isPublished: true,
-        }, orderBy: sortTime_ASC){
+        }, orderBy: startTime_ASC){
             id
             title
             time
@@ -330,7 +330,7 @@ const THURSDAY_QUERY = gql`
         thursdays: allGroupFitClasses(filter:{
             days_some: {name_contains: "Thursday"},
             isPublished: true,
-        }, orderBy: sortTime_ASC){
+        }, orderBy: startTime_ASC){
             id
             title
             time
@@ -347,7 +347,7 @@ const FRIDAY_QUERY = gql`
         fridays: allGroupFitClasses(filter:{
             days_some: {name_contains: "Friday"},
             isPublished: true,
-        }, orderBy: sortTime_ASC){
+        }, orderBy: startTime_ASC){
             id
             title
             time
@@ -365,7 +365,7 @@ const SATURDAY_QUERY = gql`
         saturdays: allGroupFitClasses(filter:{
             days_some: {name_contains: "Saturday"},
             isPublished: true,
-        }, orderBy: sortTime_ASC){
+        }, orderBy: startTime_ASC){
             id
             title
             time
@@ -383,7 +383,7 @@ const SUNDAY_QUERY = gql`
         sundays: allGroupFitClasses(filter:{
             days_some: {name_contains: "Sunday"},
             isPublished: true,
-        }, orderBy: sortTime_ASC){
+        }, orderBy: startTime_ASC){
             id
             title
             time

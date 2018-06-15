@@ -14,9 +14,9 @@ class NavigationBar extends React.Component{
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem eventKey={1} href="/groupfitclasses">
-                            GroupFitClasses
-                        </NavItem>
+                        <Nav>
+                            <NavItem eventKey={1} title={"GroupFitClasses"} href={"/groupfitclasses"}>GroupFitClasses</NavItem>
+                        </Nav>
                         <NavDropdown eventKey={2} title={"Workouts"} id={"basic-nav-dropdown"}>
                             <MenuItem eventKey={2.1} href={"/workouts"}>Workouts</MenuItem>
                             <MenuItem eventKey={2.2} href={"/exercises"}>Exercises</MenuItem>
@@ -30,7 +30,14 @@ class NavigationBar extends React.Component{
                         <NavDropdown eventKey={4} title={"Staff"} id={"basic-nav-dropdown"}>
                             <MenuItem eventKey={4.1} href={"/instructors"}>Instructors</MenuItem>
                             <MenuItem eventKey={4.2} href={"/trainers"}>Trainers</MenuItem>
+                            <MenuItem eventKey={4.3} href={"/staffImageGallery"}>Staff Image Gallery</MenuItem>
                         </NavDropdown>
+                        <Nav>
+                            <NavItem eventKey={5} title={"Image Gallery"} href={"/imagegallery"}>Image Gallery</NavItem>
+                        </Nav>
+                        <Nav>
+                            <NavItem eventKey={6} title={"Events"} href={"/eventList"}>Events</NavItem>
+                        </Nav>
                     </Nav>
                     <Nav pullRight>
                         <NavItem eventKey={1} href="https://miamioh.edu/rec">

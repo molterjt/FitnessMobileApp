@@ -3,7 +3,8 @@ import {Query, Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
 import {HeaderComponent} from "./HeaderComponent";
 import NavigationBar from './NavigationBar';
-
+import moment from 'moment';
+import Ionicon from 'react-ionicons';
 
 
 const DELETE_USER = gql`
@@ -27,25 +28,24 @@ const USER_LIST = gql`
     }
 `
 
-const RemoveUser = ({id}) => {
+const RemoveUser = ({id, username}) => {
     return (
         <Mutation
             mutation={DELETE_USER}
         >
             {(deleteUser, {data}) => (
-                <button
-                    onClick={ e => {
-                        if(window.confirm("Are you sure you want to DELETE?")){
-                            deleteUser({
-                                variables: {
-                                    id
-                                }
-                            });
-                            console.log("User with: " + id + " was deleted");
-                        }
-
-                    }}
-                >Delete</button>
+                <Ionicon icon="ios-trash" onClick={ () => {
+                    if(window.confirm("Are you really, really sure you want to DELETE " + `${username}` +"?" +
+                            " There's no take backs!")){
+                        deleteUser({
+                            variables: {
+                                id
+                            },
+                            refetchQueries: [ { query: USER_LIST }],
+                        });
+                        alert(`${username}`+ " with id: " + id + " was deleted");
+                    }
+                }} fontSize="35px" color="black"/>
             )}
         </Mutation>
     );
@@ -57,29 +57,30 @@ class UserLIst extends React.Component{
             <Query query={USER_LIST}>
                 {({loading, error, data}) => {
                     if(loading) return "Loading...";
-                    if(error) return `Errro! ${error.message}`;
+                    if(error) return `Error! ${error.message}`;
                     return(
                         <div>
                             <HeaderComponent/>
                             <NavigationBar/>
                             <div >
-                                <table style={{margin: 10, padding: 20, border:'1px solid black',}}>
+                                <table style={{margin: 10, padding: 20, border:'1px solid black', textAlign:'center',}}>
                                     <tbody>
-                                    <tr >
-
-                                        <th>User:</th>
-                                        <th>Email:</th>
-                                        <th>Created_At:</th>
-                                        <th>CommentCount:</th>
+                                    <tr>
+                                        <th className={'th'}>User:</th>
+                                        <th className={'th'}>Email:</th>
+                                        <th className={'th'}>Created_At:</th>
+                                        <th className={'th'}>CommentCount:</th>
                                     </tr>
                                     {data.allUsers.map(({id, email, username, createdAt, _commentsMeta }) => (
                                             <tr key={id}>
 
                                                 <td style={{ border:'1px solid black',  width: 200, }}>{username}</td>
                                                 <td style={{ border:'1px solid black',  width: 250, }}>{email}</td>
-                                                <td style={{ border:'1px solid black',  width: 100, }}>{createdAt.toString().substring(0, 10)} {createdAt.substring(11,19)}</td>
+                                                <td style={{ border:'1px solid black',  width: 100, }}>
+                                                    {moment(createdAt).format('M/D/Y')}<br/>{moment(createdAt).format('h:mm a')}
+                                                </td>
                                                 <td style={{ border:'1px solid black',  width: 150, }}>{_commentsMeta.count}</td>
-                                                <td style={{ border:'1px solid black',  width: 100, }}><RemoveUser id={id}/></td>
+                                                <td style={{ border:'1px solid black',  width: 100, }}><RemoveUser id={id} username={username}/></td>
                                             </tr>
                                         )
                                     )}

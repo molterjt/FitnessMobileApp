@@ -7,7 +7,7 @@ import Event from "../components/Event";
 
 const GET_EVENTS = gql`    
     query{
-        allEvents(orderBy: registerUrl_ASC){
+        allEvents(orderBy: publishDate_ASC, filter:{isPublished:true}){
             id
             name
             imageUrl

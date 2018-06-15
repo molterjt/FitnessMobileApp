@@ -9,14 +9,13 @@ import Workout from '../components/Workout';
 
 const GET_WORKOUTS = gql`
     query{
-        allWorkouts{
+        allWorkouts(filter:{isPublished: true}){
             id
-            workoutId
             title
             type{title}
             date
             description
-            exercises{name, sets, reps, intensity, tempo, id, exerciseId}
+            exercises{name, sets, reps, intensity, tempo, id}
             author{alsoInstructor{id, firstName}}
             imageUrl
         }
@@ -50,7 +49,7 @@ class WorkoutView extends React.Component{
                             title={obj.title}
 
                             type={obj.type.map(({title, id}) => title).join(', ')}
-                            exercises={obj.exercises.map(({name, reps, sets, intensity, id, exerciseId, tempo}) => (
+                            exercises={obj.exercises.map(({name, reps, sets, intensity, id, tempo}) => (
                                     <View key={id}>
                                         <TouchableOpacity
                                             onPress={() => this.handlePressExercise(id, name)}
@@ -58,7 +57,7 @@ class WorkoutView extends React.Component{
                                             style={{flexDirection:'row'}}
                                         >
                                             {console.log({id})}
-                                            <Text style={styles.title} key={exerciseId}>
+                                            <Text style={styles.title} key={id}>
                                                 {name}
                                             </Text>
                                             <Ionicons

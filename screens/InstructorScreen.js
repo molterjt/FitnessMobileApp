@@ -19,7 +19,7 @@ const getInstructor = gql`
             email
             imageUrl
             description
-            classes(orderBy:sortTime_ASC){
+            classes(orderBy:sortTime_ASC, filter:{isPublished: true}){
                 title, time, id,
                 days{name},location{buildingName,facilityName}
             }

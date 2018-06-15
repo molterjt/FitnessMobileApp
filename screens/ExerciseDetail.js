@@ -12,7 +12,6 @@ const EXERCISE_QUERY = gql`
         Exercise(id: $id) {
             id
             name
-            exerciseId
             description
             sets
             reps

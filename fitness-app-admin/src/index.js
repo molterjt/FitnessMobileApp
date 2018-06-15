@@ -16,6 +16,9 @@ import UserLIst from './components/UserLIst';
 import CommentList from './components/CommentList';
 import InstructorList from './components/InstructorList';
 import TrainerList from './components/TrainerList';
+import ImageGallery from './components/ImageGallery';
+import StaffImageGallery from './components/StaffImageGallery';
+import EventList from './components/EventList';
 
 const httpLink = new HttpLink({uri: "https://api.graph.cool/simple/v1/cjf6zsqxj3n420141z09rpv9j"});
 
@@ -37,6 +40,9 @@ ReactDOM.render(
                 <Route exact path={'/comments'} component={CommentList} />
                 <Route exact path={'/instructors'} component={InstructorList} />
                 <Route exact path={'/trainers'} component={TrainerList} />
+                <Route exact path={'/imageGallery'} component={ImageGallery} />
+                <Route exact path={'/staffImageGallery'} component={StaffImageGallery} />
+                <Route exact path={'/eventList'} component={EventList} />
             </div>
         </Router>
     </ApolloProvider>

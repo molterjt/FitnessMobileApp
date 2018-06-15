@@ -61,13 +61,13 @@ class IntroScreen extends React.Component{
         ]).start( () => this.props.navigation.navigate('Home'));
     }
     render(){
-        const {data} = this.props;
+        /*const {data} = this.props;
         const {loading, User, error}  = this.props.data;
         if(loading)return <ActivityIndicator />;
         if(error){
             console.log("Intro Error: " + error);
-            //this.props.navigation.navigate('Home');
-        }
+            this.props.navigation.navigate('Home');
+        }*/
         return(
                 <TouchableOpacity
                     style={{backgroundColor: "#000000"}}
@@ -113,7 +113,7 @@ const IntroWithHello =  graphql(getUsername,{
 export default class IntroView extends React.Component{
     render(){
         return(
-            <IntroWithHello navigation = {this.props.navigation}/>
+            <IntroScreen navigation = {this.props.navigation}/>
         );
     }
 }
