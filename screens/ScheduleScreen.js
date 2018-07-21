@@ -9,7 +9,7 @@ import {graphql, compose}  from 'react-apollo';
 import ScheduleItem from '../components/ScheduleItem';
 import {Entypo} from '@expo/vector-icons';
 import Swiper from 'react-native-swiper';
-
+import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
 
 
 
@@ -412,6 +412,24 @@ const AllGFClassViewWithData = compose(
 
 
 class ScheduleScreen extends React.Component{
+    static navigationOptions = ({ navigation }) => {
+        const params = navigation.state.params || {};
+        return {
+            headerRight: (
+                <TouchableOpacity
+                    style={{marginBottom: 2, marginTop: 1, marginRight: 15, borderRadius: 8, padding:3, alignItems:'center',}}
+                    onPress={() => navigation.navigate('GroupFitPrograms')}>
+                    <MaterialCommunityIcons
+                        name={"checkbox-marked-circle-outline"}
+                        size={30}
+                        color={'#931414'}
+                    />
+                    <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Programs</Text>
+                </TouchableOpacity>
+            ),
+        };
+    };
+
     constructor(props){
         super(props);
     }

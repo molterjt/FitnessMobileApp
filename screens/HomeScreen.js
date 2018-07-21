@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     ScrollView, Button, Text, View, StatusBar, StyleSheet, ImageBackground, TouchableOpacity, FlatList,
-    AsyncStorage, Animated, Modal, WebView, Image, Linking, ActivityIndicator
+    AsyncStorage, Animated, Modal, WebView, Image, Linking, ActivityIndicator, Alert
 } from 'react-native';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
 import NewsItem from '../components/NewsItem';
-import Logout from '../components/Logout';
 import {graphql,Query, withApollo} from "react-apollo";
 import {withNavigation} from 'react-navigation';
 import gql from "graphql-tag";
@@ -65,9 +64,9 @@ class NewsItemWindow extends React.Component{
                         return <ActivityIndicator/>
                     }
                     if(error){
-                        return(
-                            <Text>Error: {error}</Text>
-                        );
+                        console.log(error);
+
+                        return <Text>Sorry, there was an error.  Are you connected to the internet or cellular data?</Text>
                     }
                     return(
                         <FlatList

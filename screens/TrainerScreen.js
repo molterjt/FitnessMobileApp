@@ -26,7 +26,7 @@ class TrainingMembership extends React.Component{
             <View style={{alignItems:'center', borderBottomWidth:1}}>
                 <View style={{marginTop: 18, marginLeft: 10}}>
                     <Text style={{color:"#000", fontWeight:"bold", fontSize: 13}}>{this.props.title}</Text>
-                    <View style={{flexDirection: "row", marginTop: 3}}>
+                    <View style={{flexDirection: "row", marginTop: 5, justifyContent:'center'}}>
                         <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>Member Rate: </Text>
                         <Text style={{color:"#000", fontSize: 12}}>{this.props.memberRate}</Text>
                     </View>
@@ -54,7 +54,7 @@ class TrainingMembership extends React.Component{
                         </TouchableOpacity>
                         :
                         <View style={{flexDirection: "row", paddingTop: 3, paddingBottom: 5}}>
-                            <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>*Register at Rec Pro Shop</Text>
+                            <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>** Register at Rec Pro Shop **</Text>
                         </View>
                 }
 
@@ -97,7 +97,7 @@ class TrainerScreen extends React.Component{
             <View style={{flex:1, backgroundColor: "#fff", marginTop: 0}}>
                 <StatusBar/>
                     <View style={{alignItems: 'center',width: WIDTH, height:HEIGHT*.2,  backgroundColor: '#000', borderWidth:1, borderRadius:10}}>
-                        <ImageBackground
+                        <Image
                             resizeMode={"cover"}
                             source={require("../assets/images/barbell-squad-800x400.png")}
                             style={{width: WIDTH*.9, height: HEIGHT*.2, borderWidth:1, borderRadius:10,}}
@@ -106,7 +106,7 @@ class TrainerScreen extends React.Component{
                     </View>
                 <View style={{flex: 2, display:'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap:'wrap',alignItems:'center'}}>
 
-                <ScrollView style={{ width: WIDTH*.5, height:HEIGHT*.6, backgroundColor: '#ffffff',}}>
+                <ScrollView style={{ width: WIDTH*.5, height:HEIGHT*.6, backgroundColor: '#ffffff'}}>
                         <TrainingMembership
                             title={"20 Session Package"}
                             memberRate={"$550"}
@@ -143,6 +143,7 @@ class TrainerScreen extends React.Component{
                             title={"Monthly Subscription 1"}
                             memberRate={"$140/month"}
                         />
+
                     </ScrollView>
                     <ImageBackground
                         source={require('../assets/images/silver-background.jpg')}

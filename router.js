@@ -22,6 +22,7 @@ import LoginScreen from "./screens/LoginScreen";
 import InstructorScreen from "./screens/InstructorScreen";
 import TrainerScreen from './screens/TrainerScreen';
 import TrainerListScreen from './screens/TrainerListScreen';
+import GroupFitProgramsScreen from './screens/GroupFitProgramsScreen';
 
 /*
 const headerStyle = {
@@ -92,8 +93,15 @@ const GFStack = StackNavigator(
             screen: ScheduleScreen,
             path: '/',
             navigationOptions:{
-                title: 'Group Fitness Schedule',
+                title: 'Fitness Schedule',
             },
+        },
+        GroupFitPrograms:{
+            screen: GroupFitProgramsScreen,
+            path: '/groupFitProgramsScreen',
+            navigationOptions:{
+                title: 'Group Fitness Programs'
+            }
         },
         ClassDetail: {
             screen: SingleClassDetailScreen,

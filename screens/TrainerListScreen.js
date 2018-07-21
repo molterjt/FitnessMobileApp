@@ -43,64 +43,64 @@ class TrainerProfile extends React.Component{
 
     render(){
         return(
-                <View style={styles.rowColumn}>
-                    <ImageBackground
-                        resizeMode={"contain"}
-                        source={this.props.imageUrl ? {uri: this.props.imageUrl} : require("../assets/images/blank-profile.png")}
-                        style={styles.profileImage}
-                        alt={"Personal Trainer `${this.props.firstName}`"}
+            <View style={styles.rowColumn}>
+                <ImageBackground
+                    resizeMode={"contain"}
+                    source={this.props.imageUrl ? {uri: this.props.imageUrl} : require("../assets/images/blank-profile.png")}
+                    style={styles.profileImage}
+                    alt={"Personal Trainer `${this.props.firstName}`"}
+                >
+                    <Text style={styles.profileName}>{this.props.firstName ? this.props.firstName : ''}</Text>
+                    <Text style={styles.profileName}>{this.props.lastName ? this.props.lastName : ''}</Text>
+                    <TouchableOpacity
+                        style={styles.profileButton}
+                        onPress={() => {this.showPTInfoFormModal(true)}}
                     >
-                        <Text style={styles.profileName}>{this.props.firstName ? this.props.firstName : ''}</Text>
-                        <Text style={styles.profileName}>{this.props.lastName ? this.props.lastName : ''}</Text>
-                        <TouchableOpacity
-                            style={styles.profileButton}
-                            onPress={() => {this.showPTInfoFormModal(true)}}
-                        >
-                            <Ionicons
-                                name={"ios-information-circle-outline"}
-                                size={30}
-                                color={"white"}
-                                style={{fontWeight: 'bold'}}
-                            />
-                        </TouchableOpacity>
-                    </ImageBackground>
-                    <Modal
-                        transparent={true}
-                        animationType={"none"}
-                        visible={this.state.personalTrainingInfo}
-                        onRequestClose={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)} }
-                    >
-                        <View style={styles.modalContainer}>
-                            <View style={styles.ModalInsideView}>
-                                <TouchableOpacity
-                                    onPress={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)}}
-                                    style={styles.closeButton}>
-                                    <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"} />
-                                </TouchableOpacity>
+                        <Ionicons
+                            name={"ios-information-circle-outline"}
+                            size={30}
+                            color={"white"}
+                            style={{fontWeight: 'bold'}}
+                        />
+                    </TouchableOpacity>
+                </ImageBackground>
+                <Modal
+                    transparent={true}
+                    animationType={"none"}
+                    visible={this.state.personalTrainingInfo}
+                    onRequestClose={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)} }
+                >
+                    <View style={styles.modalContainer}>
+                        <View style={styles.ModalInsideView}>
+                            <TouchableOpacity
+                                onPress={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)}}
+                                style={styles.closeButton}>
+                                <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"} />
+                            </TouchableOpacity>
 
-                                <View style={{flex:1, flexDirection:"row", margin:5, backgroundColor:'#931414'}}>
+                            <View style={{flex:1, flexDirection:"row", margin:5, backgroundColor:'#931414'}}>
 
-                                    <Image
-                                        source={{uri: this.props.imageUrl}}
-                                        alt={"Trainer Profile Image"}
-                                        resizeMode={"contain"}
-                                        style={{margin: 5, borderWidth:1, borderColor:"#fff",  height:undefined, width:WIDTH*.38,
+                                <Image
+                                    source={{uri: this.props.imageUrl}}
+                                    alt={"Trainer Profile Image"}
+                                    resizeMode={"contain"}
+                                    style={{margin: 5, borderWidth:1, borderColor:"#fff",  height:undefined, width:WIDTH*.38,
 
-                                        }}
-                                    />
+                                    }}
+                                />
 
-                                    <View style={{flex:1, justifyContent: 'flex-start', margin: 10, marginTop: 20, flexWrap:'wrap'}}>
-                                        <Text style={styles.trainerDetailName}>{this.props.firstName} {this.props.lastName}</Text>
-                                        <Text style={styles.trainerDetailText}>{this.props.email}</Text>
-                                    </View>
-                                </View>
-                                <View style={{flex:1, margin:5, padding: 15, backgroundColor:'#dedede', borderWidth:1, marginBottom: 20}}>
-                                    <Text style={{margin: 5}}>{this.props.description}</Text>
+                                <View style={{flex:1, justifyContent: 'flex-start', margin: 10, marginTop: 20, flexWrap:'wrap'}}>
+                                    <Text style={styles.trainerDetailName}>{this.props.firstName} {this.props.lastName}</Text>
+                                    <Text style={styles.trainerDetailText}>{this.props.email}</Text>
                                 </View>
                             </View>
+                            <View style={{flex:1, margin:5, padding: 15, backgroundColor:'#dedede', borderWidth:1, marginBottom: 20}}>
+                                <Text style={{margin: 5}}>{this.props.description}</Text>
+                            </View>
                         </View>
-                    </Modal>
-                </View>
+                    </View>
+                </Modal>
+            </View>
         );
     }
 }
@@ -110,9 +110,13 @@ class TrainerListView extends React.Component{
         super(props);
     }
     render(){
-        const { loading, allInstructors } = this.props.data;
+        const { loading, error, allInstructors } = this.props.data;
         if(loading){
             return <ActivityIndicator />
+        }
+        if(error){
+            console.log(error);
+            return <Text>Sorry, there was an error</Text>
         }
         return(
             <ScrollView style={{flex: 1, justifyContent: 'space-evenly',}}>
