@@ -64,29 +64,9 @@ class UserProfile extends React.Component{
                         </View>
                         <View style={styles.rowContainer}>
                             <View>
-                                <View style ={styles.subHeader}>
-                                    <View>
-                                        <Text style={styles.title} >
-                                            {'Pictures: '}
-                                        </Text>
-                                    </View>
-                                </View>
                                 <ScrollView horizontal={true}>
                                     <View style={{display: 'flex', flexDirection:'row'}}>
-                                        {ProfilePicData.map((item, index) => (
-                                            <TouchableOpacity
-                                                onPress={() => this.props.navigation.navigate('CategoryDetail', item)}
-                                                key={index}
-                                                style={{marginBottom: 30}}
-                                            >
-                                                <Image
-                                                    style={styles.categoryThumb}
-                                                    source={item.image}
-                                                    key={index}
-                                                />
-                                                <Text>{item.title}</Text>
-                                            </TouchableOpacity>
-                                        ))}
+
                                     </View>
                                 </ScrollView>
                         </View>
@@ -106,8 +86,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         height: 'auto',
         padding: 10,
-        marginRight: 10,
-        marginLeft: 10,
+        marginRight: 5,
+        marginLeft: 5,
         marginTop: 10,
         borderRadius: 4,
         shadowOffset:{  width: 1,  height: 1,  },

@@ -21,6 +21,7 @@ import IntroScreen from './screens/IntroScreen';
 import LoginScreen from "./screens/LoginScreen";
 import InstructorScreen from "./screens/InstructorScreen";
 import TrainerScreen from './screens/TrainerScreen';
+import TrainerListScreen from './screens/TrainerListScreen';
 
 /*
 const headerStyle = {
@@ -125,9 +126,19 @@ const PersonalFITStack = StackNavigator(
         Trainer:{
             screen: TrainerScreen,
             navigationOptions:{
-                header: null,
+                title: 'Personal Training'
             },
         },
+        TrainerList: {
+            screen: TrainerListScreen,
+            path: '/trainers',
+            navigationOptions:{
+                headerStyle: {
+                    backgroundColor: "#000"
+                }
+            },
+        },
+
         Workouts: {
             screen: WorkoutScreen,
             path: '/workouts',

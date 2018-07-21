@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import {View, Text, Dimensions, Modal, TouchableOpacity, Image, ScrollView, WebView} from 'react-native';
+import {
+    View, Text, Dimensions, Modal, ImageBackground, TouchableOpacity, Image, ScrollView, WebView, StatusBar,
+    StyleSheet
+} from 'react-native';
 import {graphql} from "react-apollo";
 import gql from "graphql-tag";
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
@@ -33,20 +36,28 @@ class TrainingMembership extends React.Component{
                     </View>
 
                 </View>
-                <TouchableOpacity onPress={() => {this.showPTRegisterModal(true)}}
-                                  style={{marginTop: 5, marginLeft:10, marginBottom: 4,
-                                      flexDirection: "row",
-                                      justifyContent: 'center', alignItems: 'center', borderRadius: 15,
-                                      backgroundColor: "#931414", width: "50%",
+                {
+                    this.props.registerUrl
+                        ?
+                        <TouchableOpacity onPress={() => {this.showPTRegisterModal(true)}}
+                                          style={{marginTop: 5, marginLeft:10, marginBottom: 4,
+                                              flexDirection: "row",
+                                              justifyContent: 'center', alignItems: 'center', borderRadius: 15,
+                                              backgroundColor: "#931414", width: "50%",}}>
 
-                                  }}>
-                    <Text style={{color: "#fff", fontSize: 11}}>Register</Text>
-                    <MaterialCommunityIcons
-                        name={"checkbox-marked-circle-outline"}
-                        size={18}
-                        color={"white"}
-                    />
-                </TouchableOpacity>
+                            <Text style={{color: "#fff", fontSize: 11}}>Register</Text>
+                            <MaterialCommunityIcons
+                                name={"checkbox-marked-circle-outline"}
+                                size={18}
+                                color={"white"}
+                            />
+                        </TouchableOpacity>
+                        :
+                        <View style={{flexDirection: "row", paddingTop: 3, paddingBottom: 5}}>
+                            <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>*Register at Rec Pro Shop</Text>
+                        </View>
+                }
+
                 <Modal
                     transparent={false}
                     animationType={"fade"}
@@ -59,7 +70,6 @@ class TrainingMembership extends React.Component{
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
-
                     <WebView
                         source={{uri:"http://recmiamioh.maxgalaxy.net/Membership.aspx?PackageID=" + this.props.registerUrl}}
                         style={{flex: 1}}
@@ -72,14 +82,10 @@ class TrainingMembership extends React.Component{
     }
 }
 
-
-
-
-
 class TrainerScreen extends React.Component{
     constructor(props){
         super(props);
-        this.state ={
+        this.state = {
             personalTrainingInfo: false,
         }
     }
@@ -88,31 +94,19 @@ class TrainerScreen extends React.Component{
     }
     render(){
         return(
-            <View style={{flex:1, backgroundColor: "#000", marginTop: 30}}>
-                <View style={{flexDirection: 'row'}}>
-                    <View style={{width: WIDTH*.5, height: HEIGHT*.4, backgroundColor: '#000000'}}>
-                        <Image
+            <View style={{flex:1, backgroundColor: "#fff", marginTop: 0}}>
+                <StatusBar/>
+                    <View style={{alignItems: 'center',width: WIDTH, height:HEIGHT*.2,  backgroundColor: '#000', borderWidth:1, borderRadius:10}}>
+                        <ImageBackground
                             resizeMode={"cover"}
                             source={require("../assets/images/barbell-squad-800x400.png")}
-                            style={{width: WIDTH*.5, height: HEIGHT*.4}}
+                            style={{width: WIDTH*.9, height: HEIGHT*.2, borderWidth:1, borderRadius:10,}}
+                            alt={"Personal Training Squat Instruction"}
                         />
-                        <TouchableOpacity onPress={() => {this.showPTInfoFormModal(true)}}
-                                          style={{flexDirection: "row", marginTop: 15,
-                                              justifyContent: 'center', alignItems: 'center', borderWidth: 2,
-                                              borderColor:"#fff", borderRadius: 15,
-                                              backgroundColor: "#931414", width: WIDTH*.5, alignSelf: "center"
-
-                                          }}>
-                            <Text style={{color: "#fff", fontSize: 14}}>Request Info</Text>
-                            <MaterialCommunityIcons
-                                name={"checkbox-marked-circle-outline"}
-                                size={35}
-                                color={"white"}
-                            />
-                        </TouchableOpacity>
                     </View>
-                    <ScrollView style={{width: WIDTH*.5, height: HEIGHT*.5,backgroundColor: '#ffffff', borderWidth: 1,
-                    borderRadius: 10,}}>
+                <View style={{flex: 2, display:'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap:'wrap',alignItems:'center'}}>
+
+                <ScrollView style={{ width: WIDTH*.5, height:HEIGHT*.6, backgroundColor: '#ffffff',}}>
                         <TrainingMembership
                             title={"20 Session Package"}
                             memberRate={"$550"}
@@ -140,49 +134,55 @@ class TrainerScreen extends React.Component{
                         <TrainingMembership
                             title={"Monthly Subscription 3"}
                             memberRate={"$300/month"}
-                            registerUrl={"124"}
                         />
                         <TrainingMembership
                             title={"Monthly Subscription 2"}
                             memberRate={"$250/month"}
-                            registerUrl={"123"}
                         />
                         <TrainingMembership
                             title={"Monthly Subscription 1"}
                             memberRate={"$140/month"}
-                            registerUrl={"122"}
                         />
                     </ScrollView>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                    <View
-                        style={{flex:1, width: WIDTH*.5, height: HEIGHT*.5,
-                            backgroundColor: '#ffffff', borderWidth: 1,
-                            borderRadius: 10, marginBottom: 60, alignItems: "center"}}
+                    <ImageBackground
+                        source={require('../assets/images/silver-background.jpg')}
+                        style={{width: WIDTH*.5, height: HEIGHT*.6, borderWidth:1, borderRadius:10,
+                            backgroundColor:"#000" , alignItems: "center", justifyContent:'center',
+                        }}
                     >
-                        <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('Workouts')}
-                            style={{marginTop: 8, width: WIDTH*.45, alignItems:"center",
-                                backgroundColor: '#000',}}
-                        >
-                            <Text style={{ color: "#fff"}}>Find a Workout</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{width: WIDTH*.5, height: HEIGHT*.5,backgroundColor: '#cdcdcd',
-                                alignItems:"pull-left",
-                    }}>
-                        <TouchableOpacity>
-                            <Text>Explore Trainers</Text>
-                        </TouchableOpacity>
-                        <Image
-                            resizeMode={"cover"}
-                            source={require("../assets/images/DSC_0466.jpg")}
-                            style={{width: WIDTH*.5, height: HEIGHT*.3 ,}}
+                        <Image source={require('../assets/images/barbell.png')} alt={'barbell graphic'}
+                            style={{width: WIDTH*.45, height: 50}}
                         />
 
-                    </View>
-                </View>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('TrainerList')}
+                            style={styles.exploreButtons}
+                        >
+                            <Text style={styles.exploreButtonText}>Explore Trainers</Text>
+                        </TouchableOpacity>
 
+                        <TouchableOpacity
+                            onPress={() => {this.showPTInfoFormModal(true)}}
+                            style={styles.exploreButtons}>
+                            <Text style={styles.exploreButtonText}>Request Info</Text>
+                            <MaterialCommunityIcons
+                                name={"checkbox-marked-circle-outline"}
+                                size={35}
+                                color={"white"}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('Workouts')}
+                            style={styles.exploreButtons}
+                        >
+                            <Text style={styles.exploreButtonText}>Find a Workout</Text>
+                        </TouchableOpacity>
+
+                        <Image source={require('../assets/images/barbell.png')} alt={'barbell graphic'}
+                               style={{width: WIDTH*.45, height: 50, marginTop: 30}}
+                        />
+                    </ImageBackground>
+                </View>
                 <Modal
                     transparent={false}
                     animationType={"fade"}
@@ -202,13 +202,34 @@ class TrainerScreen extends React.Component{
                         domStorageEnabled={true}
                     />
                 </Modal>
-
             </View>
         );
     }
 }
 
-
 export default TrainerScreen;
 
 
+const styles = StyleSheet.create({
+
+    exploreButtons:{
+        flexDirection:"row",
+        marginTop: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor:"#000",
+        borderRadius: 15,
+        backgroundColor: "#931414",
+        height: 45,
+        width: WIDTH*.45,
+        alignSelf: "center"
+    },
+
+    exploreButtonText:{
+        color: "#fff",
+        fontSize: 16
+    },
+
+
+});

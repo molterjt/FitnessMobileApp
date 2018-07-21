@@ -38,6 +38,10 @@ class NavigationBar extends React.Component{
                         <Nav>
                             <NavItem eventKey={6} title={"Events"} href={"/eventList"}>Events</NavItem>
                         </Nav>
+                        <NavDropdown eventKey={7} title={"Marketing"} id={"basic-nav-dropdown"}>
+                            <MenuItem eventKey={7.1} href={"/newsItems"}>News-Items</MenuItem>
+                            <MenuItem eventKey={7.2} href={"/marketingAds"}>Marketing Ads</MenuItem>
+                        </NavDropdown>
                     </Nav>
                     <Nav pullRight>
                         <NavItem eventKey={1} href="https://miamioh.edu/rec">

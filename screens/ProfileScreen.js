@@ -156,31 +156,6 @@ class ProfileScreen extends React.Component{
                     workouts={User.workouts.map(({title}) => title).join(', ')}
                     interests={User.interests.map(({title}) => title).join(', ')}
                 />
-                <TouchableOpacity
-                    onPress={this._toggleModal}
-                >
-                    <Text>SHOW MODAL</Text>
-                </TouchableOpacity>
-                <Modal
-                    isVisible={this.state.isModalVisible}
-                    animationIn={"zoomInDown"}
-                    animationInTiming={5}
-                    transparent={true}
-                    style={{flex:1, alignContent:'center', justifyContent:'center'}}
-                >
-
-                    <TouchableOpacity onPress={this._toggleModal}>
-                        <View style={{flex:1,  alignItems:'center', justifyContent:'center'}}>
-                            <Text>Hello, {User.username}! </Text>
-                            <Image
-                                source={require('../assets/images/17362_749853445598_4798946_n.jpg')}
-                                resizeMode="cover"
-                            />
-                        </View>
-                    </TouchableOpacity>
-                </Modal>
-
-
             </View>
         );
     }
@@ -198,10 +173,10 @@ export default graphql(GET_USER,{
     options: ({props}) => {
         return{
             skip: !queryUserId,
-            fetchPolicy: 'network-only',
+            //fetchPolicy: 'network-only',
             variables: {id: queryUserId},
             pollInterval: 1000,
-            //refetch: {id: queryUserId}
+            refetch: {id: queryUserId}
         }
     }
 })(ProfileScreen);

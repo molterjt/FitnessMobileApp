@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Button, Text, TextInput,
-    View, StyleSheet,
+    View, StyleSheet, ImageBackground,
     KeyboardAvoidingView, TouchableOpacity,AsyncStorage
 } from 'react-native';
 import { Ionicons, MaterialIcons} from '@expo/vector-icons';
@@ -35,74 +35,82 @@ class Login extends React.Component{
     render(){
         const {email, password, username} = this.state;
         return(
-            <View style={{marginTop: 40}}>
-                <View style={styles.header}>
-                    {this.state.login ?
-                        <Text style={styles.headerText}>
-                            Login
-                        </Text> : <Text style={styles.headerText}>Register</Text>}
-                </View>
-                <View>
-                    {!this.state.login && (
-                        <TextInput
-                            value={this.state.username}
-                            onChangeText={ (username) => this.setState({username})}
-                            type={'text'}
-                            placeholder={'Choose your username'}
-                            style={styles.textInput}
-                            autoCapitalize={'none'}
-                            underlineColorAndroid={'transparent'}
-                            autoCorrect={false}
-                        />
-                    )}
-                    <TextInput
-                        value={this.state.email}
-                        onChangeText={ (email) => this.setState({email})}
-                        type={"text"}
-                        placeholder={'Your Email Address'}
-                        style={styles.textInput}
-                        autoCapitalize={'none'}
-                        underlineColorAndroid={'transparent'}
-                        autoCorrect={false}
-                    />
-                    <TextInput
-                        value={this.state.password}
-                        onChangeText={ (password) => this.setState({password})}
-                        type={"password"}
-                        placeholder={'Enter a Password'}
-                        secureTextEntry={true}
-                        underlineColorAndroid={'transparent'}
-                        style={styles.textInput}
-                        autoCapitalize={'none'}
-                        autoCorrect={false}
-                    />
-                </View>
-                    <TouchableOpacity
-                        onPress={ () => this._confirm() }
-                        style={styles.formButton}
-                    >
-                        <Text style={styles.buttonText}>Confirm</Text>
-                    </TouchableOpacity>
-                <View style={{marginTop: 40}}>
-                    <Text style={{alignSelf:'center'}}>
-                        {this.state.login ? 'Need to create an account?' : 'Already have account?'}
-                    </Text>
-                    {!this.state.login ?
-                        <Button
-                            title={'Login'}
-                            onPress={ () => this.setState({login: !this.state.login})}
-                            color={'blue'}
-                        />
-                        :
-                        <Button
-                            title={'Register'}
-                            onPress={ () => this.setState({login: !this.state.login})}
-                            color={'blue'}
-                        />
-                    }
-                </View>
-                <Logout/>
+            <View style={{flex: 1, backgroundColor: 'transparent'}}>
+                <ImageBackground
+                    source={require('../assets/images/silver-background.jpg')}
+                    style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center'}}
+                    resizeMode='cover'
+                >
+                    <View style={{marginTop: 40}}>
+                        <View style={styles.header}>
+                            {this.state.login ?
+                                <Text style={styles.headerText}>
+                                    Login
+                                </Text> : <Text style={styles.headerText}>Register</Text>}
+                        </View>
+                        <View>
+                            {!this.state.login && (
+                                <TextInput
+                                    value={this.state.username}
+                                    onChangeText={ (username) => this.setState({username})}
+                                    type={'text'}
+                                    placeholder={'Choose your username'}
+                                    style={styles.textInput}
+                                    autoCapitalize={'none'}
+                                    underlineColorAndroid={'transparent'}
+                                    autoCorrect={false}
+                                />
+                            )}
+                            <TextInput
+                                value={this.state.email}
+                                onChangeText={ (email) => this.setState({email})}
+                                type={"text"}
+                                placeholder={'Your Email Address'}
+                                style={styles.textInput}
+                                autoCapitalize={'none'}
+                                underlineColorAndroid={'transparent'}
+                                autoCorrect={false}
+                            />
+                            <TextInput
+                                value={this.state.password}
+                                onChangeText={ (password) => this.setState({password})}
+                                type={"password"}
+                                placeholder={'Enter a Password'}
+                                secureTextEntry={true}
+                                underlineColorAndroid={'transparent'}
+                                style={styles.textInput}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                            />
+                        </View>
+                        <TouchableOpacity
+                            onPress={ () => this._confirm() }
+                            style={styles.formButton}
+                        >
+                            <Text style={styles.buttonText}>Confirm</Text>
+                        </TouchableOpacity>
+                        <View style={{marginTop: 40}}>
+                            <Text style={{alignSelf:'center'}}>
+                                {this.state.login ? 'Need to create an account?' : 'Already have account?'}
+                            </Text>
+                            {!this.state.login ?
+                                <Button
+                                    title={'Login'}
+                                    onPress={ () => this.setState({login: !this.state.login})}
+                                    color={'blue'}
+                                />
+                                :
+                                <Button
+                                    title={'Register'}
+                                    onPress={ () => this.setState({login: !this.state.login})}
+                                    color={'blue'}
+                                />
+                            }
+                        </View>
+                    </View>
+                </ImageBackground>
             </View>
+
         );
     }
     _saveUserToken = token => {
@@ -194,6 +202,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderBottomColor: '#000000',
         borderBottomWidth: 1,
+        backgroundColor: "#fff"
     },
     header:{
         alignSelf: 'center',
@@ -205,6 +214,7 @@ const styles = StyleSheet.create({
     headerText:{
         fontSize: 20,
         fontWeight: 'bold',
+        color: '#000',
     },
     formButton: {
         alignSelf: 'center',

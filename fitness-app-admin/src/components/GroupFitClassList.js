@@ -42,7 +42,7 @@ const GF_CLASS_LIST = gql`
             endTime
             createdAt
             isPublished
-            location{facilityName}
+            location{facilityName, id}
             capacity
             description
             category{title, id}
@@ -62,10 +62,9 @@ const SINGLE_GF_CLASS = gql`
             imageUrl
             startTime
             endTime
-            sortTime
             instructor{firstName, lastName email, id}
             isPublished
-            location{facilityName}
+            location{facilityName, id}
             capacity
             days{name}
             description
@@ -87,15 +86,14 @@ const GF_CLASS_ISPUBLISHED = gql`
 `
 
 
-const UPDATE_GFCLASS = gql`
-    mutation updateGroupFitClassListing($id: ID!, $title: String, $time: String,  $idGFI: ID!, $daysArr: [ID!], $startTime: DateTime, $endTime: DateTime, $description: String, $capacity: Int, $imageUrl: String, $location: ID, $category: [ID!]) {
-        updateGroupFitClass(id: $id, title: $title, time: $time, daysIds: $daysArr, startTime: $startTime, endTime: $endTime, description: $description, capacity: $capacity, imageUrl: $imageUrl, locationId: $location, categoryIds: $category) {
+const UPDATE_GFCLASS = gql`    
+    mutation updateGroupFitClassListing($id: ID!, $title: String, $time: String,  $idGFI: ID!, $daysArr: [ID!], $startTime: DateTime, $endTime: DateTime, $description: String, $imageUrl: String, $location: ID, $category: [ID!]) {
+        updateGroupFitClass(id: $id, title: $title, time: $time, daysIds: $daysArr, startTime: $startTime, endTime: $endTime, description: $description, imageUrl: $imageUrl, locationId: $location, categoryIds: $category) {
             id
             title
             time
             startTime
             endTime
-            capacity
             imageUrl
             description
             category{title, id}
@@ -103,49 +101,39 @@ const UPDATE_GFCLASS = gql`
             instructor {
                 id
                 firstName
-            }
-            days {
-                id
-                name
-            }
-        }
-        addToInstructorsClasses(instructorInstructorId: $idGFI, classesGroupFitClassId: $id) {
-            classesGroupFitClass {
-                title
+            }    
                 days {
                     id
                     name
                 }
-                id
             }
-            instructorInstructor {
-                firstName
-                id
+            addToInstructorsClasses(instructorInstructorId: $idGFI, classesGroupFitClassId: $id) {
+                classesGroupFitClass {
+                    title
+                    days {
+                        id
+                        name
+                    }
+                    id
+                }
+                instructorInstructor {
+                    firstName
+                    id
+                }
             }
         }
-    }
 `
 
 const CREATE_GFCLASS = gql`
-    mutation ($title: String!, $time: String!, $daysArr: [ID!], $startTime: DateTime, $endTime: DateTime, $idGFI: ID!, $location: ID, $imageUrl: String, $description: String, $category: [ID!]) {
-        createGroupFitClass(title: $title, time: $time, daysIds: $daysArr, instructorId: $idGFI, locationId: $location, imageUrl: $imageUrl, description: $description, categoryIds: $category, startTime: $startTime, endTime: $endTime) {
+    mutation ($title: String!, $time: String!, $daysArr: [ID!], $startTime: DateTime, $endTime: DateTime, $idGFI: ID!, $location: ID, $imageUrl: String, $description: String,) {
+        createGroupFitClass(title: $title, time: $time, daysIds: $daysArr, instructorId: $idGFI, locationId: $location, imageUrl: $imageUrl, description: $description,  startTime: $startTime, endTime: $endTime) {
             id
             title
             time
-            location {
-                facilityName
-            }
-            instructor {
-                firstName
-                email
-                id
-            }
-            days {
-                id
-                name
-            }
+            location {facilityName, id}
+            instructor {id, firstName}
+            days {id, name}
             description
-            category{title, id}
             startTime
             endTime
         }
@@ -371,12 +359,11 @@ class UpdateGroupFitClass extends React.Component{
             await this.props.mutate({
                 variables:{
                     id:id,
-                    idGFI: this.state.newInstructorSelection,
                     startTime: start,
                     endTime: end,
                 },
                 refetchQueries:[
-                    {query: GF_CLASS_LIST}
+                    {query: SINGLE_GF_CLASS, variables:{id:id}}
                 ]
             })
 
@@ -537,6 +524,7 @@ class UpdateGroupFitClass extends React.Component{
                                                         }}
                                                         className={"form-select"}
                                                     >
+                                                        <option>{data.GroupFitClass.location.facilityName}</option>
                                                         {facilityList.map((obj) =>
                                                             <option
                                                                 key={obj.id}
@@ -1112,7 +1100,7 @@ class GroupFitClassList extends React.Component{
             <Query query={GF_CLASS_LIST}>
                 {({loading, error, data}) => {
                     if(loading) return "Loading...";
-                    if(error) return `Errro! ${error.message}`;
+                    if(error) return `Error! ${error.message}`;
 
                     return(
                         <div>

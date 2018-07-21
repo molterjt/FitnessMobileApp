@@ -34,6 +34,18 @@ type MarketingAd @model{
   updatedAt: DateTime!
 }
 
+type NewsItem @model{
+  id: ID! @isUnique
+  title: String
+  isPublished: Boolean @defaultValue(value: "false")
+  instructor: String @defaultValue(value: "")
+  blurb: String
+  imageUrl: String
+  location: String @defaultValue(value: "")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Comment @model{
   id: ID! @isUnique
   content: String!

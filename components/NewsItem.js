@@ -8,30 +8,27 @@ class NewsItem extends React.Component{
 
         };
     }
-
     render(){
         return(
-            <TouchableOpacity>
-                <View style={styles.rowContainer}>
-                    <Image source={{uri: this.props.thumbnail}}
-                           style={styles.thumbnail}
-                           resizeMode="contain" />
-                    <View style={styles.rowText}>
-                        <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
-                            {this.props.title}
-                        </Text>
-                        <Text style={styles.instructor} numberOfLines={1} ellipsizeMode ={'tail'}>
-                            {this.props.instructor}
-                        </Text>
-                        <Text style={styles.blurb}>
-                            {this.props.blurb}
-                        </Text>
-                        <Text style={styles.location} ellipsizeMode ={'tail'}>
-                            {this.props.location}
-                        </Text>
-                    </View>
+            <View style={styles.rowContainer}>
+                <Image source={{uri: this.props.thumbnail}}
+                       style={styles.thumbnail}
+                       resizeMode="contain" />
+                <View style={styles.rowText}>
+                    <Text style={styles.title} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        {this.props.title}
+                    </Text>
+                    <Text style={styles.instructor} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        {this.props.instructor}
+                    </Text>
+                    <Text style={styles.blurb}>
+                        {this.props.blurb}
+                    </Text>
+                    <Text style={styles.location} ellipsizeMode ={'tail'}>
+                        {this.props.location}
+                    </Text>
                 </View>
-            </TouchableOpacity>
+            </View>
         );
     }
 }
@@ -82,7 +79,7 @@ const styles = StyleSheet.create({
     thumbnail: {
         flex: 1,
         height: undefined,
-        width: 90
+        width: '100%'
     },
     rowText: {
         flex: 4,

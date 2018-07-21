@@ -38,7 +38,7 @@ class IntroScreen extends React.Component{
         };
     }
     componentDidMount(){
-        setTimeout( () => this.spring(), 2250);
+        setTimeout( () => this.spring(), 1500);
     }
     spring(){
         Animated.sequence([

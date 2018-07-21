@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     ScrollView, Button, Text, View, StatusBar, StyleSheet, ImageBackground, TouchableOpacity, FlatList,
-    AsyncStorage, Animated, Modal, WebView, Image, Linking
+    AsyncStorage, Animated, Modal, WebView, Image, Linking, ActivityIndicator
 } from 'react-native';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
 import NewsItem from '../components/NewsItem';
 import Logout from '../components/Logout';
-import {graphql, withApollo} from "react-apollo";
+import {graphql,Query, withApollo} from "react-apollo";
 import {withNavigation} from 'react-navigation';
 import gql from "graphql-tag";
 import {AUTH_TOKEN} from "../constants/auth";
@@ -18,6 +18,18 @@ import {AUTH_TOKEN} from "../constants/auth";
 const accessToken = "903600607.3fbfc0b.7141650ef26342dd8706c5e30e476ba1"
 const instaUserId = "903600607"
 
+const GET_NEWSITEMS = gql`
+    query{
+        allNewsItems(filter:{isPublished:true}, orderBy:updatedAt_DESC){
+            id
+            imageUrl
+            title
+            blurb
+            instructor
+            location
+        }
+    }
+`
 
 let queryUserId;
 
@@ -28,6 +40,50 @@ AsyncStorage.getItem("MyUserId").then( (dataId) => {
     return queryUserId;
 }).done();
 
+
+class NewsItemWindow extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    _renderItem = ({item}) => (
+        <NewsItem
+            id={item.id}
+            title={item.title}
+            instructor={item.instructor}
+            blurb = {item.blurb}
+            location={item.location}
+            thumbnail={item.imageUrl}
+        />
+    );
+    _keyExtractor = (item, index) => item.id;
+
+    render(){
+        return(
+            <Query query={GET_NEWSITEMS}>
+                {({loading, error, data}) => {
+                    if(loading){
+                        return <ActivityIndicator/>
+                    }
+                    if(error){
+                        return(
+                            <Text>Error: {error}</Text>
+                        );
+                    }
+                    return(
+                        <FlatList
+                            data={data.allNewsItems}
+                            keyExtractor={this._keyExtractor}
+                            renderItem={this._renderItem}
+                            horizontal={false}
+                        />
+                    );
+                }}
+            </Query>
+        );
+    }
+}
+
+const NewsItemWindowWithData = graphql(GET_NEWSITEMS)(NewsItemWindow);
 
 class HomeScreen extends React.Component{
 
@@ -65,34 +121,7 @@ class HomeScreen extends React.Component{
             personalFitRegisterModal: false,
             currentUserId: '',
             currentUserToken: '',
-            news: [
 
-                {
-                    id: 2,
-                    title: 'SilverSneakers FootLoose',
-                    instructor: 'Scott Evans',
-                    blurb: 'Learn his world famous sa-shae',
-                    location: 'Clawson Fitness Center Studio',
-                    thumbnail: 'http://somajj.com/assets/pictures/yjj.jpg'
-                },
-                {
-                    id: 3,
-                    title: 'Rough Riders Spinning',
-                    instructor: 'Theodore Roosevelt',
-                    blurb: 'Hill sprint charges up San Juan Hill',
-                    location: 'Where ever he damn well pleases',
-                    thumbnail: 'https://pictures.abebooks.com/WESTSIDER/md/md22409832253.jpg'
-                },
-                {
-                    id: 4,
-                    title: 'Brazilian Jiu-Jitsu',
-                    instructor: 'Professor Matt Strack',
-                    blurb: 'Learn the most effective martial art out there; have fun strangling fools',
-                    location: 'Chestnut Field House: Combatives Room',
-                    thumbnail: 'http://somajj.com/assets/pictures/logosmall.jpg'
-                },
-
-            ]
         }
     }
 
@@ -136,21 +165,7 @@ class HomeScreen extends React.Component{
     showGFRegisterModal(visible){
         this.setState({groupFitRegisterModal: visible})
     }
-    showPersonalFitRegisterModal(visible){
-        this.setState({personalFitRegisterModal: visible})
-    }
 
-    _renderItem = ({item}) => (
-        <NewsItem
-            id={item.id}
-            title={item.title}
-            instructor={item.instructor}
-            blurb = {item.blurb}
-            location={item.location}
-            thumbnail={item.thumbnail}
-        />
-    );
-    _keyExtractor = (item, index) => item.id;
 
     /*
     componentDidMount(){
@@ -180,42 +195,32 @@ class HomeScreen extends React.Component{
     }
     */
     render(){
-        const {currentUserId, currentUserToken} = this.state;
 
-        return(
-            <View style={{flex:1, backgroundColor: 'transparent'}}>
+        return (
+        <View style={{flex: 1, backgroundColor: 'transparent'}}>
 
-                <StatusBar barStyle = "default"/>
-                <ImageBackground
-                    source={require('../assets/images/red.jpeg')}
-                    style={{flex:1, backgroundColor: 'transparent',
-                        justifyContent: 'center'}}
-                    resizeMode='cover'
-                >
-                <View style={{alignItems: 'center',alignContent:'center',}}>
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('Details')}
-                    >
-                        <Text style={styles.whatNew}>Check what's new</Text>
-                    </TouchableOpacity>
+            <StatusBar barStyle="default"/>
+            <ImageBackground
+                source={require('../assets/images/silver-background.jpg')}
+                style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center'}}
+                resizeMode='cover'
+            >
+                <View style={{alignItems: 'center', alignContent: 'center',}}>
+                    <Text style={styles.whatNew}>News</Text>
                 </View>
-                <FlatList
-                        data={this.state.news}
-                        keyExtractor={this._keyExtractor}
-                        renderItem={this._renderItem}
-                    />
-                <FlatList
-                    data={this.state.data}
-                    renderItem={({ item, index }) => this.createPost(item, index)}
-                    keyExtractor={(item) => item.id}
-                />
-                <TouchableOpacity onPress={() => {this.showGFRegisterModal(true)}}
-                                  style={{marginBottom: 60, flexDirection: "row",
-                                        justifyContent: 'center', alignItems: 'center',
-                                        backgroundColor: "#931414", width: "50%", alignSelf: "center"
-
-                                  }}>
-                    <Text style={{color: "#fff", fontSize: 18}}>FindYourFIT</Text>
+                <NewsItemWindowWithData/>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.showGFRegisterModal(true)
+                    }}
+                    style={{
+                        marginTop: 20, marginBottom: 60, flexDirection: "row", justifyContent: 'center',
+                        alignItems: 'center', backgroundColor: "#931414", width: "50%", alignSelf: "center",
+                        borderRadius: 10,
+                    }}>
+                    <Text style={{color: "#fff", fontSize: 18}}>
+                        FindYourFIT
+                    </Text>
                     <MaterialCommunityIcons
                         name={"checkbox-marked-circle-outline"}
                         size={35}
@@ -223,39 +228,43 @@ class HomeScreen extends React.Component{
                     />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => Linking.openURL("https://www.instagram.com/miamiuniversityfitness/")}
-                                  style={{marginBottom: 20, flexDirection: "row",
+                                  style={{
+                                      marginBottom: 20, flexDirection: "row",
                                       justifyContent: 'center', alignItems: 'center',
-                                      alignSelf: "center"}}>
+                                      alignSelf: "center"
+                                  }}>
                     <FontAwesome
                         name={"instagram"}
                         size={20}
                         color={"white"}
                     />
-                    <Text style={{color:"#fff", fontSize: 10}}> MiamiUniversityFitness</Text>
+                    <Text style={{color: "#fff", fontSize: 10}}> MiamiUniversityFitness</Text>
                 </TouchableOpacity>
                 <Modal
                     transparent={false}
                     animationType={"fade"}
                     visible={this.state.groupFitRegisterModal}
-                    onRequestClose={() => {this.showGFRegisterModal(!this.state.groupFitRegisterModal)} }
+                    onRequestClose={() => {
+                        this.showGFRegisterModal(!this.state.groupFitRegisterModal)
+                    }}
                 >
                     <TouchableOpacity
-                        onPress={() => {this.showGFRegisterModal(!this.state.groupFitRegisterModal)}}
+                        onPress={() => {
+                            this.showGFRegisterModal(!this.state.groupFitRegisterModal)
+                        }}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
-
                     <WebView
-                        source={{uri:"http://recmiamioh.maxgalaxy.net/BrowsePackages.aspx?GUID=2e949c93-40fd-4a6e-8beb-3b7d933ee75e"}}
+                        source={{uri: "http://recmiamioh.maxgalaxy.net/BrowsePackages.aspx?GUID=2e949c93-40fd-4a6e-8beb-3b7d933ee75e"}}
                         style={{flex: 1}}
                         javaScriptEnabled={true}
                         domStorageEnabled={true}
                     />
                 </Modal>
-                </ImageBackground>
-            </View>
-
+            </ImageBackground>
+        </View>
         );
     }
 }
@@ -284,7 +293,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginRight: 5,
         shadowOffset:{  width: 1.0,  height: 1.5,  },
-        shadowColor: 'blue',
+        shadowColor: '#000',
         shadowOpacity: 1.0,
         shadowRadius: 8
     },
