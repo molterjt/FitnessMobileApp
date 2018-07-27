@@ -8,16 +8,15 @@ class Facility extends React.Component{
 
     render(){
         return(
-
             <View style={styles.rowCard}>
                 <View style={styles.imageRowContainer}>
                     <Image source={{uri: this.props.image}}
                            style={styles.image}
-                           resizeMode="contain" />
+                           resizeMode="contain"
+                           alt={this.props.title}
+                    />
                 </View>
                 <View style={styles.rowContainer}>
-
-
                     <View style={styles.rowText}>
                         <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
                             {this.props.title}

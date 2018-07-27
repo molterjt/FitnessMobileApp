@@ -49,6 +49,7 @@ class AllGFClassView extends React.Component {
                         instructor={item.instructor.firstName}
                         location={item.location.buildingName + '\n' + item.location.facilityName}
                         thumbnail={item.imageUrl}
+                        cancel={item.cancelled}
                         //days={item.days.map(({name}) => name).join('|')}
                     />
                 </TouchableOpacity>
@@ -283,6 +284,7 @@ const MONDAY_QUERY = gql`
             id
             title
             time
+            cancelled
             location{buildingName, facilityName}
             days{name}
             instructor{firstName,lastName,email, id}
@@ -300,6 +302,7 @@ const TUESDAY_QUERY = gql`
             id
             title
             time
+            cancelled
             location{buildingName, facilityName}
             days{name}
             instructor{firstName,lastName,email, id}
@@ -317,6 +320,7 @@ const WEDNESDAY_QUERY = gql`
             id
             title
             time
+            cancelled
             location{buildingName, facilityName}
             days{name}
             instructor{firstName,lastName,email, id}
@@ -334,6 +338,7 @@ const THURSDAY_QUERY = gql`
             id
             title
             time
+            cancelled
             location{buildingName, facilityName}
             days{name}
             instructor{firstName,lastName,email, id}
@@ -351,6 +356,7 @@ const FRIDAY_QUERY = gql`
             id
             title
             time
+            cancelled
             location{buildingName, facilityName}
             days{name}
             instructor{firstName,lastName,email, id}
@@ -369,6 +375,7 @@ const SATURDAY_QUERY = gql`
             id
             title
             time
+            cancelled
             location{buildingName, facilityName}
             days{name}
             instructor{firstName,lastName,email, id}
@@ -387,6 +394,7 @@ const SUNDAY_QUERY = gql`
             id
             title
             time
+            cancelled
             location{buildingName, facilityName}
             days{name}
             instructor{firstName,lastName,email, id}

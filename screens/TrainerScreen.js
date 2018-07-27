@@ -23,16 +23,16 @@ class TrainingMembership extends React.Component{
     }
     render(){
         return(
-            <View style={{alignItems:'center', borderBottomWidth:1}}>
-                <View style={{marginTop: 18, marginLeft: 10}}>
+            <View style={{alignItems:'center', justifyContent:'center',borderBottomWidth:1}}>
+                <View style={{marginTop: 18, marginLeft: 10, alignItems:'center'}}>
                     <Text style={{color:"#000", fontWeight:"bold", fontSize: 13}}>{this.props.title}</Text>
-                    <View style={{flexDirection: "row", marginTop: 5, justifyContent:'center'}}>
+                    <View style={{flexDirection: "row", marginTop: 5, justifyContent:'center', alignItems:'center'}}>
                         <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>Member Rate: </Text>
                         <Text style={{color:"#000", fontSize: 12}}>{this.props.memberRate}</Text>
                     </View>
 
                     <View style={{flexDirection: "row", marginTop: 3}}>
-                        <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>{this.props.memberRateUnitPrice}</Text>
+                        <Text style={{color:"#535353", fontStyle:"italic", fontSize: 10}}>{this.props.memberRateUnitPrice}</Text>
                     </View>
 
                 </View>
@@ -107,6 +107,12 @@ class TrainerScreen extends React.Component{
                 <View style={{flex: 2, display:'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap:'wrap',alignItems:'center'}}>
 
                 <ScrollView style={{ width: WIDTH*.5, height:HEIGHT*.6, backgroundColor: '#ffffff'}}>
+                    <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A', justifyContent:'center', alignItems:'center'}}>
+                        <Text style={{marginTop: 5, backgroundColor: '#29282A', color:"#fff", fontWeight:"bold", justifyContent:'center',
+                            fontSize: 12, alignSelf:'center', padding: 5,}}>
+                            Programs
+                        </Text>
+                    </View>
                         <TrainingMembership
                             title={"20 Session Package"}
                             memberRate={"$550"}
@@ -134,14 +140,17 @@ class TrainerScreen extends React.Component{
                         <TrainingMembership
                             title={"Monthly Subscription 3"}
                             memberRate={"$300/month"}
+                            memberRateUnitPrice={"3 Sessions/week in month"}
                         />
                         <TrainingMembership
                             title={"Monthly Subscription 2"}
                             memberRate={"$250/month"}
+                            memberRateUnitPrice={"2 Sessions/week in month"}
                         />
                         <TrainingMembership
                             title={"Monthly Subscription 1"}
                             memberRate={"$140/month"}
+                            memberRateUnitPrice={"1 Session/week in month"}
                         />
 
                     </ScrollView>

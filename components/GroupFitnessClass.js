@@ -11,6 +11,7 @@ import {FontAwesome, MaterialCommunityIcons, MaterialIcons, Ionicons} from '@exp
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
+
 const CreateClassCommentByUser = gql`
     mutation createComment($content: String!, $userCommentId: ID!, $classCommentId: ID!){
         createComment(
@@ -67,14 +68,16 @@ class GroupFitnessClass extends React.Component{
                 </View>
                 <View style={styles.rowContainer}>
                     <View style={styles.rowText}>
-                        <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <View style={{flex: 1, display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
                             <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
                                 {this.props.title}
                             </Text>
+
+                            <Text style={styles.time} numberOfLines={1} ellipsizeMode ={'tail'}>
+                                {this.props.time}
+                            </Text>
                         </View>
-                        <Text style={styles.time} numberOfLines={1} ellipsizeMode ={'tail'}>
-                            {this.props.time}
-                        </Text>
+
                         <Text style={styles.instructor} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.instructor}
                         </Text>
@@ -88,7 +91,7 @@ class GroupFitnessClass extends React.Component{
                         <Text style={styles.description} numberOfLines={1} ellipsizeMode ={'tail'}>
                             Type: {this.props.category}
                         </Text>
-                        <Text style={styles.description} numberOfLines={4} ellipsizeMode ={'tail'}>
+                        <Text style={styles.description} numberOfLines={7} ellipsizeMode ={'tail'}>
                             Description: {this.props.description}
                         </Text>
                         <View style={{flexDirection: "row",justifyContent:"center", alignItems:"center", marginTop: 25, }}>
@@ -317,9 +320,17 @@ const styles = StyleSheet.create({
     title: {
         paddingLeft: 10,
         paddingTop: 5,
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#931414'
+    },
+    time: {
+        paddingRight: 5,
+        marginTop: 8,
+        fontSize: 14,
+        color: '#ACACAC',
+        position: 'absolute',
+        right: 0,
     },
     instructor: {
         paddingLeft: 10,
@@ -334,16 +345,11 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#ACACAC'
     },
-    time: {
-        paddingLeft: 10,
-        marginTop: 8,
-        fontSize: 14,
-        color: '#ACACAC'
-    },
+
     description: {
         paddingLeft: 10,
         marginTop: 8,
-        fontSize: 14,
+        fontSize: 12,
         fontStyle: "italic",
         color: '#ACACAC'
     },
@@ -360,7 +366,7 @@ const styles = StyleSheet.create({
         color: '#ACACAC'
     },
     image: {
-       flex: 4,
+       flex: 1,
         height: undefined,
         width: WIDTH*.93,
         backgroundColor: 'transparent',

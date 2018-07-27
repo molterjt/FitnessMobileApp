@@ -161,7 +161,7 @@ export default InstructorScreen;
 
 const styles = StyleSheet.create({
     scheduleBox: {
-        backgroundColor:"#cdcdcd",
+        backgroundColor: '#DFE7EB',
         marginLeft: 5,
         marginRight: 5,
         marginTop: 5,
@@ -186,7 +186,6 @@ const styles = StyleSheet.create({
     },
     title: {
         paddingLeft: 5,
-
         paddingTop: 5,
         fontSize: 16,
         fontWeight: 'bold',
@@ -196,13 +195,13 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         marginTop: 5,
         fontSize: 14,
-        color: '#535353'
+        color: '#4F4F54'
     },
     days: {
         paddingLeft: 10,
         marginTop: 5,
         fontSize: 12,
-        color: '#777'
+        color: '#6A7275'
     },
     location: {
         paddingLeft: 10,

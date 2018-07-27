@@ -1,9 +1,6 @@
 import React from 'react';
-import {Platform, StatusBar, ActivityIndicator } from 'react-native';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons'; // Version can be specified in package.json
-import { StackNavigator, TabNavigator, TabBarBottom, SwitchNavigator, DrawerNavigator } from 'react-navigation'; // Version can be specified in package.jsonimport {Icon} from 'react-native-elements';
-
-
+import { Ionicons} from '@expo/vector-icons'; // Version can be specified in package.json
+import { StackNavigator, TabNavigator, TabBarBottom, SwitchNavigator } from 'react-navigation'; // Version can be specified in package.jsonimport {Icon} from 'react-native-elements';
 
 
 import HomeScreen from './screens/HomeScreen';

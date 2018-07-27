@@ -78,6 +78,7 @@ type Picture @model{
 type Checkin @model{
   id: ID! @isUnique
   checked: Boolean @defaultValue(value: "false")
+  location: String
   users: [User!]! @relation(name: "UserCheckins")
   workouts: [Workout!]! @relation(name: "WorkoutCheckins")
   classes: [GroupFitClass!]! @relation(name: "GroupFitClassCheckins")
@@ -218,6 +219,7 @@ type Facility @model{
   id: ID! @isUnique
   facilityName: String!
   buildingName: String
+  address: String
   open: Boolean
   hours: String
   imageUrl: String
@@ -235,6 +237,7 @@ type GroupFitClass @model {
   id: ID! @isUnique
   title: String!
   time: String
+  cancelled: Boolean @defaultValue(value: "false")
   isPublished: Boolean @defaultValue(value: "false")
   sortTime: DateTime
   startTime: DateTime
@@ -276,6 +279,7 @@ type Instructor @model {
   imageUrl: String
   videoUrl: String
   description: String
+  blurb: String
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -289,6 +293,8 @@ type Trainer @model{
   imageUrl: String
   videoUrl: String
   description: String
+  certification: String
+  blurb: String
   workouts: [Workout!]! @relation(name: "TrainerWorkouts")
   sessions: [Session!]! @relation(name: "TrainerSessions")
   createdAt: DateTime!

@@ -9,13 +9,14 @@ import TabTabNavigator from './router';
 import AUTH_TOKEN from './constants/auth';
 import FitnessApp from './FitnessApp';
 import {createRootNavigator} from './router'
+import {GRAPHQL_ENDPOINT} from './util/keys';
 import { setContext } from 'apollo-link-context';
 
 
 let token;
 
 const httpLink = new HttpLink({
-    uri: "https://api.graph.cool/simple/v1/cjf6zsqxj3n420141z09rpv9j"
+    uri: GRAPHQL_ENDPOINT
 });
 
 export const getToken = async () => {

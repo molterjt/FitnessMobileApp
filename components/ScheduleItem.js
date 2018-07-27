@@ -19,9 +19,18 @@ class ScheduleItem extends React.Component{
                         fontWeight: 'bold', color: 'red'}}>
                         {this.props.title}
                     </Text>
-                    <Text style={{paddingLeft: 10, marginTop: 5, fontSize: 14, color: '#000000'}}>
-                        {this.props.time}
-                    </Text>
+                    <View style={{flexDirection: "row", flex: 1}}>
+                        <Text style={{paddingLeft: 10, marginTop: 5, fontSize: 14, color: '#000000'}}>
+                            {this.props.time}
+                        </Text>
+                        {(this.props.cancel === true)
+                            ? (<Text style={{position:'absolute', right: 3, padding:2, color: "blue", fontSize: 12, marginTop: 4,}}>
+                                Cancelled Today
+                                </Text>
+                            )
+                            : (null)
+                        }
+                    </View>
                     <View style={{display: 'flex', flexDirection: 'row'}}>
                         <Text style={{paddingLeft: 10, marginTop: 5, fontSize: 14, color: '#acacac'}}>
                             {this.props.instructor}

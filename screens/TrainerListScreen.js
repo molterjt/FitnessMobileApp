@@ -16,14 +16,13 @@ const HEIGHT = Dimensions.get('window').height;
 
 const AllTRAINERS = gql`
     query{
-        allInstructors(orderBy: firstName_ASC){
+        allTrainers(orderBy: firstName_ASC){
             firstName
             lastName
             imageUrl
             description
             email
             id
-            alsoTrainer{workouts{title, imageUrl, type{title} }}
         }
     }
 `
@@ -110,7 +109,7 @@ class TrainerListView extends React.Component{
         super(props);
     }
     render(){
-        const { loading, error, allInstructors } = this.props.data;
+        const { loading, error, allTrainers } = this.props.data;
         if(loading){
             return <ActivityIndicator />
         }
@@ -121,7 +120,7 @@ class TrainerListView extends React.Component{
         return(
             <ScrollView style={{flex: 1, justifyContent: 'space-evenly',}}>
                 <View style={{flex:3, borderWidth:1, flexDirection:"row", justifyContent:'space-around', flexWrap: 'wrap'}}>
-                    {allInstructors.map((obj, index) => (
+                    {allTrainers.map((obj, index) => (
                         <TrainerProfile
                             key={index}
                             imageUrl={obj.imageUrl ? obj.imageUrl : ''}

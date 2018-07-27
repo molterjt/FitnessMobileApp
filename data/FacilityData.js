@@ -9,7 +9,7 @@ const FACILITY = [
         hours: 'M - F: 6:00 am  - 11:00 pm' + '\n' + 'Sat: 8:00 am - 11:00pm' + '\n' + 'Sun: 10:00 am - 11:00 pm',
         address: '750 South Oak Street',
         description: 'Home base of all Miami Recreation; Hosts main Fitness Center, Room X, & Group Fitness Rooms A & B; 1/8 mile indoor track, olympic swimming pool, indoor rock-climbing wall',
-        image: 'http://miamioh.edu/campus-services/_files/images/recreation/recbuilding-south-fall800x400.jpg',
+        image: "https://i.imgur.com/jK09mk2.jpg",
     },
     {
         id: 2,

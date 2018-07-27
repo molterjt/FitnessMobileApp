@@ -90,8 +90,11 @@ class GroupFitProgramsScreen extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-
+            showGFPrivateClassModal: false
         }
+    }
+    showPrivateClassModal(visible){
+        this.setState({showGFPrivateClassModal: visible})
     }
     render(){
         return(
@@ -176,7 +179,48 @@ class GroupFitProgramsScreen extends React.Component{
                         memberRate={"$300"}
                         registerUrl={"188"}
                     />
+                    <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A'}}>
+                        <MaterialCommunityIcons
+                            name={"calendar-check"}
+                            size={30}
+                            color={"white"}
+                            style={{paddingLeft: 20, paddingRight: 5, paddingTop:2}}
+                        />
+                        <Text style={{marginTop: 5, paddingRight: 20, backgroundColor: '#29282A', color:"#fff", fontWeight:"bold", width: WIDTH, justifyContent:'center',
+                            fontSize: 18, alignSelf:'center', padding: 5,}}>
+                            Private Classes
+                        </Text>
+                    </View>
+                    <TouchableOpacity
+                        onPress={() => {this.showPrivateClassModal(true)}}
+                        style={styles.exploreButtons}>
+                        <Text style={styles.exploreButtonText}>Request A Class</Text>
+                        <MaterialCommunityIcons
+                            name={"checkbox-marked-circle-outline"}
+                            size={35}
+                            color={"white"}
+                        />
+                    </TouchableOpacity>
                 </ScrollView>
+                <Modal
+                    transparent={false}
+                    animationType={"fade"}
+                    visible={this.state.showGFPrivateClassModal}
+                    onRequestClose={() => {this.showPrivateClassModal(!this.state.showGFPrivateClassModal)} }
+                >
+                    <TouchableOpacity
+                        onPress={() => {this.showPrivateClassModal(!this.state.showGFPrivateClassModal)}}
+                        style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
+                        <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
+                        <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
+                    </TouchableOpacity>
+                    <WebView
+                        source={{uri:"https://miamioh.formstack.com/forms/on_demand_group_fitness_class_request"}}
+                        style={{flex: 1}}
+                        javaScriptEnabled={true}
+                        domStorageEnabled={true}
+                    />
+                </Modal>
 
             </View>
         )
@@ -189,6 +233,25 @@ class GroupFitProgramsScreen extends React.Component{
 export default GroupFitProgramsScreen;
 
 const styles = StyleSheet.create({
+
+    exploreButtons:{
+        flexDirection:"row",
+        marginTop: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor:"#000",
+        borderRadius: 15,
+        backgroundColor: "#931414",
+        height: 45,
+        width: WIDTH*.45,
+        alignSelf: "center"
+    },
+
+    exploreButtonText:{
+        color: "#fff",
+        fontSize: 16
+    },
 
 
 });
