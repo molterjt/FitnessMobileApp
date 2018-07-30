@@ -35,11 +35,11 @@ const HomeStack = StackNavigator(
                 title: 'Welcome',
             },
         },
-        Events: {
-            screen: EventsScreen,
-            path: '/Events',
+        Profile: {
+            screen: ProfileScreen,
+            path: '/Profile',
             navigationOptions:{
-                title: 'Events',
+                title: 'Profile',
             },
         },
         Workouts: {
@@ -61,6 +61,18 @@ const HomeStack = StackNavigator(
         },
     },
     {initialRouteName: 'Home'},
+);
+
+const EventStack = StackNavigator(
+    {
+        Events: {
+            screen: EventsScreen,
+            path: '/Events',
+            navigationOptions:{
+                title: 'Events',
+            },
+        },
+    }
 );
 
 const ProfileStack = StackNavigator(
@@ -211,18 +223,19 @@ export const TabTabNavigator = TabNavigator(
                 />
             }
         },
-        ProfilePage: {
-            screen: ProfileStack,
+        EventPage: {
+            screen: EventStack,
             navigationOptions: {
-                tabBarLabel: 'Profile',
+                tabBarLabel: 'Events',
                 tabBarIcon: ({tintColor}) => <Ionicons
-                    name={"ios-person-outline"}
+                    name={"ios-calendar-outline"}
                     type={"ionicon"}
                     size={30}
                     color={tintColor}
                 />
             }
         },
+
     },
     {
         tabBarComponent: TabBarBottom,

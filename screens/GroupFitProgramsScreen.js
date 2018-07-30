@@ -1,9 +1,7 @@
 import React from 'react';
 import {
-    View, Text, Dimensions, Modal,
-    ImageBackground, TouchableOpacity, Image,
-    ScrollView, WebView, StatusBar,
-    StyleSheet
+    View, Text, Dimensions, Modal, StyleSheet,
+    TouchableOpacity, ScrollView, WebView, StatusBar,
 } from 'react-native';
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
@@ -35,10 +33,7 @@ class GroupFitMembership extends React.Component{
                                 </View>
                             :
                                 null
-
                         }
-
-
                 </View>
                 {
                     this.props.registerUrl
@@ -225,9 +220,6 @@ class GroupFitProgramsScreen extends React.Component{
             </View>
         )
     }
-
-
-
 }
 
 export default GroupFitProgramsScreen;

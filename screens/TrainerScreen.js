@@ -1,11 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import {
     View, Text, Dimensions, Modal, ImageBackground, TouchableOpacity, Image, ScrollView, WebView, StatusBar,
     StyleSheet
 } from 'react-native';
-import {graphql} from "react-apollo";
-import gql from "graphql-tag";
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
 const WIDTH = Dimensions.get('window').width;
@@ -50,6 +47,7 @@ class TrainingMembership extends React.Component{
                                 name={"checkbox-marked-circle-outline"}
                                 size={18}
                                 color={"white"}
+                                alt={"Register checkbox-marked symbol"}
                             />
                         </TouchableOpacity>
                         :
@@ -67,7 +65,7 @@ class TrainingMembership extends React.Component{
                     <TouchableOpacity
                         onPress={() => {this.showPTRegisterModal(!this.state.showPTRegisterModal)}}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
-                        <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
+                        <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"} alt={"Arrow symbol to go back previous page"}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
                     <WebView
@@ -96,11 +94,11 @@ class TrainerScreen extends React.Component{
         return(
             <View style={{flex:1, backgroundColor: "#fff", marginTop: 0}}>
                 <StatusBar/>
-                    <View style={{alignItems: 'center',width: WIDTH, height:HEIGHT*.2,  backgroundColor: '#000', borderWidth:1, borderRadius:10}}>
+                    <View style={{alignItems: 'center',width: WIDTH, height:HEIGHT*.25,  backgroundColor: '#000', borderWidth:1, borderRadius:10}}>
                         <Image
                             resizeMode={"cover"}
                             source={require("../assets/images/barbell-squad-800x400.png")}
-                            style={{width: WIDTH*.9, height: HEIGHT*.2, borderWidth:1, borderRadius:10,}}
+                            style={{width: WIDTH*.9, height: HEIGHT*.25, borderWidth:1, borderRadius:10,}}
                             alt={"Personal Training Squat Instruction"}
                         />
                     </View>
@@ -156,6 +154,7 @@ class TrainerScreen extends React.Component{
                     </ScrollView>
                     <ImageBackground
                         source={require('../assets/images/silver-background.jpg')}
+                        alt={"background image of abstract silver blended with black"}
                         style={{width: WIDTH*.5, height: HEIGHT*.6, borderWidth:1, borderRadius:10,
                             backgroundColor:"#000" , alignItems: "center", justifyContent:'center',
                         }}
@@ -179,6 +178,7 @@ class TrainerScreen extends React.Component{
                                 name={"checkbox-marked-circle-outline"}
                                 size={35}
                                 color={"white"}
+                                alt={"Request Info checkbox-marked symbol"}
                             />
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -202,7 +202,7 @@ class TrainerScreen extends React.Component{
                     <TouchableOpacity
                         onPress={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)}}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
-                        <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
+                        <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"} alt={'arrow symbol to go back to previous'}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
                     <WebView
@@ -221,7 +221,6 @@ export default TrainerScreen;
 
 
 const styles = StyleSheet.create({
-
     exploreButtons:{
         flexDirection:"row",
         marginTop: 30,
@@ -235,11 +234,8 @@ const styles = StyleSheet.create({
         width: WIDTH*.45,
         alignSelf: "center"
     },
-
     exploreButtonText:{
         color: "#fff",
         fontSize: 16
     },
-
-
 });

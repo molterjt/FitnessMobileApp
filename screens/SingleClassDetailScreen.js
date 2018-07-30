@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     thumb:{
-        marginTop: 8,
+        marginTop: 4,
         alignSelf: 'center',
         alignContent: 'center',
         justifyContent: 'center',

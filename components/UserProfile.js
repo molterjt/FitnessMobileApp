@@ -7,19 +7,12 @@ import CategoryData from "../data/ClassCategories";
 class UserProfile extends React.Component{
     constructor(props){
         super(props);
-        this.state ={
-            pictures: [
-
-            ],
-        };
+        this.state ={};
     }
     render(){
         return(
             <View style={{marginTop: 60, marginBottom: 80}}>
                 <View style={styles.rowContainer}>
-                    <Image source={require('../assets/images/17362_749853445598_4798946_n.jpg')}
-                           style={styles.thumbnail}
-                           resizeMode="contain" />
                     <View style={styles.rowText}>
                         <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
                             {this.props.username}
@@ -37,7 +30,6 @@ class UserProfile extends React.Component{
                 </View>
                 <View >
                     <ScrollView style={styles.rowText}>
-
                         <View style={styles.rowContainer} >
                             <View >
                                 <Text style={styles.title} numberOfLines={2}>Workouts: </Text>
@@ -62,18 +54,8 @@ class UserProfile extends React.Component{
                                 </Text>
                             </View>
                         </View>
-                        <View style={styles.rowContainer}>
-                            <View>
-                                <ScrollView horizontal={true}>
-                                    <View style={{display: 'flex', flexDirection:'row'}}>
-
-                                    </View>
-                                </ScrollView>
-                        </View>
-                    </View>
-
-                </ScrollView>
-            </View>
+                    </ScrollView>
+                </View>
             </View>
         );
     }
@@ -86,8 +68,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         height: 'auto',
         padding: 10,
-        marginRight: 5,
-        marginLeft: 5,
+        marginRight: 3,
+        marginLeft: 3,
         marginTop: 10,
         borderRadius: 4,
         shadowOffset:{  width: 1,  height: 1,  },
@@ -126,7 +108,7 @@ const styles = StyleSheet.create({
         width: 120
     },
     rowText: {
-        flex: 4,
+        flex: 1,
         flexDirection: 'column',
         height: 'auto'
     },

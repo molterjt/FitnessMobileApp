@@ -6,7 +6,6 @@ import {
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import FacilityData from "../data/FacilityData";
 import MapView from "react-native-maps";
 
 
@@ -34,7 +33,6 @@ const FACILITYLIST = gql`
     }
 `
 
-
 class FacilityDetail extends React.Component{
     constructor(props){
         super(props);
@@ -45,7 +43,7 @@ class FacilityDetail extends React.Component{
     }
     render(){
         return(
-            <View>
+            <View style={{marginTop: 5}}>
             <TouchableOpacity
                 style={styles.profileButton}
                 onPress={() => {this.showFacilityModal(true)}}
@@ -259,8 +257,6 @@ class FacilitiesScreen extends React.Component {
             }, 10);
         });
     }
-
-
     render() {
         const interpolations = this.state.markers.map((marker, index) => {
             const inputRange = [

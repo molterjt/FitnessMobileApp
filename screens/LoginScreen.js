@@ -82,6 +82,7 @@ class Login extends React.Component{
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                             />
+
                         </View>
                         <TouchableOpacity
                             onPress={ () => this._confirm() }

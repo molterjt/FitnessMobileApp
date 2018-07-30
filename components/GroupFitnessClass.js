@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     },
     rowCard:{
         backgroundColor: 'transparent',
-        marginTop: 10,
+        marginTop: 5,
         borderRadius: 4,
         shadowOffset:{  width: -1,  height: 1,  },
         shadowColor: 'black',
@@ -311,11 +311,11 @@ const styles = StyleSheet.create({
     },
     imageRowContainer: {
         flexDirection: 'row',
-        height: 200,
+        height: HEIGHT*.28,
         padding: 5,
         marginRight: 10,
         marginLeft: 10,
-        marginTop: 10,
+        marginTop: 5,
     },
     title: {
         paddingLeft: 10,

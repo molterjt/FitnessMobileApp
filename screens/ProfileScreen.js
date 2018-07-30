@@ -96,15 +96,9 @@ class ProfileScreen extends React.Component{
         const params = navigation.state.params || {};
         return {
             headerRight: (
-                <Button
-                    onPress={() => navigation.navigate('Edit', {userIdentity: queryUserId})}
-                    title="Edit"
-                    color="black"
-                />
-            ),
-            headerLeft: (
                 <Logout/>
             ),
+
         };
     };
     componentDidMount(){

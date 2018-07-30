@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'center',
         width: WIDTH * .32,
-        height: HEIGHT * .25,
+        height: 200,
         borderWidth: 2,
         borderColor: "#000",
         backgroundColor: '#cdcdcd',
@@ -177,15 +177,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
         justifyContent: 'flex-start',
-        height: HEIGHT * .22,
+        height: 200,
         width: WIDTH * .3,
         borderWidth: 1,
         borderRadius: 10,
-        padding:2,
+        padding:4,
     },
     profileName:{
         color: '#fff',
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: '0.5',
         alignContent: 'center'
     },
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     },
     profileButton:{
         alignContent: 'end',
-        marginTop: 120,
+        marginTop: 130,
         padding:1,
         fontWeight: 'bold'
     },

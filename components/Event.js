@@ -77,12 +77,21 @@ class Event extends React.Component{
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
 
-                    <WebView
-                        source={{uri:"http://recmiamioh.maxgalaxy.net/Registration.aspx?ActivityID=" + this.props.registerUrl}}
-                        style={{flex: 1}}
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}
-                    />
+                    {this.props.registerUrl
+                        ?
+                        ( <WebView
+                            source={{uri:"http://recmiamioh.maxgalaxy.net/Registration.aspx?ActivityID=" + this.props.registerUrl}}
+                            style={{flex: 1}}
+                            javaScriptEnabled={true}
+                            domStorageEnabled={true}
+                        />
+                        )
+                        :
+                        (
+                            null
+                        )
+                    }
+
                 </Modal>
 
 

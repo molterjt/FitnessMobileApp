@@ -92,9 +92,9 @@ class HomeScreen extends React.Component{
             headerRight: (
                 <TouchableOpacity
                     style={{marginRight: 15}}
-                    onPress={() => navigation.navigate('Events')}>
+                    onPress={() => navigation.navigate('Profile')}>
                     <MaterialIcons
-                        name={"event-note"} type={"MaterialIcons"} size={30} color={'#29282A'}
+                        name={"person-outline"} type={"MaterialIcons"} size={30} color={'#29282A'}
                     />
                 </TouchableOpacity>
             ),
@@ -116,8 +116,7 @@ class HomeScreen extends React.Component{
             data: null,
             comments: [],
             springVal: new Animated.Value(0),
-            groupFitRegisterModal: false,
-            personalFitRegisterModal: false,
+            showModal: false,
             currentUserId: '',
             currentUserToken: '',
 
@@ -161,8 +160,8 @@ class HomeScreen extends React.Component{
 
     */
 
-    showGFRegisterModal(visible){
-        this.setState({groupFitRegisterModal: visible})
+    findYourFitModal(visible){
+        this.setState({showModal: visible})
     }
 
 
@@ -210,7 +209,7 @@ class HomeScreen extends React.Component{
                 <NewsItemWindowWithData/>
                 <TouchableOpacity
                     onPress={() => {
-                        this.showGFRegisterModal(true)
+                        this.findYourFitModal(true)
                     }}
                     style={{
                         marginTop: 20, marginBottom: 60, flexDirection: "row", justifyContent: 'center',
@@ -242,25 +241,30 @@ class HomeScreen extends React.Component{
                 <Modal
                     transparent={false}
                     animationType={"fade"}
-                    visible={this.state.groupFitRegisterModal}
+                    visible={this.state.showModal}
                     onRequestClose={() => {
-                        this.showGFRegisterModal(!this.state.groupFitRegisterModal)
+                        this.findYourFitModal(!this.state.showModal)
                     }}
                 >
                     <TouchableOpacity
                         onPress={() => {
-                            this.showGFRegisterModal(!this.state.groupFitRegisterModal)
+                            this.findYourFitModal(!this.state.showModal)
                         }}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
-                    <WebView
-                        source={{uri: "http://recmiamioh.maxgalaxy.net/BrowsePackages.aspx?GUID=2e949c93-40fd-4a6e-8beb-3b7d933ee75e"}}
-                        style={{flex: 1}}
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}
-                    />
+                    <View style={{alignItems:'center'}}>
+                        <Image
+                            source={{uri: "https://i.imgur.com/xfTySI5.jpg"}}
+                            alt={'Miami Recreation Fitness design element'}
+                            resizeMode={'cover'}
+                            style={{width: 400, height: 380}}
+                        />
+                        <Text style={{fontStyle:'italic', padding: 10}}>
+                            The Fitness Department strives to create an environment of inclusion for the Miami Recreation community to develop their fitness identity through a variety of opportunities to reach individual fitness goals.
+                        </Text>
+                    </View>
                 </Modal>
             </ImageBackground>
         </View>
