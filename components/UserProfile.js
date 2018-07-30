@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, ScrollView, Image,} from 'react-native';
 import Workout from '../components/Workout';
-import ProfilePicData from '../data/ProfilePictures'
-import CategoryData from "../data/ClassCategories";
+
+
 
 class UserProfile extends React.Component{
     constructor(props){

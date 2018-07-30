@@ -6,7 +6,6 @@ import { StackNavigator, TabNavigator, TabBarBottom, SwitchNavigator } from 'rea
 import HomeScreen from './screens/HomeScreen';
 import ScheduleScreen from './screens/ScheduleScreen';
 import FacilitiesScreen from './screens/FacilitiesScreen';
-import DetailsScreen from './screens/DetailsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import EditScreen from './screens/EditProfileScreen';
 import EventsScreen from './screens/EventsScreen';
@@ -84,9 +83,6 @@ const ProfileStack = StackNavigator(
                 title: 'Profile',
             },
         },
-        Details: {
-            screen: DetailsScreen,
-        },
         Edit: {
             screen: EditScreen,
             path: '/profile',
@@ -133,8 +129,6 @@ const FacilityStack = StackNavigator(
                 header: null,
             },
         },
-        Details: {screen: DetailsScreen},
-
     }
 );
 

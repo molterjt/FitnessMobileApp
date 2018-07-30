@@ -4,7 +4,7 @@ import {View, Text, Image, StyleSheet, } from 'react-native';
 import {withNavigation} from 'react-navigation';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
-import ClassData from "../data/GFClassData";
+
 import ExerciseCard from '../components/Exercise'
 
 const EXERCISE_QUERY = gql`
