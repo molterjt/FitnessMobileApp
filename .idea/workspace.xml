@@ -2,50 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84add5d6-5475-4d48-ac6e-e803819a3c68" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/components/Event.js" afterPath="$PROJECT_DIR$/components/Event.js" />
-      <change beforePath="$PROJECT_DIR$/components/GroupFitnessClass.js" afterPath="$PROJECT_DIR$/components/GroupFitnessClass.js" />
-      <change beforePath="$PROJECT_DIR$/components/UserProfile.js" afterPath="$PROJECT_DIR$/components/UserProfile.js" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/package.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/public/favicon.ico" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/public/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/public/manifest.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/App.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/App.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/App.test.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/MiamiFitness.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/MiamiUniversityLogo.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/CommentList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/EventList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/ExerciseList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/GroupFitClassList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/HeaderComponent.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/ImageGallery.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/InstructorList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/MarketingAd.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/NavigationBar.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/NewsItem.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/StaffImageGallery.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/TrainerList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/UserLIst.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/components/WorkoutList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/index.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/index.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/logo.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/registerServiceWorker.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/src/weights-background.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/fitness-app-admin/yarn.lock" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/router.js" afterPath="$PROJECT_DIR$/router.js" />
-      <change beforePath="$PROJECT_DIR$/screens/FacilitiesScreen.js" afterPath="$PROJECT_DIR$/screens/FacilitiesScreen.js" />
-      <change beforePath="$PROJECT_DIR$/screens/GroupFitProgramsScreen.js" afterPath="$PROJECT_DIR$/screens/GroupFitProgramsScreen.js" />
-      <change beforePath="$PROJECT_DIR$/screens/HomeScreen.js" afterPath="$PROJECT_DIR$/screens/HomeScreen.js" />
-      <change beforePath="$PROJECT_DIR$/screens/LoginScreen.js" afterPath="$PROJECT_DIR$/screens/LoginScreen.js" />
-      <change beforePath="$PROJECT_DIR$/screens/ProfileScreen.js" afterPath="$PROJECT_DIR$/screens/ProfileScreen.js" />
-      <change beforePath="$PROJECT_DIR$/screens/SingleClassDetailScreen.js" afterPath="$PROJECT_DIR$/screens/SingleClassDetailScreen.js" />
-      <change beforePath="$PROJECT_DIR$/screens/TrainerListScreen.js" afterPath="$PROJECT_DIR$/screens/TrainerListScreen.js" />
-      <change beforePath="$PROJECT_DIR$/screens/TrainerScreen.js" afterPath="$PROJECT_DIR$/screens/TrainerScreen.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -260,11 +218,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Event.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Event.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Event.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="430">
               <caret line="79" column="43" lean-forward="false" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -309,7 +277,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/components/Logout.js" />
         <option value="$PROJECT_DIR$/screens/DetailsScreen.js" />
         <option value="$PROJECT_DIR$/screens/EditProfileScreen.js" />
         <option value="$PROJECT_DIR$/components/Instructor.js" />
@@ -360,6 +327,7 @@
         <option value="$PROJECT_DIR$/screens/ProfileScreen.js" />
         <option value="$PROJECT_DIR$/components/UserProfile.js" />
         <option value="$PROJECT_DIR$/components/Event.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -563,12 +531,12 @@
       <workItem from="1530561050389" duration="209000" />
       <workItem from="1530591528381" duration="8000" />
       <workItem from="1531006562798" duration="24000" />
-      <workItem from="1531863877687" duration="89474000" />
+      <workItem from="1531863877687" duration="89591000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="868847000" />
+    <option name="totallyTimeSpent" value="868964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1837" y="-117" width="1348" height="797" extended-state="0" />
@@ -641,13 +609,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/TrainerList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="50" column="46" lean-forward="true" selection-start-line="39" selection-start-column="16" selection-end-line="50" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/ExerciseList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1743,6 +1704,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="79" column="43" lean-forward="false" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding />
         </state>
       </provider>
