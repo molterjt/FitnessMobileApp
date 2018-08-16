@@ -12,8 +12,13 @@ class UserProfile extends React.Component{
     render(){
         return(
             <View style={{marginTop: 60, marginBottom: 80}}>
+                <Text style={styles.title}>
+                    {this.props.id}
+                </Text>
                 <View style={styles.rowContainer}>
+
                     <View style={styles.rowText}>
+
                         <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
                             {this.props.username}
                         </Text>

@@ -7,9 +7,13 @@ import { Ionicons } from '@expo/vector-icons';
 import UserProfile from '../components/UserProfile';
 import Logout from '../components/Logout';
 import gql from "graphql-tag";
-import {graphql} from "react-apollo";
+import {graphql, Query} from "react-apollo";
 import Modal from 'react-native-modal';
 import {AUTH_TOKEN} from "../constants/auth";
+
+
+
+
 
 const GET_USER = gql`
     query ProfileUser($id: ID!){
@@ -26,6 +30,14 @@ const GET_USER = gql`
             workouts{title}
             memberships{title}
             classes{title}
+        }
+    }
+`
+
+const IS_LOGGED = gql`
+    query{
+        loggedInUser{
+            id
         }
     }
 `
@@ -72,15 +84,19 @@ const UserDetails = graphql(GET_USER,{
 
 let queryUserId;
 
+
+/*
 try{
     AsyncStorage.getItem("MyUserId").then( (dataId) => {
-        queryUserId = dataId;
+        queryUserId = JSON.parse(dataId);
         console.log("queryUserId === " + queryUserId);
         return queryUserId;
     }).done();
 } catch (error) {
     console.log("MyUserId error" + error);
 }
+*/
+
 
 class ProfileScreen extends React.Component{
     constructor(props){
@@ -90,6 +106,8 @@ class ProfileScreen extends React.Component{
             currentUserToken: '',
             currentUserId: '',
             profileUpdate: false,
+            isLoading: true,
+            profileRefresh: false,
         };
     }
     static navigationOptions = ({ navigation }) => {
@@ -101,22 +119,43 @@ class ProfileScreen extends React.Component{
 
         };
     };
+
+    componentDidMount(){
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = JSON.parse(dataId);
+            this.setState({currentUserId: queryUserId, isLoading: false});
+            console.log("queryUserId === " + queryUserId);
+            return queryUserId;
+        }).done();
+
+    }
+
+
+
+    /*
     componentDidMount(){
         this.setState({currentUserId: queryUserId});
         console.log("currentUserId: " + this.state.currentUserId);
         console.log("queryUserId === " + queryUserId);
         this.forceUpdate();
     }
+    */
 
     _toggleModal = () =>
         this.setState({
             isModalVisible: !this.state.isModalVisible
         });
-
+    _profileRefresh = () =>
+        this.setState({profileRefresh: true})
 
     render(){
+        this.props.data.refetch({id: queryUserId});
         const {currentUserId, currentUserToken} = this.state;
         const { loading, error, User,  } = this.props.data;
+        if (this.state.isLoading) {
+            return <View><Text>Loading...</Text></View>;
+        }
+        console.log('queryUserId:  ' + queryUserId);
 
         console.log("@render: currentUserId: " + currentUserId);
         if (loading) return <View style={{marginTop: 50}}><ActivityIndicator/></View>;
@@ -129,7 +168,15 @@ class ProfileScreen extends React.Component{
                     </Text>
                     <Button
                         title={'retry'}
-                        onPress={ () => this.props.data.refetch()}
+                        onPress={ () => {
+
+                            //this.props.navigation.navigate('Profile');
+                            //
+                            this._profileRefresh();
+                            this.props.data.refetch({id: queryUserId});
+
+
+                        }}
                     />
                 </View>
             )
@@ -166,11 +213,10 @@ ProfileScreen.propTypes = {
 export default graphql(GET_USER,{
     options: ({props}) => {
         return{
-            skip: !queryUserId,
-            //fetchPolicy: 'network-only',
+            //skip: !queryUserId,
+            fetchPolicy: 'network-only',
             variables: {id: queryUserId},
-            pollInterval: 1000,
-            refetch: {id: queryUserId}
+            //pollInterval: 1000,
         }
     }
 })(ProfileScreen);

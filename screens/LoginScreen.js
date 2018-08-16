@@ -13,7 +13,14 @@ import Logout from '../components/Logout';
 import {AUTH_TOKEN} from "../constants/auth";
 
 
+let queryUserId;
 
+AsyncStorage.getItem("MyUserId").then( (dataId) => {
+    queryUserId = dataId;
+    console.log(JSON.stringify(dataId));
+    console.log("queryUserId:" + queryUserId);
+    return queryUserId;
+}).done();
 
 
 class Login extends React.Component{
@@ -32,21 +39,65 @@ class Login extends React.Component{
         this._saveUserId = this._saveUserId.bind(this);
         this._confirm = this._confirm.bind(this);
     }
+
+    _saveUserToken = token => {
+
+        AsyncStorage.setItem(AUTH_TOKEN, JSON.stringify(token));
+    };
+    _saveUserId = id => {
+        AsyncStorage.setItem("MyUserId", JSON.stringify(id));
+    };
+
+    _loginSaveUserID = id => {
+        AsyncStorage.mergeItem("MyUserId", JSON.stringify(id));
+    };
+
+    _confirm = async () => {
+        const {username, email, password, login} = this.state;
+        console.log(username, email, password, login);
+        if(this.state.login){
+            const result = await this.props.authenticateUser({
+                variables: {email, password},
+            });
+            const {token} = result.data.authenticateUser;
+            const {id} = result.data.authenticateUser;
+            this._saveUserToken(token);
+            this._loginSaveUserID(id);
+            console.log("Token: " +token);
+            console.log("ID: " + id);
+
+            //this.props.navigation.navigate('Home', {username});
+            this.props.navigation.navigate('Intro', {itemId: id});
+        } else {
+            const result = await this.props.signupUser({
+                variables: {email, password, username}
+            });
+            const {token} = result.data.signupUser;
+            const {id} = result.data.signupUser;
+            console.log('Token:' + token);
+            console.log('UserId:' + id);
+            this._saveUserToken(token);
+            this._saveUserId(id);
+            this.props.navigation.navigate('Login');
+        }
+    }
+
+
     render(){
         const {email, password, username} = this.state;
         return(
             <View style={{flex: 1, backgroundColor: 'transparent'}}>
                 <ImageBackground
-                    source={require('../assets/images/silver-background.jpg')}
+                    source={require('../assets/images/abstract-architectural.jpg')}
                     style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center'}}
                     resizeMode='cover'
                 >
+                    <View style={styles.overlay}/>
                     <View style={{marginTop: 40}}>
                         <View style={styles.header}>
-                            {this.state.login ?
-                                <Text style={styles.headerText}>
-                                    Login
-                                </Text> : <Text style={styles.headerText}>Register</Text>}
+                            {this.state.login
+                                ? <Text style={styles.headerText}>Login</Text>
+                                : <Text style={styles.headerText}>Register</Text>}
                         </View>
                         <View>
                             {!this.state.login && (
@@ -91,7 +142,8 @@ class Login extends React.Component{
                             <Text style={styles.buttonText}>Confirm</Text>
                         </TouchableOpacity>
                         <View style={{marginTop: 40}}>
-                            <Text style={{alignSelf:'center'}}>
+
+                            <Text style={{color: '#fff', alignSelf:'center'}}>
                                 {this.state.login ? 'Need to create an account?' : 'Already have account?'}
                             </Text>
                             {!this.state.login ?
@@ -114,42 +166,7 @@ class Login extends React.Component{
 
         );
     }
-    _saveUserToken = token => {
-        AsyncStorage.setItem(AUTH_TOKEN, token);
-    };
-    _saveUserId = id => {
-        AsyncStorage.setItem("MyUserId", id);
-    };
 
-    _confirm = async () => {
-        const {username, email, password, login} = this.state;
-        console.log(username, email, password, login);
-        if(this.state.login){
-            const result = await this.props.authenticateUser({
-                variables: {email, password},
-            });
-            const {token} = result.data.authenticateUser;
-            const {id} = result.data.authenticateUser;
-            this._saveUserToken(token);
-            this._saveUserId(id);
-            console.log("Token: " +token);
-            console.log("ID: " + id);
-
-            //this.props.navigation.navigate('Home', {username});
-            this.props.navigation.navigate('Intro', {itemId: id});
-        } else {
-            const result = await this.props.signupUser({
-                variables: {email, password, username}
-            });
-            const {token} = result.data.signupUser;
-            const {id} = result.data.signupUser;
-            console.log('Token:' + token);
-            console.log('UserId:' + id);
-            this._saveUserToken(token);
-            this._saveUserId(id);
-            this.props.navigation.navigate('Login');
-        }
-    }
 }
 
 const SIGNUP_USER = gql`
@@ -170,6 +187,14 @@ const LOGIN_USER = gql`
         }
     }
 `
+const IS_LOGGED = gql`
+    query{
+        loggedInUser{
+            id
+        }
+    }
+`
+
 export const LoginFlow =  compose(
     graphql(SIGNUP_USER, {name: 'signupUser'}),
     graphql(LOGIN_USER, {name: 'authenticateUser'}),
@@ -215,7 +240,11 @@ const styles = StyleSheet.create({
     headerText:{
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#000',
+        color: '#fff',
+        shadowOffset:{  width: 1.0,  height: 1.0  },
+        shadowColor: '#000',
+        shadowOpacity: 2.0,
+        shadowRadius: 4
     },
     formButton: {
         alignSelf: 'center',
@@ -227,6 +256,10 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         width: '33%',
         height: 15,
+        borderWidth:1,
+        borderRadius: 15,
+        borderColor: '#fff'
+
     },
     buttonText:{
         fontSize: 16,
@@ -291,4 +324,13 @@ const styles = StyleSheet.create({
         marginRight: 5,
         marginTop: 10,
     },
+    overlay: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        backgroundColor: 'grey',
+        opacity: 0.45
+    }
 });

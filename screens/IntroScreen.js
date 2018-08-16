@@ -1,8 +1,9 @@
 import {Animated, View, Text, AsyncStorage, ActivityIndicator, ImageBackground, Dimensions, TouchableOpacity} from "react-native";
 import React from "react";
+import {withNavigation} from 'react-navigation';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import {graphql, compose} from 'react-apollo';
+import {graphql, compose, Query} from 'react-apollo';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -14,6 +15,7 @@ const getUsername = gql`
         }
     }
 `
+
 
 let queryUserId;
 /*
@@ -68,6 +70,7 @@ class IntroScreen extends React.Component{
             console.log("Intro Error: " + error);
             this.props.navigation.navigate('Home');
         }*/
+        //console.log('IntroScreen User Query: ' + this.props.data.User.username)
         return(
                 <TouchableOpacity
                     style={{backgroundColor: "#000000"}}
@@ -75,6 +78,7 @@ class IntroScreen extends React.Component{
                 >
                 <View style={{height:"100%", width: '100%',
                     alignItems: "center", justifyContent:"center", backgroundColor: "#000000"}}>
+
                     <Animated.View
                         style={{
                             opacity: this.state.fadeVal,
@@ -88,6 +92,7 @@ class IntroScreen extends React.Component{
                                 justifyContent: 'center'}}
                             resizeMode='contain'
                         />
+
                     </Animated.View>
                 </View>
                 </TouchableOpacity>
@@ -102,18 +107,21 @@ IntroScreen.propTypes = {
     }),
 };
 
-const IntroWithHello =  graphql(getUsername,{
+const IntroWithHello = graphql(getUsername,{
     options: ({navigation}) => {
         return{
-            variables: {id: queryUserId},
+            variables: {id: navigation.state.params.itemId},
         }
     }
 })(IntroScreen);
 
-export default class IntroView extends React.Component{
+class IntroView extends React.Component{
     render(){
         return(
             <IntroScreen navigation = {this.props.navigation}/>
+            //<IntroWithHello navigation = {this.props.navigation}/>
         );
     }
 }
+
+export default withNavigation(IntroView);

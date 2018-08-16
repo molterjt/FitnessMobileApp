@@ -74,7 +74,7 @@ exports.default = function (event) { return __awaiter(_this, void 0, void 0, fun
             case 5:
                 e_1 = _b.sent();
                 console.log(e_1);
-                return [2 /*return*/, { error: 'An unexpected error occured during authentication.' }];
+                return [2 /*return*/, { error: 'An unexpected error occurred during authentication.' }];
             case 6: return [2 /*return*/];
         }
     });

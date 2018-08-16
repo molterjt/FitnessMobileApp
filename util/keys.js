@@ -11,4 +11,6 @@ Here are your GraphQL Endpoints:
 
 export const GRAPHQL_ENDPOINT = "https://api.graph.cool/simple/v1/cjf6zsqxj3n420141z09rpv9j";
 
+export const AUTH_TOKEN = 'auth-token';
+
 

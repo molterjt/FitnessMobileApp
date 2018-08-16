@@ -34,7 +34,7 @@ export default async (event: FunctionEvent<{}>) => {
     return { data: { id: user.id } }
   } catch (e) {
     console.log(e)
-    return { error: 'An unexpected error occured during authentication.' }
+    return { error: 'An unexpected error occurred during authentication.' }
   }
 }
 

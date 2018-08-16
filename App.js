@@ -6,7 +6,7 @@ import {HttpLink} from "apollo-link-http";
 import {InMemoryCache} from "apollo-cache-inmemory";
 import { ApolloLink} from 'apollo-link';
 import TabTabNavigator from './router';
-import AUTH_TOKEN from './constants/auth';
+import AUTH_TOKEN from './util/keys';
 import FitnessApp from './FitnessApp';
 import {createRootNavigator} from './router'
 import {GRAPHQL_ENDPOINT} from './util/keys';
@@ -39,9 +39,14 @@ const authLink = setContext(async(req, {headers}) => {
 });
 
 const httpAuthLink = authLink.concat(httpLink);
+
+const cache = new InMemoryCache({
+    dataIdFromObject: object => object.key || null
+});
+
 export const client = new ApolloClient({
     link: httpAuthLink,
-    cache: new InMemoryCache(),
+    cache: cache,
 });
 
 /*

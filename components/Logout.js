@@ -15,16 +15,25 @@ class Logout extends React.Component{
         }
 
     }
-
-    /*
-    AsyncStorage.getItem("MyUserId").then( (dataId) => {
-    queryUserId = dataId;
-    this.setState((prevState) => {
-    return { profileUpdate: !prevState.profileUpdate}})
-}).done();
-    */
-
     componentDidMount(){
+
+        try{
+            AsyncStorage.getItem(AUTH_TOKEN).then((value) => {
+                if(value === null){
+                    console.log('No authToken found in AsyncStorage')
+                }
+                else{
+                    const authToken = JSON.parse(value);
+                    this.setState({auth: authToken});
+                    console.log("auth === " + authToken);
+                    return authToken;
+                }
+
+            }).done();
+        } catch (error){
+            console.log(error);
+        }
+       /*
         try{
             const authToken = async() => await AsyncStorage.getItem(AUTH_TOKEN).then((value) => {
                 return value;
@@ -38,6 +47,17 @@ class Logout extends React.Component{
         } catch (error){
             console.log(error);
         }
+        */
+    }
+
+     async removeItemsByKey(key) {
+         try {
+             await AsyncStorage.removeItem(key);
+             return true;
+         }
+         catch(exception) {
+             return false;
+         }
     }
 
     render(){
@@ -50,9 +70,10 @@ class Logout extends React.Component{
                         <Button
                             title={'Logout'}
                             onPress={ () => {
-                                AsyncStorage.removeItem(AUTH_TOKEN);
-                                AsyncStorage.removeItem("MyUserId");
+                                this.removeItemsByKey(AUTH_TOKEN);
+                                this.removeItemsByKey("MyUserId");
                                 AsyncStorage.clear();
+
                                 try {
                                     // clear apollo client cache/store
                                     if (client && typeof client.resetStore === 'function') {

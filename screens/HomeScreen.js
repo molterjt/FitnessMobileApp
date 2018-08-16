@@ -9,6 +9,7 @@ import NewsItem from '../components/NewsItem';
 import {graphql,Query, withApollo} from "react-apollo";
 import {withNavigation} from 'react-navigation';
 import gql from "graphql-tag";
+import Logout from '../components/Logout';
 import {AUTH_TOKEN} from "../constants/auth";
 
 //clientId: "3fbfc0bbcbe2479380819ec95f9a91f9"
@@ -83,6 +84,8 @@ class NewsItemWindow extends React.Component{
 }
 
 const NewsItemWindowWithData = graphql(GET_NEWSITEMS)(NewsItemWindow);
+
+
 
 class HomeScreen extends React.Component{
 
@@ -203,9 +206,11 @@ class HomeScreen extends React.Component{
                 style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center'}}
                 resizeMode='cover'
             >
+                <View style={styles.overlay} />
                 <View style={{alignItems: 'center', alignContent: 'center',}}>
                     <Text style={styles.whatNew}>News</Text>
                 </View>
+                <Logout/>
                 <NewsItemWindowWithData/>
                 <TouchableOpacity
                     onPress={() => {
@@ -311,6 +316,15 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white'
+    },
+    overlay: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        backgroundColor: 'black',
+        opacity: 0.3
     }
 });
 

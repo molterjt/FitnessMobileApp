@@ -28,16 +28,18 @@ const SINGLE_CLASS_QUERY = gql`
     }
 `
 
+/*
 let queryUserId;
 try{
     AsyncStorage.getItem("MyUserId").then( (dataId) => {
-        queryUserId = dataId;
+        queryUserId = JSON.parse(dataId);
         console.log("queryUserId === " + queryUserId);
         return queryUserId;
     }).done();
 } catch (error) {
     console.log("MyUserId error" + error);
 }
+*/
 
 const ClassComments = ({id}) => (
 
@@ -61,17 +63,37 @@ const ClassComments = ({id}) => (
     </Query>
 );
 
+
+let queryUserId;
+
 class SingleClassDetailScreen extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             commentModalVisible: false,
+            isLoading: true,
         };
     }
     showModal(visible){
         this.setState({commentModalVisible: visible})
     }
+
+    componentDidMount(){
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = JSON.parse(dataId);
+            this.setState({currentUserId: queryUserId, isLoading: false});
+            console.log("queryUserId === " + queryUserId);
+            return queryUserId;
+        }).done();
+
+    }
+
+
     render() {
+        if (this.state.isLoading) {
+            return <View><Text>Loading...</Text></View>;
+        }
+        console.log('queryUserId:  ' + queryUserId);
         const { data: { loading, error, GroupFitClass } } = this.props;
         if(loading){
             return  <ActivityIndicator size="large" color="#0000ff" />
