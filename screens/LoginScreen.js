@@ -62,7 +62,7 @@ class Login extends React.Component{
             const {token} = result.data.authenticateUser;
             const {id} = result.data.authenticateUser;
             this._saveUserToken(token);
-            this._loginSaveUserID(id);
+            this._saveUserId(id);
             console.log("Token: " +token);
             console.log("ID: " + id);
 

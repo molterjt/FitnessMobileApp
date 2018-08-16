@@ -432,7 +432,7 @@ class ScheduleScreen extends React.Component{
                         size={30}
                         color={'#931414'}
                     />
-                    <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Programs</Text>
+                    <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
                 </TouchableOpacity>
             ),
         };
@@ -440,8 +440,9 @@ class ScheduleScreen extends React.Component{
 
     constructor(props){
         super(props);
-    }
+    };
     render(){
+
         return(
             <AllGFClassViewWithData navigation = {this.props.navigation} />
         );
