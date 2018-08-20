@@ -11,6 +11,11 @@ import gql from 'graphql-tag';
 import {graphql, compose} from 'react-apollo';
 import Logout from '../components/Logout';
 import {AUTH_TOKEN} from "../constants/auth";
+import validation from 'validate.js';
+
+
+
+
 
 
 let queryUserId;
@@ -23,41 +28,102 @@ AsyncStorage.getItem("MyUserId").then( (dataId) => {
 }).done();
 
 
+const constraints = {
+    email:{
+        presence: {
+            message: '^Please enter an email address',
+        },
+        email: {
+            message: '^Please enter a valid email address'
+        },
+    },
+    password: {
+        presence: {
+            message: '^Please enter a password'
+        },
+        length: {
+            minimum: 7,
+            message: '^Your password must be at least 8 characters'
+        }
+    },
+    username: {
+        presence: {
+            message: '^Please enter a username'
+        },
+        length: {
+            minimum: 8,
+            message: '^Your username must be at least 8 characters'
+        },
+    }
+}
+
+const validate = (fieldName, value) => {
+    let formValues = {};
+    formValues[fieldName] = value;
+
+    let formFields = {};
+    formFields[fieldName] = constraints[fieldName];
+
+    const result = validation(formValues, formFields);
+    if(result){
+        return result[fieldName][0]
+    }
+    return null;
+};
+
+
 class Login extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            loading: true,
             login: true,
-            email: 'peebles@dog.com',
-            password: 'intheshoe',
+            email: '',
+            password: '',
             username: '',
-            emailError: false,
-            passwordError: false,
-            usernameError: false,
-        }
+            graphQL_Error: null,
+            emailError: '',
+            passwordError: '',
+            usernameError: '',
+        };
         this._saveUserToken = this._saveUserToken.bind(this);
         this._saveUserId = this._saveUserId.bind(this);
         this._confirm = this._confirm.bind(this);
+        this.checkRegisterCredentials = this.checkRegisterCredentials.bind(this);
+        this.checkLoginCredentials = this.checkLoginCredentials.bind(this);
+    }
+
+    checkRegisterCredentials(){
+        const {email, password, username, emailError, passwordError, usernameError} = this.state;
+        if(email < 7 || emailError) return true;
+        else if(password < 7 || passwordError) return true;
+        else if(username < 7 || usernameError) return true;
+        else return false;
+    }
+    checkLoginCredentials(){
+        const {email, password, emailError, passwordError} = this.state;
+        if(email < 7 || emailError) return true;
+        else if(password < 7 || passwordError) return true;
+        else return false;
     }
 
     _saveUserToken = token => {
-
         AsyncStorage.setItem(AUTH_TOKEN, JSON.stringify(token));
     };
     _saveUserId = id => {
         AsyncStorage.setItem("MyUserId", JSON.stringify(id));
     };
 
-    _loginSaveUserID = id => {
-        AsyncStorage.mergeItem("MyUserId", JSON.stringify(id));
-    };
-
     _confirm = async () => {
         const {username, email, password, login} = this.state;
         console.log(username, email, password, login);
+
         if(this.state.login){
             const result = await this.props.authenticateUser({
                 variables: {email, password},
+            }).catch(error => {
+                console.log(error.message);
+                this.setState({graphQL_Error: error.message})
             });
             const {token} = result.data.authenticateUser;
             const {id} = result.data.authenticateUser;
@@ -69,9 +135,14 @@ class Login extends React.Component{
             //this.props.navigation.navigate('Home', {username});
             this.props.navigation.navigate('Intro', {itemId: id});
         } else {
+
             const result = await this.props.signupUser({
                 variables: {email, password, username}
+            }).catch(error => {
+                console.log(error.message);
+                this.setState({graphQL_Error: error.message})
             });
+
             const {token} = result.data.signupUser;
             const {id} = result.data.signupUser;
             console.log('Token:' + token);
@@ -81,10 +152,9 @@ class Login extends React.Component{
             this.props.navigation.navigate('Login');
         }
     }
-
-
     render(){
-        const {email, password, username} = this.state;
+        const {login, email, password, username, emailError, passwordError, usernameError, graphQL_Error, confirmButtonDisabled} = this.state;
+
         return(
             <View style={{flex: 1, backgroundColor: 'transparent'}}>
                 <ImageBackground
@@ -95,15 +165,20 @@ class Login extends React.Component{
                     <View style={styles.overlay}/>
                     <View style={{marginTop: 40}}>
                         <View style={styles.header}>
-                            {this.state.login
-                                ? <Text style={styles.headerText}>Login</Text>
-                                : <Text style={styles.headerText}>Register</Text>}
+
+                                <Text style={styles.headerText}>Miami Rec Fitness</Text>
+
                         </View>
                         <View>
                             {!this.state.login && (
+                                <View>
                                 <TextInput
                                     value={this.state.username}
-                                    onChangeText={ (username) => this.setState({username})}
+                                    onChangeText={ (username) => {
+                                        this.setState({username});
+                                        this.setState({usernameError: validate('username', username)})
+                                    }}
+                                    onBlur={() => this.setState({graphQL_Error: null})}
                                     type={'text'}
                                     placeholder={'Choose your username'}
                                     style={styles.textInput}
@@ -111,20 +186,39 @@ class Login extends React.Component{
                                     underlineColorAndroid={'transparent'}
                                     autoCorrect={false}
                                 />
+                                </View>
                             )}
+                            {usernameError
+                                ? <Text style={{color: 'white', textAlign:'center'}}>{usernameError}</Text>
+                                : null
+                            }
                             <TextInput
                                 value={this.state.email}
-                                onChangeText={ (email) => this.setState({email})}
+                                onChangeText={ (email) => {
+                                    this.setState({email});
+                                    this.setState({emailError: validate('email', email)});
+                                }}
+                                onBlur={() => this.setState({graphQL_Error: null})}
                                 type={"text"}
-                                placeholder={'Your Email Address'}
+                                placeholder={'uniqueId@MiamiOH.edu'}
                                 style={styles.textInput}
                                 autoCapitalize={'none'}
                                 underlineColorAndroid={'transparent'}
                                 autoCorrect={false}
+                                label={'Email'}
+
                             />
+                            {emailError
+                                ? <Text style={{color: 'white', textAlign:'center'}}>{emailError}</Text>
+                                : null
+                            }
                             <TextInput
                                 value={this.state.password}
-                                onChangeText={ (password) => this.setState({password})}
+                                onChangeText={ (password) => {
+                                    this.setState({password});
+                                    this.setState({passwordError: validate('password', password)});
+                                }}
+                                onBlur={() => this.setState({graphQL_Error: null})}
                                 type={"password"}
                                 placeholder={'Enter a Password'}
                                 secureTextEntry={true}
@@ -132,17 +226,43 @@ class Login extends React.Component{
                                 style={styles.textInput}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
+
                             />
-
+                            {passwordError
+                                ? <Text style={{color: 'white', textAlign:'center'}}>{passwordError}</Text>
+                                : null
+                            }
                         </View>
-                        <TouchableOpacity
-                            onPress={ () => this._confirm() }
-                            style={styles.formButton}
-                        >
-                            <Text style={styles.buttonText}>Confirm</Text>
-                        </TouchableOpacity>
-                        <View style={{marginTop: 40}}>
+                        {graphQL_Error
+                            ? <Text style={{color: 'white', textAlign:'center', fontWeight: 'bold'}}>{graphQL_Error.substring(34).toUpperCase()}!!</Text>
+                            : null
+                        }
+                        {!login
+                            ?
+                            (<TouchableOpacity
+                                onPress={ () => this._confirm() }
+                                style={styles.formButton}
+                                disabled={this.checkRegisterCredentials()}
 
+                            >
+                                <Text style={styles.buttonText}>Register</Text>
+                            </TouchableOpacity>)
+                            :
+                            (<TouchableOpacity
+                                onPress={ () => this._confirm() }
+                                style={styles.formButton}
+                                disabled={emailError || passwordError}
+
+                            >
+                                <Text style={styles.buttonText}>Login</Text>
+                            </TouchableOpacity>)
+                        }
+
+
+
+
+
+                        <View style={{marginTop: 40}}>
                             <Text style={{color: '#fff', alignSelf:'center'}}>
                                 {this.state.login ? 'Need to create an account?' : 'Already have account?'}
                             </Text>
@@ -150,13 +270,15 @@ class Login extends React.Component{
                                 <Button
                                     title={'Login'}
                                     onPress={ () => this.setState({login: !this.state.login})}
-                                    color={'blue'}
+                                    color={'#0a3efa'}
+                                    style={styles.screenSwitch}
                                 />
                                 :
                                 <Button
                                     title={'Register'}
                                     onPress={ () => this.setState({login: !this.state.login})}
-                                    color={'blue'}
+                                    color={'#0a3efa'}
+                                    style={styles.screenSwitch}
                                 />
                             }
                         </View>
@@ -240,6 +362,7 @@ const styles = StyleSheet.create({
     headerText:{
         fontSize: 20,
         fontWeight: 'bold',
+        fontStyle: 'italic',
         color: '#fff',
         shadowOffset:{  width: 1.0,  height: 1.0  },
         shadowColor: '#000',
@@ -250,7 +373,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(155, 10, 2, 0.9)',
+        //backgroundColor: 'rgba(155, 10, 2, 0.9)',
+        backgroundColor: '#3072b2',
         padding: 20,
         marginTop: 40,
         marginBottom: 40,
@@ -258,15 +382,28 @@ const styles = StyleSheet.create({
         height: 15,
         borderWidth:1,
         borderRadius: 15,
-        borderColor: '#fff'
+        borderColor: '#fff',
+
 
     },
+
+
     buttonText:{
         fontSize: 16,
         color: "#ffffff",
         alignSelf: 'center',
         alignContent:'center',
         justifyContent:'center',
+        shadowOffset:{  width: 1.0,  height: 1.0  },
+        shadowColor: '#000',
+        shadowOpacity: 2.0,
+    },
+
+    screenSwitch:{
+        shadowOffset:{  width: 1.0,  height: 1.0  },
+        shadowColor: '#fff',
+        shadowOpacity: 2.0,
+        shadowRadius: 4
     },
     rowContainer: {
         flexDirection: 'row',

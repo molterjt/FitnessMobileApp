@@ -91,7 +91,7 @@ class GroupFitnessClass extends React.Component{
                         <Text style={styles.description} numberOfLines={1} ellipsizeMode ={'tail'}>
                             Type: {this.props.category}
                         </Text>
-                        <Text style={styles.description} numberOfLines={7} ellipsizeMode ={'tail'}>
+                        <Text style={styles.description} numberOfLines={9} ellipsizeMode ={'tail'}>
                             Description: {this.props.description}
                         </Text>
                         <View style={{flexDirection: "row",justifyContent:"center", alignItems:"center", marginTop: 25, }}>

@@ -210,7 +210,6 @@ class HomeScreen extends React.Component{
                 <View style={{alignItems: 'center', alignContent: 'center',}}>
                     <Text style={styles.whatNew}>News</Text>
                 </View>
-                <Logout/>
                 <NewsItemWindowWithData/>
                 <TouchableOpacity
                     onPress={() => {

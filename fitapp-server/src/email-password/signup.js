@@ -86,7 +86,7 @@ exports.default = function (event) { return __awaiter(_this, void 0, void 0, fun
             case 7:
                 e_1 = _b.sent();
                 console.log(e_1);
-                return [2 /*return*/, { error: 'An unexpected error occured during signup.' }];
+                return [2 /*return*/, { error: 'An unexpected error occurred during signup. Username might be taken' }];
             case 8: return [2 /*return*/];
         }
     });
