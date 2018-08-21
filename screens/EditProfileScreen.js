@@ -1,21 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Text, View, StatusBar, ActivityIndicator, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet} from 'react-native';
+import {
+    Text, View, StatusBar, ActivityIndicator, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet,
+    Dimensions, ScrollView
+} from 'react-native';
+import { CheckBox } from 'react-native-elements'
 import gql from "graphql-tag";
-import { graphql, compose, Mutation } from "react-apollo";
+import { graphql, compose, Mutation, Query } from "react-apollo";
+
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
 class EditScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userId: this.props.navigation.state.params.userIdentity,
-            firstName: '',
-            lastName: '',
-            dateOfBirth: '',
+            userId: this.props.navigation.state.params.itemId,
+            firstName: undefined,
+            lastName: undefined,
+            dateOfBirth: undefined,
             interests: [],
+            checkedInterests: [],
+            checked: false
         };
         this._updateInfo = this._updateInfo.bind(this);
+        this._handleInterestListCheck = this._handleInterestListCheck.bind(this);
     }
+
+    _handleInterestListCheck(id){
+        let checkedInterests = this.state.checkedInterests;
+        if(checkedInterests && checkedInterests.includes(id)){
+            const index = checkedInterests.indexOf(id);
+            checkedInterests.splice(index, 1);
+        } else {
+            checkedInterests = checkedInterests.concat(id);
+        }
+        this.setState({checkedInterests});
+        console.log(checkedInterests);
+    }
+
     _updateInfo = async () => {
         const {userId, firstName, lastName, dateOfBirth} = this.state;
         await this.props.mutate({
@@ -23,7 +46,8 @@ class EditScreen extends React.Component {
                 id: userId,
                 firstName: firstName,
                 lastName: lastName,
-                dateOfBirth: dateOfBirth
+                dateOfBirth: dateOfBirth,
+                interestsArray: this.state.checkedInterests,
             }
         });
         console.log(firstName);
@@ -36,45 +60,77 @@ class EditScreen extends React.Component {
         //if(this.props.data.loading) return <ActivityIndicator />;
 
         return (
-            <View style={{
-                flex: 1, justifyContent: 'center',
-                alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0)'
-            }}>
+            <ScrollView style={styles.rowContainer}>
                 <StatusBar barStyle="default"/>
-
-                <TextInput
-                    onChangeText={(firstName) => this.setState({firstName})}
-                    type={"text"}
-                    placeholder={"First Name"}
-                    style={styles.textInput}
-                    underlineColorAndroid={'transparent'}
-                    autoCorrect={false}
-                    value={this.state.firstName}
-                />
-                <TextInput
-                    onChangeText={(lastName) => this.setState({lastName})}
-                    type={"text"}
-                    placeholder={"Last Name"}
-                    style={styles.textInput}
-                    underlineColorAndroid={'transparent'}
-                    autoCorrect={false}
-                    value={this.state.lastName}
-                />
-                <TextInput
-                    onChangeText={(dateOfBirth) => this.setState({dateOfBirth})}
-                    type={"text"}
-                    placeholder={"dd/mm/yyyy"}
-                    style={styles.textInput}
-                    underlineColorAndroid={'transparent'}
-                    autoCorrect={false}
-                    value={this.state.dateOfBirth}
-                />
-                <View>
-                    <TouchableOpacity onPress={() => this._updateInfo()} style={styles.formButton}>
-                        <Text style={styles.buttonText}>Confirm</Text>
-                    </TouchableOpacity>
+                <View >
+                    <TextInput
+                        onChangeText={(firstName) => this.setState({firstName})}
+                        type={"text"}
+                        placeholder={"First Name"}
+                        style={styles.textInput}
+                        underlineColorAndroid={'transparent'}
+                        autoCorrect={false}
+                        value={this.state.firstName}
+                    />
+                    <TextInput
+                        onChangeText={(lastName) => this.setState({lastName})}
+                        type={"text"}
+                        placeholder={"Last Name"}
+                        style={styles.textInput}
+                        underlineColorAndroid={'transparent'}
+                        autoCorrect={false}
+                        value={this.state.lastName}
+                    />
+                    <TextInput
+                        onChangeText={(dateOfBirth) => this.setState({dateOfBirth})}
+                        type={"text"}
+                        placeholder={"Birthday: dd/mm/yyyy"}
+                        style={styles.textInput}
+                        underlineColorAndroid={'transparent'}
+                        autoCorrect={false}
+                        value={this.state.dateOfBirth}
+                    />
                 </View>
-            </View>
+                <ScrollView style={{flexDirection: 'column', }}>
+                    <Text style={{textAlign:'center', fontStyle:'italic', color: 'silver', fontSize: 12}}>Select Your Interests & Press Submit:</Text>
+                    <Query query={INTEREST_LIST} >
+                        {({loading, error, data}) => {
+                            if(loading){
+                                return <ActivityIndicator/>
+                            }
+                            if(error){
+                                console.log(error);
+                                return <Text>Sorry, there was an error.  Are you connected to the internet or cellular data?</Text>
+                            }
+                            return(
+
+                                <View style={{flexDirection:'row', flexWrap: 'wrap', marginBottom: 10, justifyContent:'space-between',}}>
+                                    {data.allInterests.map((obj, index) =>
+
+                                            <View key={index} style={styles.containerRow}>
+                                                <CheckBox
+                                                    ref={obj.id}
+                                                    style={{fontSize: 10}}
+                                                    value={obj.id}
+                                                    title={obj.title}
+                                                    checkedIcon='dot-circle-o'
+                                                    uncheckedIcon='circle-o'
+                                                    onPress={() => this._handleInterestListCheck(obj.id)}
+                                                    checked={this.state.checkedInterests && this.state.checkedInterests.includes(obj.id)}
+                                                />
+                                            </View>
+                                    )}
+                                </View>
+                            );
+                        }}
+                    </Query>
+                </ScrollView>
+
+                <TouchableOpacity onPress={() => this._updateInfo()} style={styles.formButton}>
+                    <Text style={styles.buttonText}>Submit</Text>
+                </TouchableOpacity>
+
+            </ScrollView>
         );
     }
 }
@@ -88,12 +144,21 @@ EditScreen.propTypes = {
 };
 */
 const updateProfile = gql`
-    mutation updateUser($id:ID!, $firstName: String, $lastName: String, $dateOfBirth: String){
-        updateUser(id: $id, firstName: $firstName, lastName:$lastName, dateOfBirth: $dateOfBirth){
+    mutation updateUser($id:ID!, $firstName: String, $lastName: String, $dateOfBirth: String, $interestsArray: [ID!]){
+        updateUser(id: $id, firstName: $firstName, lastName:$lastName, dateOfBirth: $dateOfBirth, interestsIds: $interestsArray){
             firstName
             lastName
             phone
             dateOfBirth
+            interests{title}
+        }
+    }
+`
+const INTEREST_LIST = gql`
+    query{
+        allInterests(orderBy: title_ASC){
+            id
+            title
         }
     }
 `
@@ -101,30 +166,78 @@ const updateProfile = gql`
 export default graphql(updateProfile)(EditScreen);
 
 const styles = StyleSheet.create({
+
+    container:{
+        flex: 1,
+        justifyContent: 'space-around',
+        margin: 1,
+        width: WIDTH*.99
+    },
+    containerRow:{
+
+        width: WIDTH*.46,
+
+    },
+    rowColumn:{
+        flex:2,
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        width: WIDTH * .4,
+    },
     textInput: {
         alignSelf: 'stretch',
         height: 40,
-        margin: 20,
+        margin: 10,
         padding: 10,
-        borderBottomColor: '#000000',
-        borderBottomWidth: 1,
+        borderColor: '#000000',
+        borderWidth: 1,
+        backgroundColor: '#fff'
     },
     formButton: {
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(155, 10, 2, 0.9)',
+        //backgroundColor: 'rgba(155, 10, 2, 0.9)',
+        backgroundColor: '#3072b2',
         padding: 20,
         marginTop: 40,
         marginBottom: 40,
         width: '33%',
         height: 15,
+        borderWidth:1,
+        borderRadius: 15,
+        borderColor: '#fff',
     },
     buttonText:{
         fontSize: 16,
+        fontWeight: 'bold',
         color: "#ffffff",
         alignSelf: 'center',
         alignContent:'center',
         justifyContent:'center',
+    },
+    rowContainer: {
+        flexDirection: 'column',
+        backgroundColor: '#931414',
+        height: 'auto',
+        padding: 10,
+        marginRight: 3,
+        marginLeft: 3,
+        marginTop: 10,
+        borderRadius: 4,
+        shadowOffset:{  width: 1,  height: 1,  },
+        shadowColor: '#CCC',
+        shadowOpacity: 1.0,
+        shadowRadius: 1,
+        paddingBottom:100
+    },
+    rowText: {
+        flex: 1,
+        height: 'auto',
+        width: WIDTH*.7,
+        paddingBottom: 20,
+        paddingLeft: 10,
+        paddingRight: 10
     },
 });

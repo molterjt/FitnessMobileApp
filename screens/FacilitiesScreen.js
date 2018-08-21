@@ -43,7 +43,7 @@ class FacilityDetail extends React.Component{
     }
     render(){
         return(
-            <View style={{marginTop: 5}}>
+            <View style={{marginTop: 10}}>
             <TouchableOpacity
                 style={styles.profileButton}
                 onPress={() => {this.showFacilityModal(true)}}

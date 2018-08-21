@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, AsyncStorage, Text, View, ActivityIndicator,
     StatusBar,Image,FlatList, StyleSheet, TouchableOpacity}
 from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {Ionicons } from '@expo/vector-icons';
 import UserProfile from '../components/UserProfile';
 import Logout from '../components/Logout';
 import gql from "graphql-tag";
@@ -34,69 +34,8 @@ const GET_USER = gql`
     }
 `
 
-const IS_LOGGED = gql`
-    query{
-        loggedInUser{
-            id
-        }
-    }
-`
-
-/*
- try {
-    // clear apollo client cache/store
-    if (this.props.client && typeof this.props.client.resetStore === 'function') {
-        this.props.client.resetStore()
-    }
-} catch (e) {
-    console.error('err client', e)
-}
-*/
-
-/*
-const UserDetails = graphql(GET_USER,{
-    options: {
-        variables: {id: 'cjfx3cy6fllio01734lu5cnf6'},
-    }
-
-})(({ data }) => {
-    const { loading, User } = data;
-
-    if (loading) return <View><Text>loading...</Text></View>;
-
-    return (
-            <UserProfile
-                id={User.id}
-
-                username={User.username}
-                firstName={User.firstName}
-                lastName={User.lastName}
-                email={User.email}
-                phone={User.phone}
-                dateOfBirth={User.dateOfBirth}
-                classes={User.classes.map(({title}) => title).join(', ')}
-                workouts={User.workouts.map(({title}) => title).join(', ')}
-                interests={User.interests.map(({title}) => title).join(', ')}
-            />
-    );
-});
-*/
 
 let queryUserId;
-
-
-/*
-try{
-    AsyncStorage.getItem("MyUserId").then( (dataId) => {
-        queryUserId = JSON.parse(dataId);
-        console.log("queryUserId === " + queryUserId);
-        return queryUserId;
-    }).done();
-} catch (error) {
-    console.log("MyUserId error" + error);
-}
-*/
-
 
 class ProfileScreen extends React.Component{
     constructor(props){
@@ -114,7 +53,7 @@ class ProfileScreen extends React.Component{
         const params = navigation.state.params || {};
         return {
             headerRight: (
-                <Logout/>
+                <Logout buttonText={'Logout'}/>
             ),
 
         };
@@ -123,67 +62,48 @@ class ProfileScreen extends React.Component{
     componentDidMount(){
         AsyncStorage.getItem("MyUserId").then( (dataId) => {
             queryUserId = JSON.parse(dataId);
-            this.setState({currentUserId: queryUserId, isLoading: false});
+            this.setState({currentUserId: queryUserId});
             console.log("queryUserId === " + queryUserId);
             return queryUserId;
         }).done();
-
+        this.setState({isLoading: false});
     }
-
-
-
-    /*
-    componentDidMount(){
-        this.setState({currentUserId: queryUserId});
-        console.log("currentUserId: " + this.state.currentUserId);
-        console.log("queryUserId === " + queryUserId);
-        this.forceUpdate();
-    }
-    */
 
     _toggleModal = () =>
         this.setState({
             isModalVisible: !this.state.isModalVisible
         });
-    _profileRefresh = () =>
-        this.setState({profileRefresh: true})
+    _profileRefresh = () => {
+        this.props.data.refetch({id: queryUserId});
+        this.setState({isLoading: false});
+    }
 
     render(){
-        this.props.data.refetch({id: queryUserId});
-        const {currentUserId, currentUserToken} = this.state;
-        const { loading, error, User,  } = this.props.data;
         if (this.state.isLoading) {
             return <View><Text>Loading...</Text></View>;
         }
-        console.log('queryUserId:  ' + queryUserId);
+        this.props.data.refetch({id: queryUserId});
+        const {currentUserId, currentUserToken} = this.state;
+        const { loading, error, User,  } = this.props.data;
 
+        console.log('queryUserId:  ' + queryUserId);
         console.log("@render: currentUserId: " + currentUserId);
+
         if (loading) return <View style={{marginTop: 50}}><ActivityIndicator/></View>;
         if (error) {
             console.log("Profile Err: " + error);
             return (
                 <View>
-                    <Text>
-                        You have an Error
-                    </Text>
                     <Button
                         title={'retry'}
-                        onPress={ () => {
-
-                            //this.props.navigation.navigate('Profile');
-                            //
-                            this._profileRefresh();
-                            this.props.data.refetch({id: queryUserId});
-
-
-                        }}
+                        onPress={ () => this.props.data.refetch({id: queryUserId})}
                     />
                 </View>
             )
         }
         return(
-            <View style={{ flex: 1, justifyContent: 'center',
-                alignItems: 'center', marginBottom: 120, marginTop: 10,
+            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#931414',
+                alignItems: 'center', marginBottom: 100, paddingTop: 30,
             }}>
 
                 <UserProfile
@@ -197,6 +117,15 @@ class ProfileScreen extends React.Component{
                     workouts={User.workouts.map(({title}) => title).join(', ')}
                     interests={User.interests.map(({title}) => title).join(', ')}
                 />
+                <TouchableOpacity
+                    onPress={ () => this.props.data.refetch({id: queryUserId})}
+                    style={{alignItems: 'center', paddingBottom: 60}}
+                >
+                    <Ionicons
+                        name={"ios-refresh"} type={"Ionicons"} size={35} color={'midnightblue'}
+                    />
+                    <Text style={{color:'midnightblue'}}>Refresh</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -223,52 +152,5 @@ export default graphql(GET_USER,{
 
 
 const styles = StyleSheet.create({
-    rowContainer: {
-        flexDirection: 'row',
-        backgroundColor: '#FFF',
-        height: 120,
-        padding: 10,
-        marginRight: 10,
-        marginLeft: 10,
-        marginTop: 10,
-        borderRadius: 4,
-        shadowOffset:{  width: 1,  height: 1,  },
-        shadowColor: '#CCC',
-        shadowOpacity: 1.0,
-        shadowRadius: 1
-    },
-    title: {
-        paddingLeft: 10,
-        paddingTop: 5,
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#777'
-    },
-    instructor: {
-        paddingLeft: 10,
-        marginTop: 5,
-        fontSize: 14,
-        color: '#777'
-    },
-    blurb: {
-        paddingLeft: 10,
-        marginTop: 5,
-        fontSize: 14,
-        color: '#777'
-    },
-    location: {
-        paddingLeft: 10,
-        marginTop: 5,
-        fontSize: 14,
-        color: '#777'
-    },
-    thumbnail: {
-        flex: 1,
-        height: undefined,
-        width: 90
-    },
-    rowText: {
-        flex: 4,
-        flexDirection: 'column'
-    }
+
 });

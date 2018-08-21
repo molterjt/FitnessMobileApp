@@ -102,7 +102,7 @@ class Login extends React.Component{
     }
     checkLoginCredentials(){
         const {email, password, emailError, passwordError} = this.state;
-        if(email < 7 || emailError) return true;
+        if(email < 7  || emailError) return true;
         else if(password < 7 || passwordError) return true;
         else return false;
     }
@@ -186,12 +186,13 @@ class Login extends React.Component{
                                     underlineColorAndroid={'transparent'}
                                     autoCorrect={false}
                                 />
+                                    {usernameError
+                                        ? <Text style={{color: 'white', textAlign:'center'}}>{usernameError}</Text>
+                                        : null
+                                    }
                                 </View>
                             )}
-                            {usernameError
-                                ? <Text style={{color: 'white', textAlign:'center'}}>{usernameError}</Text>
-                                : null
-                            }
+
                             <TextInput
                                 value={this.state.email}
                                 onChangeText={ (email) => {
@@ -251,7 +252,7 @@ class Login extends React.Component{
                             (<TouchableOpacity
                                 onPress={ () => this._confirm() }
                                 style={styles.formButton}
-                                disabled={emailError || passwordError}
+                                disabled={this.checkLoginCredentials()}
 
                             >
                                 <Text style={styles.buttonText}>Login</Text>

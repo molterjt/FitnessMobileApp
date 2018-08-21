@@ -95,9 +95,9 @@ class HomeScreen extends React.Component{
             headerRight: (
                 <TouchableOpacity
                     style={{marginRight: 15}}
-                    onPress={() => navigation.navigate('Profile')}>
-                    <MaterialIcons
-                        name={"person-outline"} type={"MaterialIcons"} size={30} color={'#29282A'}
+                    onPress={() => navigation.navigate('Settings')}>
+                    <FontAwesome
+                        name={"gear"} type={"MaterialIcons"} size={30} color={'#29282A'}
                     />
                 </TouchableOpacity>
             ),

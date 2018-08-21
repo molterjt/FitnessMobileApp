@@ -1,8 +1,12 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, ScrollView, Image,} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, ScrollView, Image, Dimensions,} from 'react-native';
 import Workout from '../components/Workout';
+import {Entypo, Ionicons} from '@expo/vector-icons'
+import {withNavigation} from 'react-navigation';
 
 
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
 class UserProfile extends React.Component{
     constructor(props){
@@ -11,22 +15,27 @@ class UserProfile extends React.Component{
     }
     render(){
         return(
-            <View style={{marginTop: 60, marginBottom: 80}}>
-                <Text style={styles.title}>
-                    {this.props.id}
-                </Text>
+            <View style={{marginTop: 110, marginBottom: 60}}>
+
                 <View style={styles.rowContainer}>
 
                     <View style={styles.rowText}>
+                        <TouchableOpacity
+                            style={{alignItems:'flex-end'}}
+                            onPress={() => this.props.navigation.navigate('Edit', {itemId: this.props.id})}>
+                            <Entypo
+                                name={"edit"} type={"MaterialIcons"} size={20} color={'#29282A'}
+                            />
+                        </TouchableOpacity>
 
-                        <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
+                        <Text style={styles.headText} numberOfLines={2} ellipsizeMode ={'tail'}>
                             {this.props.username}
                         </Text>
-                        <Text style={styles.instructor} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.supportText} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.firstName} {this.props.lastName}
                         </Text>
-                        <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
-                            {this.props.email} {this.props.phone}
+                        <Text style={styles.headText} numberOfLines={2} ellipsizeMode ={'tail'}>
+                            {this.props.email}
                         </Text>
                         <Text style={styles.location} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.dateOfBirth}
@@ -37,24 +46,24 @@ class UserProfile extends React.Component{
                     <ScrollView style={styles.rowText}>
                         <View style={styles.rowContainer} >
                             <View >
-                                <Text style={styles.title} numberOfLines={2}>Workouts: </Text>
-                                <Text style={styles.instructor}>
+                                <Text style={styles.headText} numberOfLines={2}>Workouts: </Text>
+                                <Text style={styles.supportText}>
                                     {this.props.workouts}
                                 </Text>
                             </View>
                         </View>
                         <View style={styles.rowContainer}>
                             <View >
-                                <Text style={styles.title} numberOfLines={2}>Classes: </Text>
-                                <Text style={styles.instructor}>
+                                <Text style={styles.headText} numberOfLines={2}>Classes: </Text>
+                                <Text style={styles.supportText}>
                                     {this.props.classes}
                                 </Text>
                             </View>
                         </View>
                         <View style={styles.rowContainer}>
                             <View >
-                                <Text style={styles.title} numberOfLines={2}>Interests: </Text>
-                                <Text style={styles.instructor}>
+                                <Text style={styles.headText} numberOfLines={2}>Interests: </Text>
+                                <Text style={styles.supportText}>
                                     {this.props.interests}
                                 </Text>
                             </View>
@@ -65,7 +74,7 @@ class UserProfile extends React.Component{
         );
     }
 }
-export default UserProfile;
+export default withNavigation(UserProfile);
 
 const styles = StyleSheet.create({
     rowContainer: {
@@ -82,14 +91,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 1.0,
         shadowRadius: 1
     },
-    title: {
+    headText: {
         paddingLeft: 10,
         paddingTop: 5,
         fontSize: 16,
         fontWeight: 'bold',
         color: '#777'
     },
-    instructor: {
+    supportText: {
         paddingLeft: 10,
         marginTop: 5,
         fontSize: 14,
@@ -114,8 +123,11 @@ const styles = StyleSheet.create({
     },
     rowText: {
         flex: 1,
-        flexDirection: 'column',
-        height: 'auto'
+        height: 'auto',
+        width: WIDTH*.7,
+        paddingBottom: 20,
+        paddingLeft: 10,
+        paddingRight: 10
     },
     categoryThumb:{
         width: 220,

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, Button, Text, AsyncStorage} from 'react-native';
+import {View, Button, Text, AsyncStorage, TouchableOpacity} from 'react-native';
 import { ApolloClient, withApollo, graphql, gql } from 'react-apollo';
 import {AUTH_TOKEN} from "../constants/auth";
 import {withNavigation} from 'react-navigation';
@@ -67,8 +67,7 @@ class Logout extends React.Component{
             <View>
                 {auth ? (
                     <View>
-                        <Button
-                            title={'Logout'}
+                        <TouchableOpacity
                             onPress={ () => {
                                 this.removeItemsByKey(AUTH_TOKEN);
                                 this.removeItemsByKey("MyUserId");
@@ -85,8 +84,10 @@ class Logout extends React.Component{
                                 console.log(auth);
                                 this.props.navigation.navigate('SignedOut');
                             }}
-                            color={'blue'}
-                        />
+                        >
+                            <Text style={{fontSize:16, color: 'blue', marginRight: 8}}>{this.props.buttonText}</Text>
+                            {this.props.children}
+                        </TouchableOpacity>
                     </View>
                 ) : (
                     <Button

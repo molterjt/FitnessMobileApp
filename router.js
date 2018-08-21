@@ -19,6 +19,7 @@ import InstructorScreen from "./screens/InstructorScreen";
 import TrainerScreen from './screens/TrainerScreen';
 import TrainerListScreen from './screens/TrainerListScreen';
 import GroupFitProgramsScreen from './screens/GroupFitProgramsScreen';
+import SettingsScreen from "./screens/SettingsScreen";
 
 /*
 const headerStyle = {
@@ -34,11 +35,24 @@ const HomeStack = StackNavigator(
                 title: 'Welcome',
             },
         },
+        Settings: {
+            screen: SettingsScreen,
+            navigationOptions:{
+                title: 'Settings'
+            }
+        },
         Profile: {
             screen: ProfileScreen,
             path: '/Profile',
             navigationOptions:{
                 title: 'Profile',
+            },
+        },
+        Edit: {
+            screen: EditScreen,
+            path: '/profile',
+            navigationOptions:{
+                title: 'Edit Profile',
             },
         },
         Workouts: {

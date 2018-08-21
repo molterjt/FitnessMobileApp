@@ -3,12 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="84add5d6-5475-4d48-ac6e-e803819a3c68" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/components/GroupFitnessClass.js" afterPath="$PROJECT_DIR$/components/GroupFitnessClass.js" />
-      <change beforePath="$PROJECT_DIR$/fitapp-server/src/email-password/signup.js" afterPath="$PROJECT_DIR$/fitapp-server/src/email-password/signup.js" />
-      <change beforePath="$PROJECT_DIR$/fitapp-server/src/email-password/signup.ts" afterPath="$PROJECT_DIR$/fitapp-server/src/email-password/signup.ts" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change beforePath="$PROJECT_DIR$/components/Logout.js" afterPath="$PROJECT_DIR$/components/Logout.js" />
+      <change beforePath="$PROJECT_DIR$/components/UserProfile.js" afterPath="$PROJECT_DIR$/components/UserProfile.js" />
+      <change beforePath="$PROJECT_DIR$/router.js" afterPath="$PROJECT_DIR$/router.js" />
+      <change beforePath="$PROJECT_DIR$/screens/EditProfileScreen.js" afterPath="$PROJECT_DIR$/screens/EditProfileScreen.js" />
+      <change beforePath="$PROJECT_DIR$/screens/FacilitiesScreen.js" afterPath="$PROJECT_DIR$/screens/FacilitiesScreen.js" />
       <change beforePath="$PROJECT_DIR$/screens/HomeScreen.js" afterPath="$PROJECT_DIR$/screens/HomeScreen.js" />
       <change beforePath="$PROJECT_DIR$/screens/LoginScreen.js" afterPath="$PROJECT_DIR$/screens/LoginScreen.js" />
+      <change beforePath="$PROJECT_DIR$/screens/ProfileScreen.js" afterPath="$PROJECT_DIR$/screens/ProfileScreen.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,128 +27,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="43" column="50" lean-forward="false" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FitnessApp.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FitnessApp.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="60" column="33" lean-forward="false" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
-              <folding>
-                <marker date="1524760160000" expanded="true" signature="1730:1789" ph="query...{&#10;        loggedInUser{&#10;            id&#10;        }&#10;    }" />
-                <marker date="1524760160000" expanded="true" signature="1735:1789" ph="{...}" />
-                <marker date="1524760160000" expanded="true" signature="1745:1757" ph="loggedInUser...loggedInUser" />
-                <marker date="1524760160000" expanded="true" signature="1745:1783" ph="loggedInUser...{&#10;            id&#10;        }" />
-                <marker date="1524760160000" expanded="true" signature="1757:1783" ph="{...}" />
-                <marker date="1524760160000" expanded="true" signature="1771:1773" ph="id...id" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginScreen.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/screens/LoginScreen.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="364" column="28" lean-forward="false" selection-start-line="364" selection-start-column="28" selection-end-line="364" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <marker date="1534787944952" expanded="true" signature="11380:11581" ph="mutation...{&#10;        signupUser(email:$email,password: $password, username: $username){&#10;            id&#10;            token&#10;        }&#10;    }" />
-                <marker date="1534787944952" expanded="true" signature="11389:11399" ph="SignUpUser...SignUpUser" />
-                <marker date="1534787944952" expanded="true" signature="11399:11456" ph="(...)" />
-                <marker date="1534787944952" expanded="true" signature="11408:11414" ph="String...String" />
-                <marker date="1534787944952" expanded="true" signature="11428:11434" ph="String...String" />
-                <marker date="1534787944952" expanded="true" signature="11448:11454" ph="String...String" />
-                <marker date="1534787944952" expanded="true" signature="11456:11581" ph="{...}" />
-                <marker date="1534787944952" expanded="true" signature="11466:11476" ph="signupUser...signupUser" />
-                <marker date="1534787944952" expanded="true" signature="11466:11575" ph="signupUser...{&#10;            id&#10;            token&#10;        }" />
-                <marker date="1534787944952" expanded="true" signature="11476:11531" ph="(...)" />
-                <marker date="1534787944952" expanded="true" signature="11477:11482" ph="email...email" />
-                <marker date="1534787944952" expanded="true" signature="11490:11498" ph="password...password" />
-                <marker date="1534787944952" expanded="true" signature="11511:11519" ph="username...username" />
-                <marker date="1534787944952" expanded="true" signature="11531:11575" ph="{...}" />
-                <marker date="1534787944952" expanded="true" signature="11545:11547" ph="id...id" />
-                <marker date="1534787944952" expanded="true" signature="11560:11565" ph="token...token" />
-                <marker date="1534787944952" expanded="true" signature="11613:11793" ph="mutation...{&#10;        authenticateUser(email: $email, password: $password){&#10;            id&#10;            token&#10;            &#10;        }&#10;    }" />
-                <marker date="1534787944952" expanded="true" signature="11622:11631" ph="LoginUser...LoginUser" />
-                <marker date="1534787944952" expanded="true" signature="11631:11668" ph="(...)" />
-                <marker date="1534787944952" expanded="true" signature="11640:11646" ph="String...String" />
-                <marker date="1534787944952" expanded="true" signature="11660:11666" ph="String...String" />
-                <marker date="1534787944952" expanded="true" signature="11668:11793" ph="{...}" />
-                <marker date="1534787944952" expanded="true" signature="11678:11694" ph="authenticateUser...authenticateUser" />
-                <marker date="1534787944952" expanded="true" signature="11678:11787" ph="authenticateUser...{&#10;            id&#10;            token&#10;            &#10;        }" />
-                <marker date="1534787944952" expanded="true" signature="11694:11730" ph="(...)" />
-                <marker date="1534787944952" expanded="true" signature="11695:11700" ph="email...email" />
-                <marker date="1534787944952" expanded="true" signature="11710:11718" ph="password...password" />
-                <marker date="1534787944952" expanded="true" signature="11730:11787" ph="{...}" />
-                <marker date="1534787944952" expanded="true" signature="11744:11746" ph="id...id" />
-                <marker date="1534787944952" expanded="true" signature="11759:11764" ph="token...token" />
-                <marker date="1534787944952" expanded="true" signature="11823:11882" ph="query...{&#10;        l&#10;    }" />
-                <marker date="1534787944952" expanded="true" signature="11828:11882" ph="{...}" />
-                <marker date="1534787944952" expanded="true" signature="11838:11850" ph="loggedInUser...loggedInUser" />
-                <marker date="1534787944952" expanded="true" signature="11838:11876" ph="loggedInUser...{&#10;            id&#10;        }" />
-                <marker date="1534787944952" expanded="true" signature="11850:11876" ph="{...}" />
-                <marker date="1534787944952" expanded="true" signature="11864:11866" ph="id...id" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IntroScreen.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/screens/IntroScreen.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-              <folding>
-                <marker date="1534352254381" expanded="true" signature="412:503" ph="query...{&#10;        User(id: $id){&#10;            id&#10;            username&#10;        }&#10;    }" />
-                <marker date="1534352254381" expanded="true" signature="417:427" ph="(...)" />
-                <marker date="1534352254381" expanded="true" signature="423:425" ph="ID...ID" />
-                <marker date="1534352254381" expanded="true" signature="427:503" ph="{...}" />
-                <marker date="1534352254381" expanded="true" signature="437:441" ph="User...User" />
-                <marker date="1534352254381" expanded="true" signature="437:497" ph="User...{&#10;            id&#10;            username&#10;        }" />
-                <marker date="1534352254381" expanded="true" signature="441:450" ph="(...)" />
-                <marker date="1534352254381" expanded="true" signature="442:444" ph="id...id" />
-                <marker date="1534352254381" expanded="true" signature="450:497" ph="{...}" />
-                <marker date="1534352254381" expanded="true" signature="464:466" ph="id...id" />
-                <marker date="1534352254381" expanded="true" signature="479:487" ph="username...username" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="HomeScreen.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/HomeScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+            <state relative-caret-position="205">
+              <caret line="246" column="42" lean-forward="true" selection-start-line="246" selection-start-column="20" selection-end-line="246" selection-end-column="42" />
               <folding>
-                <marker date="1534457632134" expanded="true" signature="922:1133" ph="query...{&#10;        allNewsItems(filter:{isPublished:true}, orderBy:updatedAt_DESC){&#10;            id&#10;            imageUrl&#10;            title&#10;            blurb&#10;            instructor&#10;            location&#10;        }&#10;    }" />
-                <marker date="1534457632134" expanded="true" signature="927:1133" ph="{...}" />
-                <marker date="1534457632134" expanded="true" signature="937:949" ph="allNewsItems...allNewsItems" />
-                <marker date="1534457632134" expanded="true" signature="937:1127" ph="allNewsItems...{&#10;            id&#10;            imageUrl&#10;            title&#10;            blurb&#10;            instructor&#10;            location&#10;        }" />
-                <marker date="1534457632134" expanded="true" signature="949:1000" ph="(...)" />
-                <marker date="1534457632134" expanded="true" signature="950:956" ph="filter...filter" />
-                <marker date="1534457632134" expanded="true" signature="950:975" ph="filter...{isPublished:true}" />
-                <marker date="1534457632134" expanded="true" signature="957:975" ph="{...}" />
-                <marker date="1534457632134" expanded="true" signature="958:969" ph="isPublished...isPublished" />
-                <marker date="1534457632134" expanded="true" signature="977:984" ph="orderBy...orderBy" />
-                <marker date="1534457632134" expanded="true" signature="1000:1127" ph="{...}" />
-                <marker date="1534457632134" expanded="true" signature="1014:1016" ph="id...id" />
-                <marker date="1534457632134" expanded="true" signature="1029:1037" ph="imageUrl...imageUrl" />
-                <marker date="1534457632134" expanded="true" signature="1050:1055" ph="title...title" />
-                <marker date="1534457632134" expanded="true" signature="1068:1073" ph="blurb...blurb" />
-                <marker date="1534457632134" expanded="true" signature="1086:1096" ph="instructor...instructor" />
-                <marker date="1534457632134" expanded="true" signature="1109:1117" ph="location...location" />
+                <element signature="e#0#26#0" expanded="true" />
+                <marker date="1534826523689" expanded="true" signature="922:1133" ph="query...{&#10;        allNewsItems(filter:{isPublished:true}, orderBy:updatedAt_DESC){&#10;            id&#10;            imageUrl&#10;            title&#10;            blurb&#10;            instructor&#10;            location&#10;        }&#10;    }" />
+                <marker date="1534826523689" expanded="true" signature="927:1133" ph="{...}" />
+                <marker date="1534826523689" expanded="true" signature="937:949" ph="allNewsItems...allNewsItems" />
+                <marker date="1534826523689" expanded="true" signature="937:1127" ph="allNewsItems...{&#10;            id&#10;            imageUrl&#10;            title&#10;            blurb&#10;            instructor&#10;            location&#10;        }" />
+                <marker date="1534826523689" expanded="true" signature="949:1000" ph="(...)" />
+                <marker date="1534826523689" expanded="true" signature="950:956" ph="filter...filter" />
+                <marker date="1534826523689" expanded="true" signature="950:975" ph="filter...{isPublished:true}" />
+                <marker date="1534826523689" expanded="true" signature="957:975" ph="{...}" />
+                <marker date="1534826523689" expanded="true" signature="958:969" ph="isPublished...isPublished" />
+                <marker date="1534826523689" expanded="true" signature="977:984" ph="orderBy...orderBy" />
+                <marker date="1534826523689" expanded="true" signature="1000:1127" ph="{...}" />
+                <marker date="1534826523689" expanded="true" signature="1014:1016" ph="id...id" />
+                <marker date="1534826523689" expanded="true" signature="1029:1037" ph="imageUrl...imageUrl" />
+                <marker date="1534826523689" expanded="true" signature="1050:1055" ph="title...title" />
+                <marker date="1534826523689" expanded="true" signature="1068:1073" ph="blurb...blurb" />
+                <marker date="1534826523689" expanded="true" signature="1086:1096" ph="instructor...instructor" />
+                <marker date="1534826523689" expanded="true" signature="1109:1117" ph="location...location" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginScreen.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/screens/LoginScreen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="385" column="28" lean-forward="true" selection-start-line="373" selection-start-column="7" selection-end-line="385" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <marker date="1534811625553" expanded="true" signature="11415:11616" ph="mutation...{&#10;        signupUser(email:$email,password: $password, username: $username){&#10;            id&#10;            token&#10;        }&#10;    }" />
+                <marker date="1534811625553" expanded="true" signature="11424:11434" ph="SignUpUser...SignUpUser" />
+                <marker date="1534811625553" expanded="true" signature="11434:11491" ph="(...)" />
+                <marker date="1534811625553" expanded="true" signature="11443:11449" ph="String...String" />
+                <marker date="1534811625553" expanded="true" signature="11463:11469" ph="String...String" />
+                <marker date="1534811625553" expanded="true" signature="11483:11489" ph="String...String" />
+                <marker date="1534811625553" expanded="true" signature="11491:11616" ph="{...}" />
+                <marker date="1534811625553" expanded="true" signature="11501:11511" ph="signupUser...signupUser" />
+                <marker date="1534811625553" expanded="true" signature="11501:11610" ph="signupUser...{&#10;            id&#10;            token&#10;        }" />
+                <marker date="1534811625553" expanded="true" signature="11511:11566" ph="(...)" />
+                <marker date="1534811625553" expanded="true" signature="11512:11517" ph="email...email" />
+                <marker date="1534811625553" expanded="true" signature="11525:11533" ph="password...password" />
+                <marker date="1534811625553" expanded="true" signature="11546:11554" ph="username...username" />
+                <marker date="1534811625553" expanded="true" signature="11566:11610" ph="{...}" />
+                <marker date="1534811625553" expanded="true" signature="11580:11582" ph="id...id" />
+                <marker date="1534811625553" expanded="true" signature="11595:11600" ph="token...token" />
+                <marker date="1534811625553" expanded="true" signature="11648:11828" ph="mutation...{&#10;        authenticateUser(email: $email, password: $password){&#10;            id&#10;            token&#10;            &#10;        }&#10;    }" />
+                <marker date="1534811625553" expanded="true" signature="11657:11666" ph="LoginUser...LoginUser" />
+                <marker date="1534811625553" expanded="true" signature="11666:11703" ph="(...)" />
+                <marker date="1534811625553" expanded="true" signature="11675:11681" ph="String...String" />
+                <marker date="1534811625553" expanded="true" signature="11695:11701" ph="String...String" />
+                <marker date="1534811625553" expanded="true" signature="11703:11828" ph="{...}" />
+                <marker date="1534811625553" expanded="true" signature="11713:11729" ph="authenticateUser...authenticateUser" />
+                <marker date="1534811625553" expanded="true" signature="11713:11822" ph="authenticateUser...{&#10;            id&#10;            token&#10;            &#10;        }" />
+                <marker date="1534811625553" expanded="true" signature="11729:11765" ph="(...)" />
+                <marker date="1534811625553" expanded="true" signature="11730:11735" ph="email...email" />
+                <marker date="1534811625553" expanded="true" signature="11745:11753" ph="password...password" />
+                <marker date="1534811625553" expanded="true" signature="11765:11822" ph="{...}" />
+                <marker date="1534811625553" expanded="true" signature="11779:11781" ph="id...id" />
+                <marker date="1534811625553" expanded="true" signature="11794:11799" ph="token...token" />
+                <marker date="1534811625553" expanded="true" signature="11858:11917" ph="query...{&#10;        l&#10;    }" />
+                <marker date="1534811625553" expanded="true" signature="11863:11917" ph="{...}" />
+                <marker date="1534811625553" expanded="true" signature="11873:11885" ph="loggedInUser...loggedInUser" />
+                <marker date="1534811625553" expanded="true" signature="11873:11911" ph="loggedInUser...{&#10;            id&#10;        }" />
+                <marker date="1534811625553" expanded="true" signature="11885:11911" ph="{...}" />
+                <marker date="1534811625553" expanded="true" signature="11899:11901" ph="id...id" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrainerListScreen.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/screens/TrainerListScreen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="90" column="126" lean-forward="false" selection-start-line="90" selection-start-column="111" selection-end-line="90" selection-end-column="126" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <marker date="1532714254275" expanded="true" signature="631:819" ph="query...{&#10;        allTrainers(orderBy: firstName_ASC){&#10;            firstName&#10;            lastName&#10;            imageUrl&#10;            description&#10;            email&#10;            id&#10;        }&#10;    }" />
+                <marker date="1532714254275" expanded="true" signature="636:819" ph="{...}" />
+                <marker date="1532714254275" expanded="true" signature="646:657" ph="allTrainers...allTrainers" />
+                <marker date="1532714254275" expanded="true" signature="646:813" ph="allTrainers...{&#10;            firstName&#10;            lastName&#10;            imageUrl&#10;            description&#10;            email&#10;            id&#10;        }" />
+                <marker date="1532714254275" expanded="true" signature="657:681" ph="(...)" />
+                <marker date="1532714254275" expanded="true" signature="658:665" ph="orderBy...orderBy" />
+                <marker date="1532714254275" expanded="true" signature="681:813" ph="{...}" />
+                <marker date="1532714254275" expanded="true" signature="695:704" ph="firstName...firstName" />
+                <marker date="1532714254275" expanded="true" signature="717:725" ph="lastName...lastName" />
+                <marker date="1532714254275" expanded="true" signature="738:746" ph="imageUrl...imageUrl" />
+                <marker date="1532714254275" expanded="true" signature="759:770" ph="description...description" />
+                <marker date="1532714254275" expanded="true" signature="783:788" ph="email...email" />
+                <marker date="1532714254275" expanded="true" signature="801:803" ph="id...id" />
               </folding>
             </state>
           </provider>
@@ -155,349 +132,283 @@
       <file leaf-file-name="ProfileScreen.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2190">
-              <caret line="157" column="52" lean-forward="false" selection-start-line="154" selection-start-column="7" selection-end-line="157" selection-end-column="52" />
+            <state relative-caret-position="224">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <marker date="1534388270654" expanded="true" signature="541:883" ph="query...{&#10;        User(id: $id){&#10;            id&#10;            username&#10;            firstName&#10;            lastName&#10;            email&#10;            phone&#10;            dateOfBirth&#10;            imageUrl&#10;            interests{title}&#10;            workouts{title}&#10;            memberships{title}&#10;            classes{title}&#10;        }&#10;    }" />
-                <marker date="1534388270654" expanded="true" signature="547:558" ph="ProfileUser...ProfileUser" />
-                <marker date="1534388270654" expanded="true" signature="558:568" ph="(...)" />
-                <marker date="1534388270654" expanded="true" signature="564:566" ph="ID...ID" />
-                <marker date="1534388270654" expanded="true" signature="568:883" ph="{...}" />
-                <marker date="1534388270654" expanded="true" signature="578:582" ph="User...User" />
-                <marker date="1534388270654" expanded="true" signature="578:877" ph="User...{&#10;            id&#10;            username&#10;            firstName&#10;            lastName&#10;            email&#10;            phone&#10;            dateOfBirth&#10;            imageUrl&#10;            interests{title}&#10;            workouts{title}&#10;            memberships{title}&#10;            classes{title}&#10;        }" />
-                <marker date="1534388270654" expanded="true" signature="582:591" ph="(...)" />
-                <marker date="1534388270654" expanded="true" signature="583:585" ph="id...id" />
-                <marker date="1534388270654" expanded="true" signature="591:877" ph="{...}" />
-                <marker date="1534388270654" expanded="true" signature="605:607" ph="id...id" />
-                <marker date="1534388270654" expanded="true" signature="620:628" ph="username...username" />
-                <marker date="1534388270654" expanded="true" signature="641:650" ph="firstName...firstName" />
-                <marker date="1534388270654" expanded="true" signature="663:671" ph="lastName...lastName" />
-                <marker date="1534388270654" expanded="true" signature="684:689" ph="email...email" />
-                <marker date="1534388270654" expanded="true" signature="702:707" ph="phone...phone" />
-                <marker date="1534388270654" expanded="true" signature="720:731" ph="dateOfBirth...dateOfBirth" />
-                <marker date="1534388270654" expanded="true" signature="744:752" ph="imageUrl...imageUrl" />
-                <marker date="1534388270654" expanded="true" signature="765:774" ph="interests...interests" />
-                <marker date="1534388270654" expanded="true" signature="765:781" ph="interests...{title}" />
-                <marker date="1534388270654" expanded="true" signature="774:781" ph="{...}" />
-                <marker date="1534388270654" expanded="true" signature="775:780" ph="title...title" />
-                <marker date="1534388270654" expanded="true" signature="794:802" ph="workouts...workouts" />
-                <marker date="1534388270654" expanded="true" signature="794:809" ph="workouts...{title}" />
-                <marker date="1534388270654" expanded="true" signature="802:809" ph="{...}" />
-                <marker date="1534388270654" expanded="true" signature="803:808" ph="title...title" />
-                <marker date="1534388270654" expanded="true" signature="822:833" ph="memberships...memberships" />
-                <marker date="1534388270654" expanded="true" signature="822:840" ph="memberships...{title}" />
-                <marker date="1534388270654" expanded="true" signature="833:840" ph="{...}" />
-                <marker date="1534388270654" expanded="true" signature="834:839" ph="title...title" />
-                <marker date="1534388270654" expanded="true" signature="853:860" ph="classes...classes" />
-                <marker date="1534388270654" expanded="true" signature="853:867" ph="classes...{title}" />
-                <marker date="1534388270654" expanded="true" signature="860:867" ph="{...}" />
-                <marker date="1534388270654" expanded="true" signature="861:866" ph="title...title" />
-                <marker date="1534388270654" expanded="true" signature="914:973" ph="query...{&#10;        loggedInUser(id: $id){&#10;            id&#10;        }&#10;    }" />
-                <marker date="1534388270654" expanded="true" signature="919:973" ph="{...}" />
-                <marker date="1534388270654" expanded="true" signature="929:941" ph="loggedInUser...loggedInUser" />
-                <marker date="1534388270654" expanded="true" signature="929:967" ph="loggedInUser...{&#10;            id&#10;        }" />
-                <marker date="1534388270654" expanded="true" signature="941:967" ph="{...}" />
-                <marker date="1534388270654" expanded="true" signature="955:957" ph="id...id" />
+                <marker date="1534828219342" expanded="true" signature="540:882" ph="query...{&#10;        User(id: $id){&#10;            id&#10;            username&#10;            firstName&#10;            lastName&#10;            email&#10;            phone&#10;            dateOfBirth&#10;            imageUrl&#10;            interests{title}&#10;            workouts{title}&#10;            memberships{title}&#10;            classes{title}&#10;        }&#10;    }" />
+                <marker date="1534828219342" expanded="true" signature="546:557" ph="ProfileUser...ProfileUser" />
+                <marker date="1534828219342" expanded="true" signature="557:567" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="563:565" ph="ID...ID" />
+                <marker date="1534828219342" expanded="true" signature="567:882" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="577:581" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="577:876" ph="User...{&#10;            id&#10;            username&#10;            firstName&#10;            lastName&#10;            email&#10;            phone&#10;            dateOfBirth&#10;            imageUrl&#10;            interests{title}&#10;            workouts{title}&#10;            memberships{title}&#10;            classes{title}&#10;        }" />
+                <marker date="1534828219342" expanded="true" signature="581:590" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="582:584" ph="id...id" />
+                <marker date="1534828219342" expanded="true" signature="590:876" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="604:606" ph="id...id" />
+                <marker date="1534828219342" expanded="true" signature="619:627" ph="username...username" />
+                <marker date="1534828219342" expanded="true" signature="640:649" ph="firstName...firstName" />
+                <marker date="1534828219342" expanded="true" signature="662:670" ph="lastName...lastName" />
+                <marker date="1534828219342" expanded="true" signature="683:688" ph="email...email" />
+                <marker date="1534828219342" expanded="true" signature="701:706" ph="phone...phone" />
+                <marker date="1534828219342" expanded="true" signature="719:730" ph="dateOfBirth...dateOfBirth" />
+                <marker date="1534828219342" expanded="true" signature="743:751" ph="imageUrl...imageUrl" />
+                <marker date="1534828219342" expanded="true" signature="764:773" ph="interests...interests" />
+                <marker date="1534828219342" expanded="true" signature="764:780" ph="interests...{title}" />
+                <marker date="1534828219342" expanded="true" signature="773:780" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="774:779" ph="title...title" />
+                <marker date="1534828219342" expanded="true" signature="793:801" ph="workouts...workouts" />
+                <marker date="1534828219342" expanded="true" signature="793:808" ph="workouts...{title}" />
+                <marker date="1534828219342" expanded="true" signature="801:808" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="802:807" ph="title...title" />
+                <marker date="1534828219342" expanded="true" signature="821:832" ph="memberships...memberships" />
+                <marker date="1534828219342" expanded="true" signature="821:839" ph="memberships...{title}" />
+                <marker date="1534828219342" expanded="true" signature="832:839" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="833:838" ph="title...title" />
+                <marker date="1534828219342" expanded="true" signature="852:859" ph="classes...classes" />
+                <marker date="1534828219342" expanded="true" signature="852:866" ph="classes...{title}" />
+                <marker date="1534828219342" expanded="true" signature="859:866" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="860:865" ph="title...title" />
+                <marker date="1534828219342" expanded="true" signature="886:1231" ph="query...{&#10;        &#10;let queryUserId;&#10;&#10;class ProfileScreen extends React.Component{&#10;    constructor(props){&#10;        super(props);&#10;        this.state={&#10;            isModalVisible: false,&#10;            currentUserToken: '',&#10;            currentUserId: '',&#10;            profileUpdate: false,&#10;            isLoading: true,&#10;            profileRefresh: false,&#10;        };&#10;    }" />
+                <marker date="1534828219342" expanded="true" signature="887:890" ph="let...let" />
+                <marker date="1534828219342" expanded="true" signature="891:902" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="905:910" ph="class...class" />
+                <marker date="1534828219342" expanded="true" signature="911:924" ph="ProfileScreen...ProfileScreen" />
+                <marker date="1534828219342" expanded="true" signature="925:932" ph="extends...extends" />
+                <marker date="1534828219342" expanded="true" signature="933:938" ph="React...React" />
+                <marker date="1534828219342" expanded="true" signature="954:965" ph="constructor...constructor" />
+                <marker date="1534828219342" expanded="true" signature="954:1224" ph="constructor...{&#10;        super(props);&#10;        this.state={&#10;            isModalVisible: false,&#10;            currentUserToken: '',&#10;            currentUserId: '',&#10;            profileUpdate: false,&#10;            isLoading: true,&#10;            profileRefresh: false,&#10;        }" />
+                <marker date="1534828219342" expanded="true" signature="965:972" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="966:971" ph="props...props" />
+                <marker date="1534828219342" expanded="true" signature="972:1224" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="982:987" ph="super...super" />
+                <marker date="1534828219342" expanded="true" signature="987:994" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="988:993" ph="props...props" />
+                <marker date="1534828219342" expanded="true" signature="1004:1008" ph="this...this" />
+                <marker date="1534828219342" expanded="true" signature="1045:1050" ph="false...false" />
+                <marker date="1534828219342" expanded="true" signature="1098:1111" ph="currentUserId...currentUserId" />
+                <marker date="1534828219342" expanded="true" signature="1144:1149" ph="false...false" />
+                <marker date="1534828219342" expanded="true" signature="1174:1178" ph="true...true" />
+                <marker date="1534828219342" expanded="true" signature="1208:1213" ph="false...false" />
+                <marker date="1534828219342" expanded="true" signature="1263:1278" ph="(...{ navigation }" />
+                <marker date="1534828219342" expanded="true" signature="1264:1278" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="1266:1276" ph="navigation...navigation" />
+                <marker date="1534828219342" expanded="true" signature="1283:1337" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="1293:1298" ph="const...const" />
+                <marker date="1534828219342" expanded="true" signature="1299:1305" ph="params...params" />
+                <marker date="1534828219342" expanded="true" signature="1308:1318" ph="navigation...navigation" />
+                <marker date="1534828219342" expanded="true" signature="1347:1353" ph="return...return" />
+                <marker date="1534828219342" expanded="true" signature="1347:1456" ph="return...{&#10;            headerRight: (&#10;                &lt;Logout/&gt;&#10;            ),&#10;&#10;        }" />
+                <marker date="1534828219342" expanded="true" signature="1354:1456" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="1381:1444" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="1487:1489" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="1489:1652" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="1499:1511" ph="AsyncStorage...AsyncStorage" />
+                <marker date="1534828219342" expanded="true" signature="1538:1546" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="1539:1545" ph="dataId...dataId" />
+                <marker date="1534828219342" expanded="true" signature="1564:1575" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="1578:1582" ph="JSON...JSON" />
+                <marker date="1534828219342" expanded="true" signature="1610:1614" ph="this...this" />
+                <marker date="1534828219342" expanded="true" signature="1640:1651" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="1667:1674" ph="console...console" />
+                <marker date="1534828219342" expanded="true" signature="1726:1732" ph="return...return" />
+                <marker date="1534828219342" expanded="true" signature="1733:1744" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="1834:1836" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="1953:1955" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="1959:2010" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="1969:1973" ph="this...this" />
+                <marker date="1534828219342" expanded="true" signature="1998:2009" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="2073:2075" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="2075:2229" ph="{...if (this.state.isLoading) {&#10;            return &lt;View&gt;&lt;Text&gt;Loading...&lt;/Text&gt;&lt;/View&gt;;&#10;        }&#10;        this.props.data.refetch({id: queryUserId}" />
+                <marker date="1534828219342" expanded="true" signature="2085:2087" ph="if...if" />
+                <marker date="1534828219342" expanded="true" signature="2085:2229" ph="if...}" />
+                <marker date="1534828219342" expanded="true" signature="2088:2179" ph="(...{&#10;            return &lt;View&gt;&lt;Text&gt;Loading...&lt;/Text&gt;&lt;/View&gt;;&#10;        }" />
+                <marker date="1534828219342" expanded="true" signature="2089:2093" ph="this...this" />
+                <marker date="1534828219342" expanded="true" signature="2111:2179" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="2125:2131" ph="return...return" />
+                <marker date="1534828219342" expanded="true" signature="2188:2192" ph="this...this" />
+                <marker date="1534828219342" expanded="true" signature="2217:2228" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="2247:2260" ph="currentUserId...currentUserId" />
+                <marker date="1534828219342" expanded="true" signature="2262:2278" ph="currentUserToken...currentUserToken" />
+                <marker date="1534828219342" expanded="true" signature="2308:2334" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="2310:2317" ph="loading...loading" />
+                <marker date="1534828219342" expanded="true" signature="2319:2324" ph="error...error" />
+                <marker date="1534828219342" expanded="true" signature="2326:2330" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="2485:2494" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="2514:2530" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="2572:2579" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="2580:2826" ph="{...return (&#10;                &lt;View&gt;&#10;                    &lt;Button&#10;                        title={'retry'}&#10;                        onPress={ () =&gt; {&#10;&#10;                            //this.props.navigation.navigate('Profile');&#10;                            //&#10;                           // this._profileRefresh();&#10;                            this.props.data.refetch({id: queryUserId});&#10;&#10;                        }" />
+                <marker date="1534828219342" expanded="true" signature="2594:2601" ph="console...console" />
+                <marker date="1534828219342" expanded="true" signature="2644:2650" ph="return...return" />
+                <marker date="1534828219342" expanded="true" signature="2644:2826" ph="return...}" />
+                <marker date="1534828219342" expanded="true" signature="2651:2826" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="2728:2733" ph="title...title" />
+                <marker date="1534828219342" expanded="true" signature="2734:2825" ph="{...{ () =&gt; {&#10;&#10;                            //this.props.navigation.navigate('Profile');&#10;                            //&#10;                           // this._profileRefresh();&#10;                            this.props.data.refetch({id: queryUserId}" />
+                <marker date="1534828219342" expanded="true" signature="2768:2775" ph="onPress...onPress" />
+                <marker date="1534828219342" expanded="true" signature="2776:2825" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="2778:2780" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="2784:2788" ph="this...this" />
+                <marker date="1534828219342" expanded="true" signature="2813:2824" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="2913:3092" ph="(...}" />
+                <marker date="1534828219342" expanded="true" signature="2939:3091" ph="{...{ flex: 1, justifyContent: 'center',&#10;                alignItems: 'center', marginBottom: 120, marginTop: 10,&#10;            }" />
+                <marker date="1534828219342" expanded="true" signature="2940:3091" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="2951:2965" ph="justifyContent...justifyContent" />
+                <marker date="1534828219342" expanded="true" signature="3043:3055" ph="marginBottom...marginBottom" />
+                <marker date="1534828219342" expanded="true" signature="3147:4140" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="3148:3152" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3177:3185" ph="username...username" />
+                <marker date="1534828219342" expanded="true" signature="3186:4138" ph="{...{User.firstName}&#10;                    lastName={User.lastName}&#10;                    email={User.email}&#10;                    dateOfBirth={User.dateOfBirth}&#10;                    classes={User.classes.map(({title}) =&gt; title).join(', ')}&#10;                    workouts={User.workouts.map(({title}) =&gt; title).join(', ')}&#10;                    interests={User.interests.map(({title}) =&gt; title).join(', ')}&#10;                /&gt;&#10;            &lt;/View&gt;&#10;        );&#10;    }" />
+                <marker date="1534828219342" expanded="true" signature="3187:3191" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3222:3231" ph="firstName...firstName" />
+                <marker date="1534828219342" expanded="true" signature="3232:4138" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="3233:3237" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3269:3277" ph="lastName...lastName" />
+                <marker date="1534828219342" expanded="true" signature="3278:4131" ph="{...)" />
+                <marker date="1534828219342" expanded="true" signature="3279:3283" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3314:3319" ph="email...email" />
+                <marker date="1534828219342" expanded="true" signature="3320:3611" ph="{...)" />
+                <marker date="1534828219342" expanded="true" signature="3321:3325" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3353:3364" ph="dateOfBirth...dateOfBirth" />
+                <marker date="1534828219342" expanded="true" signature="3365:3529" ph="{...)" />
+                <marker date="1534828219342" expanded="true" signature="3366:3370" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3404:3411" ph="classes...classes" />
+                <marker date="1534828219342" expanded="true" signature="3412:3449" ph="{...)" />
+                <marker date="1534828219342" expanded="true" signature="3413:3417" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3443:3448" ph="title...title" />
+                <marker date="1534828219342" expanded="true" signature="3482:3490" ph="workouts...workouts" />
+                <marker date="1534828219342" expanded="true" signature="3492:3496" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3523:3528" ph="title...title" />
+                <marker date="1534828219342" expanded="true" signature="3562:3571" ph="interests...interests" />
+                <marker date="1534828219342" expanded="true" signature="3573:3577" ph="User...User" />
+                <marker date="1534828219342" expanded="true" signature="3605:3610" ph="title...title" />
+                <marker date="1534828219342" expanded="true" signature="4141:4154" ph="ProfileScreen...ProfileScreen" />
+                <marker date="1534828219342" expanded="true" signature="4179:4188" ph="PropTypes...PropTypes" />
+                <marker date="1534828219342" expanded="true" signature="4214:4223" ph="PropTypes...PropTypes" />
+                <marker date="1534828219342" expanded="true" signature="4245:4254" ph="PropTypes...PropTypes" />
+                <marker date="1534828219342" expanded="true" signature="4277:4286" ph="PropTypes...PropTypes" />
+                <marker date="1534828219342" expanded="true" signature="4322:4331" ph="PropTypes...PropTypes" />
+                <marker date="1534828219342" expanded="true" signature="4344:4350" ph="export...export" />
+                <marker date="1534828219342" expanded="true" signature="4351:4358" ph="default...default" />
+                <marker date="1534828219342" expanded="true" signature="4359:4366" ph="graphql...graphql" />
+                <marker date="1534828219342" expanded="true" signature="4359:4588" ph="graphql...}" />
+                <marker date="1534828219342" expanded="true" signature="4366:4582" ph="(...GET_USER,{&#10;    options: ({props}) =&gt; {&#10;        return{&#10;            //skip: !queryUserId,&#10;            fetchPolicy: 'network-only',&#10;            variables: {id: queryUserId},&#10;            //pollInterval: 1000,&#10;        }" />
+                <marker date="1534828219342" expanded="true" signature="4367:4375" ph="GET_USER...GET_USER" />
+                <marker date="1534828219342" expanded="true" signature="4367:4582" ph="GET_USER...}" />
+                <marker date="1534828219342" expanded="true" signature="4376:4400" ph="{...)" />
+                <marker date="1534828219342" expanded="true" signature="4391:4399" ph="(...{props}" />
+                <marker date="1534828219342" expanded="true" signature="4392:4399" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="4393:4398" ph="props...props" />
+                <marker date="1534828219342" expanded="true" signature="4414:4420" ph="return...return" />
+                <marker date="1534828219342" expanded="true" signature="4414:4537" ph="return...{&#10;            //skip: !queryUserId,&#10;            fetchPolicy: 'network-only',&#10;            variables: {id: queryUserId}" />
+                <marker date="1534828219342" expanded="true" signature="4420:4537" ph="{...}" />
+                <marker date="1534828219342" expanded="true" signature="4443:4454" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="4509:4518" ph="variables...variables" />
+                <marker date="1534828219342" expanded="true" signature="4525:4536" ph="queryUserId...queryUserId" />
+                <marker date="1534828219342" expanded="true" signature="4591:4606" ph="(...)" />
+                <marker date="1534828219342" expanded="true" signature="4592:4605" ph="ProfileScreen...ProfileScreen" />
+                <marker date="1534828219342" expanded="true" signature="4610:4615" ph="const...const" />
+                <marker date="1534828219342" expanded="true" signature="4616:4622" ph="styles...styles" />
+                <marker date="1534828219342" expanded="true" signature="4625:4635" ph="StyleSheet...StyleSheet" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScheduleScreen.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/screens/ScheduleScreen.js">
+      <file leaf-file-name="UserProfile.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/UserProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="47" column="42" lean-forward="false" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+            <state relative-caret-position="120">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <marker date="1534389911453" expanded="true" signature="11006:11251" ph="query...{&#10;        allGroupFitClasses{&#10;            id&#10;            title&#10;            time&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email,id}&#10;            imageUrl&#10;        }&#10;    }" />
-                <marker date="1534389911453" expanded="true" signature="11011:11251" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11021:11039" ph="allGroupFitClasses...allGroupFitClasses" />
-                <marker date="1534389911453" expanded="true" signature="11021:11245" ph="allGroupFitClasses...{&#10;            id&#10;            title&#10;            time&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email,id}&#10;            imageUrl&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="11039:11245" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11053:11055" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="11068:11073" ph="title...title" />
-                <marker date="1534389911453" expanded="true" signature="11086:11090" ph="time...time" />
-                <marker date="1534389911453" expanded="true" signature="11103:11111" ph="location...location" />
-                <marker date="1534389911453" expanded="true" signature="11103:11139" ph="location...{buildingName, facilityName}" />
-                <marker date="1534389911453" expanded="true" signature="11111:11139" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11112:11124" ph="buildingName...buildingName" />
-                <marker date="1534389911453" expanded="true" signature="11126:11138" ph="facilityName...facilityName" />
-                <marker date="1534389911453" expanded="true" signature="11152:11156" ph="days...days" />
-                <marker date="1534389911453" expanded="true" signature="11152:11162" ph="days...{name}" />
-                <marker date="1534389911453" expanded="true" signature="11156:11162" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11157:11161" ph="name...name" />
-                <marker date="1534389911453" expanded="true" signature="11175:11185" ph="instructor...instructor" />
-                <marker date="1534389911453" expanded="true" signature="11175:11214" ph="instructor...{firstName,lastName,email,id}" />
-                <marker date="1534389911453" expanded="true" signature="11185:11214" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11186:11195" ph="firstName...firstName" />
-                <marker date="1534389911453" expanded="true" signature="11196:11204" ph="lastName...lastName" />
-                <marker date="1534389911453" expanded="true" signature="11205:11210" ph="email...email" />
-                <marker date="1534389911453" expanded="true" signature="11211:11213" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="11227:11235" ph="imageUrl...imageUrl" />
-                <marker date="1534389911453" expanded="true" signature="11285:11707" ph="query...{&#10;        mondays: allGroupFitClasses(filter:{&#10;            days_some: {name_contains: &quot;Monday&quot;},&#10;            isPublished: true,&#10;        }, orderBy: startTime_ASC){&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;        }&#10;    }" />
-                <marker date="1534389911453" expanded="true" signature="11291:11310" ph="MondayScheduleQuery...MondayScheduleQuery" />
-                <marker date="1534389911453" expanded="true" signature="11310:11707" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11329:11347" ph="allGroupFitClasses...allGroupFitClasses" />
-                <marker date="1534389911453" expanded="true" signature="11329:11701" ph="allGroupFitClasses...{&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="11347:11472" ph="(...)" />
-                <marker date="1534389911453" expanded="true" signature="11348:11354" ph="filter...filter" />
-                <marker date="1534389911453" expanded="true" signature="11348:11447" ph="filter...{&#10;            days_some: {name_contains: &quot;Monday&quot;},&#10;            isPublished: true,&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="11355:11447" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11369:11378" ph="days_some...days_some" />
-                <marker date="1534389911453" expanded="true" signature="11369:11405" ph="days_some...{name_contains: &quot;Monday&quot;}" />
-                <marker date="1534389911453" expanded="true" signature="11380:11405" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11381:11394" ph="name_contains...name_contains" />
-                <marker date="1534389911453" expanded="true" signature="11419:11430" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="11449:11456" ph="orderBy...orderBy" />
-                <marker date="1534389911453" expanded="true" signature="11472:11701" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11486:11488" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="11501:11506" ph="title...title" />
-                <marker date="1534389911453" expanded="true" signature="11519:11523" ph="time...time" />
-                <marker date="1534389911453" expanded="true" signature="11536:11545" ph="cancelled...cancelled" />
-                <marker date="1534389911453" expanded="true" signature="11558:11566" ph="location...location" />
-                <marker date="1534389911453" expanded="true" signature="11558:11594" ph="location...{buildingName, facilityName}" />
-                <marker date="1534389911453" expanded="true" signature="11566:11594" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11567:11579" ph="buildingName...buildingName" />
-                <marker date="1534389911453" expanded="true" signature="11581:11593" ph="facilityName...facilityName" />
-                <marker date="1534389911453" expanded="true" signature="11607:11611" ph="days...days" />
-                <marker date="1534389911453" expanded="true" signature="11607:11617" ph="days...{name}" />
-                <marker date="1534389911453" expanded="true" signature="11611:11617" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11612:11616" ph="name...name" />
-                <marker date="1534389911453" expanded="true" signature="11630:11640" ph="instructor...instructor" />
-                <marker date="1534389911453" expanded="true" signature="11630:11670" ph="instructor...{firstName,lastName,email, id}" />
-                <marker date="1534389911453" expanded="true" signature="11640:11670" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11641:11650" ph="firstName...firstName" />
-                <marker date="1534389911453" expanded="true" signature="11651:11659" ph="lastName...lastName" />
-                <marker date="1534389911453" expanded="true" signature="11660:11665" ph="email...email" />
-                <marker date="1534389911453" expanded="true" signature="11667:11669" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="11683:11691" ph="imageUrl...imageUrl" />
-                <marker date="1534389911453" expanded="true" signature="11742:12167" ph="query...{&#10;        tuesdays: allGroupFitClasses(filter:{&#10;            days_some: {name_contains: &quot;Tuesday&quot;},&#10;            isPublished: true,&#10;        }, orderBy: startTime_ASC){&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;        }&#10;    }" />
-                <marker date="1534389911453" expanded="true" signature="11748:11768" ph="TuesdayScheduleQuery...TuesdayScheduleQuery" />
-                <marker date="1534389911453" expanded="true" signature="11768:12167" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11788:11806" ph="allGroupFitClasses...allGroupFitClasses" />
-                <marker date="1534389911453" expanded="true" signature="11788:12161" ph="allGroupFitClasses...{&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="11806:11932" ph="(...)" />
-                <marker date="1534389911453" expanded="true" signature="11807:11813" ph="filter...filter" />
-                <marker date="1534389911453" expanded="true" signature="11807:11907" ph="filter...{&#10;            days_some: {name_contains: &quot;Tuesday&quot;},&#10;            isPublished: true,&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="11814:11907" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11828:11837" ph="days_some...days_some" />
-                <marker date="1534389911453" expanded="true" signature="11828:11865" ph="days_some...{name_contains: &quot;Tuesday&quot;}" />
-                <marker date="1534389911453" expanded="true" signature="11839:11865" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11840:11853" ph="name_contains...name_contains" />
-                <marker date="1534389911453" expanded="true" signature="11879:11890" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="11909:11916" ph="orderBy...orderBy" />
-                <marker date="1534389911453" expanded="true" signature="11932:12161" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="11946:11948" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="11961:11966" ph="title...title" />
-                <marker date="1534389911453" expanded="true" signature="11979:11983" ph="time...time" />
-                <marker date="1534389911453" expanded="true" signature="11996:12005" ph="cancelled...cancelled" />
-                <marker date="1534389911453" expanded="true" signature="12018:12026" ph="location...location" />
-                <marker date="1534389911453" expanded="true" signature="12018:12054" ph="location...{buildingName, facilityName}" />
-                <marker date="1534389911453" expanded="true" signature="12026:12054" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12027:12039" ph="buildingName...buildingName" />
-                <marker date="1534389911453" expanded="true" signature="12041:12053" ph="facilityName...facilityName" />
-                <marker date="1534389911453" expanded="true" signature="12067:12071" ph="days...days" />
-                <marker date="1534389911453" expanded="true" signature="12067:12077" ph="days...{name}" />
-                <marker date="1534389911453" expanded="true" signature="12071:12077" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12072:12076" ph="name...name" />
-                <marker date="1534389911453" expanded="true" signature="12090:12100" ph="instructor...instructor" />
-                <marker date="1534389911453" expanded="true" signature="12090:12130" ph="instructor...{firstName,lastName,email, id}" />
-                <marker date="1534389911453" expanded="true" signature="12100:12130" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12101:12110" ph="firstName...firstName" />
-                <marker date="1534389911453" expanded="true" signature="12111:12119" ph="lastName...lastName" />
-                <marker date="1534389911453" expanded="true" signature="12120:12125" ph="email...email" />
-                <marker date="1534389911453" expanded="true" signature="12127:12129" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="12143:12151" ph="imageUrl...imageUrl" />
-                <marker date="1534389911453" expanded="true" signature="12204:12635" ph="query...{&#10;        wednesdays: allGroupFitClasses(filter:{&#10;            days_some: {name_contains: &quot;Wednesday&quot;},&#10;            isPublished: true,&#10;        }, orderBy: startTime_ASC){&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;        }&#10;    }" />
-                <marker date="1534389911453" expanded="true" signature="12210:12232" ph="WednesdayScheduleQuery...WednesdayScheduleQuery" />
-                <marker date="1534389911453" expanded="true" signature="12232:12635" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12254:12272" ph="allGroupFitClasses...allGroupFitClasses" />
-                <marker date="1534389911453" expanded="true" signature="12254:12629" ph="allGroupFitClasses...{&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="12272:12400" ph="(...)" />
-                <marker date="1534389911453" expanded="true" signature="12273:12279" ph="filter...filter" />
-                <marker date="1534389911453" expanded="true" signature="12273:12375" ph="filter...{&#10;            days_some: {name_contains: &quot;Wednesday&quot;},&#10;            isPublished: true,&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="12280:12375" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12294:12303" ph="days_some...days_some" />
-                <marker date="1534389911453" expanded="true" signature="12294:12333" ph="days_some...{name_contains: &quot;Wednesday&quot;}" />
-                <marker date="1534389911453" expanded="true" signature="12305:12333" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12306:12319" ph="name_contains...name_contains" />
-                <marker date="1534389911453" expanded="true" signature="12347:12358" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="12377:12384" ph="orderBy...orderBy" />
-                <marker date="1534389911453" expanded="true" signature="12400:12629" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12414:12416" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="12429:12434" ph="title...title" />
-                <marker date="1534389911453" expanded="true" signature="12447:12451" ph="time...time" />
-                <marker date="1534389911453" expanded="true" signature="12464:12473" ph="cancelled...cancelled" />
-                <marker date="1534389911453" expanded="true" signature="12486:12494" ph="location...location" />
-                <marker date="1534389911453" expanded="true" signature="12486:12522" ph="location...{buildingName, facilityName}" />
-                <marker date="1534389911453" expanded="true" signature="12494:12522" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12495:12507" ph="buildingName...buildingName" />
-                <marker date="1534389911453" expanded="true" signature="12509:12521" ph="facilityName...facilityName" />
-                <marker date="1534389911453" expanded="true" signature="12535:12539" ph="days...days" />
-                <marker date="1534389911453" expanded="true" signature="12535:12545" ph="days...{name}" />
-                <marker date="1534389911453" expanded="true" signature="12539:12545" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12540:12544" ph="name...name" />
-                <marker date="1534389911453" expanded="true" signature="12558:12568" ph="instructor...instructor" />
-                <marker date="1534389911453" expanded="true" signature="12558:12598" ph="instructor...{firstName,lastName,email, id}" />
-                <marker date="1534389911453" expanded="true" signature="12568:12598" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12569:12578" ph="firstName...firstName" />
-                <marker date="1534389911453" expanded="true" signature="12579:12587" ph="lastName...lastName" />
-                <marker date="1534389911453" expanded="true" signature="12588:12593" ph="email...email" />
-                <marker date="1534389911453" expanded="true" signature="12595:12597" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="12611:12619" ph="imageUrl...imageUrl" />
-                <marker date="1534389911453" expanded="true" signature="12671:13099" ph="query...{&#10;        thursdays: allGroupFitClasses(filter:{&#10;            days_some: {name_contains: &quot;Thursday&quot;},&#10;            isPublished: true,&#10;        }, orderBy: startTime_ASC){&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;        }&#10;    }" />
-                <marker date="1534389911453" expanded="true" signature="12677:12698" ph="ThursdayScheduleQuery...ThursdayScheduleQuery" />
-                <marker date="1534389911453" expanded="true" signature="12698:13099" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12719:12737" ph="allGroupFitClasses...allGroupFitClasses" />
-                <marker date="1534389911453" expanded="true" signature="12719:13093" ph="allGroupFitClasses...{&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="12737:12864" ph="(...)" />
-                <marker date="1534389911453" expanded="true" signature="12738:12744" ph="filter...filter" />
-                <marker date="1534389911453" expanded="true" signature="12738:12839" ph="filter...{&#10;            days_some: {name_contains: &quot;Thursday&quot;},&#10;            isPublished: true,&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="12745:12839" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12759:12768" ph="days_some...days_some" />
-                <marker date="1534389911453" expanded="true" signature="12759:12797" ph="days_some...{name_contains: &quot;Thursday&quot;}" />
-                <marker date="1534389911453" expanded="true" signature="12770:12797" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12771:12784" ph="name_contains...name_contains" />
-                <marker date="1534389911453" expanded="true" signature="12811:12822" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="12841:12848" ph="orderBy...orderBy" />
-                <marker date="1534389911453" expanded="true" signature="12864:13093" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12878:12880" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="12893:12898" ph="title...title" />
-                <marker date="1534389911453" expanded="true" signature="12911:12915" ph="time...time" />
-                <marker date="1534389911453" expanded="true" signature="12928:12937" ph="cancelled...cancelled" />
-                <marker date="1534389911453" expanded="true" signature="12950:12958" ph="location...location" />
-                <marker date="1534389911453" expanded="true" signature="12950:12986" ph="location...{buildingName, facilityName}" />
-                <marker date="1534389911453" expanded="true" signature="12958:12986" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="12959:12971" ph="buildingName...buildingName" />
-                <marker date="1534389911453" expanded="true" signature="12973:12985" ph="facilityName...facilityName" />
-                <marker date="1534389911453" expanded="true" signature="12999:13003" ph="days...days" />
-                <marker date="1534389911453" expanded="true" signature="12999:13009" ph="days...{name}" />
-                <marker date="1534389911453" expanded="true" signature="13003:13009" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13004:13008" ph="name...name" />
-                <marker date="1534389911453" expanded="true" signature="13022:13032" ph="instructor...instructor" />
-                <marker date="1534389911453" expanded="true" signature="13022:13062" ph="instructor...{firstName,lastName,email, id}" />
-                <marker date="1534389911453" expanded="true" signature="13032:13062" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13033:13042" ph="firstName...firstName" />
-                <marker date="1534389911453" expanded="true" signature="13043:13051" ph="lastName...lastName" />
-                <marker date="1534389911453" expanded="true" signature="13052:13057" ph="email...email" />
-                <marker date="1534389911453" expanded="true" signature="13059:13061" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="13075:13083" ph="imageUrl...imageUrl" />
-                <marker date="1534389911453" expanded="true" signature="13133:13579" ph="query...{&#10;        fridays: allGroupFitClasses(filter:{&#10;            days_some: {name_contains: &quot;Friday&quot;},&#10;            isPublished: true,&#10;        }, orderBy: startTime_ASC){&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;            isPublished&#10;        }&#10;    }" />
-                <marker date="1534389911453" expanded="true" signature="13139:13158" ph="FridayScheduleQuery...FridayScheduleQuery" />
-                <marker date="1534389911453" expanded="true" signature="13158:13579" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13177:13195" ph="allGroupFitClasses...allGroupFitClasses" />
-                <marker date="1534389911453" expanded="true" signature="13177:13573" ph="allGroupFitClasses...{&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;            isPublished&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="13195:13320" ph="(...)" />
-                <marker date="1534389911453" expanded="true" signature="13196:13202" ph="filter...filter" />
-                <marker date="1534389911453" expanded="true" signature="13196:13295" ph="filter...{&#10;            days_some: {name_contains: &quot;Friday&quot;},&#10;            isPublished: true,&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="13203:13295" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13217:13226" ph="days_some...days_some" />
-                <marker date="1534389911453" expanded="true" signature="13217:13253" ph="days_some...{name_contains: &quot;Friday&quot;}" />
-                <marker date="1534389911453" expanded="true" signature="13228:13253" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13229:13242" ph="name_contains...name_contains" />
-                <marker date="1534389911453" expanded="true" signature="13267:13278" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="13297:13304" ph="orderBy...orderBy" />
-                <marker date="1534389911453" expanded="true" signature="13320:13573" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13334:13336" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="13349:13354" ph="title...title" />
-                <marker date="1534389911453" expanded="true" signature="13367:13371" ph="time...time" />
-                <marker date="1534389911453" expanded="true" signature="13384:13393" ph="cancelled...cancelled" />
-                <marker date="1534389911453" expanded="true" signature="13406:13414" ph="location...location" />
-                <marker date="1534389911453" expanded="true" signature="13406:13442" ph="location...{buildingName, facilityName}" />
-                <marker date="1534389911453" expanded="true" signature="13414:13442" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13415:13427" ph="buildingName...buildingName" />
-                <marker date="1534389911453" expanded="true" signature="13429:13441" ph="facilityName...facilityName" />
-                <marker date="1534389911453" expanded="true" signature="13455:13459" ph="days...days" />
-                <marker date="1534389911453" expanded="true" signature="13455:13465" ph="days...{name}" />
-                <marker date="1534389911453" expanded="true" signature="13459:13465" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13460:13464" ph="name...name" />
-                <marker date="1534389911453" expanded="true" signature="13478:13488" ph="instructor...instructor" />
-                <marker date="1534389911453" expanded="true" signature="13478:13518" ph="instructor...{firstName,lastName,email, id}" />
-                <marker date="1534389911453" expanded="true" signature="13488:13518" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13489:13498" ph="firstName...firstName" />
-                <marker date="1534389911453" expanded="true" signature="13499:13507" ph="lastName...lastName" />
-                <marker date="1534389911453" expanded="true" signature="13508:13513" ph="email...email" />
-                <marker date="1534389911453" expanded="true" signature="13515:13517" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="13531:13539" ph="imageUrl...imageUrl" />
-                <marker date="1534389911453" expanded="true" signature="13552:13563" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="13615:14067" ph="query...{&#10;        saturdays: allGroupFitClasses(filter:{&#10;            days_some: {name_contains: &quot;Saturday&quot;},&#10;            isPublished: true,&#10;        }, orderBy: startTime_ASC){&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;            isPublished&#10;        }&#10;    }" />
-                <marker date="1534389911453" expanded="true" signature="13621:13642" ph="SaturdayScheduleQuery...SaturdayScheduleQuery" />
-                <marker date="1534389911453" expanded="true" signature="13642:14067" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13663:13681" ph="allGroupFitClasses...allGroupFitClasses" />
-                <marker date="1534389911453" expanded="true" signature="13663:14061" ph="allGroupFitClasses...{&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;            isPublished&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="13681:13808" ph="(...)" />
-                <marker date="1534389911453" expanded="true" signature="13682:13688" ph="filter...filter" />
-                <marker date="1534389911453" expanded="true" signature="13682:13783" ph="filter...{&#10;            days_some: {name_contains: &quot;Saturday&quot;},&#10;            isPublished: true,&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="13689:13783" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13703:13712" ph="days_some...days_some" />
-                <marker date="1534389911453" expanded="true" signature="13703:13741" ph="days_some...{name_contains: &quot;Saturday&quot;}" />
-                <marker date="1534389911453" expanded="true" signature="13714:13741" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13715:13728" ph="name_contains...name_contains" />
-                <marker date="1534389911453" expanded="true" signature="13755:13766" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="13785:13792" ph="orderBy...orderBy" />
-                <marker date="1534389911453" expanded="true" signature="13808:14061" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13822:13824" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="13837:13842" ph="title...title" />
-                <marker date="1534389911453" expanded="true" signature="13855:13859" ph="time...time" />
-                <marker date="1534389911453" expanded="true" signature="13872:13881" ph="cancelled...cancelled" />
-                <marker date="1534389911453" expanded="true" signature="13894:13902" ph="location...location" />
-                <marker date="1534389911453" expanded="true" signature="13894:13930" ph="location...{buildingName, facilityName}" />
-                <marker date="1534389911453" expanded="true" signature="13902:13930" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13903:13915" ph="buildingName...buildingName" />
-                <marker date="1534389911453" expanded="true" signature="13917:13929" ph="facilityName...facilityName" />
-                <marker date="1534389911453" expanded="true" signature="13943:13947" ph="days...days" />
-                <marker date="1534389911453" expanded="true" signature="13943:13953" ph="days...{name}" />
-                <marker date="1534389911453" expanded="true" signature="13947:13953" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13948:13952" ph="name...name" />
-                <marker date="1534389911453" expanded="true" signature="13966:13976" ph="instructor...instructor" />
-                <marker date="1534389911453" expanded="true" signature="13966:14006" ph="instructor...{firstName,lastName,email, id}" />
-                <marker date="1534389911453" expanded="true" signature="13976:14006" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="13977:13986" ph="firstName...firstName" />
-                <marker date="1534389911453" expanded="true" signature="13987:13995" ph="lastName...lastName" />
-                <marker date="1534389911453" expanded="true" signature="13996:14001" ph="email...email" />
-                <marker date="1534389911453" expanded="true" signature="14003:14005" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="14019:14027" ph="imageUrl...imageUrl" />
-                <marker date="1534389911453" expanded="true" signature="14040:14051" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="14101:14547" ph="query...{&#10;        sundays: allGroupFitClasses(filter:{&#10;            days_some: {name_contains: &quot;Sunday&quot;},&#10;            isPublished: true,&#10;        }, orderBy: startTime_ASC){&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;            isPublished&#10;        }&#10;    }" />
-                <marker date="1534389911453" expanded="true" signature="14107:14126" ph="SundayScheduleQuery...SundayScheduleQuery" />
-                <marker date="1534389911453" expanded="true" signature="14126:14547" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="14145:14163" ph="allGroupFitClasses...allGroupFitClasses" />
-                <marker date="1534389911453" expanded="true" signature="14145:14541" ph="allGroupFitClasses...{&#10;            id&#10;            title&#10;            time&#10;            cancelled&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email, id}&#10;            imageUrl&#10;            isPublished&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="14163:14288" ph="(...)" />
-                <marker date="1534389911453" expanded="true" signature="14164:14170" ph="filter...filter" />
-                <marker date="1534389911453" expanded="true" signature="14164:14263" ph="filter...{&#10;            days_some: {name_contains: &quot;Sunday&quot;},&#10;            isPublished: true,&#10;        }" />
-                <marker date="1534389911453" expanded="true" signature="14171:14263" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="14185:14194" ph="days_some...days_some" />
-                <marker date="1534389911453" expanded="true" signature="14185:14221" ph="days_some...{name_contains: &quot;Sunday&quot;}" />
-                <marker date="1534389911453" expanded="true" signature="14196:14221" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="14197:14210" ph="name_contains...name_contains" />
-                <marker date="1534389911453" expanded="true" signature="14235:14246" ph="isPublished...isPublished" />
-                <marker date="1534389911453" expanded="true" signature="14265:14272" ph="orderBy...orderBy" />
-                <marker date="1534389911453" expanded="true" signature="14288:14541" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="14302:14304" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="14317:14322" ph="title...title" />
-                <marker date="1534389911453" expanded="true" signature="14335:14339" ph="time...time" />
-                <marker date="1534389911453" expanded="true" signature="14352:14361" ph="cancelled...cancelled" />
-                <marker date="1534389911453" expanded="true" signature="14374:14382" ph="location...location" />
-                <marker date="1534389911453" expanded="true" signature="14374:14410" ph="location...{buildingName, facilityName}" />
-                <marker date="1534389911453" expanded="true" signature="14382:14410" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="14383:14395" ph="buildingName...buildingName" />
-                <marker date="1534389911453" expanded="true" signature="14397:14409" ph="facilityName...facilityName" />
-                <marker date="1534389911453" expanded="true" signature="14423:14427" ph="days...days" />
-                <marker date="1534389911453" expanded="true" signature="14423:14433" ph="days...{name}" />
-                <marker date="1534389911453" expanded="true" signature="14427:14433" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="14428:14432" ph="name...name" />
-                <marker date="1534389911453" expanded="true" signature="14446:14456" ph="instructor...instructor" />
-                <marker date="1534389911453" expanded="true" signature="14446:14486" ph="instructor...{firstName,lastName,email, id}" />
-                <marker date="1534389911453" expanded="true" signature="14456:14486" ph="{...}" />
-                <marker date="1534389911453" expanded="true" signature="14457:14466" ph="firstName...firstName" />
-                <marker date="1534389911453" expanded="true" signature="14467:14475" ph="lastName...lastName" />
-                <marker date="1534389911453" expanded="true" signature="14476:14481" ph="email...email" />
-                <marker date="1534389911453" expanded="true" signature="14483:14485" ph="id...id" />
-                <marker date="1534389911453" expanded="true" signature="14499:14507" ph="imageUrl...imageUrl" />
-                <marker date="1534389911453" expanded="true" signature="14520:14531" ph="isPublished...isPublished" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditProfileScreen.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/screens/EditProfileScreen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2557">
+              <caret line="209" column="28" lean-forward="false" selection-start-line="209" selection-start-column="28" selection-end-line="209" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <marker date="1534825972042" expanded="true" signature="6102:6476" ph="mutation...{&#10;        updateUser(id: $id, firstName: $firstName, lastName:$lastName, dateOfBirth: $dateOfBirth){&#10;            firstName&#10;            lastName&#10;            phone&#10;            dateOfBirth&#10;        }&#10;    }" />
+                <marker date="1534825972042" expanded="true" signature="6111:6121" ph="updateUser...updateUser" />
+                <marker date="1534825972042" expanded="true" signature="6121:6215" ph="(...)" />
+                <marker date="1534825972042" expanded="true" signature="6126:6128" ph="ID...ID" />
+                <marker date="1534825972042" expanded="true" signature="6143:6149" ph="String...String" />
+                <marker date="1534825972042" expanded="true" signature="6162:6168" ph="String...String" />
+                <marker date="1534825972042" expanded="true" signature="6184:6190" ph="String...String" />
+                <marker date="1534825972042" expanded="true" signature="6209:6214" ph="[...]" />
+                <marker date="1534825972042" expanded="true" signature="6210:6212" ph="ID...ID" />
+                <marker date="1534825972042" expanded="true" signature="6215:6476" ph="{...}" />
+                <marker date="1534825972042" expanded="true" signature="6225:6235" ph="updateUser...updateUser" />
+                <marker date="1534825972042" expanded="true" signature="6225:6470" ph="updateUser...{&#10;            firstName&#10;            lastName&#10;            phone&#10;            dateOfBirth&#10;        }" />
+                <marker date="1534825972042" expanded="true" signature="6235:6345" ph="(...)" />
+                <marker date="1534825972042" expanded="true" signature="6236:6238" ph="id...id" />
+                <marker date="1534825972042" expanded="true" signature="6245:6254" ph="firstName...firstName" />
+                <marker date="1534825972042" expanded="true" signature="6268:6276" ph="lastName...lastName" />
+                <marker date="1534825972042" expanded="true" signature="6288:6299" ph="dateOfBirth...dateOfBirth" />
+                <marker date="1534825972042" expanded="true" signature="6315:6317" ph="in...in" />
+                <marker date="1534825972042" expanded="true" signature="6315:6327" ph="interestsIds...interestsIds" />
+                <marker date="1534825972042" expanded="true" signature="6345:6470" ph="{...}" />
+                <marker date="1534825972042" expanded="true" signature="6359:6368" ph="firstName...firstName" />
+                <marker date="1534825972042" expanded="true" signature="6381:6389" ph="lastName...lastName" />
+                <marker date="1534825972042" expanded="true" signature="6402:6407" ph="phone...phone" />
+                <marker date="1534825972042" expanded="true" signature="6420:6431" ph="dateOfBirth...dateOfBirth" />
+                <marker date="1534825972042" expanded="true" signature="6444:6453" ph="interests...interests" />
+                <marker date="1534825972042" expanded="true" signature="6444:6460" ph="interests...{title}" />
+                <marker date="1534825972042" expanded="true" signature="6453:6460" ph="{...}" />
+                <marker date="1534825972042" expanded="true" signature="6454:6459" ph="title...title" />
+                <marker date="1534825972042" expanded="true" signature="6510:6607" ph="query...{&#10;        allInterests{&#10;            id&#10;            title&#10;        }&#10;    }" />
+                <marker date="1534825972042" expanded="true" signature="6515:6607" ph="{...}" />
+                <marker date="1534825972042" expanded="true" signature="6525:6537" ph="allInterests...allInterests" />
+                <marker date="1534825972042" expanded="true" signature="6525:6557" ph="allInterests...allInterests" />
+                <marker date="1534825972042" expanded="true" signature="6525:6601" ph="allInterests...{&#10;            id&#10;            title&#10;        }" />
+                <marker date="1534825972042" expanded="true" signature="6537:6557" ph="(...)" />
+                <marker date="1534825972042" expanded="true" signature="6537:6601" ph="{...}" />
+                <marker date="1534825972042" expanded="true" signature="6538:6545" ph="orderBy...orderBy" />
+                <marker date="1534825972042" expanded="true" signature="6557:6601" ph="{...}" />
+                <marker date="1534825972042" expanded="true" signature="6571:6573" ph="id...id" />
+                <marker date="1534825972042" expanded="true" signature="6586:6591" ph="title...title" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SettingsScreen.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/screens/SettingsScreen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="50" column="77" lean-forward="false" selection-start-line="50" selection-start-column="77" selection-end-line="50" selection-end-column="77" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Logout.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/Logout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="87" column="48" lean-forward="true" selection-start-line="87" selection-start-column="48" selection-end-line="87" selection-end-column="48" />
+              <folding>
+                <element signature="e#1#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+              <folding>
+                <element signature="e#302#348#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -520,8 +431,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app.json" />
-        <option value="$PROJECT_DIR$/fitness-app-admin/src/components/CreateGroupFitClass.js" />
         <option value="$PROJECT_DIR$/fitness-app-admin/src/components/CommentList.js" />
         <option value="$PROJECT_DIR$/fitness-app-admin/src/components/HeaderComponent.js" />
         <option value="$PROJECT_DIR$/fitness-app-admin/public/index.html" />
@@ -550,27 +459,29 @@
         <option value="$PROJECT_DIR$/data/FacilityData.js" />
         <option value="$PROJECT_DIR$/screens/TrainerListScreen.js" />
         <option value="$PROJECT_DIR$/screens/TrainerScreen.js" />
-        <option value="$PROJECT_DIR$/screens/FacilitiesScreen.js" />
         <option value="$PROJECT_DIR$/screens/GroupFitProgramsScreen.js" />
         <option value="$PROJECT_DIR$/components/Event.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/screens/ExerciseDetail.js" />
         <option value="$PROJECT_DIR$/components/ClassList.js" />
-        <option value="$PROJECT_DIR$/router.js" />
         <option value="$PROJECT_DIR$/util/keys.js" />
         <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/fitapp-server/src/email-password/authenticate.ts" />
         <option value="$PROJECT_DIR$/fitapp-server/src/email-password/loggedInUser.ts" />
         <option value="$PROJECT_DIR$/screens/IntroScreen.js" />
-        <option value="$PROJECT_DIR$/components/UserProfile.js" />
-        <option value="$PROJECT_DIR$/components/Logout.js" />
-        <option value="$PROJECT_DIR$/screens/ProfileScreen.js" />
         <option value="$PROJECT_DIR$/screens/SingleClassDetailScreen.js" />
         <option value="$PROJECT_DIR$/screens/ScheduleScreen.js" />
         <option value="$PROJECT_DIR$/components/GroupFitnessClass.js" />
-        <option value="$PROJECT_DIR$/screens/HomeScreen.js" />
         <option value="$PROJECT_DIR$/fitapp-server/src/email-password/signup.ts" />
         <option value="$PROJECT_DIR$/screens/LoginScreen.js" />
+        <option value="$PROJECT_DIR$/screens/EditProfileScreen.js" />
+        <option value="$PROJECT_DIR$/router.js" />
+        <option value="$PROJECT_DIR$/screens/HomeScreen.js" />
+        <option value="$PROJECT_DIR$/components/UserProfile.js" />
+        <option value="$PROJECT_DIR$/screens/ProfileScreen.js" />
+        <option value="$PROJECT_DIR$/components/Logout.js" />
+        <option value="$PROJECT_DIR$/screens/SettingsScreen.js" />
+        <option value="$PROJECT_DIR$/screens/FacilitiesScreen.js" />
       </list>
     </option>
   </component>
@@ -593,10 +504,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1440" />
-    <option name="y" value="-129" />
-    <option name="width" value="972" />
-    <option name="height" value="797" />
+    <option name="x" value="1629" />
+    <option name="y" value="49" />
+    <option name="width" value="1592" />
+    <option name="height" value="863" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -757,15 +668,15 @@
       <workItem from="1532975252651" duration="348000" />
       <workItem from="1533740426608" duration="1044000" />
       <workItem from="1534009475433" duration="35570000" />
-      <workItem from="1534780388456" duration="5626000" />
+      <workItem from="1534780388456" duration="24084000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="912840000" />
+    <option name="totallyTimeSpent" value="931298000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-129" width="972" height="797" extended-state="0" />
+    <frame x="1629" y="49" width="1592" height="863" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -776,7 +687,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13002191" sideWeight="0.505698" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29442692" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25525144" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24835646" sideWeight="0.494302" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943755" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -830,22 +741,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="122" />
+      <option name="time" value="123" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/NewsItem.js" />
     <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/components/GroupFitClassList.js" />
     <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/App.js" />
     <entry file="file://$PROJECT_DIR$/fitness-app-admin/src/index.js" />
-    <entry file="file://$PROJECT_DIR$/components/NewsItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/images/blank-profile.svg" />
     <entry file="file://$PROJECT_DIR$/data/typesModel.graphql">
       <provider selected="true" editor-type-id="text-editor">
@@ -892,31 +795,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/WorkoutScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="39" column="28" lean-forward="false" selection-start-line="37" selection-start-column="8" selection-end-line="41" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/FacilitiesScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="258" column="5" lean-forward="false" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/screens/GroupFitProgramsScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/EditProfileScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="70" column="18" lean-forward="false" selection-start-line="44" selection-start-column="16" selection-end-line="70" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -982,6 +864,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#56#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -992,55 +877,137 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/TrainerScreen.js">
+    <entry file="file://$PROJECT_DIR$/components/GroupFitnessClass.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-342">
-          <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+        <state relative-caret-position="376">
+          <caret line="103" column="29" lean-forward="true" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
+          <folding>
+            <marker date="1534392086811" expanded="true" signature="468:822" ph="mutation...{&#10;        createComment(&#10;            content: $content,&#10;            userCommentId: $userCommentId,&#10;            classCommentId: $classCommentId&#10;        ){&#10;            id&#10;            content&#10;            classComment{title}&#10;            userComment{username}&#10;        }&#10;    }" />
+            <marker date="1534392086811" expanded="true" signature="477:490" ph="createComment...createComment" />
+            <marker date="1534392086811" expanded="true" signature="490:552" ph="(...)" />
+            <marker date="1534392086811" expanded="true" signature="501:507" ph="String...String" />
+            <marker date="1534392086811" expanded="true" signature="526:528" ph="ID...ID" />
+            <marker date="1534392086811" expanded="true" signature="548:550" ph="ID...ID" />
+            <marker date="1534392086811" expanded="true" signature="552:822" ph="{...}" />
+            <marker date="1534392086811" expanded="true" signature="562:575" ph="createComment...createComment" />
+            <marker date="1534392086811" expanded="true" signature="562:816" ph="createComment...{&#10;            id&#10;            content&#10;            classComment{title}&#10;            userComment{username}&#10;        }" />
+            <marker date="1534392086811" expanded="true" signature="575:704" ph="(...)" />
+            <marker date="1534392086811" expanded="true" signature="589:596" ph="content...content" />
+            <marker date="1534392086811" expanded="true" signature="620:633" ph="userCommentId...userCommentId" />
+            <marker date="1534392086811" expanded="true" signature="663:677" ph="classCommentId...classCommentId" />
+            <marker date="1534392086811" expanded="true" signature="704:816" ph="{...}" />
+            <marker date="1534392086811" expanded="true" signature="718:720" ph="id...id" />
+            <marker date="1534392086811" expanded="true" signature="733:740" ph="content...content" />
+            <marker date="1534392086811" expanded="true" signature="753:765" ph="classComment...classComment" />
+            <marker date="1534392086811" expanded="true" signature="753:772" ph="classComment...{title}" />
+            <marker date="1534392086811" expanded="true" signature="765:772" ph="{...}" />
+            <marker date="1534392086811" expanded="true" signature="766:771" ph="title...title" />
+            <marker date="1534392086811" expanded="true" signature="785:796" ph="userComment...userComment" />
+            <marker date="1534392086811" expanded="true" signature="785:806" ph="userComment...{username}" />
+            <marker date="1534392086811" expanded="true" signature="796:806" ph="{...}" />
+            <marker date="1534392086811" expanded="true" signature="797:805" ph="username...username" />
+            <marker date="1534392086811" expanded="true" signature="9429:9559" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/TrainerListScreen.js">
+    <entry file="file://$PROJECT_DIR$/screens/SingleClassDetailScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-835">
-          <caret line="54" column="52" lean-forward="false" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+        <state relative-caret-position="602">
+          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <marker date="1534389447492" expanded="true" signature="470:896" ph="query...{&#10;        GroupFitClass(id: $id){&#10;            id&#10;            title&#10;            time&#10;            description&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email,id}&#10;            imageUrl&#10;            videoUrl&#10;            category{title}&#10;            comments(orderBy: createdAt_DESC){content, userComment{username, id}}&#10;        }&#10;    }" />
+            <marker date="1534389447492" expanded="true" signature="476:487" ph="SingleClass...SingleClass" />
+            <marker date="1534389447492" expanded="true" signature="487:497" ph="(...)" />
+            <marker date="1534389447492" expanded="true" signature="493:495" ph="ID...ID" />
+            <marker date="1534389447492" expanded="true" signature="497:896" ph="{...}" />
+            <marker date="1534389447492" expanded="true" signature="507:520" ph="GroupFitClass...GroupFitClass" />
+            <marker date="1534389447492" expanded="true" signature="507:890" ph="GroupFitClass...{&#10;            id&#10;            title&#10;            time&#10;            description&#10;            location{buildingName, facilityName}&#10;            days{name}&#10;            instructor{firstName,lastName,email,id}&#10;            imageUrl&#10;            videoUrl&#10;            category{title}&#10;            comments(orderBy: createdAt_DESC){content, userComment{username, id}}&#10;        }" />
+            <marker date="1534389447492" expanded="true" signature="520:529" ph="(...)" />
+            <marker date="1534389447492" expanded="true" signature="521:523" ph="id...id" />
+            <marker date="1534389447492" expanded="true" signature="529:890" ph="{...}" />
+            <marker date="1534389447492" expanded="true" signature="543:545" ph="id...id" />
+            <marker date="1534389447492" expanded="true" signature="558:563" ph="title...title" />
+            <marker date="1534389447492" expanded="true" signature="576:580" ph="time...time" />
+            <marker date="1534389447492" expanded="true" signature="593:604" ph="description...description" />
+            <marker date="1534389447492" expanded="true" signature="617:625" ph="location...location" />
+            <marker date="1534389447492" expanded="true" signature="617:653" ph="location...{buildingName, facilityName}" />
+            <marker date="1534389447492" expanded="true" signature="625:653" ph="{...}" />
+            <marker date="1534389447492" expanded="true" signature="626:638" ph="buildingName...buildingName" />
+            <marker date="1534389447492" expanded="true" signature="640:652" ph="facilityName...facilityName" />
+            <marker date="1534389447492" expanded="true" signature="666:670" ph="days...days" />
+            <marker date="1534389447492" expanded="true" signature="666:676" ph="days...{name}" />
+            <marker date="1534389447492" expanded="true" signature="670:676" ph="{...}" />
+            <marker date="1534389447492" expanded="true" signature="671:675" ph="name...name" />
+            <marker date="1534389447492" expanded="true" signature="689:699" ph="instructor...instructor" />
+            <marker date="1534389447492" expanded="true" signature="689:728" ph="instructor...{firstName,lastName,email,id}" />
+            <marker date="1534389447492" expanded="true" signature="699:728" ph="{...}" />
+            <marker date="1534389447492" expanded="true" signature="700:709" ph="firstName...firstName" />
+            <marker date="1534389447492" expanded="true" signature="710:718" ph="lastName...lastName" />
+            <marker date="1534389447492" expanded="true" signature="719:724" ph="email...email" />
+            <marker date="1534389447492" expanded="true" signature="725:727" ph="id...id" />
+            <marker date="1534389447492" expanded="true" signature="741:749" ph="imageUrl...imageUrl" />
+            <marker date="1534389447492" expanded="true" signature="762:770" ph="videoUrl...videoUrl" />
+            <marker date="1534389447492" expanded="true" signature="783:791" ph="category...category" />
+            <marker date="1534389447492" expanded="true" signature="783:798" ph="category...{title}" />
+            <marker date="1534389447492" expanded="true" signature="791:798" ph="{...}" />
+            <marker date="1534389447492" expanded="true" signature="792:797" ph="title...title" />
+            <marker date="1534389447492" expanded="true" signature="811:819" ph="comments...comments" />
+            <marker date="1534389447492" expanded="true" signature="811:880" ph="comments...{content, userComment{username, id}}" />
+            <marker date="1534389447492" expanded="true" signature="819:844" ph="(...)" />
+            <marker date="1534389447492" expanded="true" signature="820:827" ph="orderBy...orderBy" />
+            <marker date="1534389447492" expanded="true" signature="844:880" ph="{...}" />
+            <marker date="1534389447492" expanded="true" signature="845:852" ph="content...content" />
+            <marker date="1534389447492" expanded="true" signature="854:865" ph="userComment...userComment" />
+            <marker date="1534389447492" expanded="true" signature="854:879" ph="userComment...{username, id}" />
+            <marker date="1534389447492" expanded="true" signature="865:879" ph="{...}" />
+            <marker date="1534389447492" expanded="true" signature="866:874" ph="username...username" />
+            <marker date="1534389447492" expanded="true" signature="876:878" ph="id...id" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/UserProfile.js">
+    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.graphql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/router.js">
+    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3499">
-          <caret line="7" column="58" lean-forward="false" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-          <folding />
+        <state relative-caret-position="-1249">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Logout.js">
+    <entry file="file://$PROJECT_DIR$/fitapp-server/src/validateEmail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="66" column="18" lean-forward="false" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="58" column="91" lean-forward="true" selection-start-line="58" selection-start-column="91" selection-end-line="58" selection-end-column="91" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
+        <state relative-caret-position="622">
           <caret line="43" column="50" lean-forward="false" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FitnessApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
+        <state relative-caret-position="635">
           <caret line="60" column="33" lean-forward="false" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
           <folding>
             <marker date="1524760160000" expanded="true" signature="1730:1789" ph="query...{&#10;        loggedInUser{&#10;            id&#10;        }&#10;    }" />
@@ -1053,59 +1020,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2190">
-          <caret line="157" column="52" lean-forward="false" selection-start-line="154" selection-start-column="7" selection-end-line="157" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <marker date="1534388270654" expanded="true" signature="541:883" ph="query...{&#10;        User(id: $id){&#10;            id&#10;            username&#10;            firstName&#10;            lastName&#10;            email&#10;            phone&#10;            dateOfBirth&#10;            imageUrl&#10;            interests{title}&#10;            workouts{title}&#10;            memberships{title}&#10;            classes{title}&#10;        }&#10;    }" />
-            <marker date="1534388270654" expanded="true" signature="547:558" ph="ProfileUser...ProfileUser" />
-            <marker date="1534388270654" expanded="true" signature="558:568" ph="(...)" />
-            <marker date="1534388270654" expanded="true" signature="564:566" ph="ID...ID" />
-            <marker date="1534388270654" expanded="true" signature="568:883" ph="{...}" />
-            <marker date="1534388270654" expanded="true" signature="578:582" ph="User...User" />
-            <marker date="1534388270654" expanded="true" signature="578:877" ph="User...{&#10;            id&#10;            username&#10;            firstName&#10;            lastName&#10;            email&#10;            phone&#10;            dateOfBirth&#10;            imageUrl&#10;            interests{title}&#10;            workouts{title}&#10;            memberships{title}&#10;            classes{title}&#10;        }" />
-            <marker date="1534388270654" expanded="true" signature="582:591" ph="(...)" />
-            <marker date="1534388270654" expanded="true" signature="583:585" ph="id...id" />
-            <marker date="1534388270654" expanded="true" signature="591:877" ph="{...}" />
-            <marker date="1534388270654" expanded="true" signature="605:607" ph="id...id" />
-            <marker date="1534388270654" expanded="true" signature="620:628" ph="username...username" />
-            <marker date="1534388270654" expanded="true" signature="641:650" ph="firstName...firstName" />
-            <marker date="1534388270654" expanded="true" signature="663:671" ph="lastName...lastName" />
-            <marker date="1534388270654" expanded="true" signature="684:689" ph="email...email" />
-            <marker date="1534388270654" expanded="true" signature="702:707" ph="phone...phone" />
-            <marker date="1534388270654" expanded="true" signature="720:731" ph="dateOfBirth...dateOfBirth" />
-            <marker date="1534388270654" expanded="true" signature="744:752" ph="imageUrl...imageUrl" />
-            <marker date="1534388270654" expanded="true" signature="765:774" ph="interests...interests" />
-            <marker date="1534388270654" expanded="true" signature="765:781" ph="interests...{title}" />
-            <marker date="1534388270654" expanded="true" signature="774:781" ph="{...}" />
-            <marker date="1534388270654" expanded="true" signature="775:780" ph="title...title" />
-            <marker date="1534388270654" expanded="true" signature="794:802" ph="workouts...workouts" />
-            <marker date="1534388270654" expanded="true" signature="794:809" ph="workouts...{title}" />
-            <marker date="1534388270654" expanded="true" signature="802:809" ph="{...}" />
-            <marker date="1534388270654" expanded="true" signature="803:808" ph="title...title" />
-            <marker date="1534388270654" expanded="true" signature="822:833" ph="memberships...memberships" />
-            <marker date="1534388270654" expanded="true" signature="822:840" ph="memberships...{title}" />
-            <marker date="1534388270654" expanded="true" signature="833:840" ph="{...}" />
-            <marker date="1534388270654" expanded="true" signature="834:839" ph="title...title" />
-            <marker date="1534388270654" expanded="true" signature="853:860" ph="classes...classes" />
-            <marker date="1534388270654" expanded="true" signature="853:867" ph="classes...{title}" />
-            <marker date="1534388270654" expanded="true" signature="860:867" ph="{...}" />
-            <marker date="1534388270654" expanded="true" signature="861:866" ph="title...title" />
-            <marker date="1534388270654" expanded="true" signature="914:973" ph="query...{&#10;        loggedInUser(id: $id){&#10;            id&#10;        }&#10;    }" />
-            <marker date="1534388270654" expanded="true" signature="919:973" ph="{...}" />
-            <marker date="1534388270654" expanded="true" signature="929:941" ph="loggedInUser...loggedInUser" />
-            <marker date="1534388270654" expanded="true" signature="929:967" ph="loggedInUser...{&#10;            id&#10;        }" />
-            <marker date="1534388270654" expanded="true" signature="941:967" ph="{...}" />
-            <marker date="1534388270654" expanded="true" signature="955:957" ph="id...id" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/screens/IntroScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="-75">
           <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding>
             <marker date="1534352254381" expanded="true" signature="412:503" ph="query...{&#10;        User(id: $id){&#10;            id&#10;            username&#10;        }&#10;    }" />
@@ -1123,23 +1040,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/GroupFitnessClass.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="103" column="29" lean-forward="true" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screens/SingleClassDetailScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/screens/ScheduleScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="635">
           <caret line="47" column="42" lean-forward="false" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -1434,102 +1337,456 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screens/HomeScreen.js">
+    <entry file="file://$PROJECT_DIR$/screens/WorkoutScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+        <state relative-caret-position="160">
+          <caret line="33" column="75" lean-forward="false" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/TrainerScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="47" />
           <folding>
-            <marker date="1534457632134" expanded="true" signature="922:1133" ph="query...{&#10;        allNewsItems(filter:{isPublished:true}, orderBy:updatedAt_DESC){&#10;            id&#10;            imageUrl&#10;            title&#10;            blurb&#10;            instructor&#10;            location&#10;        }&#10;    }" />
-            <marker date="1534457632134" expanded="true" signature="927:1133" ph="{...}" />
-            <marker date="1534457632134" expanded="true" signature="937:949" ph="allNewsItems...allNewsItems" />
-            <marker date="1534457632134" expanded="true" signature="937:1127" ph="allNewsItems...{&#10;            id&#10;            imageUrl&#10;            title&#10;            blurb&#10;            instructor&#10;            location&#10;        }" />
-            <marker date="1534457632134" expanded="true" signature="949:1000" ph="(...)" />
-            <marker date="1534457632134" expanded="true" signature="950:956" ph="filter...filter" />
-            <marker date="1534457632134" expanded="true" signature="950:975" ph="filter...{isPublished:true}" />
-            <marker date="1534457632134" expanded="true" signature="957:975" ph="{...}" />
-            <marker date="1534457632134" expanded="true" signature="958:969" ph="isPublished...isPublished" />
-            <marker date="1534457632134" expanded="true" signature="977:984" ph="orderBy...orderBy" />
-            <marker date="1534457632134" expanded="true" signature="1000:1127" ph="{...}" />
-            <marker date="1534457632134" expanded="true" signature="1014:1016" ph="id...id" />
-            <marker date="1534457632134" expanded="true" signature="1029:1037" ph="imageUrl...imageUrl" />
-            <marker date="1534457632134" expanded="true" signature="1050:1055" ph="title...title" />
-            <marker date="1534457632134" expanded="true" signature="1068:1073" ph="blurb...blurb" />
-            <marker date="1534457632134" expanded="true" signature="1086:1096" ph="instructor...instructor" />
-            <marker date="1534457632134" expanded="true" signature="1109:1117" ph="location...location" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.graphql">
+    <entry file="file://$PROJECT_DIR$/components/NewsItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-78">
+          <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.js">
+    <entry file="file://$PROJECT_DIR$/screens/TrainerListScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1249">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/validateEmail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fitapp-server/src/email-password/signup.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="58" column="91" lean-forward="true" selection-start-line="58" selection-start-column="91" selection-end-line="58" selection-end-column="91" />
+        <state relative-caret-position="277">
+          <caret line="90" column="126" lean-forward="false" selection-start-line="90" selection-start-column="111" selection-end-line="90" selection-end-column="126" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1532714254275" expanded="true" signature="631:819" ph="query...{&#10;        allTrainers(orderBy: firstName_ASC){&#10;            firstName&#10;            lastName&#10;            imageUrl&#10;            description&#10;            email&#10;            id&#10;        }&#10;    }" />
+            <marker date="1532714254275" expanded="true" signature="636:819" ph="{...}" />
+            <marker date="1532714254275" expanded="true" signature="646:657" ph="allTrainers...allTrainers" />
+            <marker date="1532714254275" expanded="true" signature="646:813" ph="allTrainers...{&#10;            firstName&#10;            lastName&#10;            imageUrl&#10;            description&#10;            email&#10;            id&#10;        }" />
+            <marker date="1532714254275" expanded="true" signature="657:681" ph="(...)" />
+            <marker date="1532714254275" expanded="true" signature="658:665" ph="orderBy...orderBy" />
+            <marker date="1532714254275" expanded="true" signature="681:813" ph="{...}" />
+            <marker date="1532714254275" expanded="true" signature="695:704" ph="firstName...firstName" />
+            <marker date="1532714254275" expanded="true" signature="717:725" ph="lastName...lastName" />
+            <marker date="1532714254275" expanded="true" signature="738:746" ph="imageUrl...imageUrl" />
+            <marker date="1532714254275" expanded="true" signature="759:770" ph="description...description" />
+            <marker date="1532714254275" expanded="true" signature="783:788" ph="email...email" />
+            <marker date="1532714254275" expanded="true" signature="801:803" ph="id...id" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/LoginScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="364" column="28" lean-forward="false" selection-start-line="364" selection-start-column="28" selection-end-line="364" selection-end-column="28" />
+        <state relative-caret-position="390">
+          <caret line="385" column="28" lean-forward="true" selection-start-line="373" selection-start-column="7" selection-end-line="385" selection-end-column="28" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-            <marker date="1534787944952" expanded="true" signature="11380:11581" ph="mutation...{&#10;        signupUser(email:$email,password: $password, username: $username){&#10;            id&#10;            token&#10;        }&#10;    }" />
-            <marker date="1534787944952" expanded="true" signature="11389:11399" ph="SignUpUser...SignUpUser" />
-            <marker date="1534787944952" expanded="true" signature="11399:11456" ph="(...)" />
-            <marker date="1534787944952" expanded="true" signature="11408:11414" ph="String...String" />
-            <marker date="1534787944952" expanded="true" signature="11428:11434" ph="String...String" />
-            <marker date="1534787944952" expanded="true" signature="11448:11454" ph="String...String" />
-            <marker date="1534787944952" expanded="true" signature="11456:11581" ph="{...}" />
-            <marker date="1534787944952" expanded="true" signature="11466:11476" ph="signupUser...signupUser" />
-            <marker date="1534787944952" expanded="true" signature="11466:11575" ph="signupUser...{&#10;            id&#10;            token&#10;        }" />
-            <marker date="1534787944952" expanded="true" signature="11476:11531" ph="(...)" />
-            <marker date="1534787944952" expanded="true" signature="11477:11482" ph="email...email" />
-            <marker date="1534787944952" expanded="true" signature="11490:11498" ph="password...password" />
-            <marker date="1534787944952" expanded="true" signature="11511:11519" ph="username...username" />
-            <marker date="1534787944952" expanded="true" signature="11531:11575" ph="{...}" />
-            <marker date="1534787944952" expanded="true" signature="11545:11547" ph="id...id" />
-            <marker date="1534787944952" expanded="true" signature="11560:11565" ph="token...token" />
-            <marker date="1534787944952" expanded="true" signature="11613:11793" ph="mutation...{&#10;        authenticateUser(email: $email, password: $password){&#10;            id&#10;            token&#10;            &#10;        }&#10;    }" />
-            <marker date="1534787944952" expanded="true" signature="11622:11631" ph="LoginUser...LoginUser" />
-            <marker date="1534787944952" expanded="true" signature="11631:11668" ph="(...)" />
-            <marker date="1534787944952" expanded="true" signature="11640:11646" ph="String...String" />
-            <marker date="1534787944952" expanded="true" signature="11660:11666" ph="String...String" />
-            <marker date="1534787944952" expanded="true" signature="11668:11793" ph="{...}" />
-            <marker date="1534787944952" expanded="true" signature="11678:11694" ph="authenticateUser...authenticateUser" />
-            <marker date="1534787944952" expanded="true" signature="11678:11787" ph="authenticateUser...{&#10;            id&#10;            token&#10;            &#10;        }" />
-            <marker date="1534787944952" expanded="true" signature="11694:11730" ph="(...)" />
-            <marker date="1534787944952" expanded="true" signature="11695:11700" ph="email...email" />
-            <marker date="1534787944952" expanded="true" signature="11710:11718" ph="password...password" />
-            <marker date="1534787944952" expanded="true" signature="11730:11787" ph="{...}" />
-            <marker date="1534787944952" expanded="true" signature="11744:11746" ph="id...id" />
-            <marker date="1534787944952" expanded="true" signature="11759:11764" ph="token...token" />
-            <marker date="1534787944952" expanded="true" signature="11823:11882" ph="query...{&#10;        l&#10;    }" />
-            <marker date="1534787944952" expanded="true" signature="11828:11882" ph="{...}" />
-            <marker date="1534787944952" expanded="true" signature="11838:11850" ph="loggedInUser...loggedInUser" />
-            <marker date="1534787944952" expanded="true" signature="11838:11876" ph="loggedInUser...{&#10;            id&#10;        }" />
-            <marker date="1534787944952" expanded="true" signature="11850:11876" ph="{...}" />
-            <marker date="1534787944952" expanded="true" signature="11864:11866" ph="id...id" />
+            <marker date="1534811625553" expanded="true" signature="11415:11616" ph="mutation...{&#10;        signupUser(email:$email,password: $password, username: $username){&#10;            id&#10;            token&#10;        }&#10;    }" />
+            <marker date="1534811625553" expanded="true" signature="11424:11434" ph="SignUpUser...SignUpUser" />
+            <marker date="1534811625553" expanded="true" signature="11434:11491" ph="(...)" />
+            <marker date="1534811625553" expanded="true" signature="11443:11449" ph="String...String" />
+            <marker date="1534811625553" expanded="true" signature="11463:11469" ph="String...String" />
+            <marker date="1534811625553" expanded="true" signature="11483:11489" ph="String...String" />
+            <marker date="1534811625553" expanded="true" signature="11491:11616" ph="{...}" />
+            <marker date="1534811625553" expanded="true" signature="11501:11511" ph="signupUser...signupUser" />
+            <marker date="1534811625553" expanded="true" signature="11501:11610" ph="signupUser...{&#10;            id&#10;            token&#10;        }" />
+            <marker date="1534811625553" expanded="true" signature="11511:11566" ph="(...)" />
+            <marker date="1534811625553" expanded="true" signature="11512:11517" ph="email...email" />
+            <marker date="1534811625553" expanded="true" signature="11525:11533" ph="password...password" />
+            <marker date="1534811625553" expanded="true" signature="11546:11554" ph="username...username" />
+            <marker date="1534811625553" expanded="true" signature="11566:11610" ph="{...}" />
+            <marker date="1534811625553" expanded="true" signature="11580:11582" ph="id...id" />
+            <marker date="1534811625553" expanded="true" signature="11595:11600" ph="token...token" />
+            <marker date="1534811625553" expanded="true" signature="11648:11828" ph="mutation...{&#10;        authenticateUser(email: $email, password: $password){&#10;            id&#10;            token&#10;            &#10;        }&#10;    }" />
+            <marker date="1534811625553" expanded="true" signature="11657:11666" ph="LoginUser...LoginUser" />
+            <marker date="1534811625553" expanded="true" signature="11666:11703" ph="(...)" />
+            <marker date="1534811625553" expanded="true" signature="11675:11681" ph="String...String" />
+            <marker date="1534811625553" expanded="true" signature="11695:11701" ph="String...String" />
+            <marker date="1534811625553" expanded="true" signature="11703:11828" ph="{...}" />
+            <marker date="1534811625553" expanded="true" signature="11713:11729" ph="authenticateUser...authenticateUser" />
+            <marker date="1534811625553" expanded="true" signature="11713:11822" ph="authenticateUser...{&#10;            id&#10;            token&#10;            &#10;        }" />
+            <marker date="1534811625553" expanded="true" signature="11729:11765" ph="(...)" />
+            <marker date="1534811625553" expanded="true" signature="11730:11735" ph="email...email" />
+            <marker date="1534811625553" expanded="true" signature="11745:11753" ph="password...password" />
+            <marker date="1534811625553" expanded="true" signature="11765:11822" ph="{...}" />
+            <marker date="1534811625553" expanded="true" signature="11779:11781" ph="id...id" />
+            <marker date="1534811625553" expanded="true" signature="11794:11799" ph="token...token" />
+            <marker date="1534811625553" expanded="true" signature="11858:11917" ph="query...{&#10;        l&#10;    }" />
+            <marker date="1534811625553" expanded="true" signature="11863:11917" ph="{...}" />
+            <marker date="1534811625553" expanded="true" signature="11873:11885" ph="loggedInUser...loggedInUser" />
+            <marker date="1534811625553" expanded="true" signature="11873:11911" ph="loggedInUser...{&#10;            id&#10;        }" />
+            <marker date="1534811625553" expanded="true" signature="11885:11911" ph="{...}" />
+            <marker date="1534811625553" expanded="true" signature="11899:11901" ph="id...id" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+          <folding>
+            <element signature="e#302#348#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/UserProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/ProfileScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <marker date="1534828219342" expanded="true" signature="540:882" ph="query...{&#10;        User(id: $id){&#10;            id&#10;            username&#10;            firstName&#10;            lastName&#10;            email&#10;            phone&#10;            dateOfBirth&#10;            imageUrl&#10;            interests{title}&#10;            workouts{title}&#10;            memberships{title}&#10;            classes{title}&#10;        }&#10;    }" />
+            <marker date="1534828219342" expanded="true" signature="546:557" ph="ProfileUser...ProfileUser" />
+            <marker date="1534828219342" expanded="true" signature="557:567" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="563:565" ph="ID...ID" />
+            <marker date="1534828219342" expanded="true" signature="567:882" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="577:581" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="577:876" ph="User...{&#10;            id&#10;            username&#10;            firstName&#10;            lastName&#10;            email&#10;            phone&#10;            dateOfBirth&#10;            imageUrl&#10;            interests{title}&#10;            workouts{title}&#10;            memberships{title}&#10;            classes{title}&#10;        }" />
+            <marker date="1534828219342" expanded="true" signature="581:590" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="582:584" ph="id...id" />
+            <marker date="1534828219342" expanded="true" signature="590:876" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="604:606" ph="id...id" />
+            <marker date="1534828219342" expanded="true" signature="619:627" ph="username...username" />
+            <marker date="1534828219342" expanded="true" signature="640:649" ph="firstName...firstName" />
+            <marker date="1534828219342" expanded="true" signature="662:670" ph="lastName...lastName" />
+            <marker date="1534828219342" expanded="true" signature="683:688" ph="email...email" />
+            <marker date="1534828219342" expanded="true" signature="701:706" ph="phone...phone" />
+            <marker date="1534828219342" expanded="true" signature="719:730" ph="dateOfBirth...dateOfBirth" />
+            <marker date="1534828219342" expanded="true" signature="743:751" ph="imageUrl...imageUrl" />
+            <marker date="1534828219342" expanded="true" signature="764:773" ph="interests...interests" />
+            <marker date="1534828219342" expanded="true" signature="764:780" ph="interests...{title}" />
+            <marker date="1534828219342" expanded="true" signature="773:780" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="774:779" ph="title...title" />
+            <marker date="1534828219342" expanded="true" signature="793:801" ph="workouts...workouts" />
+            <marker date="1534828219342" expanded="true" signature="793:808" ph="workouts...{title}" />
+            <marker date="1534828219342" expanded="true" signature="801:808" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="802:807" ph="title...title" />
+            <marker date="1534828219342" expanded="true" signature="821:832" ph="memberships...memberships" />
+            <marker date="1534828219342" expanded="true" signature="821:839" ph="memberships...{title}" />
+            <marker date="1534828219342" expanded="true" signature="832:839" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="833:838" ph="title...title" />
+            <marker date="1534828219342" expanded="true" signature="852:859" ph="classes...classes" />
+            <marker date="1534828219342" expanded="true" signature="852:866" ph="classes...{title}" />
+            <marker date="1534828219342" expanded="true" signature="859:866" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="860:865" ph="title...title" />
+            <marker date="1534828219342" expanded="true" signature="886:1231" ph="query...{&#10;        &#10;let queryUserId;&#10;&#10;class ProfileScreen extends React.Component{&#10;    constructor(props){&#10;        super(props);&#10;        this.state={&#10;            isModalVisible: false,&#10;            currentUserToken: '',&#10;            currentUserId: '',&#10;            profileUpdate: false,&#10;            isLoading: true,&#10;            profileRefresh: false,&#10;        };&#10;    }" />
+            <marker date="1534828219342" expanded="true" signature="887:890" ph="let...let" />
+            <marker date="1534828219342" expanded="true" signature="891:902" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="905:910" ph="class...class" />
+            <marker date="1534828219342" expanded="true" signature="911:924" ph="ProfileScreen...ProfileScreen" />
+            <marker date="1534828219342" expanded="true" signature="925:932" ph="extends...extends" />
+            <marker date="1534828219342" expanded="true" signature="933:938" ph="React...React" />
+            <marker date="1534828219342" expanded="true" signature="954:965" ph="constructor...constructor" />
+            <marker date="1534828219342" expanded="true" signature="954:1224" ph="constructor...{&#10;        super(props);&#10;        this.state={&#10;            isModalVisible: false,&#10;            currentUserToken: '',&#10;            currentUserId: '',&#10;            profileUpdate: false,&#10;            isLoading: true,&#10;            profileRefresh: false,&#10;        }" />
+            <marker date="1534828219342" expanded="true" signature="965:972" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="966:971" ph="props...props" />
+            <marker date="1534828219342" expanded="true" signature="972:1224" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="982:987" ph="super...super" />
+            <marker date="1534828219342" expanded="true" signature="987:994" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="988:993" ph="props...props" />
+            <marker date="1534828219342" expanded="true" signature="1004:1008" ph="this...this" />
+            <marker date="1534828219342" expanded="true" signature="1045:1050" ph="false...false" />
+            <marker date="1534828219342" expanded="true" signature="1098:1111" ph="currentUserId...currentUserId" />
+            <marker date="1534828219342" expanded="true" signature="1144:1149" ph="false...false" />
+            <marker date="1534828219342" expanded="true" signature="1174:1178" ph="true...true" />
+            <marker date="1534828219342" expanded="true" signature="1208:1213" ph="false...false" />
+            <marker date="1534828219342" expanded="true" signature="1263:1278" ph="(...{ navigation }" />
+            <marker date="1534828219342" expanded="true" signature="1264:1278" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="1266:1276" ph="navigation...navigation" />
+            <marker date="1534828219342" expanded="true" signature="1283:1337" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="1293:1298" ph="const...const" />
+            <marker date="1534828219342" expanded="true" signature="1299:1305" ph="params...params" />
+            <marker date="1534828219342" expanded="true" signature="1308:1318" ph="navigation...navigation" />
+            <marker date="1534828219342" expanded="true" signature="1347:1353" ph="return...return" />
+            <marker date="1534828219342" expanded="true" signature="1347:1456" ph="return...{&#10;            headerRight: (&#10;                &lt;Logout/&gt;&#10;            ),&#10;&#10;        }" />
+            <marker date="1534828219342" expanded="true" signature="1354:1456" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="1381:1444" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="1487:1489" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="1489:1652" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="1499:1511" ph="AsyncStorage...AsyncStorage" />
+            <marker date="1534828219342" expanded="true" signature="1538:1546" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="1539:1545" ph="dataId...dataId" />
+            <marker date="1534828219342" expanded="true" signature="1564:1575" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="1578:1582" ph="JSON...JSON" />
+            <marker date="1534828219342" expanded="true" signature="1610:1614" ph="this...this" />
+            <marker date="1534828219342" expanded="true" signature="1640:1651" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="1667:1674" ph="console...console" />
+            <marker date="1534828219342" expanded="true" signature="1726:1732" ph="return...return" />
+            <marker date="1534828219342" expanded="true" signature="1733:1744" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="1834:1836" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="1953:1955" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="1959:2010" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="1969:1973" ph="this...this" />
+            <marker date="1534828219342" expanded="true" signature="1998:2009" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="2073:2075" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="2075:2229" ph="{...if (this.state.isLoading) {&#10;            return &lt;View&gt;&lt;Text&gt;Loading...&lt;/Text&gt;&lt;/View&gt;;&#10;        }&#10;        this.props.data.refetch({id: queryUserId}" />
+            <marker date="1534828219342" expanded="true" signature="2085:2087" ph="if...if" />
+            <marker date="1534828219342" expanded="true" signature="2085:2229" ph="if...}" />
+            <marker date="1534828219342" expanded="true" signature="2088:2179" ph="(...{&#10;            return &lt;View&gt;&lt;Text&gt;Loading...&lt;/Text&gt;&lt;/View&gt;;&#10;        }" />
+            <marker date="1534828219342" expanded="true" signature="2089:2093" ph="this...this" />
+            <marker date="1534828219342" expanded="true" signature="2111:2179" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="2125:2131" ph="return...return" />
+            <marker date="1534828219342" expanded="true" signature="2188:2192" ph="this...this" />
+            <marker date="1534828219342" expanded="true" signature="2217:2228" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="2247:2260" ph="currentUserId...currentUserId" />
+            <marker date="1534828219342" expanded="true" signature="2262:2278" ph="currentUserToken...currentUserToken" />
+            <marker date="1534828219342" expanded="true" signature="2308:2334" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="2310:2317" ph="loading...loading" />
+            <marker date="1534828219342" expanded="true" signature="2319:2324" ph="error...error" />
+            <marker date="1534828219342" expanded="true" signature="2326:2330" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="2485:2494" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="2514:2530" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="2572:2579" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="2580:2826" ph="{...return (&#10;                &lt;View&gt;&#10;                    &lt;Button&#10;                        title={'retry'}&#10;                        onPress={ () =&gt; {&#10;&#10;                            //this.props.navigation.navigate('Profile');&#10;                            //&#10;                           // this._profileRefresh();&#10;                            this.props.data.refetch({id: queryUserId});&#10;&#10;                        }" />
+            <marker date="1534828219342" expanded="true" signature="2594:2601" ph="console...console" />
+            <marker date="1534828219342" expanded="true" signature="2644:2650" ph="return...return" />
+            <marker date="1534828219342" expanded="true" signature="2644:2826" ph="return...}" />
+            <marker date="1534828219342" expanded="true" signature="2651:2826" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="2728:2733" ph="title...title" />
+            <marker date="1534828219342" expanded="true" signature="2734:2825" ph="{...{ () =&gt; {&#10;&#10;                            //this.props.navigation.navigate('Profile');&#10;                            //&#10;                           // this._profileRefresh();&#10;                            this.props.data.refetch({id: queryUserId}" />
+            <marker date="1534828219342" expanded="true" signature="2768:2775" ph="onPress...onPress" />
+            <marker date="1534828219342" expanded="true" signature="2776:2825" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="2778:2780" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="2784:2788" ph="this...this" />
+            <marker date="1534828219342" expanded="true" signature="2813:2824" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="2913:3092" ph="(...}" />
+            <marker date="1534828219342" expanded="true" signature="2939:3091" ph="{...{ flex: 1, justifyContent: 'center',&#10;                alignItems: 'center', marginBottom: 120, marginTop: 10,&#10;            }" />
+            <marker date="1534828219342" expanded="true" signature="2940:3091" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="2951:2965" ph="justifyContent...justifyContent" />
+            <marker date="1534828219342" expanded="true" signature="3043:3055" ph="marginBottom...marginBottom" />
+            <marker date="1534828219342" expanded="true" signature="3147:4140" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="3148:3152" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3177:3185" ph="username...username" />
+            <marker date="1534828219342" expanded="true" signature="3186:4138" ph="{...{User.firstName}&#10;                    lastName={User.lastName}&#10;                    email={User.email}&#10;                    dateOfBirth={User.dateOfBirth}&#10;                    classes={User.classes.map(({title}) =&gt; title).join(', ')}&#10;                    workouts={User.workouts.map(({title}) =&gt; title).join(', ')}&#10;                    interests={User.interests.map(({title}) =&gt; title).join(', ')}&#10;                /&gt;&#10;            &lt;/View&gt;&#10;        );&#10;    }" />
+            <marker date="1534828219342" expanded="true" signature="3187:3191" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3222:3231" ph="firstName...firstName" />
+            <marker date="1534828219342" expanded="true" signature="3232:4138" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="3233:3237" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3269:3277" ph="lastName...lastName" />
+            <marker date="1534828219342" expanded="true" signature="3278:4131" ph="{...)" />
+            <marker date="1534828219342" expanded="true" signature="3279:3283" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3314:3319" ph="email...email" />
+            <marker date="1534828219342" expanded="true" signature="3320:3611" ph="{...)" />
+            <marker date="1534828219342" expanded="true" signature="3321:3325" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3353:3364" ph="dateOfBirth...dateOfBirth" />
+            <marker date="1534828219342" expanded="true" signature="3365:3529" ph="{...)" />
+            <marker date="1534828219342" expanded="true" signature="3366:3370" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3404:3411" ph="classes...classes" />
+            <marker date="1534828219342" expanded="true" signature="3412:3449" ph="{...)" />
+            <marker date="1534828219342" expanded="true" signature="3413:3417" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3443:3448" ph="title...title" />
+            <marker date="1534828219342" expanded="true" signature="3482:3490" ph="workouts...workouts" />
+            <marker date="1534828219342" expanded="true" signature="3492:3496" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3523:3528" ph="title...title" />
+            <marker date="1534828219342" expanded="true" signature="3562:3571" ph="interests...interests" />
+            <marker date="1534828219342" expanded="true" signature="3573:3577" ph="User...User" />
+            <marker date="1534828219342" expanded="true" signature="3605:3610" ph="title...title" />
+            <marker date="1534828219342" expanded="true" signature="4141:4154" ph="ProfileScreen...ProfileScreen" />
+            <marker date="1534828219342" expanded="true" signature="4179:4188" ph="PropTypes...PropTypes" />
+            <marker date="1534828219342" expanded="true" signature="4214:4223" ph="PropTypes...PropTypes" />
+            <marker date="1534828219342" expanded="true" signature="4245:4254" ph="PropTypes...PropTypes" />
+            <marker date="1534828219342" expanded="true" signature="4277:4286" ph="PropTypes...PropTypes" />
+            <marker date="1534828219342" expanded="true" signature="4322:4331" ph="PropTypes...PropTypes" />
+            <marker date="1534828219342" expanded="true" signature="4344:4350" ph="export...export" />
+            <marker date="1534828219342" expanded="true" signature="4351:4358" ph="default...default" />
+            <marker date="1534828219342" expanded="true" signature="4359:4366" ph="graphql...graphql" />
+            <marker date="1534828219342" expanded="true" signature="4359:4588" ph="graphql...}" />
+            <marker date="1534828219342" expanded="true" signature="4366:4582" ph="(...GET_USER,{&#10;    options: ({props}) =&gt; {&#10;        return{&#10;            //skip: !queryUserId,&#10;            fetchPolicy: 'network-only',&#10;            variables: {id: queryUserId},&#10;            //pollInterval: 1000,&#10;        }" />
+            <marker date="1534828219342" expanded="true" signature="4367:4375" ph="GET_USER...GET_USER" />
+            <marker date="1534828219342" expanded="true" signature="4367:4582" ph="GET_USER...}" />
+            <marker date="1534828219342" expanded="true" signature="4376:4400" ph="{...)" />
+            <marker date="1534828219342" expanded="true" signature="4391:4399" ph="(...{props}" />
+            <marker date="1534828219342" expanded="true" signature="4392:4399" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="4393:4398" ph="props...props" />
+            <marker date="1534828219342" expanded="true" signature="4414:4420" ph="return...return" />
+            <marker date="1534828219342" expanded="true" signature="4414:4537" ph="return...{&#10;            //skip: !queryUserId,&#10;            fetchPolicy: 'network-only',&#10;            variables: {id: queryUserId}" />
+            <marker date="1534828219342" expanded="true" signature="4420:4537" ph="{...}" />
+            <marker date="1534828219342" expanded="true" signature="4443:4454" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="4509:4518" ph="variables...variables" />
+            <marker date="1534828219342" expanded="true" signature="4525:4536" ph="queryUserId...queryUserId" />
+            <marker date="1534828219342" expanded="true" signature="4591:4606" ph="(...)" />
+            <marker date="1534828219342" expanded="true" signature="4592:4605" ph="ProfileScreen...ProfileScreen" />
+            <marker date="1534828219342" expanded="true" signature="4610:4615" ph="const...const" />
+            <marker date="1534828219342" expanded="true" signature="4616:4622" ph="styles...styles" />
+            <marker date="1534828219342" expanded="true" signature="4625:4635" ph="StyleSheet...StyleSheet" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/EditProfileScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2557">
+          <caret line="209" column="28" lean-forward="false" selection-start-line="209" selection-start-column="28" selection-end-line="209" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <marker date="1534825972042" expanded="true" signature="6102:6476" ph="mutation...{&#10;        updateUser(id: $id, firstName: $firstName, lastName:$lastName, dateOfBirth: $dateOfBirth){&#10;            firstName&#10;            lastName&#10;            phone&#10;            dateOfBirth&#10;        }&#10;    }" />
+            <marker date="1534825972042" expanded="true" signature="6111:6121" ph="updateUser...updateUser" />
+            <marker date="1534825972042" expanded="true" signature="6121:6215" ph="(...)" />
+            <marker date="1534825972042" expanded="true" signature="6126:6128" ph="ID...ID" />
+            <marker date="1534825972042" expanded="true" signature="6143:6149" ph="String...String" />
+            <marker date="1534825972042" expanded="true" signature="6162:6168" ph="String...String" />
+            <marker date="1534825972042" expanded="true" signature="6184:6190" ph="String...String" />
+            <marker date="1534825972042" expanded="true" signature="6209:6214" ph="[...]" />
+            <marker date="1534825972042" expanded="true" signature="6210:6212" ph="ID...ID" />
+            <marker date="1534825972042" expanded="true" signature="6215:6476" ph="{...}" />
+            <marker date="1534825972042" expanded="true" signature="6225:6235" ph="updateUser...updateUser" />
+            <marker date="1534825972042" expanded="true" signature="6225:6470" ph="updateUser...{&#10;            firstName&#10;            lastName&#10;            phone&#10;            dateOfBirth&#10;        }" />
+            <marker date="1534825972042" expanded="true" signature="6235:6345" ph="(...)" />
+            <marker date="1534825972042" expanded="true" signature="6236:6238" ph="id...id" />
+            <marker date="1534825972042" expanded="true" signature="6245:6254" ph="firstName...firstName" />
+            <marker date="1534825972042" expanded="true" signature="6268:6276" ph="lastName...lastName" />
+            <marker date="1534825972042" expanded="true" signature="6288:6299" ph="dateOfBirth...dateOfBirth" />
+            <marker date="1534825972042" expanded="true" signature="6315:6317" ph="in...in" />
+            <marker date="1534825972042" expanded="true" signature="6315:6327" ph="interestsIds...interestsIds" />
+            <marker date="1534825972042" expanded="true" signature="6345:6470" ph="{...}" />
+            <marker date="1534825972042" expanded="true" signature="6359:6368" ph="firstName...firstName" />
+            <marker date="1534825972042" expanded="true" signature="6381:6389" ph="lastName...lastName" />
+            <marker date="1534825972042" expanded="true" signature="6402:6407" ph="phone...phone" />
+            <marker date="1534825972042" expanded="true" signature="6420:6431" ph="dateOfBirth...dateOfBirth" />
+            <marker date="1534825972042" expanded="true" signature="6444:6453" ph="interests...interests" />
+            <marker date="1534825972042" expanded="true" signature="6444:6460" ph="interests...{title}" />
+            <marker date="1534825972042" expanded="true" signature="6453:6460" ph="{...}" />
+            <marker date="1534825972042" expanded="true" signature="6454:6459" ph="title...title" />
+            <marker date="1534825972042" expanded="true" signature="6510:6607" ph="query...{&#10;        allInterests{&#10;            id&#10;            title&#10;        }&#10;    }" />
+            <marker date="1534825972042" expanded="true" signature="6515:6607" ph="{...}" />
+            <marker date="1534825972042" expanded="true" signature="6525:6537" ph="allInterests...allInterests" />
+            <marker date="1534825972042" expanded="true" signature="6525:6557" ph="allInterests...allInterests" />
+            <marker date="1534825972042" expanded="true" signature="6525:6601" ph="allInterests...{&#10;            id&#10;            title&#10;        }" />
+            <marker date="1534825972042" expanded="true" signature="6537:6557" ph="(...)" />
+            <marker date="1534825972042" expanded="true" signature="6537:6601" ph="{...}" />
+            <marker date="1534825972042" expanded="true" signature="6538:6545" ph="orderBy...orderBy" />
+            <marker date="1534825972042" expanded="true" signature="6557:6601" ph="{...}" />
+            <marker date="1534825972042" expanded="true" signature="6571:6573" ph="id...id" />
+            <marker date="1534825972042" expanded="true" signature="6586:6591" ph="title...title" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Logout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="87" column="48" lean-forward="true" selection-start-line="87" selection-start-column="48" selection-end-line="87" selection-end-column="48" />
+          <folding>
+            <element signature="e#1#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/HomeScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="246" column="42" lean-forward="true" selection-start-line="246" selection-start-column="20" selection-end-line="246" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <marker date="1534826523689" expanded="true" signature="922:1133" ph="query...{&#10;        allNewsItems(filter:{isPublished:true}, orderBy:updatedAt_DESC){&#10;            id&#10;            imageUrl&#10;            title&#10;            blurb&#10;            instructor&#10;            location&#10;        }&#10;    }" />
+            <marker date="1534826523689" expanded="true" signature="927:1133" ph="{...}" />
+            <marker date="1534826523689" expanded="true" signature="937:949" ph="allNewsItems...allNewsItems" />
+            <marker date="1534826523689" expanded="true" signature="937:1127" ph="allNewsItems...{&#10;            id&#10;            imageUrl&#10;            title&#10;            blurb&#10;            instructor&#10;            location&#10;        }" />
+            <marker date="1534826523689" expanded="true" signature="949:1000" ph="(...)" />
+            <marker date="1534826523689" expanded="true" signature="950:956" ph="filter...filter" />
+            <marker date="1534826523689" expanded="true" signature="950:975" ph="filter...{isPublished:true}" />
+            <marker date="1534826523689" expanded="true" signature="957:975" ph="{...}" />
+            <marker date="1534826523689" expanded="true" signature="958:969" ph="isPublished...isPublished" />
+            <marker date="1534826523689" expanded="true" signature="977:984" ph="orderBy...orderBy" />
+            <marker date="1534826523689" expanded="true" signature="1000:1127" ph="{...}" />
+            <marker date="1534826523689" expanded="true" signature="1014:1016" ph="id...id" />
+            <marker date="1534826523689" expanded="true" signature="1029:1037" ph="imageUrl...imageUrl" />
+            <marker date="1534826523689" expanded="true" signature="1050:1055" ph="title...title" />
+            <marker date="1534826523689" expanded="true" signature="1068:1073" ph="blurb...blurb" />
+            <marker date="1534826523689" expanded="true" signature="1086:1096" ph="instructor...instructor" />
+            <marker date="1534826523689" expanded="true" signature="1109:1117" ph="location...location" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/FacilitiesScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="45" column="39" lean-forward="false" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
+          <folding>
+            <marker date="1534862872263" expanded="true" signature="492:975" ph="query...{&#10;        allFacilities(filter:{buildingName: $buildingTitle}){&#10;            id&#10;            facilityName&#10;            buildingName&#10;            address&#10;            description&#10;            createdAt&#10;            open&#10;            updatedAt&#10;            imageUrl&#10;            events(filter:{isPublished: true}){name, time, date}&#10;            classes(filter:{isPublished: true}){title, time, cancelled, days(orderBy: id_ASC){name}}&#10;            hours&#10;        }&#10;    }" />
+            <marker date="1534862872263" expanded="true" signature="497:521" ph="(...)" />
+            <marker date="1534862872263" expanded="true" signature="514:520" ph="String...String" />
+            <marker date="1534862872263" expanded="true" signature="521:975" ph="{...}" />
+            <marker date="1534862872263" expanded="true" signature="531:544" ph="allFacilities...allFacilities" />
+            <marker date="1534862872263" expanded="true" signature="531:969" ph="allFacilities...{&#10;            id&#10;            facilityName&#10;            buildingName&#10;            address&#10;            description&#10;            createdAt&#10;            open&#10;            updatedAt&#10;            imageUrl&#10;            events(filter:{isPublished: true}){name, time, date}&#10;            classes(filter:{isPublished: true}){title, time, cancelled, days(orderBy: id_ASC){name}}&#10;            hours&#10;        }" />
+            <marker date="1534862872263" expanded="true" signature="544:583" ph="(...)" />
+            <marker date="1534862872263" expanded="true" signature="545:551" ph="filter...filter" />
+            <marker date="1534862872263" expanded="true" signature="545:582" ph="filter...{buildingName: $buildingTitle}" />
+            <marker date="1534862872263" expanded="true" signature="552:582" ph="{...}" />
+            <marker date="1534862872263" expanded="true" signature="553:565" ph="buildingName...buildingName" />
+            <marker date="1534862872263" expanded="true" signature="583:969" ph="{...}" />
+            <marker date="1534862872263" expanded="true" signature="597:599" ph="id...id" />
+            <marker date="1534862872263" expanded="true" signature="612:624" ph="facilityName...facilityName" />
+            <marker date="1534862872263" expanded="true" signature="637:649" ph="buildingName...buildingName" />
+            <marker date="1534862872263" expanded="true" signature="662:669" ph="address...address" />
+            <marker date="1534862872263" expanded="true" signature="682:693" ph="description...description" />
+            <marker date="1534862872263" expanded="true" signature="706:715" ph="createdAt...createdAt" />
+            <marker date="1534862872263" expanded="true" signature="728:732" ph="open...open" />
+            <marker date="1534862872263" expanded="true" signature="745:754" ph="updatedAt...updatedAt" />
+            <marker date="1534862872263" expanded="true" signature="767:775" ph="imageUrl...imageUrl" />
+            <marker date="1534862872263" expanded="true" signature="788:794" ph="events...events" />
+            <marker date="1534862872263" expanded="true" signature="788:840" ph="events...{name, time, date}" />
+            <marker date="1534862872263" expanded="true" signature="794:822" ph="(...)" />
+            <marker date="1534862872263" expanded="true" signature="795:801" ph="filter...filter" />
+            <marker date="1534862872263" expanded="true" signature="795:821" ph="filter...{isPublished: true}" />
+            <marker date="1534862872263" expanded="true" signature="802:821" ph="{...}" />
+            <marker date="1534862872263" expanded="true" signature="803:814" ph="isPublished...isPublished" />
+            <marker date="1534862872263" expanded="true" signature="822:840" ph="{...}" />
+            <marker date="1534862872263" expanded="true" signature="823:827" ph="name...name" />
+            <marker date="1534862872263" expanded="true" signature="829:833" ph="time...time" />
+            <marker date="1534862872263" expanded="true" signature="835:839" ph="date...date" />
+            <marker date="1534862872263" expanded="true" signature="853:860" ph="classes...classes" />
+            <marker date="1534862872263" expanded="true" signature="853:941" ph="classes...{title, time, cancelled, days(orderBy: id_ASC){name}}" />
+            <marker date="1534862872263" expanded="true" signature="860:888" ph="(...)" />
+            <marker date="1534862872263" expanded="true" signature="861:867" ph="filter...filter" />
+            <marker date="1534862872263" expanded="true" signature="861:887" ph="filter...{isPublished: true}" />
+            <marker date="1534862872263" expanded="true" signature="868:887" ph="{...}" />
+            <marker date="1534862872263" expanded="true" signature="869:880" ph="isPublished...isPublished" />
+            <marker date="1534862872263" expanded="true" signature="888:941" ph="{...}" />
+            <marker date="1534862872263" expanded="true" signature="889:894" ph="title...title" />
+            <marker date="1534862872263" expanded="true" signature="896:900" ph="time...time" />
+            <marker date="1534862872263" expanded="true" signature="902:911" ph="cancelled...cancelled" />
+            <marker date="1534862872263" expanded="true" signature="913:917" ph="days...days" />
+            <marker date="1534862872263" expanded="true" signature="913:940" ph="days...{name}" />
+            <marker date="1534862872263" expanded="true" signature="917:934" ph="(...)" />
+            <marker date="1534862872263" expanded="true" signature="918:925" ph="orderBy...orderBy" />
+            <marker date="1534862872263" expanded="true" signature="934:940" ph="{...}" />
+            <marker date="1534862872263" expanded="true" signature="935:939" ph="name...name" />
+            <marker date="1534862872263" expanded="true" signature="954:959" ph="hours...hours" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screens/SettingsScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="50" column="77" lean-forward="false" selection-start-line="50" selection-start-column="77" selection-end-line="50" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
