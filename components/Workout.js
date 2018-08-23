@@ -29,20 +29,7 @@ class Workout extends React.Component{
                         <Text style={styles.description} numberOfLines={4} ellipsizeMode ={'tail'}>
                             {this.props.description}
                         </Text>
-                        <TouchableOpacity
-                            style={{alignSelf: 'flex-end', alignItems: 'center', flexDirection: 'row', justifyContent:'center', marginRight:2}}
-                            onPress={ () => {
-                                this.props.navigation.navigate('Instructor', {itemId: `${this.props.authorId}`})
-                            }}
-                        >
-                            <Text style={styles.author} numberOfLines={2} ellipsizeMode ={'tail'}>
-                                {`{Author:`} {this.props.authorFirstName}}
-                            </Text>
-                            <MaterialCommunityIcons
-                                name={"arrow-expand-all"} type={"FontAwesome"}
-                                size={20} color={"#156DFA"}
-                            />
-                        </TouchableOpacity>
+
 
                         <View key={this.props.exercises.id} style={styles.exerciseCard}>
                             {this.props.exercises}
@@ -146,3 +133,20 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     }
 });
+
+/*
+<TouchableOpacity
+                            style={{alignSelf: 'flex-end', alignItems: 'center', flexDirection: 'row', justifyContent:'center', marginRight:2}}
+                            onPress={ () => {
+                                this.props.navigation.navigate('Instructor', {itemId: `${this.props.authorId}`})
+                            }}
+                        >
+                            <Text style={styles.author} numberOfLines={2} ellipsizeMode ={'tail'}>
+                                {`{Author:`} {this.props.authorFirstName}}
+                            </Text>
+                            <MaterialCommunityIcons
+                                name={"arrow-expand-all"} type={"FontAwesome"}
+                                size={20} color={"#156DFA"}
+                            />
+                        </TouchableOpacity>
+*/

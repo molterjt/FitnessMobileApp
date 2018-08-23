@@ -1,15 +1,27 @@
 import React from 'react';
 import {
-    View, Text, TouchableOpacity, StyleSheet, Image,
-    Dimensions, Alert, Modal, TextInput, WebView
+    View, Text, TouchableOpacity, StyleSheet, Image, AlertIOS,
+    Dimensions, Alert, Modal, TextInput, WebView, Platform,
 } from 'react-native';
+import {Constants, Location, Permissions} from 'expo';
 import gql from 'graphql-tag';
-import {graphql } from 'react-apollo';
+import {graphql, Mutation, compose } from 'react-apollo';
 import {FontAwesome, MaterialCommunityIcons, MaterialIcons, Ionicons} from '@expo/vector-icons';
+import moment from 'moment';
+import {withNavigation} from "react-navigation";
+
 
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
+const GEOLOCATION_OPTIONS = { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 };
+const REC_LAT = '39.502590979032284';
+const REC_LONG = '-84.73775267601013';
+const CHECK_IN_BOUNDARY =  100.00;
+
+
+moment.relativeTimeThreshold('m', 59);
+moment.relativeTimeThreshold('h', 23);
 
 
 const CreateClassCommentByUser = gql`
@@ -27,6 +39,16 @@ const CreateClassCommentByUser = gql`
     }
 `
 
+const CreateClassCheckInByUser = gql`
+    mutation createCheckin($checked: Boolean, $classIdsArr: [ID!], $userIdsArr: [ID!]){
+        createCheckin(classesIds:$classIdsArr, usersIds: $userIdsArr, checked: $checked){
+            id
+            createdAt
+            checked
+        }
+    }
+`
+
 class GroupFitnessClass extends React.Component{
     constructor(props){
         super(props);
@@ -34,12 +56,35 @@ class GroupFitnessClass extends React.Component{
             addCommentModalVisible: false,
             videoModalVisible: false,
             userComment: "",
+            location: null,
+            errorMessage: null,
+            userLatitude: undefined,
+            userLongitude: undefined,
+            userLocationAccuracy: undefined,
+            userDistanceFromRSC: undefined,
+            classIdsArr: [],
+            userIdsArr: [],
+            checked: true,
+            checkInDisable: false,
+            goodToCheckIn: false,
         };
         this._createComment = this._createComment.bind(this);
+        this._degreesToRadians = this._degreesToRadians.bind(this);
+        this._distanceBetweenCoordinates = this._distanceBetweenCoordinates.bind(this);
+        this._distanceUserFromRSC = this._distanceUserFromRSC.bind(this);
+        this._timeCheckInControl = this._timeCheckInControl.bind(this);
+        this._getLocationAsync = this._getLocationAsync.bind(this);
+        this._checkinAvailable = this._checkinAvailable.bind(this);
+        this._submitClassCheckIn = this._submitClassCheckIn.bind(this);
+        this._switchCheckInDisable = this._switchCheckInDisable.bind(this);
     }
+
+    _switchCheckInDisable = () =>
+        this.setState({checkInDisable: true});
+
     _createComment = async () => {
         const {userComment} = this.state;
-        await this.props.mutate({
+        await this.props.CreateClassCommentByUser({
             variables: {
                 content: this.props.userComment,
                 userCommentId: this.props.userCommentId,
@@ -49,13 +94,216 @@ class GroupFitnessClass extends React.Component{
         console.log(userComment);
         this.setState({userComment: ""});
         return this.showCommentModal(false);
-    }
+    };
+
+    _submitClassCheckIn = async () => {
+        const {checked} = this.state;
+        await this.props.CreateClassCheckInByUser({
+            variables: {
+                checked: checked,
+                userIdsArr: [this.props.userCheckinId],
+                classIdsArr: [this.props.classCheckinId],
+            }
+        })
+
+    };
     showCommentModal(visible){
         this.setState({addCommentModalVisible: visible})
     }
     showVideoModal(visible){
         this.setState({videoModalVisible: visible})
     }
+
+    componentWillMount(){
+        if(Platform.OS === 'android' && !Constants.isDevice){
+            this.setState({errorMessage: 'This will not work on Android Simulator. Try on device'});
+        } else {
+            this._getLocationAsync();
+        }
+        this._timeCheckInControl(this.props.classStart);
+
+    }
+
+    _getLocationAsync = async () => {
+        let {status} = await Permissions.askAsync(Permissions.LOCATION);
+        if(status !== 'granted'){
+            alert('Hey! You might want to enable Location if you would like to use any check-in features');
+            this.setState({
+                errorMessage: 'Permission to access location was denied'
+            });
+        }
+        let location = await Location.getCurrentPositionAsync(GEOLOCATION_OPTIONS);
+        this.setState({
+            location: location,
+            userLatitude: location.coords.latitude,
+            userLongitude: location.coords.longitude,
+            userLocationAccuracy: location.coords.accuracy,
+        });
+        console.log('From State: ' + "\n" + this.state.userLatitude + '\n' + this.state.userLongitude + '\n' + this.state.userLocationAccuracy)
+
+
+    };
+
+    _degreesToRadians(degrees){
+        return degrees * Math.PI / 180;
+    };
+    _distanceBetweenCoordinates(lat1, long1, lat2, long2){
+
+        let earthRadiusKm = 6371;
+
+        let dLat = this._degreesToRadians(lat2 - lat1);
+
+        let dLong = this._degreesToRadians(long2 - long1);
+
+
+        lat1 = this._degreesToRadians(lat1);
+        lat2 = this._degreesToRadians(lat2);
+
+        let a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.sin(dLong/2) * Math.cos(lat1) *Math.cos(lat2);
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        return earthRadiusKm * c;
+    };
+
+    _haversineFormula_GlobeDistance(lat1, long1, lat2, long2){
+
+        let R = 6371; // km
+
+        let dLat = (lat2-lat1)*Math.PI/180;
+        let dLong = (long2-long1)*Math.PI/180;
+        let a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) *
+            Math.sin(dLong/2) * Math.sin(dLong/2);
+        let c = 2 * Math.asin(Math.sqrt(a));
+        console.log(R);
+        console.log(dLat);
+        console.log(dLong);
+        console.log(a);
+        console.log(c);
+        console.log(R*c);
+        const d =  (R * c) * 1000;
+
+        return d;
+    };
+
+    _distanceUserFromRSC = async () => {
+        const {userLatitude, userLongitude, userLocationAccuracy} = this.state;
+        try {
+            let userDistance =  await this._haversineFormula_GlobeDistance(REC_LAT, REC_LONG, userLatitude, userLongitude);
+            //let userDistance = await this._haversineFormula_GlobeDistance(REC_LAT, REC_LONG, 39.50302081706743, -84.7374604620363);
+            //let userDistance = await this._distanceBetweenCoordinates(REC_LAT, REC_LONG, userLatitude, userLongitude);
+            //let userDistance = await this._distanceBetweenCoordinates(REC_LAT, REC_LONG, 39.50302081706743, -84.7374604620363);
+            console.log('UserDistance: ' + userDistance);
+
+            if(userDistance < 200 + userLocationAccuracy){
+                console.log('You are good; proximal enough to checkin*************************');
+                this.setState({goodToCheckIn: true})
+                Alert.alert(
+                    'Check-In is Available',
+                    'Press OK to Check-in',
+                    [
+                        {text: 'OK', onPress: () => {
+                                this._submitClassCheckIn()
+                                    .then((data) => console.log(data.id))
+                                    .catch((error) => console.log(error))
+                                    .done();
+                                Alert.alert('You have successfully checked-in!');
+                                console.log('Check In Success');
+                                this._switchCheckInDisable();
+                                console.log('*************************************')
+                            },
+
+                        },
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')}
+
+                    ],
+                    { cancelable: true }
+                )
+                return true;
+            }else{
+                console.log('You need to be closer to the Rec Center to checkin *********************');
+                this.setState({goodToCheckIn: false})
+                return false;
+            }
+        }
+        catch(error){
+            console.log("_distanceUserFromRSC Error: ******************* " + error);
+        }
+
+    };
+
+    _timeCheckInControl = async (e) => {
+        try{
+            let current = moment().format();
+            let currentTime = moment(current).format('hh:mm:ss a');
+            let currentDay = moment(current).format('dddd');
+            console.log('Current: ' + current);
+            console.log('Current Day: ' + currentDay);
+            console.log('Current Time:' + currentTime);
+
+            //let classDays = ['Monday', 'Wednesday', 'Friday'];
+            let classDays = this.props.days;
+            let containsClassDay = (classDays.indexOf(currentDay) > -1);
+            console.log(containsClassDay);  //true or false
+
+            let classDate = await moment(e).format();
+            let classDateTime = moment(classDate).format('hh:mm:ss a');
+            console.log("class: " + classDate);
+            console.log(classDateTime);
+
+            let HH = moment.utc(moment(currentTime, "hh:mm:ss a").diff(moment(classDateTime, "HH:mm:ss a"))).format("HH");
+            let MM = moment.utc(moment(currentTime, "hh:mm:ss a").diff(moment(classDateTime, "HH:mm:ss a"))).format("mm");
+            console.log("HH: " + HH);
+            console.log("MM: " + MM);
+            let ZeroHour = parseInt(HH);
+            let ZeroMinute = parseInt(MM);
+
+            let differenceCurrentTimeToClassTime = moment(currentTime, 'hh:mm:ss a').from(moment(classDateTime, 'hh:mm:ss a'), "minutes");
+            console.log("Difference From Current Time to Class Time is: " + differenceCurrentTimeToClassTime);
+            let timeBoundary = parseInt(differenceCurrentTimeToClassTime);
+            console.log(timeBoundary);
+
+            if(containsClassDay === true){
+                console.log('Contains Class Day is True');
+                if(ZeroHour === 0 || ZeroHour === 23){
+                    console.log('Class is available for check-in within the hour');
+                    if(timeBoundary < 50 || ZeroMinute === 0 || ZeroMinute === 59){
+                        console.log('Class is available for check-in within 20 minutes of start time');
+                        console.log('Check-in for this class');
+                        this.setState({goodToCheckIn: true})
+                        return true;
+                    }else{
+                        console.log('Check-in Not Available: Must Check-in within a 20 minutes of class start time');
+                        return false;
+                    }
+                }else{
+                    console.log('Check-in Not Available: Must Check-in within a 20 minutes of class start time');
+                    return false;
+                }
+            }else{
+                console.log('Check-in Not Available: Check-in on Day of Class');
+                return false;
+            }
+        } catch (error) {
+            console.log('_timeCheckinControl Error: ' + error);
+        }
+
+    };
+
+    _checkinAvailable(e){
+        if(this._timeCheckInControl(e) === true){
+            if(this._distanceUserFromRSC() === true){
+                return true;
+            } else{
+                console.log('Checkin Not Available: Proximity Restraint.');
+                return false;
+            }
+
+        }else{
+            console.log('Checkin Not Available: Time Restraint.');
+            return false;
+        }
+    };
 
     render(){
         return(
@@ -72,19 +320,16 @@ class GroupFitnessClass extends React.Component{
                             <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
                                 {this.props.title}
                             </Text>
-
-                            <Text style={styles.time} numberOfLines={1} ellipsizeMode ={'tail'}>
-                                {this.props.time}
-                            </Text>
                         </View>
-
+                        <Text style={styles.time} numberOfLines={1} ellipsizeMode ={'tail'}>
+                            {this.props.time}
+                        </Text>
                         <Text style={styles.instructor} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.instructor}
                         </Text>
                         <Text style={styles.days} numberOfLines={2} ellipsizeMode ={'tail'}>
                             {this.props.days}
                         </Text>
-
                         <Text style={styles.location} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.location}
                         </Text>
@@ -109,21 +354,33 @@ class GroupFitnessClass extends React.Component{
                                 />
                                 <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Class Video</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity
-                                style={{alignItems: "center", marginRight: 50}}
-                                onPress={ () => Alert.alert(
-                                'Alert',
-                                'Do you want to check-in?',
-                                [
-                                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                                    {text: 'Yes', onPress: () => console.log('Yes, Check-in')}
-                                ],
-                                { cancelable: false }
-                            )}>
-                                <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'#fff'} />
-                                <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Check-In</Text>
-                            </TouchableOpacity>
+                            {this.state.goodToCheckIn === true
+                                ? (<TouchableOpacity
+                                    style={{alignItems: "center", marginRight: 50}}
+                                    disabled={this.state.checkInDisable}
+                                    onPress={() => this._distanceUserFromRSC()}
+                                >
+                                    <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'#fff'} />
+                                    <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Check-In</Text>
+                                </TouchableOpacity>)
+                                : (<TouchableOpacity
+                                    style={{alignItems: "center", marginRight: 50}}
+                                    disabled={false}
+                                    onPress={ () => {
+                                        Alert.alert(
+                                            'Alert',
+                                            'Check-In is not Available: Must Check-in within 20 minutes of class start time & be located at Rec Center',
+                                            [
+                                                {text: 'OK', onPress: () => console.log('OK Pressed')},
+                                            ],
+                                            { cancelable: true }
+                                        )
+                                    }}>
+                                    <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'#fff'} />
+                                    <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Check-In</Text>
+                                </TouchableOpacity>)
 
+                            }
                             <TouchableOpacity
                                 onPress={() => {this.showCommentModal(true)}}
                                 style={{alignItems: "center"}}>
@@ -131,8 +388,6 @@ class GroupFitnessClass extends React.Component{
                                 <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Comment</Text>
                             </TouchableOpacity>
                         </View>
-
-
                     </View>
                     <Modal
                         transparent={true}
@@ -199,11 +454,14 @@ class GroupFitnessClass extends React.Component{
             </View>
         );
     }
-}
-/*
 
-*/
-export default graphql(CreateClassCommentByUser)(GroupFitnessClass);
+}
+
+export default compose(
+    graphql(CreateClassCommentByUser, {name: 'CreateClassCommentByUser'}),
+    graphql(CreateClassCheckInByUser, {name: 'CreateClassCheckInByUser'})
+)(GroupFitnessClass);
+
 
 const styles = StyleSheet.create({
     commentBubble:{
@@ -325,12 +583,12 @@ const styles = StyleSheet.create({
         color: '#931414'
     },
     time: {
-        paddingRight: 5,
+        paddingLeft: 10,
         marginTop: 8,
         fontSize: 14,
         color: '#ACACAC',
-        position: 'absolute',
-        right: 0,
+        //position: 'absolute',
+        //right: 0,
     },
     instructor: {
         paddingLeft: 10,
@@ -399,4 +657,48 @@ const styles = StyleSheet.create({
             )}
         />
     </View>
+
+let text = 'Waiting ...';
+        if(this.state.errorMessage){
+            text = this.state.errorMessage;
+        }else if(this.state.location){
+            text = JSON.stringify(this.state.location);
+            console.log("lat2: " + JSON.stringify(this.state.location.coords.latitude));
+            console.log("long2: " + JSON.stringify(this.state.location.coords.longitude));
+            console.log("accuracy: " + JSON.stringify(this.state.location.coords.accuracy));
+
+        }
+
+        console.log('distance between coords: ' + this._distanceBetweenCoordinates(REC_LAT,REC_LONG,39.50302081706743, -84.7374604620363));
+        console.log('distance between state coords: ' + JSON.stringify(this._distanceBetweenCoordinates(REC_LAT, REC_LONG, this.state.userLatitude, this.state.userLongitude)));
+        console.log('havisine between coords: ' + JSON.stringify(this._haversineFormula_GlobeDistance(REC_LAT,REC_LONG, 39.50302081706743, -84.7374604620363)));
+        console.log('havisine between state coords: ' + JSON.stringify(this._haversineFormula_GlobeDistance(REC_LAT, REC_LONG, this.state.userLatitude, this.state.userLongitude)));
+
+onPress={ () => {
+                                        if(this._distanceUserFromRSC().then((data) => {return data}) === true){
+                                            Alert.alert(
+                                                'Check-In is Available',
+                                                'Press OK to Check-in',
+                                                [
+                                                    {text: 'OK', onPress: () => {
+                                                            this._submitClassCheckIn()
+                                                                .then((data) => console.log(data.id))
+                                                                .catch((error) => console.log(error))
+                                                                .done();
+                                                            Alert.alert('You have successfully checked-in!');
+                                                            console.log('Check In Success');
+                                                            this._switchCheckInDisable();
+                                                            console.log('*************************************')
+                                                        },
+
+                                                    },
+                                                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')}
+
+                                                ],
+                                                { cancelable: true }
+                                            )
+                                        }
+
+
+
 */

@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet, Dimensions, TouchableOpacity, Modal} from 'react-native';
+import {Platform, View, Text, StyleSheet, Dimensions, TouchableOpacity, Modal} from 'react-native';
 import {Ionicons, Entypo} from '@expo/vector-icons';
 import Logout from '../components/Logout';
 
@@ -12,14 +12,19 @@ class SettingsScreen extends React.Component{
         super(props);
         this.state={
             showHelpModal: false,
+
         };
     }
+
+
+
     helpModalToggle(visible){
         this.setState({showHelpModal: visible})
     }
 
 
     render(){
+
         return(
             <View style={styles.container}>
                 <View style={styles.boxOutter}>

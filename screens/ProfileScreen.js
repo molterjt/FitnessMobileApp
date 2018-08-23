@@ -30,6 +30,7 @@ const GET_USER = gql`
             workouts{title}
             memberships{title}
             classes{title}
+            checkins{classes{title, time, category{title}, createdAt}}
         }
     }
 `
@@ -113,7 +114,7 @@ class ProfileScreen extends React.Component{
                     lastName={User.lastName}
                     email={User.email}
                     dateOfBirth={User.dateOfBirth}
-                    classes={User.classes.map(({title}) => title).join(', ')}
+                    classes={User.checkins.map(({classes}) => classes.map((obj) => obj.title).join(', '))}
                     workouts={User.workouts.map(({title}) => title).join(', ')}
                     interests={User.interests.map(({title}) => title).join(', ')}
                 />

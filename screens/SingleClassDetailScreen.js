@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import GroupFitnessClass from '../components/GroupFitnessClass';
 import {FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
+import moment from 'moment';
 
 
 const SINGLE_CLASS_QUERY = gql`
@@ -16,6 +17,7 @@ const SINGLE_CLASS_QUERY = gql`
             id
             title
             time
+            startTime
             description
             location{buildingName, facilityName}
             days{name}
@@ -122,6 +124,9 @@ class SingleClassDetailScreen extends React.Component {
                     classCommentId={this.props.navigation.state.params.itemId}
                     userComment={this.props.userComment}
                     video={this.props.videoUrl}
+                    classStart={this.props.data.GroupFitClass.startTime}
+                    userCheckinId={queryUserId}
+                    classCheckinId={this.props.data.GroupFitClass.id}
 
                 />
                 <View style={{flexDirection: "row", justifyContent:"center", alignSelf: "center",
