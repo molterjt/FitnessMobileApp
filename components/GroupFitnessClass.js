@@ -195,7 +195,7 @@ class GroupFitnessClass extends React.Component{
             //let userDistance = await this._distanceBetweenCoordinates(REC_LAT, REC_LONG, 39.50302081706743, -84.7374604620363);
             console.log('UserDistance: ' + userDistance);
 
-            if(userDistance < 200 + userLocationAccuracy){
+            if(userDistance < 70 + userLocationAccuracy){
                 console.log('You are good; proximal enough to checkin*************************');
                 this.setState({goodToCheckIn: true})
                 Alert.alert(
@@ -267,7 +267,7 @@ class GroupFitnessClass extends React.Component{
                 console.log('Contains Class Day is True');
                 if(ZeroHour === 0 || ZeroHour === 23){
                     console.log('Class is available for check-in within the hour');
-                    if(timeBoundary < 50 || ZeroMinute === 0 || ZeroMinute === 59){
+                    if(timeBoundary < 21 || ZeroMinute === 0 || ZeroMinute === 59){
                         console.log('Class is available for check-in within 20 minutes of start time');
                         console.log('Check-in for this class');
                         this.setState({goodToCheckIn: true})

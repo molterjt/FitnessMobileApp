@@ -1,12 +1,46 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image,} from 'react-native';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
+import {Ionicons} from '@expo/vector-icons';
 import {withNavigation} from 'react-navigation';
+import gql from 'graphql-tag';
+import {graphql, Mutation, compose } from 'react-apollo';
+
+const CreateWorkoutCheckIn = gql`
+    mutation($checked: Boolean, $workoutIdsArr: [ID!], $userIdsArr: [ID!]){
+        createCheckin(checked: $checked, workoutsIds: $workoutIdsArr, usersIds: $userIdsArr){
+            id
+            createdAt
+            workouts{title}
+        }
+    }    
+`
+
+
+
 
 class Workout extends React.Component{
     constructor(props){
         super(props);
+        this.state={
+            checked: true,
+        };
+
+        this._submitClassCheckIn = this._submitClassCheckIn.bind(this);
     }
+
+    _submitClassCheckIn = async () => {
+        const {checked} = this.state;
+        await this.props.CreateWorkoutCheckInByUser({
+            variables: {
+                checked: checked,
+                userIdsArr: [this.props.userCheckinId],
+                workoutIdsArr: [this.props.workoutCheckinId],
+            }
+        });
+        console.log('Workout CheckIn Mutation Complete')
+
+    };
+
     render(){
         return(
             <View style={styles.rowCard} key={this.props.id}>
@@ -33,8 +67,26 @@ class Workout extends React.Component{
 
                         <View key={this.props.exercises.id} style={styles.exerciseCard}>
                             {this.props.exercises}
-                        </View>
 
+                        </View>
+                        <View style={{alignItems:'center', justifyContent: 'center', alignContent: 'center',
+                            textAlign: 'center', display: 'center', alignSelf: 'center', marginTop: 10}}>
+                            <TouchableOpacity
+                                style={{alignSelf: 'center', alignItems: 'center', textAlign: 'center',
+                                    alignContent: 'center',
+                                    justifyContent: 'center',
+                                }}
+                                disabled={false}
+                                onPress={() => {
+                                    console.log('Complete Workout Button Press');
+                                    this._submitClassCheckIn()}}
+                            >
+                                <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'red'} />
+                                <Text style={{
+                                    alignContent: 'center',
+                                    justifyContent: 'center',color:"#fff", alignSelf:'center', fontSize: 10, marginTop: 3}}>Complete</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -42,7 +94,8 @@ class Workout extends React.Component{
     }
 }
 
-export default withNavigation(Workout);
+export default compose(graphql(CreateWorkoutCheckIn, {name: 'CreateWorkoutCheckInByUser'}))(withNavigation(Workout));
+
 
 const styles = StyleSheet.create({
 

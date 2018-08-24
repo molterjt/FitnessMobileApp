@@ -15,13 +15,13 @@ class UserProfile extends React.Component{
     }
     render(){
         return(
-            <View style={{marginTop: 110, marginBottom: 60}}>
+            <View style={{ padding: 5}}>
 
                 <View style={styles.rowContainer}>
 
                     <View style={styles.rowText}>
                         <TouchableOpacity
-                            style={{alignItems:'flex-end'}}
+                            style={{alignItems:'flex-end', paddingRight: 16}}
                             onPress={() => this.props.navigation.navigate('Edit', {itemId: this.props.id})}>
                             <Entypo
                                 name={"edit"} type={"MaterialIcons"} size={20} color={'#29282A'}
@@ -40,37 +40,18 @@ class UserProfile extends React.Component{
                         <Text style={styles.location} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.dateOfBirth}
                         </Text>
+                        <View sytle={{paddingTop: 8}}>
+                            <Text style={styles.headText} numberOfLines={2}>Interests: </Text>
+                            <Text style={styles.supportText}>
+                                {this.props.interests}
+                            </Text>
+                        </View>
                     </View>
-                </View>
-                <View >
-                    <ScrollView style={styles.rowText}>
-                        <View style={styles.rowContainer} >
-                            <View >
-                                <Text style={styles.headText} numberOfLines={2}>Workouts: </Text>
-                                <Text style={styles.supportText}>
-                                    {this.props.workouts}
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.rowContainer}>
-                            <View >
-                                <Text style={styles.headText} numberOfLines={2}>Classes: </Text>
-                                <Text style={styles.supportText}>
-                                    {this.props.classes}
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.rowContainer}>
-                            <View >
-                                <Text style={styles.headText} numberOfLines={2}>Interests: </Text>
-                                <Text style={styles.supportText}>
-                                    {this.props.interests}
-                                </Text>
-                            </View>
-                        </View>
-                    </ScrollView>
+
+
                 </View>
             </View>
+
         );
     }
 }
@@ -78,7 +59,6 @@ export default withNavigation(UserProfile);
 
 const styles = StyleSheet.create({
     rowContainer: {
-        flexDirection: 'row',
         backgroundColor: '#FFF',
         height: 'auto',
         padding: 10,
@@ -91,9 +71,18 @@ const styles = StyleSheet.create({
         shadowOpacity: 1.0,
         shadowRadius: 1
     },
+    rowText: {
+        flex: 1,
+        height: 'auto',
+        width: WIDTH*.95,
+        paddingBottom: 20,
+        paddingLeft: 10,
+        paddingRight: 10
+    },
     headText: {
         paddingLeft: 10,
-        paddingTop: 5,
+        paddingTop: 8,
+
         fontSize: 16,
         fontWeight: 'bold',
         color: '#777'
@@ -121,14 +110,7 @@ const styles = StyleSheet.create({
         height: 'auto',
         width: 120
     },
-    rowText: {
-        flex: 1,
-        height: 'auto',
-        width: WIDTH*.7,
-        paddingBottom: 20,
-        paddingLeft: 10,
-        paddingRight: 10
-    },
+
     categoryThumb:{
         width: 220,
         height: 175,

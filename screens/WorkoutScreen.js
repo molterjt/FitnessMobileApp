@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, View, TouchableOpacity, ScrollView, StyleSheet, ActivityIndicator} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView, StyleSheet, ActivityIndicator, AsyncStorage} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
@@ -22,6 +22,8 @@ const GET_WORKOUTS = gql`
     }
 `
 
+let queryUserId;
+
 class WorkoutView extends React.Component{
 
     constructor() {
@@ -33,6 +35,16 @@ class WorkoutView extends React.Component{
         console.log("exercise button press");
         this.props.navigation.navigate("ExerciseDetail", {itemId: exercise});
     };
+
+    componentDidMount(){
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = JSON.parse(dataId);
+            this.setState({currentUserId: queryUserId, isLoading: false});
+            console.log("queryUserId === " + queryUserId);
+            return queryUserId;
+        }).done();
+
+    }
 
     render() {
         const { loading, allWorkouts } = this.props.data;
@@ -80,9 +92,9 @@ class WorkoutView extends React.Component{
                                 )
                             )}
                             description={obj.description}
-                            authorFirstName={obj.author.alsoInstructor.map(({firstName}) => firstName)}
-                            authorId={obj.author.alsoInstructor.map(({id}) => id)}
                             image={obj.imageUrl}
+                            userCheckinId={queryUserId}
+                            workoutCheckinId={obj.id}
                         />
                     )
 

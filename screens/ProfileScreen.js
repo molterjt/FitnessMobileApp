@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, AsyncStorage, Text, View, ActivityIndicator,
-    StatusBar,Image,FlatList, StyleSheet, TouchableOpacity}
-from 'react-native';
+import {
+    Button, AsyncStorage, Text, View, ActivityIndicator, ScrollView,
+    TouchableOpacity, Dimensions
+} from 'react-native';
 import {Ionicons } from '@expo/vector-icons';
 import UserProfile from '../components/UserProfile';
 import Logout from '../components/Logout';
 import gql from "graphql-tag";
-import {graphql, Query} from "react-apollo";
-import Modal from 'react-native-modal';
-import {AUTH_TOKEN} from "../constants/auth";
+import {graphql} from "react-apollo";
+
+import moment from 'moment';
 
 
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
 
 
@@ -27,10 +30,10 @@ const GET_USER = gql`
             dateOfBirth
             imageUrl
             interests{title}
-            workouts{title}
+            workouts{title, days{name}, type{title}}
             memberships{title}
             classes{title}
-            checkins{classes{title, time, category{title}, createdAt}}
+            checkins{classes{title, time, category{title}}, workouts{id, title, type{title}, days{name}}, createdAt}
         }
     }
 `
@@ -103,30 +106,73 @@ class ProfileScreen extends React.Component{
             )
         }
         return(
-            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#931414',
-                alignItems: 'center', marginBottom: 100, paddingTop: 30,
-            }}>
-
-                <UserProfile
-                    id={User.id}
-                    username={User.username}
-                    firstName={User.firstName}
-                    lastName={User.lastName}
-                    email={User.email}
-                    dateOfBirth={User.dateOfBirth}
-                    classes={User.checkins.map(({classes}) => classes.map((obj) => obj.title).join(', '))}
-                    workouts={User.workouts.map(({title}) => title).join(', ')}
-                    interests={User.interests.map(({title}) => title).join(', ')}
-                />
-                <TouchableOpacity
-                    onPress={ () => this.props.data.refetch({id: queryUserId})}
-                    style={{alignItems: 'center', paddingBottom: 60}}
-                >
-                    <Ionicons
-                        name={"ios-refresh"} type={"Ionicons"} size={35} color={'midnightblue'}
+            <View style={{flex: 1, backgroundColor: '#931414', marginBottom: 0, paddingTop: 0}}>
+                <View style={{width: WIDTH, backgroundColor: 'white', borderBottomColor: '#000', borderBottomWidth:1}}>
+                    <TouchableOpacity
+                        onPress={ () => this.props.data.refetch({id: queryUserId})}
+                        style={{alignItems: 'center',}}
+                    >
+                        <Ionicons
+                            name={"ios-refresh"} type={"Ionicons"} size={35} color={'midnightblue'}
+                        />
+                        <Text style={{color:'midnightblue'}}>Refresh</Text>
+                    </TouchableOpacity>
+                </View>
+                <ScrollView style={{padding: 5, paddingBottom:20, marginBottom: 10}}>
+                    <UserProfile
+                        id={User.id}
+                        username={User.username}
+                        firstName={User.firstName}
+                        lastName={User.lastName}
+                        email={User.email}
+                        dateOfBirth={User.dateOfBirth}
+                        workouts={User.workouts.map(({title}) => title).join(', ')}
+                        interests={User.interests.map(({title}) => title).join(', ')}
                     />
-                    <Text style={{color:'midnightblue'}}>Refresh</Text>
-                </TouchableOpacity>
+                    <View style={{borderRadius: 4,
+                        shadowOffset:{  width: 1,  height: 1,  },
+                        shadowColor: '#CCC',backgroundColor: '#fff', margin:5, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
+                        <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>Workout Completion History:</Text>
+                    </View>
+                    {User.checkins.map(({workouts, createdAt}) => (
+                        workouts.map((obj, index) => (
+                            <View style={{borderRadius: 4,
+                                shadowOffset:{  width: 1,  height: 1,  },
+                                shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
+                                <View style={{flexDirection: 'row', display: 'flex'}}>
+                                    <Text style={{fontWeight: 'bold', color: '#931414'}}>{obj.title}</Text>
+                                </View>
+                                <Text style={{fontStyle: 'italic'}}>Type: {obj.type.map(({title}) => title).join(', ')}</Text>
+                                <Text style={{fontStyle: 'italic'}}>Days: {obj.days.map(({name}) => name).join(', ')}</Text>
+                                <Text style={{fontStyle: 'italic'}}>TimeStamp: {moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm:ss a')}</Text>
+
+                            </View>
+                        ))
+
+
+                    ))}
+                    <View style={{borderRadius: 4,
+                        shadowOffset:{  width: 1,  height: 1,  },
+                        shadowColor: '#CCC',backgroundColor: '#fff', margin:5, marginTop: 10, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
+                        <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>GroupFit Class Check-In History:</Text>
+                    </View>
+                    {User.checkins.map(({classes, createdAt}) => (
+                        classes.map((obj, index) => (
+                            <View style={{borderRadius: 4,
+                                shadowOffset:{  width: 1,  height: 1,  },
+                                shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
+                                <View style={{flexDirection: 'row', display: 'flex'}}>
+                                    <Text style={{fontWeight: 'bold', color: '#931414'}}>{obj.title}</Text>
+                                    <Text style={{position:'absolute', right: 0, fontSize: 12}}>{obj.time}</Text>
+                                </View>
+
+                                <Text style={{fontStyle: 'italic'}}>Type: {obj.category.map(({title}) => title).join(', ')}</Text>
+                                <Text style={{fontStyle: 'italic'}}>TimeStamp: {moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm:ss a')}</Text>
+                            </View>
+                        ))
+                    ))}
+
+                </ScrollView>
             </View>
         );
     }
@@ -151,7 +197,3 @@ export default graphql(GET_USER,{
     }
 })(ProfileScreen);
 
-
-const styles = StyleSheet.create({
-
-});
