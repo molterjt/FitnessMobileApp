@@ -11,26 +11,137 @@ import {Entypo} from '@expo/vector-icons';
 import Swiper from 'react-native-swiper';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
 
-
+const ALL_DAYS_SCHEDULE_QUERY = gql`
+    query{
+        Mondays: allGroupFitClasses(
+            filter:{
+                days_some: {name_contains: "Monday"},
+                isPublished: true,
+            }, orderBy: startTime_ASC){
+            id
+            title
+            time
+            cancelled
+            location{buildingName, facilityName}
+            days{name}
+            instructor{firstName,lastName,email, id}
+            imageUrl
+            isPublished
+        }
+        Tuesdays: allGroupFitClasses(
+            filter:{
+                days_some: {name_contains: "Tuesday"},
+                isPublished: true,
+            }, orderBy: startTime_ASC){
+            id
+            title
+            time
+            cancelled
+            location{buildingName, facilityName}
+            days{name}
+            instructor{firstName,lastName,email, id}
+            imageUrl
+            isPublished
+        }
+        Wednesdays: allGroupFitClasses(
+            filter:{
+                days_some: {name_contains: "Wednesday"},
+                isPublished: true,
+            }, orderBy: startTime_ASC){
+            id
+            title
+            time
+            cancelled
+            location{buildingName, facilityName}
+            days{name}
+            instructor{firstName,lastName,email, id}
+            imageUrl
+            isPublished
+        }
+        Thursdays: allGroupFitClasses(
+            filter:{
+                days_some: {name_contains: "Thursday"},
+                isPublished: true,
+            }, orderBy: startTime_ASC){
+            id
+            title
+            time
+            cancelled
+            location{buildingName, facilityName}
+            days{name}
+            instructor{firstName,lastName,email, id}
+            imageUrl
+            isPublished
+        }
+        Fridays: allGroupFitClasses(
+            filter:{
+                days_some: {name_contains: "Friday"},
+                isPublished: true,
+            }, orderBy: startTime_ASC){
+            id
+            title
+            time
+            cancelled
+            location{buildingName, facilityName}
+            days{name}
+            instructor{firstName,lastName,email, id}
+            imageUrl
+            isPublished
+        }
+        Saturdays: allGroupFitClasses(
+            filter:{
+                days_some: {name_contains: "Saturday"},
+                isPublished: true,
+            }, orderBy: startTime_ASC){
+            id
+            title
+            time
+            cancelled
+            location{buildingName, facilityName}
+            days{name}
+            instructor{firstName,lastName,email, id}
+            imageUrl
+            isPublished
+        }
+        Sundays: allGroupFitClasses(
+            filter:{
+                days_some: {name_contains: "Sunday"},
+                isPublished: true,
+            }, orderBy: startTime_ASC){
+            id
+            title
+            time
+            cancelled
+            location{buildingName, facilityName}
+            days{name}
+            instructor{firstName,lastName,email, id}
+            imageUrl
+            isPublished
+        }
+    }
+`
 
 class AllGFClassView extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             items: [],
+            loading: true,
         };
     }
 
     componentDidMount() {
+        setTimeout(() => this.setState({loading: false}), 800);
+
         this.setState({
             items: [
-                { title: 'Monday', data: this.props.MondayScheduleQuery },
-                { title: 'Tuesday', data: this.props.TuesdayScheduleQuery },
-                { title: 'Wednesday',data: this.props.WednesdayScheduleQuery },
-                { title: 'Thursday', data: this.props.ThursdayScheduleQuery },
-                { title: 'Friday', data: this.props.FridayScheduleQuery },
-                { title: 'Saturday', data: this.props.SaturdayScheduleQuery },
-                { title: 'Sunday', data: this.props.SundayScheduleQuery },
+                { title: 'Monday', data: this.props.Mondays },
+                { title: 'Tuesday', data: this.props.Tuesdays },
+                { title: 'Wednesday',data: this.props.Wednesdays },
+                { title: 'Thursday', data: this.props.Thursdays },
+                { title: 'Friday', data: this.props.Fridays },
+                { title: 'Saturday', data: this.props.Saturdays },
+                { title: 'Sunday', data: this.props.Sundays },
             ],
             position: 0,
         })
@@ -50,28 +161,34 @@ class AllGFClassView extends React.Component {
                         location={item.location.buildingName + '\n' + item.location.facilityName}
                         thumbnail={item.imageUrl}
                         cancel={item.cancelled}
-                        //days={item.days.map(({name}) => name).join('|')}
                     />
                 </TouchableOpacity>
             </View>
 
         )
-    }
+    };
+
+    /*
+       const { mondays} = this.props.MondayScheduleQuery;
+       const { tuesdays} = this.props.TuesdayScheduleQuery;
+       const { wednesdays } = this.props.WednesdayScheduleQuery;
+       const {thursdays } = this.props.ThursdayScheduleQuery;
+       const {fridays} = this.props.FridayScheduleQuery;
+       const {saturdays} = this.props.SaturdayScheduleQuery;
+       const {sundays} = this.props.SundayScheduleQuery;
+       const {items} = this.state;
+       */
+
     _keyExtractor = (item) => item.id;
 
     render() {
+        this.props.data.refetch({});
         const {loading, error} = this.props;
-        const { mondays} = this.props.MondayScheduleQuery;
-        const { tuesdays} = this.props.TuesdayScheduleQuery;
-        const { wednesdays } = this.props.WednesdayScheduleQuery;
-        const {thursdays } = this.props.ThursdayScheduleQuery;
-        const {fridays} = this.props.FridayScheduleQuery;
-        const {saturdays} = this.props.SaturdayScheduleQuery;
-        const {sundays} = this.props.SundayScheduleQuery;
-        const {items} = this.state;
+        const {Mondays, Tuesdays, Wednesdays, Thursdays, Fridays, Saturdays, Sundays} = this.props.data;
 
-        if(loading){
-            return  <ActivityIndicator size="large" color="#0000ff" />
+
+        if(loading || this.state.loading === true){
+            return  <ActivityIndicator size="large" color="#931414" style={{marginTop: 20}} />
         }
         if(error){
             console.log(error);
@@ -85,8 +202,8 @@ class AllGFClassView extends React.Component {
                 style={styles.wrapper}
                 index={this.state.position}
                 showButtons={false}
-                dot={<View style={{backgroundColor: 'gray', width: 10, height: 10, borderRadius: 7, marginLeft: 5, marginRight: 5}} />}
-                activeDot={<View style={{backgroundColor: '#7dd2ff', width: 12, height: 12, borderRadius: 7, marginLeft: 5, marginRight: 5}} />}
+                dot={<View style={{backgroundColor: '#a5b1b2', width: 10, height: 10, borderRadius: 7, marginLeft: 5, marginRight: 5}} />}
+                activeDot={<View style={{backgroundColor: '#931414', width: 12, height: 12, borderRadius: 7, marginLeft: 5, marginRight: 5}} />}
                 paginationStyle={{bottom: 15}}
             >
                 <View  style={styles.daySlide}>
@@ -104,7 +221,7 @@ class AllGFClassView extends React.Component {
                         />
                     </View>
                     <FlatList
-                        data={mondays}
+                        data={Mondays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
                     />
@@ -126,10 +243,9 @@ class AllGFClassView extends React.Component {
                         />
                     </View>
                     <FlatList
-                        data={tuesdays}
+                        data={Tuesdays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
-
                     />
                     <View style={{margin:25}}>
                     </View>
@@ -149,7 +265,7 @@ class AllGFClassView extends React.Component {
                         />
                     </View>
                     <FlatList
-                        data={wednesdays}
+                        data={Wednesdays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
                     />
@@ -171,7 +287,7 @@ class AllGFClassView extends React.Component {
                         />
                     </View>
                     <FlatList
-                        data={thursdays}
+                        data={Thursdays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
                     />
@@ -193,7 +309,7 @@ class AllGFClassView extends React.Component {
                         />
                     </View>
                     <FlatList
-                        data={fridays}
+                        data={Fridays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
                     />
@@ -215,7 +331,7 @@ class AllGFClassView extends React.Component {
                         />
                     </View>
                     <FlatList
-                        data={saturdays}
+                        data={Saturdays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
                     />
@@ -237,7 +353,7 @@ class AllGFClassView extends React.Component {
                         />
                     </View>
                     <FlatList
-                        data={sundays}
+                        data={Sundays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
                     />
@@ -251,30 +367,18 @@ class AllGFClassView extends React.Component {
 AllGFClassView.propTypes = {
     loading: PropTypes.bool,
     error: PropTypes.object,
-    mondays: PropTypes.array,
-    tuesdays: PropTypes.array,
-    wednesdays: PropTypes.array,
-    thursdays: PropTypes.array,
-    fridays: PropTypes.array,
-    saturdays: PropTypes.array,
-    sundays: PropTypes.array,
+    Mondays: PropTypes.array,
+    Tuesdays: PropTypes.array,
+    Wednesdays: PropTypes.array,
+    Thursdays: PropTypes.array,
+    Fridays: PropTypes.array,
+    Saturdays: PropTypes.array,
+    Sundays: PropTypes.array,
 
 };
 
-const GET_ALL_GF_CLASSES = gql`
-    query{
-        allGroupFitClasses{
-            id
-            title
-            time
-            location{buildingName, facilityName}
-            days{name}
-            instructor{firstName,lastName,email,id}
-            imageUrl
-        }
-    }
-`
 
+/*
 const MONDAY_QUERY = gql`
     query MondayScheduleQuery{
         mondays: allGroupFitClasses(filter:{
@@ -405,9 +509,12 @@ const SUNDAY_QUERY = gql`
 
 `
 
+*/
 
+const FullClassSCheduleWithData = graphql(ALL_DAYS_SCHEDULE_QUERY)(AllGFClassView);
+
+/*
 const AllGFClassViewWithData = compose(
-
     graphql(TUESDAY_QUERY, {name: 'TuesdayScheduleQuery'}),
     graphql(WEDNESDAY_QUERY, {name: 'WednesdayScheduleQuery'}),
     graphql(THURSDAY_QUERY, {name: 'ThursdayScheduleQuery'}),
@@ -417,7 +524,7 @@ const AllGFClassViewWithData = compose(
     graphql(MONDAY_QUERY, {name: 'MondayScheduleQuery'}),
 
 )(AllGFClassView);
-
+*/
 
 class ScheduleScreen extends React.Component{
     static navigationOptions = ({ navigation }) => {
@@ -435,6 +542,7 @@ class ScheduleScreen extends React.Component{
                     <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
                 </TouchableOpacity>
             ),
+
         };
     };
 
@@ -444,7 +552,8 @@ class ScheduleScreen extends React.Component{
     render(){
 
         return(
-            <AllGFClassViewWithData navigation = {this.props.navigation} />
+            //<AllGFClassViewWithData navigation = {this.props.navigation} />
+            <FullClassSCheduleWithData navigation = {this.props.navigation} />
         );
     }
 }
@@ -453,20 +562,21 @@ export default ScheduleScreen;
 
 const styles = StyleSheet.create({
     dayScheduleContainer: {
-        display: 'flex', flexDirection: 'row',
+        display: 'flex',
+        flexDirection: 'row',
         justifyContent: 'center',
         backgroundColor: '#931414'
     },
     wrapper:{
-        marginBottom: 30,
-        paddingBottom:30,
+        marginBottom: 20,
+        paddingBottom:20,
         backgroundColor: 'transparent',
     },
     daySlide:{
         flex: 1,
         justifyContent: 'center',
         backgroundColor: 'transparent',
-        borderColor: '#931414',
+        //borderColor: '#931414',
         //backgroundColor: '#cdcdcd',
 
     },
@@ -489,170 +599,3 @@ const styles = StyleSheet.create({
     },
 });
 
-
-/*
-{this.state.items.map((item, key) => (
-                        <View key={key} style={item.css}>
-                            <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#343434'}}>
-                                <Entypo
-                                    name={"chevron-thin-left"} type={"Entypo"}
-                                    size={25} color={'#ffffff'}
-                                    style={{marginTop: 6, marginRight: 35 }}
-                                />
-                                <Text style={styles.text}>{item.title}</Text>
-                                <Entypo
-                                    name={"chevron-thin-right"} type={"Entypo"}
-                                    size={25} color={'#ffffff'}
-                                    style={{marginTop: 6, marginLeft: 35}}
-                                />
-                            </View>
-
-                            <FlatList
-                                data={this.props.data.allGroupFitClasses}
-                                keyExtractor={this._keyExtractor}
-                                renderItem={this._renderItem}
-                            />
-                            <View style={{margin:25}}>
-                            </View>
-
-                        </View>
-                    ))}
-*/
-
-
-/*
-<View  style={styles.daySlide}>
-                        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#343434'}}>
-                            <Entypo
-                                name={"chevron-thin-left"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginRight: 35 }}
-                            />
-                            <Text style={styles.text}>Tuesday</Text>
-                            <Entypo
-                                name={"chevron-thin-right"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginLeft: 35}}
-                            />
-                        </View>
-
-                        <FlatList
-                            data={tuesdays}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-
-                        />
-                        <View style={{margin:25}}>
-                        </View>
-                    </View>
-                    <View  style={styles.daySlide}>
-                        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#343434'}}>
-                            <Entypo
-                                name={"chevron-thin-left"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginRight: 35 }}
-                            />
-                            <Text style={styles.text}>Wednesday</Text>
-                            <Entypo
-                                name={"chevron-thin-right"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginLeft: 35}}
-                            />
-                        </View>
-                        <FlatList
-                            data={wednesdays}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                        />
-                        <View style={{margin:25}}>
-                        </View>
-                    </View>
-                    <View  style={styles.daySlide}>
-                        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#343434'}}>
-                            <Entypo
-                                name={"chevron-thin-left"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginRight: 35 }}
-                            />
-                            <Text style={styles.text}>Thursday</Text>
-                            <Entypo
-                                name={"chevron-thin-right"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginLeft: 35}}
-                            />
-                        </View>
-                        <FlatList
-                            data={thursdays}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                        />
-                        <View style={{margin:25}}>
-                        </View>
-                    </View>
-                    <View  style={styles.daySlide}>
-                        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#343434'}}>
-                            <Entypo
-                                name={"chevron-thin-left"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginRight: 35 }}
-                            />
-                            <Text style={styles.text}>Friday</Text>
-                            <Entypo
-                                name={"chevron-thin-right"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginLeft: 35}}
-                            />
-                        </View>
-                        <FlatList
-                            data={fridays}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                        />
-                        <View style={{margin:25}}>
-                        </View>
-                    </View>
-                    <View  style={styles.daySlide}>
-                        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#343434'}}>
-                            <Entypo
-                                name={"chevron-thin-left"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginRight: 35 }}
-                            />
-                            <Text style={styles.text}>Saturday</Text>
-                            <Entypo
-                                name={"chevron-thin-right"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginLeft: 35}}
-                            />
-                        </View>
-                        <FlatList
-                            data={saturdays}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                        />
-                        <View style={{margin:25}}>
-                        </View>
-                    </View>
-                    <View  style={styles.daySlide}>
-                        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#343434'}}>
-                            <Entypo
-                                name={"chevron-thin-left"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginRight: 35 }}
-                            />
-                            <Text style={styles.text}>Sunday</Text>
-                            <Entypo
-                                name={"chevron-thin-right"} type={"Entypo"}
-                                size={25} color={'#ffffff'}
-                                style={{marginTop: 6, marginLeft: 35}}
-                            />
-                        </View>
-                        <FlatList
-                            data={sundays}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                        />
-                        <View style={{margin:25}}>
-                        </View>
-                    </View>
-*/

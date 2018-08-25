@@ -79,10 +79,14 @@ const styles = StyleSheet.create({
     thumbnail: {
         flex: 1,
         height: undefined,
-        width: '100%'
+        width: 200,
+        backgroundColor: '#fff',
+        borderColor: '#000',
+        borderWidth: 1,
+        borderRadius: 15,
     },
     rowText: {
-        flex: 4,
+        flex: 2,
         flexDirection: 'column'
     }
 });

@@ -179,7 +179,7 @@ class Login extends React.Component{
                     resizeMode='cover'
                 >
                     <View style={styles.overlay}/>
-                    <View style={{marginTop: 40}}>
+                    <View style={{marginTop: 10}}>
                         <View style={styles.header}>
                             <Text style={styles.headerText}>Miami Rec Fitness</Text>
                         </View>
@@ -194,6 +194,7 @@ class Login extends React.Component{
                                     }}
                                     onBlur={() => this.setState({graphQL_Error: null})}
                                     type={'text'}
+                                    accessibilityLabel={'Username field for Registration'}
                                     placeholder={'Choose your username'}
                                     style={styles.textInput}
                                     autoCapitalize={'none'}
@@ -493,6 +494,6 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         backgroundColor: 'grey',
-        opacity: 0.25
+        opacity: 0.2
     }
 });

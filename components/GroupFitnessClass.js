@@ -317,9 +317,23 @@ class GroupFitnessClass extends React.Component{
                 <View style={styles.rowContainer}>
                     <View style={styles.rowText}>
                         <View style={{flex: 1, display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-                            <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
-                                {this.props.title}
-                            </Text>
+                            <View style={{justifyContent:'flex-start'}}>
+                                <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
+                                    {this.props.title}
+                                </Text>
+                            </View>
+                            <View style = {{position: 'absolute', right: 0, alignItems: 'center'}}>
+                                <TouchableOpacity
+                                    style={{marginBottom: 0, marginTop: 1,  textAlign:'center', justifyContent:"center", alignItems:"center"}}
+                                    onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
+                                    <MaterialCommunityIcons
+                                        name={"checkbox-marked-circle-outline"}
+                                        size={30}
+                                        color={'#fff'}
+                                    />
+                                    <Text style={{color: "#fff", fontSize: 10, marginTop: 1, alignSelf: 'center'}}>Register</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <Text style={styles.time} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.time}
@@ -361,8 +375,8 @@ class GroupFitnessClass extends React.Component{
                                     disabled={this.state.checkInDisable}
                                     onPress={() => this._distanceUserFromRSC()}
                                 >
-                                    <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'#fff'} />
-                                    <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Check-In</Text>
+                                    <MaterialCommunityIcons name={"target"} size={36} color={'#fff'} />
+                                    <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 0}}>Check-In</Text>
                                 </TouchableOpacity>)
                                 : (<TouchableOpacity
                                     style={{alignItems: "center", marginRight: 50}}
@@ -377,8 +391,8 @@ class GroupFitnessClass extends React.Component{
                                             { cancelable: true }
                                         )
                                     }}>
-                                    <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'#fff'} />
-                                    <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Check-In</Text>
+                                    <MaterialCommunityIcons name={"target"} size={36} color={'#fff'} />
+                                    <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 0}}>Check-In</Text>
                                 </TouchableOpacity>)
 
                             }
@@ -417,7 +431,6 @@ class GroupFitnessClass extends React.Component{
                                     underlineColorAndroid={'transparent'}
                                     autoCorrect={true}
                                 />
-
                                 <TouchableOpacity
                                     onPress={ () => this._createComment()}
                                     style={styles.formButton}
@@ -464,8 +477,8 @@ class GroupFitnessClass extends React.Component{
 
 export default compose(
     graphql(CreateClassCommentByUser, {name: 'CreateClassCommentByUser'}),
-    graphql(CreateClassCheckInByUser, {name: 'CreateClassCheckInByUser'})
-)(GroupFitnessClass);
+    graphql(CreateClassCheckInByUser, {name: 'CreateClassCheckInByUser'}),
+)(withNavigation(GroupFitnessClass));
 
 
 const styles = StyleSheet.create({

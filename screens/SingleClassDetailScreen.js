@@ -97,7 +97,7 @@ class SingleClassDetailScreen extends React.Component {
         console.log('queryUserId:  ' + queryUserId);
         const { data: { loading, error, GroupFitClass } } = this.props;
         if(loading){
-            return  <ActivityIndicator size="large" color='blue' />
+            return  <ActivityIndicator size="large" color='#931414' style={{marginTop: 20}} />
         }
         if(error) {
             return (
