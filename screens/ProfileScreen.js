@@ -33,7 +33,7 @@ const GET_USER = gql`
             workouts{title, days{name}, type{title}}
             memberships{title}
             classes{title}
-            checkins{classes{title, time, category{title}}, workouts{id, title, type{title}, days{name}}, createdAt}
+            checkins(orderBy: createdAt_DESC){classes{title, time, category{title}}, workouts{id, title, type{title}, days{name}}, createdAt}
         }
     }
 `

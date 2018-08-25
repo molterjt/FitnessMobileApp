@@ -1,10 +1,20 @@
 {
   "expo": {
+    "name": "Miami Rec Fitness App Test",
+    "icon": "./assets/images/MiamiFitnessSplash.png",
+    "version": "1.1.0",
+    "slug": "Miami-Rec-Fit-App",
     "sdkVersion": "25.0.0",
-    "orientation": "portrait"
-    //"splash": {
-     // "image": "./assets/images/MiamiFitness.png",
-      //"backgroundColor": "#29282A"
-    //}
+    "orientation": "portrait",
+    "splash": {
+      "image": "./assets/images/MiamiFitnessSplash.png",
+      "backgroundColor": "#000"
+    },
+    "ios": {
+      "bundleIdentifier": "com.JeffreyT513.fitApp"
+    },
+    "android": {
+      "package": "com.JeffreyT513.fitApp"
+    }
   }
 }

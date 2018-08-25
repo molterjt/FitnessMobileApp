@@ -25,7 +25,7 @@ const SINGLE_CLASS_QUERY = gql`
             imageUrl
             videoUrl
             category{title}
-            comments(orderBy: createdAt_DESC){content, userComment{username, id}}
+            comments(orderBy: createdAt_DESC){content, userComment{username, id}, createdAt}
         }
     }
 `
@@ -55,8 +55,7 @@ const ClassComments = ({id}) => (
                     <View style={{marginTop: 10}}/>
                     {data.GroupFitClass.comments.map((obj) => (
                         <View style={styles.commentContainer}>
-                            <Text
-                                style={styles.commentText}>{obj.content} {"\n"}~{'[' + obj.userComment.username + ']'}</Text>
+                            <Text style={styles.commentText}>{obj.content} {"\n"}~{'[' + obj.userComment.username + ' @ ' + moment(obj.createdAt).format("M/D/Y hh:mm a") +  ']'}</Text>
                         </View>
                     ))}
                 </ScrollView>
@@ -157,7 +156,7 @@ class SingleClassDetailScreen extends React.Component {
                 </View>
                 <Modal
                     transparent={true}
-                    animationType={"slide"}
+                    animationType={"none"}
                     visible={this.state.commentModalVisible}
                     onRequestClose={() => {this.showModal(!this.state.commentModalVisible)} }
                 >

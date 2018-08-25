@@ -103,7 +103,7 @@ class SingleInstructorDetail extends React.Component {
                         </TouchableOpacity>
                         ))}
                 />
-                <Text style={styles.classListHeader}>My Workouts: </Text>
+                <Text style={styles.classListHeader}>{}</Text>
                 {Instructor.alsoTrainer.map(({workouts}) => (
                     workouts.map(({title, imageUrl, type}) => (
                         <TouchableOpacity

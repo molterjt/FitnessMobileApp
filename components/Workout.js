@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image,} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Image, Alert} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import {withNavigation} from 'react-navigation';
 import gql from 'graphql-tag';
@@ -37,7 +37,8 @@ class Workout extends React.Component{
                 workoutIdsArr: [this.props.workoutCheckinId],
             }
         });
-        console.log('Workout CheckIn Mutation Complete')
+
+        console.log('Workout Check-In Mutation Complete')
 
     };
 
@@ -79,7 +80,9 @@ class Workout extends React.Component{
                                 disabled={false}
                                 onPress={() => {
                                     console.log('Complete Workout Button Press');
-                                    this._submitClassCheckIn()}}
+                                    this._submitClassCheckIn()
+                                    Alert.alert('Congratulations! You have successfully completed this workout!');
+                                }}
                             >
                                 <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'red'} />
                                 <Text style={{

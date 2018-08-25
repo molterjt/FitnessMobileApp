@@ -151,16 +151,14 @@ const PersonalFITStack = StackNavigator(
         Trainer:{
             screen: TrainerScreen,
             navigationOptions:{
-                title: 'Personal Training'
+                title: 'Training'
             },
         },
         TrainerList: {
             screen: TrainerListScreen,
             path: '/trainers',
             navigationOptions:{
-                headerStyle: {
-                    backgroundColor: "#000"
-                }
+
             },
         },
 
@@ -169,7 +167,7 @@ const PersonalFITStack = StackNavigator(
             path: '/workouts',
             navigationOptions:{
                 headerStyle: {
-                    backgroundColor: "#000"
+                    backgroundColor: "#fff"
                 }
             },
         },

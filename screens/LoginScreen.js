@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Button, Text, TextInput,
+    Button, Text, TextInput, Alert, ActivityIndicator,
     View, StyleSheet, ImageBackground,
     KeyboardAvoidingView, TouchableOpacity,AsyncStorage
 } from 'react-native';
@@ -78,6 +78,7 @@ class Login extends React.Component{
         this.state = {
             loading: true,
             login: true,
+            registerActivity: false,
             email: '',
             password: '',
             username: '',
@@ -91,22 +92,32 @@ class Login extends React.Component{
         this._confirm = this._confirm.bind(this);
         this.checkRegisterCredentials = this.checkRegisterCredentials.bind(this);
         this.checkLoginCredentials = this.checkLoginCredentials.bind(this);
+        this.clearUserFormInputs = this.clearUserFormInputs.bind(this);
+        this.showRegisterActivity = this.showRegisterActivity.bind(this);
     }
-
     checkRegisterCredentials(){
         const {email, password, username, emailError, passwordError, usernameError} = this.state;
         if(email < 7 || emailError) return true;
         else if(password < 7 || passwordError) return true;
         else if(username < 7 || usernameError) return true;
         else return false;
-    }
+    };
     checkLoginCredentials(){
         const {email, password, emailError, passwordError} = this.state;
         if(email < 7  || emailError) return true;
         else if(password < 7 || passwordError) return true;
         else return false;
+    };
+    clearUserFormInputs(){
+        this.setState({
+            email: '',
+            password: '',
+            username: ''
+        });
     }
-
+    showRegisterActivity(){
+        this.setState({registerActivity: true});
+    }
     _saveUserToken = token => {
         AsyncStorage.setItem(AUTH_TOKEN, JSON.stringify(token));
     };
@@ -132,6 +143,7 @@ class Login extends React.Component{
             console.log("Token: " +token);
             console.log("ID: " + id);
 
+
             //this.props.navigation.navigate('Home', {username});
             this.props.navigation.navigate('Intro', {itemId: id});
         } else {
@@ -145,15 +157,19 @@ class Login extends React.Component{
 
             const {token} = result.data.signupUser;
             const {id} = result.data.signupUser;
+            Alert.alert('Good on ya! You have successfully registered. Now Login then update your Profile in Settings');
             console.log('Token:' + token);
             console.log('UserId:' + id);
             this._saveUserToken(token);
             this._saveUserId(id);
+
+
             this.props.navigation.navigate('Login');
         }
-    }
+    };
+
     render(){
-        const {login, email, password, username, emailError, passwordError, usernameError, graphQL_Error, confirmButtonDisabled} = this.state;
+        const {login, email, password, username, emailError, passwordError, usernameError, graphQL_Error, registerActivity} = this.state;
 
         return(
             <View style={{flex: 1, backgroundColor: 'transparent'}}>
@@ -165,9 +181,7 @@ class Login extends React.Component{
                     <View style={styles.overlay}/>
                     <View style={{marginTop: 40}}>
                         <View style={styles.header}>
-
-                                <Text style={styles.headerText}>Miami Rec Fitness</Text>
-
+                            <Text style={styles.headerText}>Miami Rec Fitness</Text>
                         </View>
                         <View>
                             {!this.state.login && (
@@ -233,6 +247,10 @@ class Login extends React.Component{
                                 ? <Text style={{color: 'white', textAlign:'center'}}>{passwordError}</Text>
                                 : null
                             }
+                            {registerActivity
+                                ? <ActivityIndicator size="large" color={'#0a3efa'}/>
+                                : null
+                            }
                         </View>
                         {graphQL_Error
                             ? <Text style={{color: 'white', textAlign:'center', fontWeight: 'bold'}}>{graphQL_Error.substring(34).toUpperCase()}!!</Text>
@@ -241,7 +259,11 @@ class Login extends React.Component{
                         {!login
                             ?
                             (<TouchableOpacity
-                                onPress={ () => this._confirm() }
+                                onPress={ () => {
+                                    this.showRegisterActivity();
+                                    this._confirm();
+                                    this.clearUserFormInputs();
+                                }}
                                 style={styles.formButton}
                                 disabled={this.checkRegisterCredentials()}
 
@@ -250,7 +272,11 @@ class Login extends React.Component{
                             </TouchableOpacity>)
                             :
                             (<TouchableOpacity
-                                onPress={ () => this._confirm() }
+                                onPress={ () => {
+                                    this.showRegisterActivity();
+                                    this._confirm();
+                                    this.clearUserFormInputs();
+                                }}
                                 style={styles.formButton}
                                 disabled={this.checkLoginCredentials()}
 
@@ -258,10 +284,6 @@ class Login extends React.Component{
                                 <Text style={styles.buttonText}>Login</Text>
                             </TouchableOpacity>)
                         }
-
-
-
-
 
                         <View style={{marginTop: 40}}>
                             <Text style={{color: '#fff', alignSelf:'center'}}>
@@ -278,11 +300,13 @@ class Login extends React.Component{
                                 <Button
                                     title={'Register'}
                                     onPress={ () => this.setState({login: !this.state.login})}
-                                    color={'#0a3efa'}
+                                    color={'#0939da'}
                                     style={styles.screenSwitch}
                                 />
                             }
                         </View>
+
+
                     </View>
                 </ImageBackground>
             </View>
@@ -469,6 +493,6 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         backgroundColor: 'grey',
-        opacity: 0.45
+        opacity: 0.25
     }
 });

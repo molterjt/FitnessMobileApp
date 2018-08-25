@@ -21,6 +21,8 @@ const AllTRAINERS = gql`
             lastName
             imageUrl
             description
+            certification
+            blurb
             email
             id
         }
@@ -90,7 +92,9 @@ class TrainerProfile extends React.Component{
 
                                 <View style={{flex:1, justifyContent: 'flex-start', margin: 10, marginTop: 20, flexWrap:'wrap'}}>
                                     <Text style={styles.trainerDetailName}>{this.props.firstName} {this.props.lastName}</Text>
+                                    <Text style={styles.trainerDetailText}>{this.props.blurb}</Text>
                                     <Text style={styles.trainerDetailText}>{this.props.email}</Text>
+                                    <Text style={styles.trainerDetailText}>{this.props.certifications}</Text>
                                 </View>
                             </View>
                             <View style={{flex:1, margin:5, padding: 15, backgroundColor:'#dedede', borderWidth:1, marginBottom: 20}}>
@@ -127,6 +131,8 @@ class TrainerListView extends React.Component{
                             firstName={obj.firstName}
                             lastName={obj.lastName}
                             email={obj.email}
+                            blurb={obj.blurb}
+                            certifications={obj.certification}
                             description={obj.description}
                         />
 
@@ -224,7 +230,8 @@ const styles = StyleSheet.create({
     },
     trainerDetailText: {
         color: "#fff",
-        fontSize: 12
+        fontSize: 12,
+        marginTop: 4,
     },
     trainerDetailName:{
         color: '#fff',

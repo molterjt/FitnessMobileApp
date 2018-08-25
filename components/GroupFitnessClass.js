@@ -341,6 +341,7 @@ class GroupFitnessClass extends React.Component{
                         </Text>
                         <View style={{flexDirection: "row",justifyContent:"center", alignItems:"center", marginTop: 25, }}>
                             <TouchableOpacity
+                                disabled={true}
                                 onPress={() => {
                                     Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE_RIGHT);
                                     this.showVideoModal(true)}
@@ -391,7 +392,7 @@ class GroupFitnessClass extends React.Component{
                     </View>
                     <Modal
                         transparent={true}
-                        animationType={"fade"}
+                        animationType={"none"}
                         visible={this.state.addCommentModalVisible}
                         onRequestClose={() => {this.showCommentModal(!this.state.addCommentModalVisible)} }
                     >
@@ -433,6 +434,7 @@ class GroupFitnessClass extends React.Component{
                         onRequestClose={() => {this.showVideoModal(!this.state.videoModalVisible)} }
                     >
                         <TouchableOpacity
+                            disabled={false}
                             onPress={() => {
                                 Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
                                 this.showVideoModal(!this.state.videoModalVisible)
@@ -444,7 +446,7 @@ class GroupFitnessClass extends React.Component{
 
                             <WebView
                                 source={{html: '<html><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />' +
-                                    '<iframe src="https://www.youtube.com/embed/XnUwPv5aYkw?modestbranding=1&playsinline=1&showinfo=0&rel=0" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="75%"></iframe></html>'}}
+                                    '<iframe src="https://www.youtube.com/embed/mZ6XRz1pmt4?modestbranding=1&playsinline=1&showinfo=0&rel=0" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="75%"></iframe></html>'}}
                                 style={{flex: 1}}
                                 javaScriptEnabled={true}
                                 domStorageEnabled={true}
@@ -456,6 +458,9 @@ class GroupFitnessClass extends React.Component{
     }
 
 }
+//<iframe width="560" height="315" src="https://www.youtube.com/embed/mZ6XRz1pmt4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+//<iframe width="560" height="315" src="https://www.youtube.com/embed/Jvv9w5QGRI0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 
 export default compose(
     graphql(CreateClassCommentByUser, {name: 'CreateClassCommentByUser'}),

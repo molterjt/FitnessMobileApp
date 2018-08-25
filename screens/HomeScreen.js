@@ -244,7 +244,7 @@ class HomeScreen extends React.Component{
                 </TouchableOpacity>
                 <Modal
                     transparent={false}
-                    animationType={"fade"}
+                    animationType={"none"}
                     visible={this.state.showModal}
                     onRequestClose={() => {
                         this.findYourFitModal(!this.state.showModal)

@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, ScrollView, Image, Dimensions,} from 'react-native';
-import Workout from '../components/Workout';
+import {View, Text, TouchableOpacity, StyleSheet, Dimensions,} from 'react-native';
+
 import {Entypo, Ionicons} from '@expo/vector-icons'
 import {withNavigation} from 'react-navigation';
 
@@ -24,7 +24,7 @@ class UserProfile extends React.Component{
                             style={{alignItems:'flex-end', paddingRight: 16}}
                             onPress={() => this.props.navigation.navigate('Edit', {itemId: this.props.id})}>
                             <Entypo
-                                name={"edit"} type={"MaterialIcons"} size={20} color={'#29282A'}
+                                name={"edit"} type={"MaterialIcons"} size={30} color={'#29282A'}
                             />
                         </TouchableOpacity>
 
