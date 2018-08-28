@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Miami Rec Fitness App Test",
+    "name": "Miami Rec Fitness",
     "icon": "./assets/images/MiamiFitnessSplash.png",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "slug": "Miami-Rec-Fit-App",
     "sdkVersion": "25.0.0",
     "orientation": "portrait",
@@ -11,7 +11,10 @@
       "backgroundColor": "#000"
     },
     "ios": {
-      "bundleIdentifier": "com.JeffreyT513.fitApp"
+      "bundleIdentifier": "com.JeffreyT513.fitApp",
+      "infoPlist": {
+        "NSLocationAlwaysUsageDescription" : "Application needs to collect GPS location for feature access"
+      }
     },
     "android": {
       "package": "com.JeffreyT513.fitApp"

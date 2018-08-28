@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image, Alert} from 'react-native';
-import {Ionicons} from '@expo/vector-icons';
+import {View, Text, TouchableOpacity, StyleSheet, Image, Alert, Modal, TextInput} from 'react-native';
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import {withNavigation} from 'react-navigation';
 import gql from 'graphql-tag';
 import {graphql, Mutation, compose } from 'react-apollo';
@@ -23,9 +23,14 @@ class Workout extends React.Component{
         super(props);
         this.state={
             checked: true,
+            showWorkoutModal: false,
+            workout: '',
+
         };
 
         this._submitClassCheckIn = this._submitClassCheckIn.bind(this);
+        this._createComment = this._createComment.bind(this);
+        this.showUserWorkoutModal = this.showUserWorkoutModal.bind(this);
     }
 
     _submitClassCheckIn = async () => {
@@ -41,6 +46,17 @@ class Workout extends React.Component{
         console.log('Workout Check-In Mutation Complete')
 
     };
+
+    _createComment = async () => {
+        const {workout} = this.state;
+        console.log(workout);
+        this.setState({workout: ""});
+        return this.showUserWorkoutModal(false);
+    };
+
+    showUserWorkoutModal(visible){
+        this.setState({showWorkoutModal: visible})
+    }
 
     render(){
         return(
