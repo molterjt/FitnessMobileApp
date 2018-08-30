@@ -48,19 +48,25 @@ class Event extends React.Component{
                         <Text style={styles.info} numberOfLines={4} ellipsizeMode ={'tail'}>
                             {this.props.location}
                         </Text>
-                        <TouchableOpacity onPress={() => {this.showEventRegisterModal(true)}}
-                                          style={{marginTop: 25, flexDirection: "row",
-                                              justifyContent: 'center', alignItems: 'center',
-                                              backgroundColor: "#931414", width: "50%", alignSelf: "center"
 
-                                          }}>
-                            <Text style={{color: "#fff", fontSize: 12}}>Register</Text>
-                            <MaterialCommunityIcons
-                                name={"checkbox-marked-circle-outline"}
-                                size={25}
-                                color={"white"}
-                            />
-                        </TouchableOpacity>
+                        {this.props.registerUrl
+                            ? (<TouchableOpacity onPress={() => {this.showEventRegisterModal(true)}}
+                                                 style={{marginTop: 25, flexDirection: "row",
+                                                     justifyContent: 'center', alignItems: 'center',
+                                                     backgroundColor: "#931414", width: "50%", alignSelf: "center"
+
+                                                 }}>
+                                <Text style={{color: "#fff", fontSize: 12}}>Register</Text>
+                                <MaterialCommunityIcons
+                                    name={"checkbox-marked-circle-outline"}
+                                    size={25}
+                                    color={"white"}
+                                />
+                            </TouchableOpacity>)
+                            : null
+
+                        }
+
                     </View>
                 </View>
 
@@ -70,6 +76,8 @@ class Event extends React.Component{
                     visible={this.state.eventRegisterModal}
                     onRequestClose={() => {this.showEventRegisterModal(!this.state.eventRegisterModal)} }
                 >
+
+
                     <TouchableOpacity
                         onPress={() => {this.showEventRegisterModal(!this.state.eventRegisterModal)}}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
@@ -79,7 +87,8 @@ class Event extends React.Component{
 
                     {this.props.registerUrl
                         ?
-                        ( <WebView
+                        (
+                            <WebView
                             source={{uri:"http://recmiamioh.maxgalaxy.net/Registration.aspx?ActivityID=" + this.props.registerUrl}}
                             style={{flex: 1}}
                             javaScriptEnabled={true}
@@ -88,7 +97,8 @@ class Event extends React.Component{
                         )
                         :
                         (
-                            null
+                            <Text>No Need To Register {'\n'} Free Event</Text>
+
                         )
                     }
 

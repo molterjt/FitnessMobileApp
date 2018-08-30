@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     StyleSheet, Text, View, ActivityIndicator,
-    TouchableOpacity, FlatList,
+    TouchableOpacity, FlatList, RefreshControl,
 } from 'react-native';
 import gql from 'graphql-tag';
 import {graphql, compose}  from 'react-apollo';
@@ -127,6 +127,7 @@ class AllGFClassView extends React.Component {
         this.state = {
             items: [],
             loading: true,
+            refreshing: false,
         };
     }
 
@@ -146,6 +147,14 @@ class AllGFClassView extends React.Component {
             position: 0,
         })
     }
+
+    _onRefresh = () => {
+        this.setState({refreshing:true});
+        this.props.data.refetch().then(() => {
+            this.setState({refreshing: false});
+        });
+    };
+
     _renderItem = ({item}) => {
         return(
             <View>
@@ -182,7 +191,7 @@ class AllGFClassView extends React.Component {
     _keyExtractor = (item) => item.id;
 
     render() {
-        this.props.data.refetch({});
+        //this.props.data.refetch({});
         const {loading, error} = this.props;
         const {Mondays, Tuesdays, Wednesdays, Thursdays, Fridays, Saturdays, Sundays} = this.props.data;
 
@@ -224,6 +233,13 @@ class AllGFClassView extends React.Component {
                         data={Mondays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
+
                     />
                     <View style={{margin:25}}>
                     </View>
@@ -246,6 +262,12 @@ class AllGFClassView extends React.Component {
                         data={Tuesdays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
                     />
                     <View style={{margin:25}}>
                     </View>
@@ -268,6 +290,12 @@ class AllGFClassView extends React.Component {
                         data={Wednesdays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
                     />
                     <View style={{margin:25}}>
                     </View>
@@ -290,6 +318,12 @@ class AllGFClassView extends React.Component {
                         data={Thursdays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
                     />
                     <View style={{margin:25}}>
                     </View>
@@ -312,6 +346,12 @@ class AllGFClassView extends React.Component {
                         data={Fridays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
                     />
                     <View style={{margin:25}}>
                     </View>
@@ -334,6 +374,12 @@ class AllGFClassView extends React.Component {
                         data={Saturdays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
                     />
                     <View style={{margin:25}}>
                     </View>
@@ -356,6 +402,12 @@ class AllGFClassView extends React.Component {
                         data={Sundays}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
                     />
                     <View style={{margin:25}}>
                     </View>

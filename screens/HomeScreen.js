@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     ScrollView, Button, Text, View, StatusBar, StyleSheet, ImageBackground, TouchableOpacity, FlatList,
-    AsyncStorage, Animated, Modal, WebView, Image, Linking, ActivityIndicator, Alert
+    AsyncStorage, Animated, Modal, WebView, Image, Linking, ActivityIndicator, Alert, RefreshControl,
 } from 'react-native';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
 import NewsItem from '../components/NewsItem';
@@ -44,6 +44,9 @@ AsyncStorage.getItem("MyUserId").then( (dataId) => {
 class NewsItemWindow extends React.Component{
     constructor(props){
         super(props);
+        this.state={
+            refreshing: false
+        }
     }
     _renderItem = ({item}) => (
         <NewsItem
@@ -56,6 +59,13 @@ class NewsItemWindow extends React.Component{
         />
     );
     _keyExtractor = (item, index) => item.id;
+
+    _onRefresh = () => {
+        this.setState({refreshing:true});
+        this.props.data.refetch().then(() => {
+            this.setState({refreshing: false});
+        });
+    };
 
     render(){
         return(
@@ -75,6 +85,12 @@ class NewsItemWindow extends React.Component{
                             keyExtractor={this._keyExtractor}
                             renderItem={this._renderItem}
                             horizontal={false}
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={this.state.refreshing}
+                                    onRefresh={this._onRefresh}
+                                />
+                            }
                         />
                     );
                 }}

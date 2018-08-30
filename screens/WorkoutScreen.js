@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, View, TextInput, TouchableOpacity, ScrollView, StyleSheet, ActivityIndicator, AsyncStorage} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity, ScrollView, StyleSheet, RefreshControl, ActivityIndicator, AsyncStorage} from 'react-native';
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
@@ -26,10 +26,18 @@ let queryUserId;
 
 class WorkoutView extends React.Component{
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.state={refreshing: false}
         this.handlePressExercise = this.handlePressExercise.bind(this);
+        this._onRefresh = this._onRefresh.bind(this);
     }
+    _onRefresh = () => {
+        this.setState({refreshing:true});
+        this.props.data.refetch().then(() => {
+            this.setState({refreshing: false});
+        });
+    };
 
     handlePressExercise = (exercise) => {
         console.log("exercise button press");
@@ -53,7 +61,14 @@ class WorkoutView extends React.Component{
             return <ActivityIndicator />
         }
         return(
-            <ScrollView>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }
+            >
                 {allWorkouts.map(( obj, id ) => (
                         <Workout
                             key={id}
