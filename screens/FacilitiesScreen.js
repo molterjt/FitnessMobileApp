@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Text, View, TouchableOpacity, Modal,
+    Text, View, TouchableOpacity, Modal, RefreshControl,
     ScrollView, Animated, Dimensions, Image, StyleSheet
 } from 'react-native';
 import { Query } from 'react-apollo';
@@ -36,11 +36,17 @@ const FACILITYLIST = gql`
 class FacilityDetail extends React.Component{
     constructor(props){
         super(props);
-        this.state={facilityInfo: false,};
+        this.state={facilityInfo: false, refreshing: false};
     }
     showFacilityModal(visible){
         this.setState({facilityInfo: visible})
     }
+    _onRefresh = () => {
+        this.setState({refreshing:true});
+        this.props.data.allFacilities.refetch({buildingTitle: this.props.buildingName}).then(() => {
+            this.setState({refreshing: false});
+        });
+    };
     render(){
         return(
             <View style={{marginTop: 10}}>

@@ -89,6 +89,7 @@ class NewsItemWindow extends React.Component{
                                 <RefreshControl
                                     refreshing={this.state.refreshing}
                                     onRefresh={this._onRefresh}
+                                    tintColor={'#931414'}
                                 />
                             }
                         />

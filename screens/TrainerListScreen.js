@@ -5,7 +5,7 @@ import {graphql, compose} from 'react-apollo';
 import {
     StyleSheet, Button, ActivityIndicator, Modal,
     Image, Text, View, Dimensions, ImageBackground,
-    StatusBar, TouchableWithoutFeedback,
+    StatusBar, TouchableWithoutFeedback, RefreshControl,
     ScrollView, TouchableOpacity, FlatList  } from 'react-native';
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
@@ -111,7 +111,15 @@ class TrainerProfile extends React.Component{
 class TrainerListView extends React.Component{
     constructor(props){
         super(props);
+        this.state={refreshing: false}
     }
+    _onRefresh = () => {
+        this.setState({refreshing:true});
+        this.props.data.refetch().then(() => {
+            this.setState({refreshing: false});
+        });
+    };
+
     render(){
         const { loading, error, allTrainers } = this.props.data;
         if(loading){
@@ -122,7 +130,15 @@ class TrainerListView extends React.Component{
             return <Text>Sorry, there was an error</Text>
         }
         return(
-            <ScrollView style={{flex: 1, justifyContent: 'space-evenly',}}>
+            <ScrollView style={{flex: 1, justifyContent: 'space-evenly',}}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                        tintColor={'#156DFA'}
+                    />
+                }
+            >
                 <View style={{flex:3, borderWidth:1, flexDirection:"row", justifyContent:'space-around', flexWrap: 'wrap'}}>
                     {allTrainers.map((obj, index) => (
                         <TrainerProfile
