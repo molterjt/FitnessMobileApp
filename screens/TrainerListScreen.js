@@ -44,7 +44,7 @@ class TrainerProfile extends React.Component{
 
     render(){
         return(
-            <View style={styles.rowColumn}>
+            <ScrollView style={styles.rowColumn}>
                 <ImageBackground
                     resizeMode={"contain"}
                     source={this.props.imageUrl ? {uri: this.props.imageUrl} : require("../assets/images/blank-profile.png")}
@@ -60,8 +60,8 @@ class TrainerProfile extends React.Component{
                         <Ionicons
                             name={"ios-information-circle-outline"}
                             size={30}
-                            color={"white"}
-                            style={{fontWeight: 'bold'}}
+                            color={"#156DFA"}
+                            style={{fontWeight: 'bold', justifyContent:'flex-end'}}
                         />
                     </TouchableOpacity>
                 </ImageBackground>
@@ -71,39 +71,44 @@ class TrainerProfile extends React.Component{
                     visible={this.state.personalTrainingInfo}
                     onRequestClose={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)} }
                 >
-                    <View style={styles.modalContainer}>
-                        <View style={styles.ModalInsideView}>
-                            <TouchableOpacity
-                                onPress={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)}}
-                                style={styles.closeButton}>
-                                <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"} />
-                            </TouchableOpacity>
-
-                            <View style={{flex:1, flexDirection:"row", margin:5, backgroundColor:'#931414'}}>
-
-                                <Image
-                                    source={{uri: this.props.imageUrl}}
-                                    alt={"Trainer Profile Image"}
-                                    resizeMode={"contain"}
-                                    style={{margin: 5, borderWidth:1, borderColor:"#fff",  height:undefined, width:WIDTH*.38,
-
-                                    }}
-                                />
-
-                                <View style={{flex:1, justifyContent: 'flex-start', margin: 10, marginTop: 20, flexWrap:'wrap'}}>
-                                    <Text style={styles.trainerDetailName}>{this.props.firstName} {this.props.lastName}</Text>
-                                    <Text style={styles.trainerDetailText}>{this.props.blurb}</Text>
-                                    <Text style={styles.trainerDetailText}>{this.props.email}</Text>
-                                    <Text style={styles.trainerDetailText}>{this.props.certifications}</Text>
+                    <TouchableOpacity
+                        onPress={() => this.showPTInfoFormModal(!this.state.personalTrainingInfo)}
+                    >
+                        <ScrollView style={styles.modalContainer}>
+                            <TouchableWithoutFeedback>
+                                <View style={{backgroundColor: '#29282A', height: 'auto', width: '90%'}}>
+                                        <TouchableOpacity
+                                            onPress={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)}}
+                                            style={styles.closeButton}>
+                                            <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"} />
+                                        </TouchableOpacity>
+                                        <View style={{alignContent: 'center', alignItems: 'center', backgroundColor:'#29282A', borderWidth: 0, borderColor: '#fff'}}>
+                                            <Image
+                                                source={{uri: this.props.imageUrl}}
+                                                alt={"Trainer Profile Image"}
+                                                resizeMode={"contain"}
+                                                style={{width: WIDTH * .67, height: HEIGHT*.33, }}
+                                            />
+                                        </View>
+                                        <View style={{
+                                            backgroundColor:'#931414',flexDirection:"column",justifyContent: 'space-between', margin: 3, flexWrap:'wrap',
+                                            height: 'auto', width: 'auto', padding: 5
+                                        }}
+                                        >
+                                            <Text style={styles.trainerDetailName}>{this.props.firstName} {this.props.lastName}</Text>
+                                            <Text style={styles.trainerDetailText}>{this.props.blurb}</Text>
+                                            <Text style={styles.trainerDetailText}>{this.props.email}</Text>
+                                            <Text style={styles.trainerDetailText}>{this.props.certifications}</Text>
+                                        </View>
+                                        <View style={{margin:3, padding: 5, backgroundColor:'#dedede', borderWidth:1, marginBottom: 10, height: 'auto'}}>
+                                            <Text style={{margin: 5}}>{this.props.description}</Text>
+                                        </View>
                                 </View>
-                            </View>
-                            <View style={{flex:1, margin:5, padding: 15, backgroundColor:'#dedede', borderWidth:1, marginBottom: 20}}>
-                                <Text style={{margin: 5}}>{this.props.description}</Text>
-                            </View>
-                        </View>
-                    </View>
+                            </TouchableWithoutFeedback>
+                        </ScrollView>
+                    </TouchableOpacity>
                 </Modal>
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -186,7 +191,7 @@ const styles = StyleSheet.create({
     rowColumn:{
         alignItems: 'center',
         alignContent: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         width: WIDTH * .32,
         height: 200,
         borderWidth: 2,
@@ -198,7 +203,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#000",
         alignItems: 'center',
         alignContent: 'center',
-        justifyContent: 'flex-start',
+        // justifyContent: 'flex-start',
         height: 200,
         width: WIDTH * .3,
         borderWidth: 1,
@@ -216,20 +221,24 @@ const styles = StyleSheet.create({
         fontSize: 10,
     },
     profileButton:{
-        alignContent: 'end',
-        marginTop: 130,
-        padding:1,
-        fontWeight: 'bold'
+        alignContent: "end",
+        // marginTop: 120,
+        paddingTop: 125,
+        fontWeight: '800'
     },
     modalContainer: {
-        flex: 1,
-        justifyContent:'center',
-        alignItems:'center'
+        marginTop: 40,
+        height: '95%',
+        flexDirection: 'column',
+        justifyContent:'flex-start',
+        alignItems:'center',
+        padding: 2,
+
     },
     ModalInsideView:{
         alignItems: 'center',
         backgroundColor : "#fff",
-        height: 500 ,
+        height: '95%' ,
         width: '90%',
         borderRadius:10,
         borderWidth: 3,
@@ -240,7 +249,6 @@ const styles = StyleSheet.create({
     closeButton: {
         alignSelf: 'flex-end',
         position:'relative',
-        justifyContent: "pull-right",
         top: 2,
         right: 7,
     },

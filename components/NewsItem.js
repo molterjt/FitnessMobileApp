@@ -15,16 +15,16 @@ class NewsItem extends React.Component{
                        style={styles.thumbnail}
                        resizeMode="contain" />
                 <View style={styles.rowText}>
-                    <Text style={styles.title} numberOfLines={1} ellipsizeMode ={'tail'}>
+                    <Text style={styles.title} numberOfLines={2} >
                         {this.props.title}
                     </Text>
-                    <Text style={styles.instructor} numberOfLines={1} ellipsizeMode ={'tail'}>
+                    <Text style={styles.instructor} numberOfLines={2} >
                         {this.props.instructor}
                     </Text>
                     <Text style={styles.blurb}>
                         {this.props.blurb}
                     </Text>
-                    <Text style={styles.location} ellipsizeMode ={'tail'}>
+                    <Text style={styles.location} >
                         {this.props.location}
                     </Text>
                 </View>

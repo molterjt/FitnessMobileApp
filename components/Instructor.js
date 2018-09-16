@@ -20,6 +20,9 @@ class InstructorContainer extends React.Component {
                             {this.props.email}
                         </Text>
                         <Text style={styles.description}>
+                            {this.props.blurb}
+                        </Text>
+                        <Text style={styles.description}>
                             {this.props.description}
                         </Text>
                     </View>

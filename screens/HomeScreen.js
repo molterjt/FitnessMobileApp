@@ -257,7 +257,7 @@ class HomeScreen extends React.Component{
                         size={20}
                         color={"white"}
                     />
-                    <Text style={{color: "#fff", fontSize: 10}}> MiamiUniversityFitness</Text>
+                    <Text style={{color: "#fff", fontSize: 12}}> MiamiUniversityFitness</Text>
                 </TouchableOpacity>
                 <Modal
                     transparent={false}

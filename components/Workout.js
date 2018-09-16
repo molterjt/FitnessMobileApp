@@ -15,9 +15,6 @@ const CreateWorkoutCheckIn = gql`
     }    
 `
 
-
-
-
 class Workout extends React.Component{
     constructor(props){
         super(props);
@@ -25,14 +22,11 @@ class Workout extends React.Component{
             checked: true,
             showWorkoutModal: false,
             workout: '',
-
         };
-
         this._submitClassCheckIn = this._submitClassCheckIn.bind(this);
         this._createComment = this._createComment.bind(this);
         this.showUserWorkoutModal = this.showUserWorkoutModal.bind(this);
     }
-
     _submitClassCheckIn = async () => {
         const {checked} = this.state;
         await this.props.CreateWorkoutCheckInByUser({
@@ -42,22 +36,17 @@ class Workout extends React.Component{
                 workoutIdsArr: [this.props.workoutCheckinId],
             }
         });
-
         console.log('Workout Check-In Mutation Complete')
-
     };
-
     _createComment = async () => {
         const {workout} = this.state;
         console.log(workout);
         this.setState({workout: ""});
         return this.showUserWorkoutModal(false);
     };
-
     showUserWorkoutModal(visible){
         this.setState({showWorkoutModal: visible})
     }
-
     render(){
         return(
             <View style={styles.rowCard} key={this.props.id}>
@@ -80,11 +69,8 @@ class Workout extends React.Component{
                         <Text style={styles.description} numberOfLines={4} ellipsizeMode ={'tail'}>
                             {this.props.description}
                         </Text>
-
-
                         <View key={this.props.exercises.id} style={styles.exerciseCard}>
                             {this.props.exercises}
-
                         </View>
                         <View style={{alignItems:'center', justifyContent: 'center', alignContent: 'center',
                             textAlign: 'center', display: 'center', alignSelf: 'center', marginTop: 10}}>

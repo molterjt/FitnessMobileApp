@@ -17,6 +17,7 @@ const getInstructor = gql`
             firstName
             lastName
             email
+            blurb
             imageUrl
             description
             classes(orderBy:sortTime_ASC, filter:{isPublished: true}){
@@ -47,9 +48,14 @@ class InstructorContainer extends React.Component {
                             {this.props.email}
                         </Text>
                         <Text style={styles.description}>
-                            {this.props.description}
+                            {this.props.blurb}
                         </Text>
                     </View>
+                </View>
+                <View style={styles.rowContainer}>
+                    <Text style={styles.description}>
+                        {this.props.description}
+                    </Text>
                 </View>
                 <Text style={styles.classListHeader}>My Classes: </Text>
                 <View>{this.props.classListings}</View>
@@ -85,6 +91,7 @@ class SingleInstructorDetail extends React.Component {
                     firstName={Instructor.firstName}
                     lastName={Instructor.lastName}
                     email={Instructor.email}
+                    blurb={Instructor.blurb}
                     description={Instructor.description}
                     classListings=
                     {Instructor.classes.map(({title, time, days, id, location}) => (
@@ -230,7 +237,7 @@ const styles = StyleSheet.create({
     rowContainer: {
         flexDirection: 'row',
         backgroundColor: '#29282A',
-        height: 250,
+        height: 'auto',
         padding: 10,
         marginBottom: 5,
         marginRight: 10,
@@ -270,7 +277,7 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 4,
-        height: undefined,
+        height: 200,
         width: 160
     },
 

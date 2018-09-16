@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, TouchableOpacity, StyleSheet, Image, AlertIOS,
+    View, Text, TouchableOpacity, StyleSheet, Image, AlertIOS, TouchableWithoutFeedback,
     Dimensions, Alert, Modal, TextInput, WebView, Platform,
 } from 'react-native';
 import {Constants, Location, Permissions} from 'expo';
@@ -55,7 +55,8 @@ class GroupFitnessClass extends React.Component{
         this.state={
             addCommentModalVisible: false,
             videoModalVisible: false,
-            userComment: "",
+            userComment: '',
+            commentError: '',
             location: null,
             errorMessage: null,
             userLatitude: undefined,
@@ -123,6 +124,11 @@ class GroupFitnessClass extends React.Component{
         this._timeCheckInControl(this.props.classStart);
 
     }
+    checkCommentCredentials(){
+        const {userComment, commentError} = this.state;
+        if(userComment < 1 || commentError) return true;
+        else return false;
+    };
 
     _getLocationAsync = async () => {
         let {status} = await Permissions.askAsync(Permissions.LOCATION);
@@ -335,22 +341,22 @@ class GroupFitnessClass extends React.Component{
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        <Text style={styles.time} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.time}>
                             {this.props.time}
                         </Text>
-                        <Text style={styles.instructor} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.instructor} >
                             {this.props.instructor}
                         </Text>
-                        <Text style={styles.days} numberOfLines={2} ellipsizeMode ={'tail'}>
+                        <Text style={styles.days} >
                             {this.props.days}
                         </Text>
-                        <Text style={styles.location} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.location} >
                             {this.props.location}
                         </Text>
-                        <Text style={styles.description} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.description} >
                             Type: {this.props.category}
                         </Text>
-                        <Text style={styles.description} numberOfLines={9} ellipsizeMode ={'tail'}>
+                        <Text style={styles.description}>
                             Description: {this.props.description}
                         </Text>
                         <View style={{flexDirection: "row",justifyContent:"center", alignItems:"center", marginTop: 25, }}>
@@ -418,6 +424,7 @@ class GroupFitnessClass extends React.Component{
                                 >
                                     <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"}/>
                                 </TouchableOpacity>
+
                                 <Text style={{fontStyle: "italic", fontWeight: "bold"}}>Have a comment?</Text>
                                 <TextInput
                                     multiline={true}
@@ -426,12 +433,13 @@ class GroupFitnessClass extends React.Component{
                                     value={this.props.userComment = this.state.userComment}
                                     blurOnSubmit={true}
                                     type={"text"}
-                                    placeholder={'Enter Your Comments'}
+                                    placeholder={'Please provide your feedback'}
                                     style={styles.textInput}
                                     underlineColorAndroid={'transparent'}
                                     autoCorrect={true}
                                 />
                                 <TouchableOpacity
+                                    disabled={this.checkCommentCredentials()}
                                     onPress={ () => this._createComment()}
                                     style={styles.formButton}
                                 >

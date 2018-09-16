@@ -24,7 +24,7 @@ class UserProfile extends React.Component{
                             style={{alignItems:'flex-end', paddingRight: 16}}
                             onPress={() => this.props.navigation.navigate('Edit', {itemId: this.props.id})}>
                             <Entypo
-                                name={"edit"} type={"MaterialIcons"} size={30} color={'#29282A'}
+                                name={"edit"} type={"MaterialIcons"} size={30} color={'#156DFA'}
                             />
                         </TouchableOpacity>
 

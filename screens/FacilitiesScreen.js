@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Text, View, TouchableOpacity, Modal, RefreshControl,
+    Text, View, TouchableOpacity, Modal, RefreshControl, TouchableWithoutFeedback,
     ScrollView, Animated, Dimensions, Image, StyleSheet
 } from 'react-native';
 import { Query } from 'react-apollo';
@@ -11,7 +11,7 @@ import MapView from "react-native-maps";
 
 const { width, height } = Dimensions.get("window");
 
-const CARD_HEIGHT = height / 3;
+const CARD_HEIGHT = height / 2.8;
 const CARD_WIDTH = CARD_HEIGHT - 20;
 
 const FACILITYLIST = gql`
@@ -49,7 +49,7 @@ class FacilityDetail extends React.Component{
     };
     render(){
         return(
-            <View style={{marginTop: 10}}>
+            <View style={{marginTop: 10, paddingTop: 10}}>
             <TouchableOpacity
                 style={styles.profileButton}
                 onPress={() => {this.showFacilityModal(true)}}
@@ -62,11 +62,13 @@ class FacilityDetail extends React.Component{
                     style={{fontWeight: 'bold'}}
                 />
             </TouchableOpacity>
+
             <Query query={FACILITYLIST} variables={{buildingTitle: this.props.buildingName  }}>
                 {({loading, error, data}) => {
                     if (loading) return <Text>"Loading..."</Text>
                     if (error) return <Text>`Error! ${error.message}`;</Text>
                     return (
+                        <View>
                         <Modal
                             transparent={true}
                             animationType={"none"}
@@ -75,7 +77,12 @@ class FacilityDetail extends React.Component{
                                 this.showFacilityModal(!this.state.facilityInfo)
                             }}
                         >
-                            <View style={styles.modalContainer}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    this.showFacilityModal(!this.state.facilityInfo)
+                                }}
+                                style={styles.modalContainer}>
+
                                 <View style={styles.ModalInsideView}>
                                     <TouchableOpacity
                                         onPress={() => {
@@ -91,6 +98,7 @@ class FacilityDetail extends React.Component{
                                     </TouchableOpacity>
                                     <ScrollView>
                                     {data.allFacilities.map(({id, facilityName, hours, open, description, imageUrl, events, classes}) => (
+                                        <TouchableWithoutFeedback>
                                         <View key={id} style={{flexDirection: "column", margin: 5}}>
                                             <View style={{flex: 2, flexDirection: 'row', borderTopWidth: 1, borderColor: '#000'}}>
                                                 <Text style={{marginTop: 10, fontSize: 18, fontWeight: "0.9", width:width*.54}}>{facilityName}</Text>
@@ -159,11 +167,13 @@ class FacilityDetail extends React.Component{
                                                 null
                                             }
                                         </View>
+                                        </TouchableWithoutFeedback>
                                     )) }
                                     </ScrollView>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         </Modal>
+                        </View>
                     )
                 }}
             </Query>

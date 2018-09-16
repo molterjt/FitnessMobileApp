@@ -59,7 +59,7 @@ const HomeStack = StackNavigator(
             screen: WorkoutScreen,
             path: '/workouts',
             navigationOptions:{
-                title: 'Workout',
+
             },
         },
         ExerciseDetail: {

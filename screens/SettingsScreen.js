@@ -1,5 +1,5 @@
 import React from 'react'
-import {Platform, View, Text, StyleSheet, Dimensions, TouchableOpacity, Modal} from 'react-native';
+import {Platform, View, Text, StyleSheet, Dimensions, TouchableOpacity, Modal, ScrollView} from 'react-native';
 import {Ionicons, Entypo} from '@expo/vector-icons';
 import Logout from '../components/Logout';
 
@@ -15,16 +15,10 @@ class SettingsScreen extends React.Component{
 
         };
     }
-
-
-
     helpModalToggle(visible){
         this.setState({showHelpModal: visible})
     }
-
-
     render(){
-
         return(
             <View style={styles.container}>
                 <View style={styles.boxOutter}>
@@ -60,7 +54,7 @@ class SettingsScreen extends React.Component{
                 </View>
                 <Modal
                     transparent={false}
-                    animationType={"slide"}
+                    animationType={"none"}
                     visible={this.state.showHelpModal}
                     onRequestClose={() => {
                         this.helpModalToggle(!this.state.showHelpModal)
@@ -70,12 +64,13 @@ class SettingsScreen extends React.Component{
                         onPress={() => {
                             this.helpModalToggle(false)
                         }}
-                        style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
+                        style={{marginLeft: 5, marginTop: 50, flexDirection: "row", backgroundColor: 'transparent'}}
+                    >
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
-                    <View style={{alignItems:'center', justifyContent: 'center', textAlign:'center'}}>
-                        <Text style={{fontWeight:'bold', fontSize: 18}}>Help</Text>
+                    <ScrollView style={{marginTop: 5, alignItems:'center', justifyContent: 'center', textAlign:'center', alignContent:"center"}}>
+                        <Text style={{marginTop: 45, fontWeight:'bold', fontSize: 18, textAlign: 'center'}}>Help</Text>
                         <View style={{alignItems:'center', justifyContent: 'center', textAlign:'center', marginTop: 30, padding: 10}}>
                             <Text>If you forgot your password... </Text>
                             <Text>For Assistance email [ JeffreyMolter@gmail.com ]</Text>
@@ -103,7 +98,7 @@ class SettingsScreen extends React.Component{
                             </View>
 
                         </View>
-                    </View>
+                    </ScrollView>
 
                 </Modal>
 

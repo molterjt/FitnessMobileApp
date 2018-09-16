@@ -17,27 +17,25 @@ class ExerciseCard extends React.Component{
                 </View>
                 <View style={styles.rowContainer}>
                     <View style={styles.rowText}>
-
-                        <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
+                        <Text style={styles.title} numberOfLines={2} >
                             {this.props.name}
                         </Text>
-
-                        <Text style={styles.details} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.details} numberOfLines={2} >
                             SETS: {this.props.sets}
                         </Text>
-                        <Text style={styles.details} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.details} numberOfLines={2} >
                             REPS: {this.props.reps}
                         </Text>
-                        <Text style={styles.details} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.details} numberOfLines={2} >
                             INTENSITY: {this.props.intensity}
                         </Text>
-                        <Text style={styles.details} numberOfLines={1} ellipsizeMode ={'tail'}>
+                        <Text style={styles.details} numberOfLines={2} >
                             REST-INTERVALS: {this.props.restIntervals}
                         </Text>
-                        <Text style={styles.details} numberOfLines={2} ellipsizeMode ={'tail'}>
+                        <Text style={styles.details}  >
                             TEMPO: {this.props.tempo}
                         </Text>
-                        <Text style={styles.description} numberOfLines={4} ellipsizeMode ={'tail'}>
+                        <Text style={styles.description} numberOfLines={4} >
                             {this.props.description}
                         </Text>
                     </View>
@@ -46,7 +44,6 @@ class ExerciseCard extends React.Component{
         );
     }
 }
-
 export default(ExerciseCard);
 
 const styles = StyleSheet.create({

@@ -104,7 +104,7 @@ class EditScreen extends React.Component {
                             }
                             return(
 
-                                <View style={{flexDirection:'row', flexWrap: 'wrap', marginBottom: 10, justifyContent:'space-between',}}>
+                                <View style={{flexDirection:'row', flexWrap: 'wrap', marginBottom: 10, justifyContent:'center',}}>
                                     {data.allInterests.map((obj, index) =>
 
                                             <View key={index} style={styles.containerRow}>
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     },
     containerRow:{
 
-        width: WIDTH*.46,
+        width: WIDTH*.46 || 'auto',
 
     },
     rowColumn:{
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
         padding: 20,
         marginTop: 40,
         marginBottom: 40,
-        width: '33%',
+        width: 'auto',
         height: 15,
         borderWidth:1,
         borderRadius: 15,
@@ -216,6 +216,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignContent:'center',
         justifyContent:'center',
+
     },
     rowContainer: {
         flexDirection: 'column',

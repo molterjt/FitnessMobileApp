@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import {graphql, Query} from 'react-apollo';
 import {
     StyleSheet, ActivityIndicator, Platform, Text, View, Modal,
-    ScrollView, TouchableOpacity, AsyncStorage
+    ScrollView, TouchableOpacity, AsyncStorage, TouchableWithoutFeedback
 } from 'react-native';
 import GroupFitnessClass from '../components/GroupFitnessClass';
 import {FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
@@ -49,17 +49,30 @@ const ClassComments = ({id}) => (
         { ({loading, error, data }) => {
             if(loading) return <ActivityIndicator/>;
             if(error) return console.log(error);
-            if(data.GroupFitClass.content === "") return <Text>Add the first comment</Text>;
-            return (
-                <ScrollView>
-                    <View style={{marginTop: 10}}/>
-                    {data.GroupFitClass.comments.map((obj) => (
-                        <View style={styles.commentContainer}>
-                            <Text style={styles.commentText}>{obj.content} {"\n"}~{'[' + obj.userComment.username + ' @ ' + moment(obj.createdAt).format("M/D/Y hh:mm a") +  ']'}</Text>
-                        </View>
-                    ))}
-                </ScrollView>
-            );
+            if(data.GroupFitClass.comments.length < 1){
+                return (
+
+                    <View style={styles.commentContainer}>
+                        <Text style={styles.commentText}>Be the first to leave a comment!</Text>
+                    </View>
+                );
+            } else {
+                return (
+                    <ScrollView style={{paddingBottom: 30}}>
+                        <View style={{marginTop: 10, marginBottom: 20}}/>
+                        {data.GroupFitClass.comments.map((obj) => (
+                            <View style={styles.commentContainer}>
+                                <Text style={styles.commentText}>
+                                    {obj.content}
+                                </Text>
+                                <Text style={{fontSize: 10, fontStyle:'italic'}}>
+                                    ~{'[' + obj.userComment.username + ' @ ' + moment(obj.createdAt).format("M/D/Y hh:mm a") +  ']'}
+                                </Text>
+                            </View>
+                        ))}
+                    </ScrollView>
+                );
+            }
         }}
     </Query>
 );
@@ -88,8 +101,6 @@ class SingleClassDetailScreen extends React.Component {
         }).done();
 
     }
-
-
     render() {
         if (this.state.isLoading) {
             return <View><Text>Loading...</Text></View>;
@@ -154,22 +165,35 @@ class SingleClassDetailScreen extends React.Component {
                         <Text style={styles.buttonText}>Class Comments</Text>
                     </TouchableOpacity>
                 </View>
-                <Modal
-                    transparent={true}
-                    animationType={"none"}
-                    visible={this.state.commentModalVisible}
-                    onRequestClose={() => {this.showModal(!this.state.commentModalVisible)} }
-                >
-                    <View style={styles.modalContainer}>
-                        <View style={styles.ModalInsideView}>
-                            <TouchableOpacity onPress={() => {this.showModal(!this.state.commentModalVisible)}} style={styles.closeButton}>
-                                <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"}/>
-                            </TouchableOpacity>
-                            <Text style={{fontStyle: "italic", fontWeight: "bold"}}>Comments & Feedback:</Text>
-                            <ClassComments id ={this.props.navigation.state.params.itemId} />
-                        </View>
-                    </View>
-                </Modal>
+                    <Modal
+                        transparent={true}
+                        animationType={"none"}
+                        visible={this.state.commentModalVisible}
+                        onRequestClose={() => {this.showModal(!this.state.commentModalVisible)} }
+                    >
+                        <TouchableOpacity
+                            onPress={() => this.showModal(!this.state.commentModalVisible)}
+                            style={{ marginTop: 20, alignItems:'center', height: '85%'}}
+                        >
+                            <ScrollView style={styles.ModalInsideView} >
+                                <TouchableWithoutFeedback  >
+                                        <View  >
+                                            <TouchableOpacity
+                                                onPress={() => {this.showModal(!this.state.commentModalVisible)}}
+                                                style={styles.closeButton}
+                                            >
+                                                <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"}/>
+                                            </TouchableOpacity>
+                                            <Text style={{fontStyle: "italic", fontWeight: "bold", color: "#156DFA"}}>Comments & Feedback:</Text>
+                                            <ClassComments id ={this.props.navigation.state.params.itemId} />
+                                        </View>
+                                </TouchableWithoutFeedback>
+                            </ScrollView>
+
+                        </TouchableOpacity>
+
+                    </Modal>
+
             </ScrollView>
         );
     }
@@ -204,9 +228,8 @@ const styles = StyleSheet.create({
     closeButton: {
         alignSelf: 'flex-end',
         position:'relative',
-        justifyContent: "pull-right",
         top: 2,
-        right: 7,
+        right: 1,
     },
     formButton: {
         alignSelf: 'center',
@@ -233,15 +256,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     commentText:{
-
-        fontSize: "12",
+        fontSize: 14,
+        fontWeight: 'bold',
         backgroundColor: "#fff"
     },
     commentContainer: {
         marginTop: 10,
-        padding: 5,
+        padding:8,
         borderColor: '#000000',
-        borderBottomWidth: 0.5,
+        borderBottomWidth: 0.75,
     },
     modalContainer: {
         flex: 1,
@@ -249,14 +272,17 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     ModalInsideView:{
+        marginTop: 30,
+        marginBottom: 20,
+        paddingBottom:10,
         alignItems: 'center',
+        alignContent: 'center',
         backgroundColor : "#fff",
-        height: 500 ,
+        height: 600 ,
         width: '90%',
         borderRadius:10,
         borderWidth: 3,
         borderColor: '#156DFA',
-        opacity: "0.925",
-        marginBottom: 30,
+        opacity: "0.955",
     },
 });

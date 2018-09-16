@@ -1,7 +1,7 @@
 import React from 'react'
 import {
     View, Text, Dimensions, Modal, ImageBackground, TouchableOpacity, Image, ScrollView, WebView, StatusBar,
-    StyleSheet
+    StyleSheet, TouchableWithoutFeedback
 } from 'react-native';
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
@@ -20,10 +20,12 @@ class TrainingMembership extends React.Component{
     }
     render(){
         return(
-            <View style={{alignItems:'center', justifyContent:'center',borderBottomWidth:1}}>
+            <View style={{alignItems:'center', justifyContent:'center',borderBottomWidth:1,}}>
                 <View style={{marginTop: 18, marginLeft: 10, alignItems:'center'}}>
                     <Text style={{color:"#000", fontWeight:"bold", fontSize: 13}}>{this.props.title}</Text>
-                    <View style={{flexDirection: "row", marginTop: 5, justifyContent:'center', alignItems:'center'}}>
+                    <View style={{flexDirection: "row", marginTop: 5, justifyContent:'center', alignItems:'center',
+                        flexWrap: 'wrap',
+                    }}>
                         <Text style={{color:"#535353", fontStyle:"italic", fontSize: 12}}>Member Rate: </Text>
                         <Text style={{color:"#000", fontSize: 12}}>{this.props.memberRate}</Text>
                     </View>
@@ -92,7 +94,7 @@ class TrainerScreen extends React.Component{
     }
     render(){
         return(
-            <View style={{flex:1, backgroundColor: "#fff", marginTop: 0}}>
+            <View style={{flex:1, backgroundColor: "#fff", marginTop: 0, }}>
                 <StatusBar/>
                     <View style={{alignItems: 'center',width: WIDTH, height:HEIGHT*.25,  backgroundColor: '#000', borderWidth:1, borderRadius:10}}>
                         <Image
@@ -102,7 +104,8 @@ class TrainerScreen extends React.Component{
                             alt={"Personal Training Squat Instruction"}
                         />
                     </View>
-                <View style={{flex: 2, display:'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap:'wrap',alignItems:'center'}}>
+                <View style={{flex: 2, display:'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap:'wrap',alignItems:'center',
+                }}>
 
                 <ScrollView style={{ width: WIDTH*.5, height:HEIGHT*.6, backgroundColor: '#ffffff'}}>
                     <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A', justifyContent:'center', alignItems:'center'}}>
@@ -150,7 +153,7 @@ class TrainerScreen extends React.Component{
                             memberRate={"$140/month"}
                             memberRateUnitPrice={"1 Session/week in month"}
                         />
-
+                        <View style={{height: 20}}/>
                     </ScrollView>
                     <ImageBackground
                         source={require('../assets/images/silver-background.jpg')}

@@ -40,7 +40,6 @@ class WorkoutView extends React.Component{
     };
 
     handlePressExercise = (exercise) => {
-        console.log("exercise button press");
         this.props.navigation.navigate("ExerciseDetail", {itemId: exercise});
     };
 
@@ -84,14 +83,13 @@ class WorkoutView extends React.Component{
                                             key={id}
                                             style={{flexDirection:'row'}}
                                         >
-                                            {console.log({id})}
                                             <Text style={styles.title} key={id}>
                                                 {name}
                                             </Text>
                                             <Ionicons
                                                 name={'ios-arrow-dropright-outline'}
                                                 color={'red'}
-                                                size={15}
+                                                size={19}
                                                 style={{marginLeft: 3, marginTop:5}}
                                             />
                                         </TouchableOpacity>
@@ -159,10 +157,7 @@ class WorkoutScreen extends React.Component{
         }else{
             this.setState({oneRepMax: W});
         }
-
-
     };
-
     suggestedIntensity(m, p){
 
         let intensity = (p/100) * m;
@@ -251,9 +246,7 @@ class WorkoutScreen extends React.Component{
                         <MaterialCommunityIcons name={"arrow-right-bold-box-outline"} size={35} color={"#156DFA"}/>
                     </TouchableOpacity>
                     <Text style={{fontWeight:'bold'}}>{intensityLevel} lbs</Text>
-
                 </View>
-
                 <AllWorkoutsViewWithData navigation = {this.props.navigation} />
             </View>
         );
