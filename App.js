@@ -1,16 +1,14 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage,View } from 'react-native';
 import ApolloClient from 'apollo-client';
 import {ApolloProvider} from 'react-apollo';
 import {HttpLink} from "apollo-link-http";
 import {InMemoryCache} from "apollo-cache-inmemory";
-import { ApolloLink} from 'apollo-link';
-import TabTabNavigator from './router';
 import AUTH_TOKEN from './util/keys';
 import FitnessApp from './FitnessApp';
-import {createRootNavigator} from './router'
 import {GRAPHQL_ENDPOINT} from './util/keys';
 import { setContext } from 'apollo-link-context';
+import {SafeAreaView} from 'react-navigation';
 
 
 let token;
@@ -24,7 +22,7 @@ export const getToken = async () => {
         return Promise.resolve(token);
     }
     token = await AsyncStorage.getItem(AUTH_TOKEN).valueOf();
-}
+};
 
 
 const authLink = setContext(async(req, {headers}) => {

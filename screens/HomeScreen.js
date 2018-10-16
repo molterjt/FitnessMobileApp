@@ -7,7 +7,7 @@ import {
 import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
 import NewsItem from '../components/NewsItem';
 import {graphql,Query, withApollo} from "react-apollo";
-import {withNavigation} from 'react-navigation';
+import {withNavigation, SafeAreaView} from 'react-navigation';
 import gql from "graphql-tag";
 import Logout from '../components/Logout';
 import {AUTH_TOKEN} from "../constants/auth";
@@ -111,19 +111,20 @@ class HomeScreen extends React.Component{
         return {
             headerRight: (
                 <TouchableOpacity
-                    style={{marginRight: 15}}
+                    style={{marginRight: 15, marginTop:7}}
                     onPress={() => navigation.navigate('Settings')}>
                     <FontAwesome
-                        name={"gear"} type={"MaterialIcons"} size={30} color={'#29282A'}
+                        name={"gear"} type={"MaterialIcons"} size={30} color={'#931414'}
                     />
                 </TouchableOpacity>
             ),
             headerLeft: (
                 <TouchableOpacity
-                    style={{marginLeft: 15}}
+                    style={{marginLeft: 15, marginTop:7}}
                     onPress={() => navigation.navigate('Workouts')}>
                     <MaterialIcons
-                        name={"fitness-center"} type={"MaterialIcons"} size={30} color={'#29282A'}
+                        name={"fitness-center"} type={"MaterialIcons"} size={30} color={'#931414'}
+
                     />
                 </TouchableOpacity>
             ),

@@ -2,12 +2,10 @@ import React from 'react'
 import {View, Text, ActivityIndicator, AsyncStorage} from 'react-native';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
-import {SwitchNavigator, withNavigation} from "react-navigation";
-import TabTabNavigator from './router';
-import LoginScreen from "./screens/LoginScreen";
-import HomeStack from './router';
 import {AUTH_TOKEN} from "./constants/auth";
 import {createRootNavigator} from './router'
+import {SafeAreaView} from 'react-navigation';
+
 
 
 
@@ -54,7 +52,11 @@ class FitnessApp extends React.Component{
             return <ActivityIndicator/>;
         }
         const Layout = createRootNavigator(signedIn);
-        return <Layout/>;
+        return(
+
+            <Layout/>
+
+        );
     }
 }
 

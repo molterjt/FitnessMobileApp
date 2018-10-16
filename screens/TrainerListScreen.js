@@ -87,7 +87,7 @@ class TrainerProfile extends React.Component{
                                                 source={{uri: this.props.imageUrl}}
                                                 alt={"Trainer Profile Image"}
                                                 resizeMode={"contain"}
-                                                style={{width: WIDTH * .67, height: HEIGHT*.33, }}
+                                                style={{width: WIDTH * .6, height: HEIGHT*.25, }}
                                             />
                                         </View>
                                         <View style={{
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     closeButton: {
         alignSelf: 'flex-end',
         position:'relative',
-        top: 2,
+        top: 3,
         right: 7,
     },
     trainerDetailText: {

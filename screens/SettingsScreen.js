@@ -44,6 +44,16 @@ class SettingsScreen extends React.Component{
                     </View>
                 </View>
                 <View style={styles.boxOutter}>
+                    <Text style={styles.headText}>Privacy/Terms</Text>
+                    <View style={styles.boxInner}>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('Terms')}
+                        >
+                            <Entypo name={"text-document-inverted"} type={"Ionicons"} size={95}/>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={styles.boxOutter}>
                     <Text style={styles.headText}>Logout</Text>
                     <View style={styles.boxInner}>
                         <Logout>

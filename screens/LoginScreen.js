@@ -94,6 +94,7 @@ class Login extends React.Component{
         this.checkLoginCredentials = this.checkLoginCredentials.bind(this);
         this.clearUserFormInputs = this.clearUserFormInputs.bind(this);
         this.showRegisterActivity = this.showRegisterActivity.bind(this);
+        this.hideActivityIndicator = this.hideActivityIndicator.bind(this);
     }
     checkRegisterCredentials(){
         const {email, password, username, emailError, passwordError, usernameError} = this.state;
@@ -117,6 +118,9 @@ class Login extends React.Component{
     }
     showRegisterActivity(){
         this.setState({registerActivity: true});
+    };
+    hideActivityIndicator(){
+        this.setState({registerActivity:false});
     }
     _saveUserToken = token => {
         AsyncStorage.setItem(AUTH_TOKEN, JSON.stringify(token));
@@ -248,7 +252,7 @@ class Login extends React.Component{
                                 ? <Text style={{color: 'white', textAlign:'center'}}>{passwordError}</Text>
                                 : null
                             }
-                            {registerActivity
+                            {registerActivity && !passwordError && !emailError && !graphQL_Error && password > 6 && email > 6
                                 ? <ActivityIndicator size="large" color={'#0a3efa'}/>
                                 : null
                             }
@@ -264,6 +268,7 @@ class Login extends React.Component{
                                     this.showRegisterActivity();
                                     this._confirm();
                                     this.clearUserFormInputs();
+
                                 }}
                                 style={styles.formButton}
                                 disabled={this.checkRegisterCredentials()}
@@ -277,6 +282,7 @@ class Login extends React.Component{
                                     this.showRegisterActivity();
                                     this._confirm();
                                     this.clearUserFormInputs();
+
                                 }}
                                 style={styles.formButton}
                                 disabled={this.checkLoginCredentials()}

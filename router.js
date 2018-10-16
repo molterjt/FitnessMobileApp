@@ -1,7 +1,6 @@
 import React from 'react';
-import { Ionicons} from '@expo/vector-icons'; // Version can be specified in package.json
-import { StackNavigator, TabNavigator, TabBarBottom, SwitchNavigator } from 'react-navigation'; // Version can be specified in package.jsonimport {Icon} from 'react-native-elements';
-
+import { Ionicons} from '@expo/vector-icons';
+import { StackNavigator, TabNavigator, TabBarBottom, SwitchNavigator, } from 'react-navigation';
 
 import HomeScreen from './screens/HomeScreen';
 import ScheduleScreen from './screens/ScheduleScreen';
@@ -20,6 +19,7 @@ import TrainerScreen from './screens/TrainerScreen';
 import TrainerListScreen from './screens/TrainerListScreen';
 import GroupFitProgramsScreen from './screens/GroupFitProgramsScreen';
 import SettingsScreen from "./screens/SettingsScreen";
+import TermsScreen from "./screens/TermsScreen";
 
 /*
 const headerStyle = {
@@ -32,7 +32,7 @@ const HomeStack = StackNavigator(
         Home: {
             screen: HomeScreen,
             navigationOptions:{
-                title: 'Welcome',
+                title: 'MiamiOH Rec Fit',
             },
         },
         Settings: {
@@ -53,6 +53,12 @@ const HomeStack = StackNavigator(
             path: '/profile',
             navigationOptions:{
                 title: 'Edit Profile',
+            },
+        },
+        Terms: {
+            screen: TermsScreen,
+            navigationOptions:{
+                title: 'Privacy & Terms of Use',
             },
         },
         Workouts: {
@@ -95,7 +101,12 @@ const ProfileStack = StackNavigator(
             path: '/',
             navigationOptions:{
                 title: 'Profile',
+                headerStyle: {
+                    height:30,
+                }
+
             },
+
         },
         Edit: {
             screen: EditScreen,
@@ -112,7 +123,7 @@ const GFStack = StackNavigator(
             screen: ScheduleScreen,
             path: '/',
             navigationOptions:{
-                title: 'Fitness Schedule',
+                title: 'Fitness Schedule'
             },
         },
         GroupFitPrograms:{
@@ -151,7 +162,7 @@ const PersonalFITStack = StackNavigator(
         Trainer:{
             screen: TrainerScreen,
             navigationOptions:{
-                title: 'Training'
+
             },
         },
         TrainerList: {
@@ -250,11 +261,14 @@ export const TabTabNavigator = TabNavigator(
             activeTintColor: 'red',
             inactiveTintColor: 'white',
             style:{
-                backgroundColor: '#29282A'
+                backgroundColor: '#29282A',
+                paddingBottom: 15,
+                height: 65,
             },
         },
         tabStyle: {
             width: 120,
+
         },
         animationEnabled: false,
         swipeEnabled: false,
@@ -268,6 +282,7 @@ export const SignedOut = StackNavigator({
     }
 
 });
+
 
 export const createRootNavigator = (signedIn = false) => {
     return SwitchNavigator(

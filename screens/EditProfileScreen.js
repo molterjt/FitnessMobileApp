@@ -2,14 +2,61 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Text, View, StatusBar, ActivityIndicator, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet,
-    Dimensions, ScrollView
+    Dimensions, ScrollView, Alert
 } from 'react-native';
+import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements'
 import gql from "graphql-tag";
 import { graphql, compose, Mutation, Query } from "react-apollo";
-
+import {withNavigation} from 'react-navigation';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
+
+
+
+
+/*******Deletes User**********/
+/*
+const DELETE_PROFILE = gql`
+    mutation deleteUser($id:ID!){
+        username
+    }
+`
+
+const RemoveUser = ({id}) => {
+    return (
+        <Mutation
+            mutation={DELETE_PROFILE}
+        >
+            {(deleteUser, {data}) => (
+                <TouchableOpacity
+                    style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
+                    onPress={() => Alert.alert(
+                        'Alert',
+                        "Are you really, really sure you want to DELETE your account?  There's no take backs!",
+                        [
+                            {text: 'DELETE', onPress: () => deleteUser({
+                                    variables: {
+                                        id
+                                    },
+                                }),
+                            },
+                            {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')}
+                        ],
+                        { cancelable: true },
+                        console.log("User with id: " + id + " was deleted")
+                    )}>
+                    <MaterialCommunityIcons
+                        name={"delete-forever"}
+                        size={36}
+                        color={'#fff'}
+                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
+                    />
+                </TouchableOpacity>
+            )}
+        </Mutation>
+    );
+};*/
 
 class EditScreen extends React.Component {
     constructor(props) {
@@ -24,6 +71,7 @@ class EditScreen extends React.Component {
             checked: false
         };
         this._updateInfo = this._updateInfo.bind(this);
+        this._deleteThisUser=this._deleteThisUser.bind(this);
         this._handleInterestListCheck = this._handleInterestListCheck.bind(this);
     }
 
@@ -41,7 +89,7 @@ class EditScreen extends React.Component {
 
     _updateInfo = async () => {
         const {userId, firstName, lastName, dateOfBirth} = this.state;
-        await this.props.mutate({
+        await this.props.updateUser({
             variables: {
                 id: userId,
                 firstName: firstName,
@@ -52,6 +100,32 @@ class EditScreen extends React.Component {
         });
         console.log(firstName);
         this.props.navigation.goBack(null);
+    };
+
+    _deleteThisUser = async () => {
+        const {userId} = this.state;
+         await Alert.alert(
+            'Alert',
+            "Are you really, really sure you want to DELETE your account?  There's no take backs!",
+            [
+                {
+                    text: 'DELETE', onPress: () => {
+                        this.props.deleteUser({
+                            variables: {
+                                id: userId,
+                            }
+                        });
+                        this.props.navigation.navigate('Login');
+                        console.log(this.props.deleteUser.data.username + " has been deleted. Goodbye.");
+                    }
+                },
+                {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')}
+            ],
+            { cancelable: true },
+        );
+
+
+
     }
 
     render() {
@@ -129,6 +203,17 @@ class EditScreen extends React.Component {
                 <TouchableOpacity onPress={() => this._updateInfo()} style={styles.formButton}>
                     <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
+                {/*<RemoveUser id={this.state.userId}/>*/}
+                <TouchableOpacity
+                    style={{marginBottom: 40, marginTop: 0, borderRadius: 8, padding:3, alignSelf: 'center', justifyContent: 'center',alignItems:'center', width: '40%', borderWidth:1, borderColor: '#fff'}}
+                    onPress={() => this._deleteThisUser()}>
+                    <MaterialCommunityIcons
+                        name={"delete-forever"}
+                        size={38}
+                        color={'#fff'}
+                    />
+                    <Text style={{color: "#fff", fontSize: 12, fontWeight:'bold', marginTop:5, alignSelf: 'center'}}>Delete Account</Text>
+                </TouchableOpacity>
 
             </ScrollView>
         );
@@ -153,7 +238,7 @@ const updateProfile = gql`
             interests{title}
         }
     }
-`
+`;
 const INTEREST_LIST = gql`
     query{
         allInterests(orderBy: title_ASC){
@@ -161,9 +246,22 @@ const INTEREST_LIST = gql`
             title
         }
     }
+`;
+const DELETE_PROFILE = gql`
+    mutation deleteUser($id:ID!){
+        deleteUser(id: $id){
+            username
+        }
+    }
 `
 
-export default graphql(updateProfile)(EditScreen);
+
+export default compose(
+    graphql(updateProfile, {name: 'updateUser'}),
+    graphql(DELETE_PROFILE, {name: 'deleteUser'})
+)(withNavigation(EditScreen));
+
+;
 
 const styles = StyleSheet.create({
 

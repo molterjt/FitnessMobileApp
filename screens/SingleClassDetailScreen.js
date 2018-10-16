@@ -178,13 +178,15 @@ class SingleClassDetailScreen extends React.Component {
                             <ScrollView style={styles.ModalInsideView} >
                                 <TouchableWithoutFeedback  >
                                         <View  >
+                                            <View style={{alignItems:'flex-end'}}>
                                             <TouchableOpacity
                                                 onPress={() => {this.showModal(!this.state.commentModalVisible)}}
                                                 style={styles.closeButton}
                                             >
                                                 <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"}/>
                                             </TouchableOpacity>
-                                            <Text style={{fontStyle: "italic", fontWeight: "bold", color: "#156DFA"}}>Comments & Feedback:</Text>
+                                            </View>
+                                            <Text style={{fontStyle: "italic", fontWeight: "bold", color: "#156DFA", textAlign:'center', marginTop: 10}}>Comments & Feedback:</Text>
                                             <ClassComments id ={this.props.navigation.state.params.itemId} />
                                         </View>
                                 </TouchableWithoutFeedback>
@@ -226,10 +228,11 @@ export default GFClassView;
 
 const styles = StyleSheet.create({
     closeButton: {
-        alignSelf: 'flex-end',
+        // alignSelf: 'flex-end',
         position:'relative',
         top: 2,
-        right: 1,
+        right: 2,
+
     },
     formButton: {
         alignSelf: 'center',

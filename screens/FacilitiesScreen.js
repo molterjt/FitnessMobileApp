@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Text, View, TouchableOpacity, Modal, RefreshControl, TouchableWithoutFeedback,
+    Text, View, TouchableOpacity, Modal, RefreshControl, TouchableWithoutFeedback,StatusBar,
     ScrollView, Animated, Dimensions, Image, StyleSheet
 } from 'react-native';
 import { Query } from 'react-apollo';
@@ -49,7 +49,7 @@ class FacilityDetail extends React.Component{
     };
     render(){
         return(
-            <View style={{marginTop: 10, paddingTop: 10}}>
+            <View >
             <TouchableOpacity
                 style={styles.profileButton}
                 onPress={() => {this.showFacilityModal(true)}}
@@ -187,6 +187,8 @@ class FacilitiesScreen extends React.Component {
         super(props);
         this.state = {
             facilityInfo: false,
+            myPosition: undefined,
+            myErr: null,
             markers: [
                 {
                     coordinate: {
@@ -232,6 +234,7 @@ class FacilitiesScreen extends React.Component {
                     phone: "(513) 529-4175",
                     image: {uri: "https://i.imgur.com/OZUCO2y.jpg?1"}
                 },
+
             ],
             region: {
                 latitude: 39.502,
@@ -272,6 +275,16 @@ class FacilitiesScreen extends React.Component {
                 }
             }, 10);
         });
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                this.setState({
+                    myPosition: position.coords,
+                    error: null,
+                });
+            },
+            (error) => this.setState({error: error.message}),
+                {enableHighAccuracy:true, timeout: 20000, maximumAge: 1000}
+            );
     }
     render() {
         const interpolations = this.state.markers.map((marker, index) => {
@@ -294,10 +307,11 @@ class FacilitiesScreen extends React.Component {
         });
         return (
             <View style={styles.container}>
-                <View style={{marginTop: 40, flexDirection: "row", backgroundColor: "#ebebeb", justifyContent:"center"}}>
+                <StatusBar barStyle = "default"/>
+                <View style={{marginTop: 0, flexDirection: "row", backgroundColor: "#ebebeb", justifyContent:"center"}}>
                     <TouchableOpacity
                         onPress={() => this.map.animateToRegion(this.state.region, 200)}
-                        style={{alignItems:"center", flexDirection:"row", padding: 10,}}
+                        style={{alignItems:"center", flexDirection:"row", padding: 10, marginTop:23}}
                     >
                         <Text style={{color:"blue", fontSize: 16, marginRight: 10}}>Reset Map</Text>
                         <Ionicons
@@ -311,6 +325,7 @@ class FacilitiesScreen extends React.Component {
                 <MapView
                     ref={map => this.map = map}
                     initialRegion={this.state.region}
+
                     style={styles.mapContainer}
                 >
                     {this.state.markers.map((marker, index) => {
@@ -333,6 +348,13 @@ class FacilitiesScreen extends React.Component {
                             </MapView.Marker>
                         );
                     })}
+                    <MapView.Marker coordinate={this.state.myPosition} title={'Me'}>
+                        <Animated.View style={styles.markerWrap}>
+                            <Animated.View style={styles.myRing}/>
+                            <View style={styles.myMarker} />
+                        </Animated.View>
+                    </MapView.Marker>
+
                 </MapView>
                 <Animated.ScrollView
                     horizontal
@@ -455,6 +477,23 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "red",
     },
+    myMarker: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: "#0c3eff",
+    },
+    myRing: {
+        width: 24,
+        height: 24,
+        borderRadius: 12,
+        backgroundColor: "white",
+        opacity: 0.4,
+        position: "absolute",
+        borderWidth: 1,
+        borderColor: "#0c3eff",
+    },
+
 
     /****************/
     profileButton:{

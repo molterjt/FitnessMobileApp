@@ -24,13 +24,18 @@ const GET_WORKOUTS = gql`
 
 let queryUserId;
 
+
 class WorkoutView extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state={refreshing: false}
+        this.state={
+            refreshing: false,
+            workoutSets: [],
+        };
         this.handlePressExercise = this.handlePressExercise.bind(this);
         this._onRefresh = this._onRefresh.bind(this);
+        this.setTheSets = this.setTheSets.bind(this);
     }
     _onRefresh = () => {
         this.setState({refreshing:true});
@@ -42,6 +47,10 @@ class WorkoutView extends React.Component{
     handlePressExercise = (exercise) => {
         this.props.navigation.navigate("ExerciseDetail", {itemId: exercise});
     };
+
+    setTheSets = (setSets) => {
+        this.setState({workoutSets: setSets})
+    }
 
     componentDidMount(){
         AsyncStorage.getItem("MyUserId").then( (dataId) => {
@@ -74,7 +83,6 @@ class WorkoutView extends React.Component{
                             key={id}
                             id={obj.id}
                             title={obj.title}
-
                             type={obj.type.map(({title, id}) => title).join(', ')}
                             exercises={obj.exercises.map(({name, reps, sets, intensity, id, tempo}) => (
                                     <View key={id}>
@@ -109,10 +117,36 @@ class WorkoutView extends React.Component{
                             image={obj.imageUrl}
                             userCheckinId={queryUserId}
                             workoutCheckinId={obj.id}
+                            exerciseRecords={obj.exercises.map(({name, reps, sets, intensity, id, tempo}) => (
+                                    <View key={obj.id}>
+                                        <Text style={styles.title} key={id}>
+                                            {name}
+                                        </Text>
+                                        <Text style={styles.info} >
+                                            Sets: {sets}
+                                        </Text>
+
+                                        <Text style={styles.info} >
+                                            Reps: {reps}
+                                        </Text>
+                                        <Text style={styles.info} >
+                                            Intensity: {intensity}
+                                        </Text>
+                                    </View>
+
+                                )
+                            )}
+                            workoutSets={obj.exercises.map(({ sets }) =>
+                                <View>
+                                    {sets}
+                                </View>
+                            )}
                         />
                     )
 
                 )}
+
+
 
             </ScrollView>
         );
@@ -137,7 +171,7 @@ class WorkoutScreen extends React.Component{
             intensityPercent: 0,
             maxForPercent: 0,
             intensityLevel: 0,
-        }
+        };
         this.estimated1RMLanderFormula = this.estimated1RMLanderFormula.bind(this);
         this.suggestedIntensity = this.suggestedIntensity.bind(this);
     }
@@ -168,10 +202,10 @@ class WorkoutScreen extends React.Component{
         const {oneRepMax, weightLifted, repCount, intensityPercent, maxForPercent, intensityLevel} = this.state;
         return(
             <View style={{marginBottom:80, paddingBottom:50}}>
-                <Text style={{backgroundColor: '#156DFA', color: 'white', textAlign: 'center', fontStyle: 'italic', fontSize: 10}}>Estimated One-Rep Max:</Text>
-                <View style={{marginTop: 8, flexDirection: 'row', alignItems:'center', justifyContent:'center'}}>
+                <Text style={{backgroundColor: '#156DFA', color: 'white', textAlign: 'center', fontStyle: 'italic', fontSize: 12}}>Estimated One-Rep Max:</Text>
+                <View style={{paddingTop: 8, paddingBottom:8, flexDirection: 'row', alignItems:'center', justifyContent:'center', backgroundColor:'#29282A'}}>
                     <TextInput
-                        style={{width: 80, borderWidth:1, borderColor: '#000', padding: 8, marginRight: 10, textAlign: 'center'}}
+                        style={{width: 80, borderWidth:1, borderColor: '#fff', padding: 8, marginRight: 10, textAlign: 'center', backgroundColor:'#fff'}}
                         type={'number'}
                         value={weightLifted}
                         onChangeText={ (weightLifted) => {
@@ -184,9 +218,9 @@ class WorkoutScreen extends React.Component{
                         autoCorrect={false}
                         keyboardType={'number-pad'}
                     />
-                    <Text> x </Text>
+                    <Text style={{color:'#fff'}}> x </Text>
                     <TextInput
-                        style={{width: 80, borderWidth:1, borderColor: '#000', padding: 8, marginLeft: 10, textAlign: 'center'}}
+                        style={{width: 80, borderWidth:1, borderColor: '#fff', padding: 8, marginLeft: 10, textAlign: 'center', backgroundColor:'#fff'}}
                         value={repCount}
                         onChangeText={ (repCount) => {
                             this.setState({repCount: repCount});
@@ -204,15 +238,15 @@ class WorkoutScreen extends React.Component{
                         <MaterialCommunityIcons name={"arrow-right-bold-box-outline"} size={35} color={"#156DFA"}/>
                     </TouchableOpacity>
                     {oneRepMax > 0
-                        ? (<Text style={{fontWeight:'bold'}}>{oneRepMax} lbs</Text>)
-                        : (<Text style={{fontWeight:'bold'}}>{oneRepMax}</Text>)
+                        ? (<Text style={{fontWeight:'bold', color: '#fff'}}>{oneRepMax} lbs</Text>)
+                        : (<Text style={{fontWeight:'bold', color: '#fff'}}>{oneRepMax}</Text>)
                     }
 
                 </View>
-                <Text style={{backgroundColor: '#156DFA', color: 'white',textAlign: 'center', fontStyle: 'italic', fontSize: 10, marginTop: 10}}>Estimated Intensity:</Text>
-                <View style={{marginTop: 8, marginBottom:8, flexDirection: 'row', alignItems:'center', justifyContent:'center'}}>
+                <Text style={{backgroundColor: '#156DFA', color: 'white',textAlign: 'center', fontStyle: 'italic', fontSize: 12, }}>Estimated Intensity:</Text>
+                <View style={{paddingTop: 8, paddingBottom:8, flexDirection: 'row', alignItems:'center', justifyContent:'center',borderWidth:1, backgroundColor:'#29282A' }}>
                     <TextInput
-                        style={{width: 50, borderWidth:1, borderColor: '#000', padding: 8, marginRight: 6, marginLeft:20, textAlign: 'center'}}
+                        style={{width: 50, borderWidth:1, borderColor: '#fff', padding: 8, marginRight: 6, marginLeft:20, textAlign: 'center', backgroundColor: '#fff'}}
                         value={intensityPercent}
                         onChangeText={ (e) => {
                             this.setState({intensityPercent: e});
@@ -225,10 +259,10 @@ class WorkoutScreen extends React.Component{
                         autoCorrect={false}
                         keyboardType={'number-pad'}
                     />
-                    <Text>% </Text>
-                    <Text style={{marginLeft: 8}}> of </Text>
+                    <Text style={{color: "#fff"}}>% </Text>
+                    <Text style={{marginLeft: 8, color: "#fff"}}> of </Text>
                     <TextInput
-                        style={{width: 80, borderWidth:1, borderColor: '#000', padding: 8, marginLeft: 16, textAlign: 'center'}}
+                        style={{width: 80, borderWidth:1, borderColor: '#fff', padding: 8, marginLeft: 16, textAlign: 'center',backgroundColor: '#fff'}}
                         value={maxForPercent}
                         onChangeText={ (e) => {
                             this.setState({maxForPercent: e});
@@ -245,7 +279,7 @@ class WorkoutScreen extends React.Component{
                         onPress={() => this.suggestedIntensity(maxForPercent, intensityPercent)}>
                         <MaterialCommunityIcons name={"arrow-right-bold-box-outline"} size={35} color={"#156DFA"}/>
                     </TouchableOpacity>
-                    <Text style={{fontWeight:'bold'}}>{intensityLevel} lbs</Text>
+                    <Text style={{fontWeight:'bold', color:'#fff'}}>{intensityLevel} lbs</Text>
                 </View>
                 <AllWorkoutsViewWithData navigation = {this.props.navigation} />
             </View>
