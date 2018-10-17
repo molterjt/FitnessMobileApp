@@ -33,12 +33,20 @@ const HomeStack = StackNavigator(
             screen: HomeScreen,
             navigationOptions:{
                 title: 'MiamiOH Rec Fit',
+
+                headerStyle:{
+
+                    backgroundColor: "#fff"
+                }
             },
         },
         Settings: {
             screen: SettingsScreen,
             navigationOptions:{
-                title: 'Settings'
+                title: 'Settings',
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
             }
         },
         Profile: {
@@ -46,6 +54,9 @@ const HomeStack = StackNavigator(
             path: '/Profile',
             navigationOptions:{
                 title: 'Profile',
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
             },
         },
         Edit: {
@@ -53,24 +64,37 @@ const HomeStack = StackNavigator(
             path: '/profile',
             navigationOptions:{
                 title: 'Edit Profile',
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
             },
         },
         Terms: {
             screen: TermsScreen,
             navigationOptions:{
                 title: 'Privacy & Terms of Use',
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
             },
         },
         Workouts: {
             screen: WorkoutScreen,
             path: '/workouts',
             navigationOptions:{
-
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
             },
         },
         ExerciseDetail: {
             screen: ExerciseDetail,
             path:'/workouts/exercise',
+            navigationOptions:{
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
+            }
         },
         Intro:{
             screen: IntroScreen,
@@ -89,6 +113,9 @@ const EventStack = StackNavigator(
             path: '/Events',
             navigationOptions:{
                 title: 'Events',
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
             },
         },
     }
@@ -123,21 +150,37 @@ const GFStack = StackNavigator(
             screen: ScheduleScreen,
             path: '/',
             navigationOptions:{
-                title: 'Fitness Schedule'
+                title: 'Fitness Schedule',
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
             },
         },
         GroupFitPrograms:{
             screen: GroupFitProgramsScreen,
             path: '/groupFitProgramsScreen',
             navigationOptions:{
-                title: 'Group Fitness Programs'
+                title: 'Group Fitness Programs',
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
             }
         },
         ClassDetail: {
             screen: SingleClassDetailScreen,
+            navigationOptions:{
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
+            }
         },
         Instructor:{
-            screen: InstructorScreen
+            screen: InstructorScreen,
+            navigationOptions:{
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
+            }
         },
         CategoryDetail: {
             screen: CategoryScreen
@@ -152,6 +195,9 @@ const FacilityStack = StackNavigator(
             path: '/',
             navigationOptions:{
                 header: null,
+                headerStyle:{
+                    backgroundColor: "#ebebeb"
+                }
             },
         },
     }
@@ -162,6 +208,9 @@ const PersonalFITStack = StackNavigator(
         Trainer:{
             screen: TrainerScreen,
             navigationOptions:{
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
 
             },
         },
@@ -169,6 +218,9 @@ const PersonalFITStack = StackNavigator(
             screen: TrainerListScreen,
             path: '/trainers',
             navigationOptions:{
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
 
             },
         },
@@ -262,8 +314,8 @@ export const TabTabNavigator = TabNavigator(
             inactiveTintColor: 'white',
             style:{
                 backgroundColor: '#29282A',
-                paddingBottom: 15,
-                height: 65,
+                paddingBottom: 8,
+                height: 55,
             },
         },
         tabStyle: {
@@ -277,8 +329,6 @@ export const TabTabNavigator = TabNavigator(
 export const SignedOut = StackNavigator({
     Login: {
         screen: LoginScreen,
-        navigationOptions: {
-        }
     }
 
 });

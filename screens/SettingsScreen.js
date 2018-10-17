@@ -49,7 +49,7 @@ class SettingsScreen extends React.Component{
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate('Terms')}
                         >
-                            <Entypo name={"text-document-inverted"} type={"Ionicons"} size={95}/>
+                            <Entypo name={"text-document-inverted"} type={"Ionicons"} size={85}/>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center',
         margin: 6,
-        width: WIDTH*.33,
+        width: WIDTH*.34,
         height: WIDTH*.33,
         borderColor:'#000',
         borderWidth: 1,
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     headText:{
         marginTop: 5,
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 15,
         color: '#fff',
     }
 });

@@ -179,7 +179,7 @@ class Login extends React.Component{
             <View style={{flex: 1, backgroundColor: 'transparent'}}>
                 <ImageBackground
                     source={require('../assets/images/abstract-architectural.jpg')}
-                    style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center'}}
+                    style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center', marginTop: -20}}
                     resizeMode='cover'
                 >
                     <View style={styles.overlay}/>

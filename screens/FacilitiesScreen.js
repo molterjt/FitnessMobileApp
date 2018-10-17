@@ -49,7 +49,7 @@ class FacilityDetail extends React.Component{
     };
     render(){
         return(
-            <View >
+            <View style={{marginTop:5}} >
             <TouchableOpacity
                 style={styles.profileButton}
                 onPress={() => {this.showFacilityModal(true)}}
@@ -111,7 +111,7 @@ class FacilityDetail extends React.Component{
                                                 source={{uri: imageUrl}}
                                                 alt={"Fitness Facility Image"}
                                                 resizeMode={"cover"}
-                                                style={{margin: 5, borderWidth: 1, borderColor: "#000", width:300, height: 200, borderRadius: 10}}
+                                                style={{margin: 5, borderWidth: 1, borderColor: "#000", width: 'auto', height:240,  borderRadius: 10}}
                                             />
                                             {hours
                                                 ?
@@ -307,11 +307,11 @@ class FacilitiesScreen extends React.Component {
         });
         return (
             <View style={styles.container}>
-                <StatusBar barStyle = "default"/>
-                <View style={{marginTop: 0, flexDirection: "row", backgroundColor: "#ebebeb", justifyContent:"center"}}>
+
+                <View style={{marginTop: 0, flexDirection: "row", backgroundColor: "#fff", justifyContent:"center"}}>
                     <TouchableOpacity
                         onPress={() => this.map.animateToRegion(this.state.region, 200)}
-                        style={{alignItems:"center", flexDirection:"row", padding: 10, marginTop:23}}
+                        style={{alignItems:"center", flexDirection:"row", padding: 5, marginTop:22,}}
                     >
                         <Text style={{color:"blue", fontSize: 16, marginRight: 10}}>Reset Map</Text>
                         <Ionicons

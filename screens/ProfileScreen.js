@@ -107,13 +107,13 @@ class ProfileScreen extends React.Component{
         }
         return(
             <View style={{flex: 1, backgroundColor: '#931414', marginBottom: 0, paddingTop: 0}}>
-                <View style={{width: WIDTH, backgroundColor: 'white', borderBottomColor: '#000', borderBottomWidth:1}}>
+                <View style={{width: WIDTH, backgroundColor: "#ebebeb", borderBottomColor: '#000', borderBottomWidth:1}}>
                     <TouchableOpacity
                         onPress={ () => this.props.data.refetch({id: queryUserId})}
                         style={{alignItems: 'center',}}
                     >
                         <Ionicons
-                            name={"ios-refresh"} type={"Ionicons"} size={35} color={'midnightblue'}
+                            name={"ios-refresh"} type={"Ionicons"} size={35} color={'blue'}
                         />
                         <Text style={{color:'midnightblue'}}>Refresh</Text>
                     </TouchableOpacity>

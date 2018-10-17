@@ -229,16 +229,6 @@ class AllGFClassView extends React.Component {
                             style={{marginTop: 6, marginLeft: 35}}
                         />
                     </View>
-                    <TouchableOpacity
-                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                        onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
-                        <MaterialCommunityIcons
-                            name={"checkbox-marked-circle-outline"}
-                            size={30}
-                            color={'#931414'}
-                        />
-                        <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
-                    </TouchableOpacity>
                     <FlatList
                         data={Mondays}
                         keyExtractor={this._keyExtractor}
@@ -269,16 +259,6 @@ class AllGFClassView extends React.Component {
                             style={{marginTop: 6, marginLeft: 35}}
                         />
                     </View>
-                    <TouchableOpacity
-                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                        onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
-                        <MaterialCommunityIcons
-                            name={"checkbox-marked-circle-outline"}
-                            size={30}
-                            color={'#931414'}
-                        />
-                        <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
-                    </TouchableOpacity>
                     <FlatList
                         data={Tuesdays}
                         keyExtractor={this._keyExtractor}
@@ -308,16 +288,6 @@ class AllGFClassView extends React.Component {
                             style={{marginTop: 6, marginLeft: 35}}
                         />
                     </View>
-                    <TouchableOpacity
-                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                        onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
-                        <MaterialCommunityIcons
-                            name={"checkbox-marked-circle-outline"}
-                            size={30}
-                            color={'#931414'}
-                        />
-                        <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
-                    </TouchableOpacity>
                     <FlatList
                         data={Wednesdays}
                         keyExtractor={this._keyExtractor}
@@ -347,16 +317,6 @@ class AllGFClassView extends React.Component {
                             style={{marginTop: 6, marginLeft: 35}}
                         />
                     </View>
-                    <TouchableOpacity
-                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                        onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
-                        <MaterialCommunityIcons
-                            name={"checkbox-marked-circle-outline"}
-                            size={30}
-                            color={'#931414'}
-                        />
-                        <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
-                    </TouchableOpacity>
                     <FlatList
                         data={Thursdays}
                         keyExtractor={this._keyExtractor}
@@ -386,16 +346,6 @@ class AllGFClassView extends React.Component {
                             style={{marginTop: 6, marginLeft: 35}}
                         />
                     </View>
-                    <TouchableOpacity
-                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                        onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
-                        <MaterialCommunityIcons
-                            name={"checkbox-marked-circle-outline"}
-                            size={30}
-                            color={'#931414'}
-                        />
-                        <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
-                    </TouchableOpacity>
                     <FlatList
                         data={Fridays}
                         keyExtractor={this._keyExtractor}
@@ -425,16 +375,6 @@ class AllGFClassView extends React.Component {
                             style={{marginTop: 6, marginLeft: 35}}
                         />
                     </View>
-                    <TouchableOpacity
-                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                        onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
-                        <MaterialCommunityIcons
-                            name={"checkbox-marked-circle-outline"}
-                            size={30}
-                            color={'#931414'}
-                        />
-                        <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
-                    </TouchableOpacity>
                     <FlatList
                         data={Saturdays}
                         keyExtractor={this._keyExtractor}
@@ -464,16 +404,6 @@ class AllGFClassView extends React.Component {
                             style={{marginTop: 6, marginLeft: 35}}
                         />
                     </View>
-                    <TouchableOpacity
-                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                        onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
-                        <MaterialCommunityIcons
-                            name={"checkbox-marked-circle-outline"}
-                            size={30}
-                            color={'#931414'}
-                        />
-                        <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
-                    </TouchableOpacity>
                     <FlatList
                         data={Sundays}
                         keyExtractor={this._keyExtractor}
@@ -656,12 +586,12 @@ const AllGFClassViewWithData = compose(
 */
 
 class ScheduleScreen extends React.Component{
-    /*static navigationOptions = ({ navigation }) => {
+    static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
         return {
             headerRight: (
                 <TouchableOpacity
-                    style={{marginBottom: 2, marginTop: 15, marginRight: 15, borderRadius: 8, padding:3, alignItems:'center',}}
+                    style={{marginBottom: 2, marginTop: 2, marginRight: 15, borderRadius: 8, padding:3, alignItems:'center',}}
                     onPress={() => navigation.navigate('GroupFitPrograms')}>
                     <MaterialCommunityIcons
                         name={"checkbox-marked-circle-outline"}
@@ -674,7 +604,7 @@ class ScheduleScreen extends React.Component{
 
         };
     };
-*/
+
     constructor(props){
         super(props);
     };
