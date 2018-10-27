@@ -15,8 +15,26 @@ const CreateWorkoutCheckIn = gql`
     }    
 `
 
-
-
+const CREATE_EX_SET = gql`
+    mutation createExerciseSets($userId:[ID!], $repsHit: String, $setName: String, $workout:ID, $weightUsed: String, $exercise:[ID!]){
+        createExerciseSets(
+            setName:$setName,
+            repsHit:$repsHit,
+            weightUsed:$weightUsed,
+            exercisesIds: $exercise,
+            usersSetsIds: $userId,
+            workoutSetsId: $workout,
+        ){
+            id
+            setName
+            repsHit
+            weightUsed
+            exercises{name, reps}
+            usersSets{firstName}
+            workoutSets{title}
+        }
+    }
+`
 
 class Workout extends React.Component{
     constructor(props){
@@ -26,11 +44,42 @@ class Workout extends React.Component{
             myWorkoutModalVisible: false,
             workout: '',
             sets: [],
+            weightUsed: undefined,
+            workoutId: undefined,
+            repsHit: undefined,
+            setName: undefined,
+            exerciseIds: [],
+            userId: undefined,
+
+            //$userId:[ID!], $repsHit: String, $setName: String, $workout:ID, $weightUsed: String, $exercise:[ID!]
         };
         this._submitClassCheckIn = this._submitClassCheckIn.bind(this);
         this._createComment = this._createComment.bind(this);
         this.showMyWorkoutModal = this.showMyWorkoutModal.bind(this);
+        this._submitUserWorkoutRecord = this._submitUserWorkoutRecord.bind(this);
+        this.handleCompleteWorkout = this.handleCompleteWorkout.bind(this);
     }
+
+    handleCompleteWorkout = (workout) => {
+        this.props.navigation.navigate("SubmitWorkout", {itemId: workout});
+    };
+
+    _submitUserWorkoutRecord = async () => {
+        const {userId, repsHit, weightUsed, setName, exerciseIds, workoutId} = this.state;
+
+        await this.props.createExerciseSets({
+            variables:{
+                userId: userId,
+                repsHit: repsHit,
+                setName: setName,
+                workout: workoutId,
+                weightUsed: weightUsed,
+                exercise: exerciseIds
+            }
+        });
+        console.log('submitted workout record')
+    };
+
     _submitClassCheckIn = async () => {
         const {checked} = this.state;
         await this.props.CreateWorkoutCheckInByUser({
@@ -50,8 +99,7 @@ class Workout extends React.Component{
     };
     showMyWorkoutModal(visible){
         this.setState({myWorkoutModalVisible: visible})
-    }
-
+    };
 
     render(){
         const {sets} = this.state;
@@ -88,7 +136,8 @@ class Workout extends React.Component{
                                     justifyContent: 'center',
                                 }}
                                 disabled={false}
-                                onPress={() => this.showMyWorkoutModal(true)}
+                                onPress={() => this.handleCompleteWorkout(this.props.id)}
+                                // onPress={() => this.showMyWorkoutModal(true)}
                                 // onPress={() => {
                                 //     console.log('Complete Workout Button Press');
                                 //     this._submitClassCheckIn()
@@ -117,7 +166,6 @@ class Workout extends React.Component{
                             <Text style={{color: 'red'}}>Close</Text>
                         </TouchableOpacity>
 
-
                         <View style={styles.rowCard} key={this.props.id}>
                             <View style={styles.rowContainer} key={this.props.id}>
                                 <View style={styles.rowText} >
@@ -133,9 +181,9 @@ class Workout extends React.Component{
                                     <View key={this.props.id} style={styles.exerciseCard}>
                                         {this.props.exerciseRecords}
                                     </View>
-
-
-
+                                    <View key={this.props.id} style={styles.exerciseCard}>
+                                        {this.props.workoutSets}
+                                    </View>
 
 
                                     <View style={{alignItems:'center', justifyContent: 'center', alignContent: 'center',
@@ -157,22 +205,21 @@ class Workout extends React.Component{
                                                 alignContent: 'center',
                                                 justifyContent: 'center',color:"#fff", alignSelf:'center', fontSize: 10, marginTop: 3}}>Complete</Text>
                                         </TouchableOpacity>
-
-
                                     </View>
+
                                 </View>
                             </View>
                         </View>
-
-
-
                 </Modal>
             </View>
         );
     }
 }
 
-export default compose(graphql(CreateWorkoutCheckIn, {name: 'CreateWorkoutCheckInByUser'}))(withNavigation(Workout));
+export default compose(
+    graphql(CreateWorkoutCheckIn, {name: 'CreateWorkoutCheckInByUser'}),
+    graphql(CREATE_EX_SET, {name: 'CreateExerciseSets'})
+)(withNavigation(Workout));
 
 
 const styles = StyleSheet.create({

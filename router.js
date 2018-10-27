@@ -20,6 +20,7 @@ import TrainerListScreen from './screens/TrainerListScreen';
 import GroupFitProgramsScreen from './screens/GroupFitProgramsScreen';
 import SettingsScreen from "./screens/SettingsScreen";
 import TermsScreen from "./screens/TermsScreen";
+import SubmitWorkoutScreen from './screens/SubmitWorkoutScreen';
 
 /*
 const headerStyle = {
@@ -86,6 +87,15 @@ const HomeStack = StackNavigator(
                     backgroundColor: "#fff"
                 }
             },
+        },
+        SubmitWorkout:{
+            screen: SubmitWorkoutScreen,
+            path:'/workouts/submitWorkout',
+            navigationOptions:{
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
+            }
         },
         ExerciseDetail: {
             screen: ExerciseDetail,
@@ -238,6 +248,9 @@ const PersonalFITStack = StackNavigator(
             screen: ExerciseDetail,
             path:'/workouts/exercise',
         },
+        SubmitWorkout:{
+            screen: SubmitWorkoutScreen
+        }
     }
 );
 

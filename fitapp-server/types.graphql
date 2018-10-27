@@ -12,6 +12,7 @@ type User @model{
   authenticated: Boolean @defaultValue(value: "false")
   classes: [GroupFitClass!]! @relation(name: "UsersClasses")
   workouts: [Workout!]! @relation(name: "UsersWorkouts")
+  usersSets: [ExerciseSets!]! @relation(name: "UsersSets")
   events: [Event!]! @relation(name: "UsersEvents")
   interests: [Interest!]! @relation(name: "UsersInterests")
   memberships: [Membership!]! @relation(name: "MembershipUsers")
@@ -79,6 +80,8 @@ type Checkin @model{
   id: ID! @isUnique
   checked: Boolean @defaultValue(value: "false")
   location: String
+  timeCheck: String
+  sortTime: DateTime
   users: [User!]! @relation(name: "UserCheckins")
   workouts: [Workout!]! @relation(name: "WorkoutCheckins")
   classes: [GroupFitClass!]! @relation(name: "GroupFitClassCheckins")
@@ -156,6 +159,7 @@ type Workout @model{
   exercises: [Exercise!]! @relation(name: "WorkoutExercises")
   author: Trainer @relation(name: "TrainerWorkouts")
   users: [User!]! @relation(name: "UsersWorkouts")
+  exerciseSets: [ExerciseSets!]! @relation(name: "WorkoutExerciseSets")
   imageUrl: String
   videoUrl: String
   pictures: [Picture!]! @relation(name: "WorkoutPictures")
@@ -171,6 +175,7 @@ type Exercise @model{
   name: String!
   description: String
   sets: String
+  exerciseSets: [ExerciseSets!]! @relation(name: "ExerciseSets")
   reps: String
   intensity: String
   tempo: String
@@ -178,6 +183,22 @@ type Exercise @model{
   workouts: [Workout!]! @relation(name: "WorkoutExercises")
   imageUrl: String
   videoUrl: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ExerciseSets @model {
+  id: ID! @isUnique
+  setName: String
+  repsHit: String
+  weightUsed: String
+  timeCheck: String
+  sortTime: DateTime
+  setOrder: String
+  setOrderNo: Int
+  usersSets: [User!]! @relation(name: "UsersSets")
+  exercises: [Exercise!]! @relation(name: "ExerciseSets")
+  workoutSets: Workout @relation(name: "WorkoutExerciseSets")
   createdAt: DateTime!
   updatedAt: DateTime!
 }

@@ -31,9 +31,11 @@ class WorkoutView extends React.Component{
         super(props);
         this.state={
             refreshing: false,
-            workoutSets: [],
+            theSets: [],
+            setOne: undefined,
         };
         this.handlePressExercise = this.handlePressExercise.bind(this);
+        this.handleCompleteWorkout = this.handleCompleteWorkout.bind(this);
         this._onRefresh = this._onRefresh.bind(this);
         this.setTheSets = this.setTheSets.bind(this);
     }
@@ -48,9 +50,13 @@ class WorkoutView extends React.Component{
         this.props.navigation.navigate("ExerciseDetail", {itemId: exercise});
     };
 
+    handleCompleteWorkout = (workout) => {
+        this.props.navigation.navigate("SubmitWorkout", {itemId: workout});
+    };
+
     setTheSets = (setSets) => {
         this.setState({workoutSets: setSets})
-    }
+    };
 
     componentDidMount(){
         AsyncStorage.getItem("MyUserId").then( (dataId) => {
@@ -62,12 +68,24 @@ class WorkoutView extends React.Component{
 
     }
 
+    renderInputs(sets){
+        const {theSets} = this.state;
+        let setList = parseInt(sets);
+        this.setState({theSets: setList})
+
+        // for(let i = 0; i < setList; i++){
+        //     setArr.push(i);
+        // }
+
+    }
+
     render() {
         const { loading, allWorkouts } = this.props.data;
         const {navigation} = this.props;
         if(loading){
             return <ActivityIndicator />
         }
+
         return(
             <ScrollView
                 refreshControl={
@@ -136,10 +154,29 @@ class WorkoutView extends React.Component{
 
                                 )
                             )}
-                            workoutSets={obj.exercises.map(({ sets }) =>
+                            workoutSets={obj.exercises.map(({ sets }) => (
+
                                 <View>
-                                    {sets}
+
+                                    <View style={{flexDirection:'row', flexWrap:'wrap', display: 'flex'}}>
+                                        {this.state.theSets.map((obj, index) =>
+                                            <TextInput
+                                                onChangeText={(setOne) => this.setState({setOne})}
+                                                type={"text"}
+                                                placeholder={"Set # " + index + 1}
+                                                style={{color:'white', borderWidth:1, borderColor: 'white', width: 80}}
+                                                underlineColorAndroid={'transparent'}
+                                                autoCorrect={false}
+                                                value={this.state.setOne}
+                                            />
+
+                                        )}
+
+
+                                    </View>
+                                    <Text>{sets}</Text>
                                 </View>
+                                )
                             )}
                         />
                     )

@@ -123,9 +123,6 @@ class EditScreen extends React.Component {
             ],
             { cancelable: true },
         );
-
-
-
     }
 
     render() {
@@ -261,7 +258,7 @@ export default compose(
     graphql(DELETE_PROFILE, {name: 'deleteUser'})
 )(withNavigation(EditScreen));
 
-;
+
 
 const styles = StyleSheet.create({
 
