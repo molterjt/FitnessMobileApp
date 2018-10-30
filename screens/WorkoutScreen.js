@@ -67,25 +67,12 @@ class WorkoutView extends React.Component{
         }).done();
 
     }
-
-    renderInputs(sets){
-        const {theSets} = this.state;
-        let setList = parseInt(sets);
-        this.setState({theSets: setList})
-
-        // for(let i = 0; i < setList; i++){
-        //     setArr.push(i);
-        // }
-
-    }
-
     render() {
         const { loading, allWorkouts } = this.props.data;
         const {navigation} = this.props;
         if(loading){
             return <ActivityIndicator />
         }
-
         return(
             <ScrollView
                 refreshControl={
@@ -135,56 +122,9 @@ class WorkoutView extends React.Component{
                             image={obj.imageUrl}
                             userCheckinId={queryUserId}
                             workoutCheckinId={obj.id}
-                            exerciseRecords={obj.exercises.map(({name, reps, sets, intensity, id, tempo}) => (
-                                    <View key={obj.id}>
-                                        <Text style={styles.title} key={id}>
-                                            {name}
-                                        </Text>
-                                        <Text style={styles.info} >
-                                            Sets: {sets}
-                                        </Text>
-
-                                        <Text style={styles.info} >
-                                            Reps: {reps}
-                                        </Text>
-                                        <Text style={styles.info} >
-                                            Intensity: {intensity}
-                                        </Text>
-                                    </View>
-
-                                )
-                            )}
-                            workoutSets={obj.exercises.map(({ sets }) => (
-
-                                <View>
-
-                                    <View style={{flexDirection:'row', flexWrap:'wrap', display: 'flex'}}>
-                                        {this.state.theSets.map((obj, index) =>
-                                            <TextInput
-                                                onChangeText={(setOne) => this.setState({setOne})}
-                                                type={"text"}
-                                                placeholder={"Set # " + index + 1}
-                                                style={{color:'white', borderWidth:1, borderColor: 'white', width: 80}}
-                                                underlineColorAndroid={'transparent'}
-                                                autoCorrect={false}
-                                                value={this.state.setOne}
-                                            />
-
-                                        )}
-
-
-                                    </View>
-                                    <Text>{sets}</Text>
-                                </View>
-                                )
-                            )}
                         />
                     )
-
                 )}
-
-
-
             </ScrollView>
         );
     }

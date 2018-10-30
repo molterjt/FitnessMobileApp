@@ -41,7 +41,6 @@ class Workout extends React.Component{
         super(props);
         this.state={
             checked: true,
-            myWorkoutModalVisible: false,
             workout: '',
             sets: [],
             weightUsed: undefined,
@@ -137,80 +136,15 @@ class Workout extends React.Component{
                                 }}
                                 disabled={false}
                                 onPress={() => this.handleCompleteWorkout(this.props.id)}
-                                // onPress={() => this.showMyWorkoutModal(true)}
-                                // onPress={() => {
-                                //     console.log('Complete Workout Button Press');
-                                //     this._submitClassCheckIn()
-                                //     Alert.alert('Congratulations! You have successfully completed this workout!');
-                                // }}
                             >
                                 <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'red'} />
                                 <Text style={{
                                     alignContent: 'center',
-                                    justifyContent: 'center',color:"#fff", alignSelf:'center', fontSize: 10, marginTop: 3}}>Complete</Text>
+                                    justifyContent: 'center',color:"#fff", alignSelf:'center', fontSize: 12, marginTop: 3}}>Enter Workout Record</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
-                <Modal
-                    transparent={false}
-                    animationType={"none"}
-                    visible={this.state.myWorkoutModalVisible}
-                    onRequestClose={() => {this.showMyWorkoutModal(!this.state.myWorkoutModalVisible)} }
-                >
-
-                        <TouchableOpacity
-                            onPress={() => this.showMyWorkoutModal(!this.state.myWorkoutModalVisible)}
-                            style={{alignItems:'center', marginTop:50, }}
-                        >
-                            <Text style={{color: 'red'}}>Close</Text>
-                        </TouchableOpacity>
-
-                        <View style={styles.rowCard} key={this.props.id}>
-                            <View style={styles.rowContainer} key={this.props.id}>
-                                <View style={styles.rowText} >
-                                    <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
-                                        {this.props.title}
-                                    </Text>
-                                    <Text key={this.props.id} style={styles.date} numberOfLines={2} ellipsizeMode ={'tail'}>
-                                        {this.props.type}
-                                    </Text>
-                                    <Text style={styles.description} numberOfLines={4} ellipsizeMode ={'tail'}>
-                                        {this.props.description}
-                                    </Text>
-                                    <View key={this.props.id} style={styles.exerciseCard}>
-                                        {this.props.exerciseRecords}
-                                    </View>
-                                    <View key={this.props.id} style={styles.exerciseCard}>
-                                        {this.props.workoutSets}
-                                    </View>
-
-
-                                    <View style={{alignItems:'center', justifyContent: 'center', alignContent: 'center',
-                                        textAlign: 'center', display: 'center', alignSelf: 'center', marginTop: 10}}>
-                                        <TouchableOpacity
-                                            style={{alignSelf: 'center', alignItems: 'center', textAlign: 'center',
-                                                alignContent: 'center',
-                                                justifyContent: 'center',
-                                            }}
-                                            disabled={false}
-                                            onPress={() => {
-                                                console.log('Complete Workout Button Press');
-                                                // this._submitClassCheckIn()
-                                                // Alert.alert('Congratulations! You have successfully completed this workout!');
-                                            }}
-                                        >
-                                            <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'red'} />
-                                            <Text style={{
-                                                alignContent: 'center',
-                                                justifyContent: 'center',color:"#fff", alignSelf:'center', fontSize: 10, marginTop: 3}}>Complete</Text>
-                                        </TouchableOpacity>
-                                    </View>
-
-                                </View>
-                            </View>
-                        </View>
-                </Modal>
             </View>
         );
     }

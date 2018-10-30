@@ -21,6 +21,7 @@ import GroupFitProgramsScreen from './screens/GroupFitProgramsScreen';
 import SettingsScreen from "./screens/SettingsScreen";
 import TermsScreen from "./screens/TermsScreen";
 import SubmitWorkoutScreen from './screens/SubmitWorkoutScreen';
+import UserCheckinHistory from "./screens/UserCheckinHistory";
 
 /*
 const headerStyle = {
@@ -70,6 +71,16 @@ const HomeStack = StackNavigator(
                 }
             },
         },
+        CheckinHistory:{
+            screen: UserCheckinHistory,
+            path:'/profile/',
+            navigationOptions:{
+                headerStyle:{
+                    backgroundColor: "#fff"
+                }
+            }
+        },
+
         Terms: {
             screen: TermsScreen,
             navigationOptions:{

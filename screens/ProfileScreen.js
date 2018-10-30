@@ -9,6 +9,7 @@ import UserProfile from '../components/UserProfile';
 import Logout from '../components/Logout';
 import gql from "graphql-tag";
 import {graphql, Query, compose} from "react-apollo";
+import WorkoutRecord from '../components/WorkoutRecord';
 
 import moment from 'moment';
 
@@ -32,7 +33,7 @@ const GET_WORKOUT = gql`
 
 
 const GET_USER = gql`
-    query ProfileUser($id: ID!, $load: Int, $skip: Int){
+    query ProfileUser($id: ID!){
         User(id: $id){
             id
             username
@@ -55,174 +56,38 @@ const GET_USER = gql`
             workouts{id, createdAt, title, days{name}, type{title}}
             memberships{title}
             classes{title}
-            checkins(orderBy: createdAt_DESC, first:$load, skip:$skip){classes{title, time, category{title}}, workouts{id, title, type{title}, exercises{name, sets, reps}, days{name}},timeCheck, createdAt}
+            checkins(orderBy: createdAt_DESC, first:2){classes{id, title, category{title}, time, days{name}},timeCheck, createdAt}
         }
     }
 `
 
-const GET_USER_CHECKINS = gql`
-    query UserCheckins($uId:ID, $load:Int, $skip:Int){
+const GET_WORKOUT_CHECKINS = gql`
+    query($uId:ID, $load2:Int, $skip2:Int,){
         allCheckins(
             filter:{
                 users_every: {
                     id: $uId
                 }
+                AND:{classes_none: {}}
             }
-            orderBy: createdAt_DESC
-            first:$load
-            skip: $skip
+            orderBy: createdAt_DESC,
+            first:$load2, skip:$skip2
         ){
             workouts{
-                id
-                title
-                exercises{name, sets, reps}
-                type{title}
-            }
-            classes{
-                id
-                title
-                time
-                category{title}
+                id,
+                title,
+                type{title},
+                exercises{
+                    name,
+                    reps,
+                    sets
+                }
             }
             timeCheck
             createdAt
         }
     }
 `;
-
-
-const GET_WORKOUT_RECORD = gql`
-    query WorkoutRecords($userId:ID, $timeCheck: String, $workout:ID){
-        allExerciseSetses(
-            filter: {
-                usersSets_every:{id: $userId},
-                workoutSets:{id: $workout},
-                timeCheck_contains:$timeCheck
-                
-            }
-            orderBy: setOrderNo_ASC){
-            id
-            createdAt
-            usersSets{
-                firstName
-            }
-            workoutSets{title, exercises{name, reps, sets}}
-            exercises{name}
-            setName
-            repsHit
-            weightUsed
-            timeCheck
-        }
-    }
-`;
-
-class WorkoutRecords extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            showWorkoutRecord: false
-        };
-        this.toggleWorkoutRecordModal = this.toggleWorkoutRecordModal.bind(this);
-    }
-    toggleWorkoutRecordModal(visible){
-        this.setState({showWorkoutRecord: visible});
-    }
-
-    render(){
-
-
-        return(
-            <View>
-                <TouchableOpacity
-                    onPress={() => this.toggleWorkoutRecordModal(true)}
-                    style={{alignItems:'center', justifyContent:'center', backgroundColor: '#277bfa', width: '30%', alignSelf:'center', borderRadius: 15}}
-                >
-                    <Ionicons
-                        name={"ios-expand"}
-                        size={28}
-                        alt={"expand facility info"}
-                        color={"#fff"}
-                        style={{fontWeight: 'bold'}}
-                    />
-                </TouchableOpacity>
-                <Query query={GET_WORKOUT_RECORD} variables={{userId: this.props.userId, timeCheck: this.props.timeCheck, workout: this.props.workoutId}}>
-                    {({loading, error, data}) => {
-                        if (loading) return <Text>"Loading ...."</Text>;
-                        if (error) return <Text>`Error! ${error.message}`</Text>;
-                            return (
-                                <View>
-                                    <Modal
-                                        transparent={false} animationType={'none'}
-                                        visible={this.state.showWorkoutRecord}
-                                        onRequestClose={() => this.toggleWorkoutRecordModal(!this.state.showWorkoutRecord)}>
-                                        <TouchableOpacity
-                                            onPress={() => {
-                                                this.toggleWorkoutRecordModal(!this.state.showWorkoutRecord)
-                                            }}
-                                            style={{ marginTop:50, marginBottom: 5, marginLeft:2, flexDirection:'row' }}
-                                        >
-                                            <MaterialCommunityIcons name={"chevron-double-left"} size={40} color={"#277bfa"} />
-
-
-
-                                        </TouchableOpacity>
-
-                                        <ScrollView style={{flex: 1, justifyContent: 'space-evenly',}}>
-
-                                            <View style={{flex:4, marginTop:5, marginBottom: 30, borderWidth:0, flexDirection:"column", justifyContent:'space-around', flexWrap: 'wrap'}}>
-                                                <Text style={{fontSize: 16, padding: 8, textAlign: 'center', fontWeight: 'bold', color: '#931414', marginBottom: 5}}>{this.props.workoutTitle}</Text>
-                                                <Text style={{fontSize: 12, padding: 1, textAlign: 'center',  color: '#000', marginBottom: 5}}>
-                                                    {moment(this.props.timeCheck).format('M/D/Y h a')}
-                                                </Text>
-                                                {data.allExerciseSetses.map(({exercises, setName, repsHit, weightUsed}) => (
-                                                    <View style={styles.rowColumn}>
-                                                        {exercises.map(({name}) =>
-                                                            <View
-                                                                style={{
-                                                                height: 80, borderWidth: 1, borderColor:'#000',
-                                                                backgroundColor:'#29282A', width:'45%', justifyContent:'center'
-                                                                }}
-                                                            >
-                                                                <Text style={{textAlign: 'center', color:'red', fontWeight:'bold'}}>{name}</Text>
-                                                            </View>
-
-                                                        )}
-                                                        <View style={{flex:1}}>
-                                                        <View style={{flexDirection:'row', padding:5, alignContent:'center', justifyContent:'center'}}>
-                                                            <Text style={{fontWeight:'bold', textAlign:'center',width:'24%'}}>Set:</Text>
-                                                            <Text style={{fontWeight:'bold',textAlign:'center',width:'36%'}}>Weight:</Text>
-                                                            <Text style={{fontWeight:'bold',textAlign:'center',width:'24%'}}>Reps:</Text>
-                                                        </View>
-                                                        <View style={{flexDirection:'row', padding:5, alignContent:'center', justifyContent:'center'}}>
-                                                        <Text style={{textAlign:'center',width:'24%'}}>{setName}</Text>
-                                                        <Text style={{textAlign:'center',width:'36%'}}>{weightUsed} lbs</Text>
-                                                        <Text style={{textAlign:'center',width:'24%'}}>{repsHit}</Text>
-                                                        </View>
-                                                        </View>
-
-
-
-
-                                                        </View>
-
-
-                                                ))}
-                                            </View>
-
-
-                                        </ScrollView>
-
-
-                                    </Modal>
-                                </View>
-                            );
-                    }}
-                </Query>
-            </View>
-        );
-    }
-}
-
 
 
 let queryUserId;
@@ -236,13 +101,15 @@ class ProfileScreen extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            isModalVisible: false,
             currentUserToken: '',
             currentUserId: '',
             profileUpdate: false,
             isLoading: true,
             profileRefresh: false,
+            showAllClassCheckins:false,
         };
+        this.toggleClassCheckinsModal=this.toggleClassCheckinsModal.bind(this);
+        this.jumpToUserCheckinHistory=this.jumpToUserCheckinHistory.bind(this);
     }
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
@@ -264,10 +131,13 @@ class ProfileScreen extends React.Component{
         this.setState({isLoading: false});
     }
 
-    _toggleModal = () =>
-        this.setState({
-            isModalVisible: !this.state.isModalVisible
-        });
+    jumpToUserCheckinHistory = (userIdentity) => {
+        this.props.navigation.navigate("CheckinHistory", {itemId: userIdentity});
+    };
+    toggleClassCheckinsModal(visible){
+        this.setState({showAllClassCheckins: visible});
+    }
+
     _profileRefresh = () => {
         this.props.data.refetch({id: queryUserId});
         this.setState({isLoading: false});
@@ -280,6 +150,7 @@ class ProfileScreen extends React.Component{
         this.props.data.refetch({id: queryUserId});
         const {currentUserId, currentUserToken} = this.state;
         const { loading, error, User,  } = this.props.data;
+        const myChecks = User;
 
         console.log('queryUserId:  ' + queryUserId);
         console.log("@render: currentUserId: " + currentUserId);
@@ -322,100 +193,136 @@ class ProfileScreen extends React.Component{
                         // workouts={User.workouts.map(({title}) => title).join(', ')}
                         interests={User.interests.map(({title}) => title).join(', ')}
                     />
-                    <View style={{borderRadius: 4,
-                        shadowOffset:{  width: 1,  height: 1,  },
-                        shadowColor: '#CCC',backgroundColor: '#fff', margin:5, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
-                        <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>Workout Completion History:</Text>
-                    </View>
-                    {User.checkins.map(({workouts, createdAt, timeCheck}) => (
-                        workouts.map((obj, index) => (
-                            <View style={{borderRadius: 4,
-                                shadowOffset:{  width: 1,  height: 1,  },
-                                shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
-                                <View style={{flexDirection: 'row', display: 'flex'}}>
-                                    <Text style={{fontSize: 16, fontWeight: 'bold', color: '#931414', marginBottom: 4}}>{obj.title}</Text>
-                                </View>
-                                <View style={{flexDirection:'row', marginTop: 10, marginBottom:10}}>
-                                    <Text style={{fontWeight: 'bold'}}>TimeStamp: </Text>
-                                    <Text style={{fontStyle: 'italic'}}>{moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm a')}</Text>
-                                </View>
-                                <View style={{flexDirection:'row', flexWrap:'wrap'}}>
-                                    <Text style={{fontWeight: 'bold'}}>Type: </Text>
-                                    <Text style={{fontStyle: 'italic'}}>{obj.type.map(({title}) => title).join(', ')}</Text>
-                                </View>
-                                <View style={{flex:1, flexDirection:'row', flexWrap:'wrap', marginTop:10}}>
-                                    <Text style={{width: '55%', fontWeight:'bold'}}>Exercises:</Text>
-                                    <Text style={{width: '20%', fontWeight:'bold'}}>Sets:</Text>
-                                    <Text style={{width: '20%', fontWeight:'bold'}}>Reps:</Text>
-                                </View>
-                                {obj.exercises.map(({name, sets, reps}) => (
-                                    <View style={{flex:1, flexDirection:'row', flexWrap:'wrap',}}>
-                                        <Text style={{ fontStyle: 'italic', padding:3, width: '55%'}}>{name}</Text>
-                                        <Text style={{ fontStyle: 'italic', padding:3, width: '20%'}}>{sets}</Text>
-                                        <Text style={{fontStyle: 'italic', padding:3, width: '20%'}}>{reps}</Text>
-                                    </View>
-                                ))}
 
-                                <View style={{marginBottom: 6}}/>
-                                <WorkoutRecords userId={User.id} timeCheck={timeCheck} workoutId={obj.id} workoutTitle={obj.title}/>
-                            </View>
-                        ))
-
-                    ))}
-                    <View sytle={{alignContent: 'center', justifyContent:'center'}}>
+                    <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center', marginTop:10}}>
                         <TouchableOpacity
+                            style={{alignItems:'center', flexDirection:'column', justifyContent:'center',marginTop:10}}
                             onPress={() => {
-                                return this.props.data.fetchMore({
-                                    variables:{
-                                        id: queryUserId,
-                                        load: 5,
-                                        skip: 2
-                                    },
-                                    updateQuery: (previousResult, {fetchMoreResult}) => {
-                                        if (!fetchMoreResult){
-                                            return previousResult
-                                        }
-
-                                        if(fetchMoreResult.User === previousResult.User){
-                                            return previousResult
-                                        }
-
-                                        return Object.assign({}, previousResult, {
-                                            User : [...previousResult.User, ...fetchMoreResult.User]
-                                        })
-                                    }
-                                })
+                                this.jumpToUserCheckinHistory(User.id);
                             }}
                         >
-                            <Text style={{textAlign:"center"}}>More</Text>
+
+                            <Text style={{textAlign:"center", color: "#fff", marginRight: 0}}>All Workout & GroupFit Records</Text>
+                            <MaterialCommunityIcons
+                                name={"library-books"} type={"MaterialCommunityIcons"} size={35} color={'#fff'}
+                                style={{textAlign:"center"}}
+                            />
                         </TouchableOpacity>
+
                     </View>
 
+                    <Query query={GET_WORKOUT_CHECKINS} variables={{uId:User.id , load2:1 , skip2:0 }} >
+                        {({loading, error, data, fetchMore}) => {
+                            if (loading) return <Text>"Loading ...."</Text>;
+                            if (error) return <Text>`Error! ${error.message}`</Text>;
+                            return (
+                                <View>
+                                    <View style={{borderRadius: 4, shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#fff', margin:5, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
+                                        <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>Latest Workout Completed</Text>
+                                    </View>
 
+                                    {data.allCheckins.map(({workouts, createdAt, timeCheck}) => (
+                                        workouts.map((obj) => (
+                                            <View style={{borderRadius: 4,
+                                                shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
+                                                <View style={{flexDirection: 'row', display: 'flex'}}>
+                                                    <Text style={{fontSize: 16, fontWeight: 'bold', color: '#931414', marginBottom: 4}}>{obj.title}</Text>
+                                                </View>
+                                                <View style={{flexDirection:'row', marginTop: 5, marginBottom:5}}>
+                                                    <Text style={{fontWeight: 'bold'}}>TimeStamp: </Text>
+                                                    <Text style={{fontStyle: 'italic'}}>{moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm a')}</Text>
+                                                </View>
+                                                <View style={{flexDirection:'row', flexWrap:'wrap', marginBottom: 5}}>
+                                                    <Text style={{fontWeight: 'bold'}}>Type: </Text>
+                                                    <Text style={{fontStyle: 'italic'}}>{obj.type.map(({title}) => title).join(', ')}</Text>
+                                                </View>
+                                                <View style={{borderWidth: 1, padding: 5}}>
+                                                <View style={{flex:1, flexDirection:'row', flexWrap:'wrap', marginTop:10}}>
+                                                    <Text style={{width: '55%', fontWeight:'bold', paddingLeft: 10}}>Exercises:</Text>
+                                                    <Text style={{width: '20%', fontWeight:'bold'}}>Sets:</Text>
+                                                    <Text style={{width: '20%', fontWeight:'bold'}}>Reps:</Text>
+                                                </View>
+                                                {obj.exercises.map(({name, sets, reps}) => (
+                                                    <View style={{flex:1, flexDirection:'row', flexWrap:'wrap',}}>
+                                                        <Text style={{ fontStyle: 'italic', padding:3, width: '55%', paddingLeft:10}}>{name}</Text>
+                                                        <Text style={{ fontStyle: 'italic', padding:3, width: '20%'}}>{sets}</Text>
+                                                        <Text style={{fontStyle: 'italic', padding:3, width: '20%'}}>{reps}</Text>
+                                                    </View>
+                                                ))}
+                                                </View>
+                                                <View style={{marginBottom: 6}}/>
+                                                <WorkoutRecord userId={User.id} timeCheck={timeCheck} workoutId={obj.id} workoutTitle={obj.title}/>
+                                            </View>
+                                        ))
+                                    ))}
 
+                                    <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center'}}>
+                                        <TouchableOpacity
+                                            style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
+                                            onPress={ () => {
+                                                fetchMore({
+                                                    variables:{
+                                                        id: User.id,
+                                                        load2: 1,
+                                                        skip2: data.allCheckins.length
+                                                    },
+                                                    updateQuery: (previousResult, {fetchMoreResult}) => {
+                                                        if (!fetchMoreResult){
+                                                            console.log('NO FetchMore');
+                                                            return previousResult;
+                                                        }
+                                                        console.log('trying to copy data');
+                                                        return Object.assign({}, previousResult, {
+                                                            allCheckins : [...previousResult.allCheckins, ...fetchMoreResult.allCheckins]
+                                                        });
+                                                    }
+                                                })
+                                            }}
+                                        >
 
+                                            <Text style={{textAlign:"center", color: "#fff", marginRight: 6}}>More</Text>
+                                            <MaterialCommunityIcons
+                                                name={"chevron-double-down"} type={"MaterialCommunityIcons"} size={35} color={'#fff'}
+                                                style={{textAlign:"center"}}
+                                            />
+                                        </TouchableOpacity>
 
-                    <View style={{borderRadius: 4,
-                        shadowOffset:{  width: 1,  height: 1,  },
-                        shadowColor: '#CCC',backgroundColor: '#fff', margin:5, marginTop: 10, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
-                        <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>GroupFit Class Check-In History:</Text>
-                    </View>
-                    {User.checkins.map(({classes, createdAt, timeCheck}) => (
-                        classes.map((obj, index) => (
-                            <View style={{borderRadius: 4,
-                                shadowOffset:{  width: 1,  height: 1,  },
-                                shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
-                                <View style={{flexDirection: 'row', display: 'flex'}}>
-                                    <Text style={{fontWeight: 'bold', color: '#931414'}}>{obj.title}</Text>
-                                    <Text style={{position:'absolute', right: 0, fontSize: 12}}>{obj.time}</Text>
+                                    </View>
+
+                                </View>
+                            );
+                        }}
+                    </Query>
+                    <View>
+                        <View style={{borderRadius: 4, shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#fff', margin:5, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
+                            <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>Latest GroupFit Class Checkin</Text>
+                        </View>
+                        {User.checkins.map(({createdAt, classes}) => (
+                            classes.map((obj, index) => (
+                                <View style={{borderRadius: 4,
+                                    shadowOffset:{  width: 1,  height: 1,  },
+                                    shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
+                                    <View style={{flexDirection: 'row', display: 'flex'}}>
+                                        <Text style={{fontWeight: 'bold', color: '#931414', fontSize: 16}}>{obj.title}</Text>
+                                        <Text style={{position:'absolute', right: 0, fontSize: 12}}>{obj.time}</Text>
+                                    </View>
+                                    <View style={{flexDirection: 'row', display: 'flex'}}>
+                                        <Text style={{fontWeight:'bold'}}>Type: </Text>
+                                        <Text style={{fontStyle: 'italic'}}> {obj.category.map(({title}) => title).join(', ')}</Text>
+                                        <Text style={{position:'absolute', right: 0, fontSize: 12}}>{obj.days.map(({name}) => name).join(', ')}</Text>
+                                    </View>
+                                    <View style={{flexDirection: 'row', display: 'flex'}}>
+                                        <Text style={{fontWeight:'bold'}}>TimeStamp: </Text>
+                                        <Text style={{fontStyle: 'italic'}}>{moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm:ss a')}</Text>
+                                    </View>
                                 </View>
 
-                                <Text style={{fontStyle: 'italic'}}>Type: {obj.category.map(({title}) => title).join(', ')}</Text>
-                                <Text style={{fontStyle: 'italic'}}>TimeStamp: {moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm:ss a')}</Text>
-                            </View>
-                        ))
-                    ))}
+                            ))
 
+
+                        ))}
+
+                    </View>
                 </ScrollView>
             </View>
         );
@@ -438,8 +345,9 @@ export default compose(
                 fetchPolicy: 'network-only',
                 variables: {
                     id: queryUserId,
-                    load: 2,
+                    load:10,
                     skip:0
+
                 },
                 //pollInterval: 1000,
             }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TextInput, TouchableOpacity, ScrollView, StyleSheet, KeyboardAvoidingView, ActivityIndicator, AsyncStorage} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity, ScrollView, StyleSheet, KeyboardAvoidingView, Alert, AsyncStorage} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import gql from 'graphql-tag';
 import {graphql, compose} from 'react-apollo';
@@ -88,8 +88,8 @@ class SubmitWorkoutScreen extends React.Component{
         this.handleSetRepUpdate = this.handleSetRepUpdate.bind(this);
         this.handleSetWeightUpdate = this.handleSetWeightUpdate.bind(this);
         this.submitUserWorkoutRecord = this.submitUserWorkoutRecord.bind(this);
-        this.submitUserExerciseRecord = this.submitUserExerciseRecord.bind(this)
         this._submitWorkoutCheckIn = this._submitWorkoutCheckIn.bind(this);
+        this._CheckinThenSubmitMyWorkoutRecord = this._CheckinThenSubmitMyWorkoutRecord.bind(this);
     }
 
     _submitWorkoutCheckIn = async (workoutId) => {
@@ -196,26 +196,35 @@ class SubmitWorkoutScreen extends React.Component{
                 });
             }
         });
+        Alert.alert('You successfully submitted your workout!');
         console.log('Workout Record has been Submitted');
         console.log('Submit Time: ' + moment(setTimeCheck).format('M/D/Y h a'));
 
     };
 
-    submitUserExerciseRecord(W, E, S, WU, RU){
-        const UserSet = JSON.parse(queryUserId);
-        this.props.createWorkoutRecord({
-            variables: {
-                setName: S.toString(),
-                repsHit:RU.toString(),
-                weightUsed: WU.toString(),
-                workoutSetsId: W,
-                exercisesIds: E,
-                usersSetsIds: UserSet
-            }
-        });
-        console.log('W: ' + W + ' ___E: ' + E + ' ___S: ' + S);
-        console.log('Workout Record has been Submitted');
-    };
+    _CheckinThenSubmitMyWorkoutRecord = async (id) => {
+        await Alert.alert(
+            'Hey You!',
+            "Are you ready to submit your workout record?",
+            [
+                {
+                    text: 'Submit', onPress: () => {
+                        this._submitWorkoutCheckIn(id);
+                        this.submitUserWorkoutRecord();
+                        this.props.navigation.goBack(null);
+                    }
+                },
+                {
+                    text: 'Cancel',
+                }
+            ],
+            { cancelable: true},
+        );
+    }
+
+
+
+
 
     render(){
         const { data: { loading, error, Workout } } = this.props;
@@ -228,17 +237,6 @@ class SubmitWorkoutScreen extends React.Component{
                 </View>
             )
         }
-
-        // const currentTime = moment();
-        // const customTime = moment({
-        //     year: moment(currentTime).year(),
-        //     month: moment(currentTime).month(),
-        //     day: moment(currentTime).date(),
-        //     hour: moment(currentTime).hours()
-        // });
-        // const subTime = customTime.toISOString();
-        // console.log(subTime);
-        // console.log(moment(subTime).format('M/D/Y h '));
 
 
         const {ExSets, UniqueSets, Loaded} = this.state;
@@ -257,7 +255,6 @@ class SubmitWorkoutScreen extends React.Component{
                             {Workout.exercises.map(({name, reps, sets, intensity, id, tempo}) => (
 
                                     <View key={id}>
-                                        {/*{this.createExerciseSet(id, Workout.id, sets)}*/}
                                         <Text style={styles.title} key={id}>
                                             {name}
                                         </Text>
@@ -282,9 +279,11 @@ class SubmitWorkoutScreen extends React.Component{
                                                         placeholder={'Weight Hit {lbs}'}
                                                         value={obj.weightUse}
                                                         placeholderTextColor={'#fff'}
-                                                        onChangeText={(weight) => this.handleSetWeightUpdate(obj.SetId, weight)}                                                        type={"number"}
+                                                        onChangeText={(weight) => this.handleSetWeightUpdate(obj.SetId, weight)}
+                                                        type={"number"}
                                                         underlineColorAndroid={'transparent'}
                                                         autoCorrect={false}
+                                                        keyboardType={'numeric'}
 
                                                     />
 
@@ -297,6 +296,7 @@ class SubmitWorkoutScreen extends React.Component{
                                                         type={"number"}
                                                         underlineColorAndroid={'transparent'}
                                                         autoCorrect={false}
+                                                        keyboardType={'numeric'}
 
                                                     />
                                                 </View>
@@ -316,20 +316,23 @@ class SubmitWorkoutScreen extends React.Component{
                                 disabled={false}
                                 onPress={() => {
                                     console.log('Complete Workout Button Press');
-
-                                    this._submitWorkoutCheckIn(Workout.id);
-                                    this.submitUserWorkoutRecord();
-
+                                    this._CheckinThenSubmitMyWorkoutRecord(Workout.id);
                                     console.log(this.state.ExSets.map((obj) => (
                                         JSON.stringify(obj.SetId) + ', ' +  obj.setNo + ', ' + JSON.stringify(obj.weightUse) + ', ' + obj.repUse + '***' + obj.workout + ' **** '  )));
-                                    // this._submitClassCheckIn()
-                                    // Alert.alert('Congratulations! You have successfully completed this workout!');
+
+                                    // this._submitWorkoutCheckIn(Workout.id);
+                                    // this.submitUserWorkoutRecord();
+                                    //
+                                    // console.log(this.state.ExSets.map((obj) => (
+                                    //     JSON.stringify(obj.SetId) + ', ' +  obj.setNo + ', ' + JSON.stringify(obj.weightUse) + ', ' + obj.repUse + '***' + obj.workout + ' **** '  )));
+                                    // // this._submitClassCheckIn()
+                                    // // Alert.alert('Congratulations! You have successfully completed this workout!');
                                 }}
                             >
                                 <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'red'} />
                                 <Text style={{
                                     alignContent: 'center',
-                                    justifyContent: 'center',color:"#fff", alignSelf:'center', fontSize: 10, marginTop: 3}}>Complete</Text>
+                                    justifyContent: 'center',color:"#fff", alignSelf:'center', fontSize: 12, marginTop: 3}}>Submit Workout Record</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
