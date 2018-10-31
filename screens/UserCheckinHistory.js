@@ -117,7 +117,7 @@ class UserCheckinHistory extends React.Component{
         const {workoutsVisible,classesVisible, workoutToggleButtonVisible, classesToggleButtonVisible} = this.state;
 
         if(loading){
-            return (<View style={{alignContent:'center', justifyContent:'center'}}><Text> '...Loading'</Text></View>);
+            return (<View style={{alignContent:'center', justifyContent:'center'}}><ActivityIndicator color={"#931414"} size={"large"}/></View>);
         }
         return(
                 <ScrollView style={{flex: 1, justifyContent: 'space-evenly', marginBottom: 30}}>

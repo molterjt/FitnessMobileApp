@@ -89,13 +89,7 @@ const GET_WORKOUT_CHECKINS = gql`
     }
 `;
 
-
 let queryUserId;
-
-// AsyncStorage.getItem("MyUserId").then( (dataId) => {
-//     queryUserId = JSON.parse(dataId);
-//     return queryUserId;
-// }).done();
 
 class ProfileScreen extends React.Component{
     constructor(props){
@@ -138,11 +132,6 @@ class ProfileScreen extends React.Component{
         this.setState({showAllClassCheckins: visible});
     }
 
-    _profileRefresh = () => {
-        this.props.data.refetch({id: queryUserId});
-        this.setState({isLoading: false});
-    }
-
     render(){
         if (this.state.isLoading) {
             return <View><Text>Loading...</Text></View>;
@@ -167,8 +156,6 @@ class ProfileScreen extends React.Component{
                 </View>
             )
         }
-
-
         return(
             <View style={{flex: 1, backgroundColor: '#931414', marginBottom: 0, paddingTop: 0}}>
                 <View style={{width: WIDTH, backgroundColor: "#ebebeb", borderBottomColor: '#000', borderBottomWidth:1}}>
@@ -190,10 +177,8 @@ class ProfileScreen extends React.Component{
                         lastName={User.lastName}
                         email={User.email}
                         dateOfBirth={User.dateOfBirth}
-                        // workouts={User.workouts.map(({title}) => title).join(', ')}
                         interests={User.interests.map(({title}) => title).join(', ')}
                     />
-
                     <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center', marginTop:10}}>
                         <TouchableOpacity
                             style={{alignItems:'center', flexDirection:'column', justifyContent:'center',marginTop:10}}
@@ -201,26 +186,27 @@ class ProfileScreen extends React.Component{
                                 this.jumpToUserCheckinHistory(User.id);
                             }}
                         >
-
                             <Text style={{textAlign:"center", color: "#fff", marginRight: 0}}>All Workout & GroupFit Records</Text>
                             <MaterialCommunityIcons
                                 name={"library-books"} type={"MaterialCommunityIcons"} size={35} color={'#fff'}
                                 style={{textAlign:"center"}}
                             />
                         </TouchableOpacity>
-
                     </View>
-
                     <Query query={GET_WORKOUT_CHECKINS} variables={{uId:User.id , load2:1 , skip2:0 }} >
                         {({loading, error, data, fetchMore}) => {
-                            if (loading) return <Text>"Loading ...."</Text>;
+                            if(loading){
+                                return (
+                                    <View style={{alignContent:'center', justifyContent:'center'}}>
+                                        <ActivityIndicator color={"#fff"}/>
+                                    </View>);
+                            }
                             if (error) return <Text>`Error! ${error.message}`</Text>;
                             return (
                                 <View>
                                     <View style={{borderRadius: 4, shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#fff', margin:5, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
                                         <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>Latest Workout Completed</Text>
                                     </View>
-
                                     {data.allCheckins.map(({workouts, createdAt, timeCheck}) => (
                                         workouts.map((obj) => (
                                             <View style={{borderRadius: 4,
@@ -279,16 +265,13 @@ class ProfileScreen extends React.Component{
                                                 })
                                             }}
                                         >
-
                                             <Text style={{textAlign:"center", color: "#fff", marginRight: 6}}>More</Text>
                                             <MaterialCommunityIcons
                                                 name={"chevron-double-down"} type={"MaterialCommunityIcons"} size={35} color={'#fff'}
                                                 style={{textAlign:"center"}}
                                             />
                                         </TouchableOpacity>
-
                                     </View>
-
                                 </View>
                             );
                         }}
@@ -316,12 +299,8 @@ class ProfileScreen extends React.Component{
                                         <Text style={{fontStyle: 'italic'}}>{moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm:ss a')}</Text>
                                     </View>
                                 </View>
-
                             ))
-
-
                         ))}
-
                     </View>
                 </ScrollView>
             </View>
@@ -349,27 +328,9 @@ export default compose(
                     skip:0
 
                 },
-                //pollInterval: 1000,
             }
         },
-        // name: 'ProfileUser'
     }),
-    // graphql(
-    //     GET_USER_CHECKINS, {
-    //         options: ({props}) => {
-    //             return{
-    //                 //skip: !queryUserId,
-    //                 fetchPolicy: 'network-only',
-    //                 variables: {
-    //                     id: queryUserId,
-    //                     load: 2,
-    //                     skip:0
-    //                 },
-    //                 //pollInterval: 1000,
-    //             }
-    //         }
-    //     },
-    //     {name: 'UserCheckins'})
 ) (ProfileScreen);
 
 const styles = StyleSheet.create({

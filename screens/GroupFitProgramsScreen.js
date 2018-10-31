@@ -1,12 +1,54 @@
 import React from 'react';
 import {
-    View, Text, Dimensions, Modal, StyleSheet,
+    View, Text, Dimensions, Modal, StyleSheet, ActivityIndicator,
     TouchableOpacity, ScrollView, WebView, StatusBar,
 } from 'react-native';
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {Query} from 'react-apollo';
+import gql from "graphql-tag";
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
+
+
+const GET_MEMBERSHIPS = gql`
+    query($skipFF:Int, $skipGF:Int, $first:Int){
+        ffOptions: allMemberships(
+            filter:{
+                type: "functional"
+            }, orderBy: startBalance_ASC, skip:$skipFF){
+            title
+            type
+            startBalance
+            rateMember
+            rateNonMember
+            url
+        }
+        gfOptions: allMemberships(
+            filter:{
+                type: "groupFit"
+            }, orderBy: startBalance_ASC, skip:$skipGF, first:$first){
+            title
+            type
+            id
+            startBalance
+            rateMember
+            rateNonMember
+            url
+        }
+    }  
+`;
+
+const GET_LINK = gql`
+    query{
+        Membership(id:"cjnwmhlwhmm580116ayr96ra1"){
+            title
+            type
+            url
+        }
+    }
+`;
+
 
 class GroupFitMembership extends React.Component{
     constructor(props){
@@ -69,7 +111,8 @@ class GroupFitMembership extends React.Component{
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
                     <WebView
-                        source={{uri:"http://recmiamioh.maxgalaxy.net/Membership.aspx?PackageID=" + this.props.registerUrl}}
+                        //source={{uri:"http://recmiamioh.maxgalaxy.net/Membership.aspx?PackageID=" + this.props.registerUrl}}
+                        source={{uri: this.props.registerUrl}}
                         style={{flex: 1}}
                         javaScriptEnabled={true}
                         domStorageEnabled={true}
@@ -79,7 +122,6 @@ class GroupFitMembership extends React.Component{
         );
     }
 }
-
 
 class GroupFitProgramsScreen extends React.Component{
     constructor(props){
@@ -96,16 +138,39 @@ class GroupFitProgramsScreen extends React.Component{
             <View style={{flex:1, backgroundColor: "#fff", marginTop: 0}}>
                 <StatusBar/>
                 <ScrollView style={{marginBottom: 20}}>
-                    <GroupFitMembership
-                        title={"Single Class Pass"}
-                        memberRate={"$15"}
-                        registerUrl={"71"}
-                    />
-                    <GroupFitMembership
-                        title={"10 Class Pass"}
-                        memberRate={"$60"}
-                        registerUrl={"216"}
-                    />
+                    <Query  query={GET_MEMBERSHIPS} variables={{skipFF:1, skipGF:1, first:2}}>
+                        {({loading, error, data, fetchMore}) => {
+                            if (loading) {
+                                return (
+                                    <View style={{alignContent: 'center', justifyContent: 'center'}}>
+                                        <ActivityIndicator color={"#fff"}/>
+                                    </View>);
+                            }
+                            if (error) return <Text>`Error! ${error.message}`</Text>;
+                            return (
+                                <View>
+                                    {data.gfOptions.map((obj, index) => (
+                                        <GroupFitMembership
+                                            title={obj.title}
+                                            memberRate={obj.rateMember}
+                                            registerUrl={obj.url}
+                                        />
+                                    ))}
+
+                                </View>
+                            );
+                        }}
+                    </Query>
+                    {/*<GroupFitMembership*/}
+                        {/*title={"Single Class Pass"}*/}
+                        {/*memberRate={"$15"}*/}
+                        {/*registerUrl={"71"}*/}
+                    {/*/>*/}
+                    {/*<GroupFitMembership*/}
+                        {/*title={"10 Class Pass"}*/}
+                        {/*memberRate={"$60"}*/}
+                        {/*registerUrl={"216"}*/}
+                    {/*/>*/}
                     <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A'}}>
                         <MaterialCommunityIcons
                             name={"dumbbell"}
@@ -115,31 +180,53 @@ class GroupFitProgramsScreen extends React.Component{
                         />
                     <Text style={{marginTop: 5, paddingRight: 20, backgroundColor: '#29282A', color:"#fff", fontWeight:"bold", width: WIDTH, justifyContent:'center',
                         fontSize: 18, alignSelf:'center', padding: 5,}}>
-
                           groupFit
-
                     </Text>
                     </View>
-                    <GroupFitMembership
-                        title={"Monthly Subscription"}
-                        memberRate={"$40"}
+                    <Query  query={GET_MEMBERSHIPS} variables={{skipFF:1, skipGF:3}}>
+                        {({loading, error, data, fetchMore}) => {
+                            if (loading) {
+                                return (
+                                    <View style={{alignContent: 'center', justifyContent: 'center'}}>
+                                        <ActivityIndicator color={"#fff"}/>
+                                    </View>);
+                            }
+                            if (error) return <Text>`Error! ${error.message}`</Text>;
+                            return (
+                                <View>
+                                    {data.gfOptions.map((obj, index) => (
+                                        <GroupFitMembership
+                                            title={obj.title}
+                                            memberRate={obj.rateMember}
+                                            registerUrl={obj.url}
+                                        />
+                                    ))}
 
-                    />
-                    <GroupFitMembership
-                        title={"Semester Pass"}
-                        memberRate={"$130"}
-                        registerUrl={"246"}
-                    />
-                    <GroupFitMembership
-                        title={"Academic Year Pass"}
-                        memberRate={"$230"}
-                        registerUrl={"290"}
-                    />
-                    <GroupFitMembership
-                        title={"12 Month Pass"}
-                        memberRate={"$380"}
-                        registerUrl={"81"}
-                    />
+                                </View>
+                            );
+                        }}
+                    </Query>
+
+                    {/*<GroupFitMembership*/}
+                        {/*title={"Monthly Subscription"}*/}
+                        {/*memberRate={"$40"}*/}
+
+                    {/*/>*/}
+                    {/*<GroupFitMembership*/}
+                        {/*title={"Semester Pass"}*/}
+                        {/*memberRate={"$130"}*/}
+                        {/*registerUrl={"246"}*/}
+                    {/*/>*/}
+                    {/*<GroupFitMembership*/}
+                        {/*title={"Academic Year Pass"}*/}
+                        {/*memberRate={"$230"}*/}
+                        {/*registerUrl={"290"}*/}
+                    {/*/>*/}
+                    {/*<GroupFitMembership*/}
+                        {/*title={"12 Month Pass"}*/}
+                        {/*memberRate={"$380"}*/}
+                        {/*registerUrl={"81"}*/}
+                    {/*/>*/}
                     <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A'}}>
                         <MaterialCommunityIcons
                             name={"weight"}
@@ -154,26 +241,48 @@ class GroupFitProgramsScreen extends React.Component{
 
                         </Text>
                     </View>
-                    <GroupFitMembership
-                        title={"Monthly Subscription"}
-                        memberRate={"$40"}
+                    <Query  query={GET_MEMBERSHIPS} variables={{skipFF:0, skipGF:3}}>
+                        {({loading, error, data, fetchMore}) => {
+                            if (loading) {
+                                return (
+                                    <View style={{alignContent: 'center', justifyContent: 'center'}}>
+                                        <ActivityIndicator color={"#fff"}/>
+                                    </View>);
+                            }
+                            if (error) return <Text>`Error! ${error.message}`</Text>;
+                            return (
+                                <View>
+                                    {data.ffOptions.map((obj, index) => (
+                                        <GroupFitMembership
+                                            title={obj.title}
+                                            memberRate={obj.rateMember}
+                                            registerUrl={obj.url}
+                                        />
+                                    ))}
 
-                    />
-                    <GroupFitMembership
-                        title={"Semester Pass"}
-                        memberRate={"$150"}
-                        registerUrl={"272"}
-                    />
-                    <GroupFitMembership
-                        title={"Academic Year Pass"}
-                        memberRate={"$225"}
-                        registerUrl={"291"}
-                    />
-                    <GroupFitMembership
-                        title={"12 Month Pass"}
-                        memberRate={"$300"}
-                        registerUrl={"188"}
-                    />
+                                </View>
+                            );
+                        }}
+                    </Query>
+                    {/*<GroupFitMembership*/}
+                        {/*title={"Monthly Subscription"}*/}
+                        {/*memberRate={"$40"}*/}
+                    {/*/>*/}
+                    {/*<GroupFitMembership*/}
+                        {/*title={"Semester Pass"}*/}
+                        {/*memberRate={"$150"}*/}
+                        {/*registerUrl={"272"}*/}
+                    {/*/>*/}
+                    {/*<GroupFitMembership*/}
+                        {/*title={"Academic Year Pass"}*/}
+                        {/*memberRate={"$225"}*/}
+                        {/*registerUrl={"291"}*/}
+                    {/*/>*/}
+                    {/*<GroupFitMembership*/}
+                        {/*title={"12 Month Pass"}*/}
+                        {/*memberRate={"$300"}*/}
+                        {/*registerUrl={"188"}*/}
+                    {/*/>*/}
                     <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A'}}>
                         <MaterialCommunityIcons
                             name={"calendar-check"}
@@ -209,12 +318,32 @@ class GroupFitProgramsScreen extends React.Component{
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
-                    <WebView
-                        source={{uri:"https://miamioh.formstack.com/forms/on_demand_group_fitness_class_request"}}
-                        style={{flex: 1}}
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}
-                    />
+                    <Query  query={GET_LINK}>
+                        {({loading, error, data, fetchMore}) => {
+                            if (loading) {
+                                return (
+                                    <View style={{alignContent: 'center', justifyContent: 'center'}}>
+                                        <ActivityIndicator color={"#fff"}/>
+                                    </View>);
+                            }
+                            if (error) return <Text>`Error! ${error.message}`</Text>;
+
+                            return (
+                                <WebView
+                                    source={{uri: data.Membership.url}}
+                                    style={{flex: 1}}
+                                    javaScriptEnabled={true}
+                                    domStorageEnabled={true}
+                                />
+                            );
+                        }}
+                    </Query>
+                    {/*<WebView*/}
+                        {/*source={{uri:"https://miamioh.formstack.com/forms/on_demand_group_fitness_class_request"}}*/}
+                        {/*style={{flex: 1}}*/}
+                        {/*javaScriptEnabled={true}*/}
+                        {/*domStorageEnabled={true}*/}
+                    {/*/>*/}
                 </Modal>
 
             </View>

@@ -204,7 +204,7 @@ class SubmitWorkoutScreen extends React.Component{
 
     _CheckinThenSubmitMyWorkoutRecord = async (id) => {
         await Alert.alert(
-            'Hey You!',
+            'Hey!',
             "Are you ready to submit your workout record?",
             [
                 {
@@ -220,11 +220,7 @@ class SubmitWorkoutScreen extends React.Component{
             ],
             { cancelable: true},
         );
-    }
-
-
-
-
+    };
 
     render(){
         const { data: { loading, error, Workout } } = this.props;
@@ -238,7 +234,6 @@ class SubmitWorkoutScreen extends React.Component{
             )
         }
 
-
         const {ExSets, UniqueSets, Loaded} = this.state;
         Workout.exercises.map(({sets, id}) =>
             this.createExerciseSet(id, Workout.id, sets)
@@ -250,10 +245,8 @@ class SubmitWorkoutScreen extends React.Component{
                         <Text style={{fontSize:18, textAlign:'center', color: '#fff'}} numberOfLines={2} ellipsizeMode ={'tail'}>
                             {Workout.title}
                         </Text>
-
                         <ScrollView>
                             {Workout.exercises.map(({name, reps, sets, intensity, id, tempo}) => (
-
                                     <View key={id}>
                                         <Text style={styles.title} key={id}>
                                             {name}
@@ -268,7 +261,6 @@ class SubmitWorkoutScreen extends React.Component{
                                         <Text style={styles.info} >
                                             Intensity: {intensity}
                                         </Text>
-
                                         {ExSets.filter((item) => item.ExKey === id).map((obj, index) =>
                                             <KeyboardAvoidingView style={{padding:2, }} behavior="padding">
                                                 <View style={{flexDirection: 'row', display:'flex', justifyContent:'center'}} key={obj.SetId}>
@@ -284,9 +276,7 @@ class SubmitWorkoutScreen extends React.Component{
                                                         underlineColorAndroid={'transparent'}
                                                         autoCorrect={false}
                                                         keyboardType={'numeric'}
-
                                                     />
-
                                                     <TextInput
                                                         style={{color:'#fff', borderColor:'#fff', borderWidth:1, width:'40%', padding:2, height: 30, margin:5, textAlign:'center'}}
                                                         placeholder={'Reps Hit'}
@@ -297,7 +287,6 @@ class SubmitWorkoutScreen extends React.Component{
                                                         underlineColorAndroid={'transparent'}
                                                         autoCorrect={false}
                                                         keyboardType={'numeric'}
-
                                                     />
                                                 </View>
                                             </KeyboardAvoidingView>
@@ -319,14 +308,6 @@ class SubmitWorkoutScreen extends React.Component{
                                     this._CheckinThenSubmitMyWorkoutRecord(Workout.id);
                                     console.log(this.state.ExSets.map((obj) => (
                                         JSON.stringify(obj.SetId) + ', ' +  obj.setNo + ', ' + JSON.stringify(obj.weightUse) + ', ' + obj.repUse + '***' + obj.workout + ' **** '  )));
-
-                                    // this._submitWorkoutCheckIn(Workout.id);
-                                    // this.submitUserWorkoutRecord();
-                                    //
-                                    // console.log(this.state.ExSets.map((obj) => (
-                                    //     JSON.stringify(obj.SetId) + ', ' +  obj.setNo + ', ' + JSON.stringify(obj.weightUse) + ', ' + obj.repUse + '***' + obj.workout + ' **** '  )));
-                                    // // this._submitClassCheckIn()
-                                    // // Alert.alert('Congratulations! You have successfully completed this workout!');
                                 }}
                             >
                                 <Ionicons name={"md-checkmark-circle-outline"} size={30} color={'red'} />

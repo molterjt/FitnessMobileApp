@@ -595,7 +595,7 @@ class ScheduleScreen extends React.Component{
                     onPress={() => navigation.navigate('GroupFitPrograms')}>
                     <MaterialCommunityIcons
                         name={"checkbox-marked-circle-outline"}
-                        size={30}
+                        size={25}
                         color={'#931414'}
                     />
                     <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>

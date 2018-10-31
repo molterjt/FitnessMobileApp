@@ -1,12 +1,38 @@
 import React from 'react'
 import {
     View, Text, Dimensions, Modal, ImageBackground, TouchableOpacity, Image, ScrollView, WebView, StatusBar,
-    StyleSheet, TouchableWithoutFeedback
+    StyleSheet, ActivityIndicator
 } from 'react-native';
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
-
+import {Query} from 'react-apollo';
+import gql from "graphql-tag";
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
+
+
+const GET_MEMBERSHIPS = gql`
+    query{
+        allMemberships(filter:{type: "training"}, orderBy: startBalance_ASC, skip:1){
+            title
+            type
+            startBalance
+            rateMember
+            rateNonMember
+            url
+        }
+    }  
+`;
+
+const GET_LINK = gql`
+    query{
+        Membership(id:"cjnwmkhhdmm5s0116wy797q0o"){
+            title
+            type
+            url
+        }
+    }  
+`;
+
 
 class TrainingMembership extends React.Component{
     constructor(props){
@@ -71,7 +97,8 @@ class TrainingMembership extends React.Component{
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
                     <WebView
-                        source={{uri:"http://recmiamioh.maxgalaxy.net/Membership.aspx?PackageID=" + this.props.registerUrl}}
+                        //source={{uri:"http://recmiamioh.maxgalaxy.net/Membership.aspx?PackageID=" + this.props.registerUrl}}
+                        source={{uri: this.props.registerUrl}}
                         style={{flex: 1}}
                         javaScriptEnabled={true}
                         domStorageEnabled={true}
@@ -114,46 +141,68 @@ class TrainerScreen extends React.Component{
                             Programs
                         </Text>
                     </View>
-                        <TrainingMembership
-                            title={"20 Session Package"}
-                            memberRate={"$550"}
-                            memberRateUnitPrice={"Unit Cost: $27.5/session"}
-                            registerUrl={"74"}
-                        />
-                        <TrainingMembership
-                            title={"10 Session Package"}
-                            memberRate={"$310"}
-                            memberRateUnitPrice={"Unit Cost: $31/session"}
-                            registerUrl={"73"}
-                        />
-                        <TrainingMembership
-                            title={"5 Session Package"}
-                            memberRate={"$180"}
-                            memberRateUnitPrice={"Unit Cost: $36/session"}
-                            registerUrl={"70"}
-                        />
-                        <TrainingMembership
-                            title={"3 Session Package"}
-                            memberRate={"$120"}
-                            memberRateUnitPrice={"Unit Cost: $40/session"}
-                            registerUrl={"72"}
-                        />
-                        <TrainingMembership
-                            title={"Monthly Subscription 3"}
-                            memberRate={"$300/month"}
-                            memberRateUnitPrice={"3 Sessions/week in month"}
-                        />
-                        <TrainingMembership
-                            title={"Monthly Subscription 2"}
-                            memberRate={"$250/month"}
-                            memberRateUnitPrice={"2 Sessions/week in month"}
-                        />
-                        <TrainingMembership
-                            title={"Monthly Subscription 1"}
-                            memberRate={"$140/month"}
-                            memberRateUnitPrice={"1 Session/week in month"}
-                        />
-                        <View style={{height: 20}}/>
+                    <Query  query={GET_MEMBERSHIPS} >
+                        {({loading, error, data, fetchMore}) => {
+                            if (loading) {
+                                return (
+                                    <View style={{alignContent: 'center', justifyContent: 'center'}}>
+                                        <ActivityIndicator color={"#fff"}/>
+                                    </View>);
+                            }
+                            if (error) return <Text>`Error! ${error.message}`</Text>;
+                            return (
+                                <View>
+                                    {data.allMemberships.map((obj, index) => (
+                                        <TrainingMembership
+                                            title={obj.title}
+                                            memberRate={obj.rateMember}
+                                            memberRateUnitPrice={obj.rateNonMember}
+                                            registerUrl={obj.url}
+                                        />
+                                    ))}
+                                    {/*<TrainingMembership*/}
+                                        {/*title={"20 Session Package"}*/}
+                                        {/*memberRate={"$550"}*/}
+                                        {/*memberRateUnitPrice={"Unit Cost: $27.5/session"}*/}
+                                        {/*registerUrl={"74"}*/}
+                                    {/*/>TrainingMembership*/}
+                                        {/*title = {"10 Session Package"}*/}
+                                        {/*memberRate = {"$310"}*/}
+                                        {/*memberRateUnitPrice = {"Unit Cost: $31/session"}*/}
+                                        {/*registerUrl = {"73"}*/}
+                                    {/*/>*/}
+                                    {/*<TrainingMembership*/}
+                                        {/*title={"5 Session Package"}*/}
+                                        {/*memberRate={"$180"}*/}
+                                        {/*memberRateUnitPrice={"Unit Cost: $36/session"}*/}
+                                        {/*registerUrl={"70"}*/}
+                                    {/*/>*/}
+                                    {/*<TrainingMembership*/}
+                                        {/*title = {"3 Session Package"}*/}
+                                        {/*memberRate = {"$120"}*/}
+                                        {/*memberRateUnitPrice = {"Unit Cost: $40/session"}*/}
+                                        {/*registerUrl = {"72"}*/}
+                                    {/*/>*/}
+                                    {/*<TrainingMembership*/}
+                                        {/*title={"Monthly Subscription 3"}*/}
+                                        {/*memberRate={"$300/month"}*/}
+                                        {/*memberRateUnitPrice={"3 Sessions/week in month"}*/}
+                                    {/*/>*/}
+                                    {/*<TrainingMembership*/}
+                                        {/*title = {"Monthly Subscription 2"}*/}
+                                        {/*memberRate = {"$250/month"}*/}
+                                        {/*memberRateUnitPrice = {"2 Sessions/week in month"}*/}
+                                    {/*/>*/}
+                                    {/*<TrainingMembership*/}
+                                        {/*title={"Monthly Subscription 1"}*/}
+                                        {/*memberRate={"$140/month"}*/}
+                                        {/*memberRateUnitPrice={"1 Session/week in month"}*/}
+                                    {/*/>*/}
+                                    <View style = {{height: 20}}/>
+                                </View>
+                            );
+                        }}
+                    </Query>
                     </ScrollView>
                     <ImageBackground
                         source={require('../assets/images/silver-background.jpg')}
@@ -208,12 +257,28 @@ class TrainerScreen extends React.Component{
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"} alt={'arrow symbol to go back to previous'}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
-                    <WebView
-                        source={{uri:"https://miamioh.qualtrics.com/jfe/form/SV_6ROkLdBRztSlYGN"}}
-                        style={{flex: 1}}
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}
-                    />
+                    <Query  query={GET_LINK}>
+                        {({loading, error, data, fetchMore}) => {
+                            if (loading) {
+                                return (
+                                    <View style={{alignContent: 'center', justifyContent: 'center'}}>
+                                        <ActivityIndicator color={"#fff"}/>
+                                    </View>);
+                            }
+                            if (error) return <Text>`Error! ${error.message}`</Text>;
+
+                            return (
+                                <WebView
+                                    //source={{uri:"https://miamioh.qualtrics.com/jfe/form/SV_6ROkLdBRztSlYGN"}}
+                                    source={{uri: data.Membership.url}}
+                                    style={{flex: 1}}
+                                    javaScriptEnabled={true}
+                                    domStorageEnabled={true}
+                                />
+                            );
+                        }}
+                    </Query>
+
                 </Modal>
             </View>
         );

@@ -97,6 +97,9 @@ type Membership @model{
   id: ID! @isUnique
   title: String!
   type: String
+  rateMember: String
+  rateNonMember: String
+  url: String
   category: [MembershipCategory!]! @relation(name: "CategoryMemberships")
   startDate: String
   endDate: String

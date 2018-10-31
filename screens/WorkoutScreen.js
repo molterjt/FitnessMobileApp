@@ -8,8 +8,8 @@ import {withNavigation} from 'react-navigation';
 import Workout from '../components/Workout';
 
 const GET_WORKOUTS = gql`
-    query{
-        allWorkouts(filter:{isPublished: true}){
+    query($load:Int, $skip:Int){
+        allWorkouts(filter:{isPublished: true} orderBy:createdAt_DESC, first:$load, skip:$skip){
             id
             title
             type{title}
@@ -68,13 +68,15 @@ class WorkoutView extends React.Component{
 
     }
     render() {
+        const {data} = this.props;
         const { loading, allWorkouts } = this.props.data;
         const {navigation} = this.props;
         if(loading){
-            return <ActivityIndicator />
+            return <ActivityIndicator size={'large'} color={'#931414'} />
         }
         return(
             <ScrollView
+                style={{marginBottom:30}}
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.refreshing}
@@ -125,6 +127,37 @@ class WorkoutView extends React.Component{
                         />
                     )
                 )}
+                <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center', marginTop: 10}}>
+                    <TouchableOpacity
+                        style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
+                        onPress={ () => {
+                            this.props.data.fetchMore({
+                                variables:{
+                                    load: 1,
+                                    skip: data.allWorkouts.length
+                                },
+                                updateQuery: (previousResult, {fetchMoreResult}) => {
+                                    if (!fetchMoreResult){
+                                        console.log('NO FetchMore');
+                                        return previousResult;
+                                    }
+                                    console.log('trying to copy data');
+                                    return Object.assign({}, previousResult, {
+                                        allWorkouts : [...previousResult.allWorkouts, ...fetchMoreResult.allWorkouts]
+                                    });
+                                }
+                            })
+                        }}
+                    >
+                        <Text style={{textAlign:"center", color: "#931414", marginTop:10}}>More</Text>
+                        <MaterialCommunityIcons
+                            name={"chevron-double-down"} type={"MaterialCommunityIcons"} size={45} color={'#931414'}
+                            style={{textAlign:"center"}}
+                        />
+                    </TouchableOpacity>
+
+                </View>
+
             </ScrollView>
         );
     }
@@ -136,7 +169,14 @@ WorkoutView.propTypes = {
     })
 };
 
-const AllWorkoutsViewWithData = graphql(GET_WORKOUTS)(WorkoutView);
+const AllWorkoutsViewWithData = graphql(
+    GET_WORKOUTS,{
+        options: () => {
+            return {
+                variables: {load:2, skip:0}
+            }
+        }
+    })(WorkoutView);
 
 class WorkoutScreen extends React.Component{
     constructor(props){

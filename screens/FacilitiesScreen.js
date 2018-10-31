@@ -498,10 +498,12 @@ const styles = StyleSheet.create({
     /****************/
     profileButton:{
         alignItems: 'center',
+        alignSelf:'center',
         padding:1,
         fontWeight: 'bold',
-        backgroundColor: "#277bfa",
+        backgroundColor: "#931414",
         borderRadius: 15,
+        width: '50%'
     },
 
     modalContainer: {

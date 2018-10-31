@@ -1,62 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
-    Text, View, StatusBar, ActivityIndicator, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet,
+    Text, View, StatusBar, ActivityIndicator, TextInput, TouchableOpacity,StyleSheet,
     Dimensions, ScrollView, Alert
 } from 'react-native';
-import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements'
 import gql from "graphql-tag";
-import { graphql, compose, Mutation, Query } from "react-apollo";
+import { graphql, compose, Query } from "react-apollo";
 import {withNavigation} from 'react-navigation';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
-
-
-
-/*******Deletes User**********/
-/*
-const DELETE_PROFILE = gql`
-    mutation deleteUser($id:ID!){
-        username
-    }
-`
-
-const RemoveUser = ({id}) => {
-    return (
-        <Mutation
-            mutation={DELETE_PROFILE}
-        >
-            {(deleteUser, {data}) => (
-                <TouchableOpacity
-                    style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                    onPress={() => Alert.alert(
-                        'Alert',
-                        "Are you really, really sure you want to DELETE your account?  There's no take backs!",
-                        [
-                            {text: 'DELETE', onPress: () => deleteUser({
-                                    variables: {
-                                        id
-                                    },
-                                }),
-                            },
-                            {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')}
-                        ],
-                        { cancelable: true },
-                        console.log("User with id: " + id + " was deleted")
-                    )}>
-                    <MaterialCommunityIcons
-                        name={"delete-forever"}
-                        size={36}
-                        color={'#fff'}
-                        style={{marginBottom: 0, marginTop: 0, borderRadius: 8, padding:3, alignItems:'center',}}
-                    />
-                </TouchableOpacity>
-            )}
-        </Mutation>
-    );
-};*/
 
 class EditScreen extends React.Component {
     constructor(props) {
@@ -123,13 +77,10 @@ class EditScreen extends React.Component {
             ],
             { cancelable: true },
         );
-    }
+    };
 
     render() {
         const {params} = this.props.navigation.state;
-        //const {User, loading} = this.props.data;
-        //if(this.props.data.loading) return <ActivityIndicator />;
-
         return (
             <ScrollView style={styles.rowContainer}>
                 <StatusBar barStyle="default"/>
@@ -163,7 +114,7 @@ class EditScreen extends React.Component {
                     />
                 </View>
                 <ScrollView style={{flexDirection: 'column', }}>
-                    <Text style={{textAlign:'center', fontStyle:'italic', color: 'silver', fontSize: 12}}>Select Your Interests & Press Submit:</Text>
+                    <Text style={{textAlign:'center', fontStyle:'italic', color: '#fff', fontSize: 12}}>Select Your Interests & Press Submit:</Text>
                     <Query query={INTEREST_LIST} >
                         {({loading, error, data}) => {
                             if(loading){
@@ -181,9 +132,11 @@ class EditScreen extends React.Component {
                                             <View key={index} style={styles.containerRow}>
                                                 <CheckBox
                                                     ref={obj.id}
-                                                    style={{fontSize: 10}}
+                                                    containerStyle={{ borderRadius:15, borderWidth:2, borderColor:'#000', backgroundColor: '#fff'}}
+                                                    textStyle={{color: '#000', fontSize: 12,}}
                                                     value={obj.id}
                                                     title={obj.title}
+                                                    checkedColor={'#931414'}
                                                     checkedIcon='dot-circle-o'
                                                     uncheckedIcon='circle-o'
                                                     onPress={() => this._handleInterestListCheck(obj.id)}
@@ -216,15 +169,6 @@ class EditScreen extends React.Component {
         );
     }
 }
-/*
-EditScreen.propTypes = {
-    data: PropTypes.shape({
-        loading: PropTypes.bool,
-        error: PropTypes.object,
-        updateUser: PropTypes.object,
-    })
-};
-*/
 const updateProfile = gql`
     mutation updateUser($id:ID!, $firstName: String, $lastName: String, $dateOfBirth: String, $interestsArray: [ID!]){
         updateUser(id: $id, firstName: $firstName, lastName:$lastName, dateOfBirth: $dateOfBirth, interestsIds: $interestsArray){
@@ -269,8 +213,9 @@ const styles = StyleSheet.create({
         width: WIDTH*.99
     },
     containerRow:{
-
+        borderRadius:15,
         width: WIDTH*.46 || 'auto',
+        backgroundColor: 'transparent'
 
     },
     rowColumn:{
@@ -296,7 +241,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'rgba(155, 10, 2, 0.9)',
         backgroundColor: '#3072b2',
         padding: 20,
-        marginTop: 40,
+        marginTop: 20,
         marginBottom: 40,
         width: 'auto',
         height: 15,
@@ -321,7 +266,6 @@ const styles = StyleSheet.create({
         marginRight: 3,
         marginLeft: 3,
         marginTop: 10,
-        borderRadius: 4,
         shadowOffset:{  width: 1,  height: 1,  },
         shadowColor: '#CCC',
         shadowOpacity: 1.0,

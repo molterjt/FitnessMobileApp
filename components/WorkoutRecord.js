@@ -56,8 +56,6 @@ class WorkoutRecord extends React.Component{
     }
 
     render(){
-
-
         return(
             <View>
                 <TouchableOpacity
@@ -74,7 +72,7 @@ class WorkoutRecord extends React.Component{
                 </TouchableOpacity>
                 <Query query={GET_WORKOUT_RECORD} variables={{userId: this.props.userId, timeCheck: this.props.timeCheck, workout: this.props.workoutId}}>
                     {({loading, error, data}) => {
-                        if (loading) return <Text>"Loading ...."</Text>;
+                        if (loading) return <View style={{alignContent:'center', justifyContent:'center'}}><ActivityIndicator color={"#931414"} size={"large"}/></View>;
                         if (error) return <Text>`Error! ${error.message}`</Text>;
                         return (
                             <View>
@@ -89,56 +87,45 @@ class WorkoutRecord extends React.Component{
                                         style={{ marginTop:50, marginBottom: 5, marginLeft:2, flexDirection:'row' }}
                                     >
                                         <MaterialCommunityIcons name={"chevron-double-left"} size={40} color={"#277bfa"} />
-
-
-
                                     </TouchableOpacity>
-
                                     <ScrollView style={{flex: 1, justifyContent: 'space-evenly',}}>
-
                                         <View style={{flex:4, marginTop:5, marginBottom: 30, borderWidth:0, flexDirection:"column", justifyContent:'space-around', flexWrap: 'wrap'}}>
                                             <Text style={{fontSize: 16, padding: 8, textAlign: 'center', fontWeight: 'bold', color: '#931414', marginBottom: 5}}>{this.props.workoutTitle}</Text>
                                             <Text style={{fontSize: 12, padding: 1, textAlign: 'center',  color: '#000', marginBottom: 5}}>
-                                                {moment(this.props.timeCheck).format('M/D/Y h a')}
+                                                Completed: {moment(this.props.timeCheck).format('M/D/Y h a')}
                                             </Text>
                                             {data.allExerciseSetses.map(({exercises, setName, repsHit, weightUsed}) => (
                                                 <View style={styles.rowColumn}>
                                                     {exercises.map(({name}) =>
                                                         <View
                                                             style={{
-                                                                height: 80, borderWidth: 1, borderColor:'#000',
+                                                                height: 80, borderWidth: 3, borderColor:'#fff',
                                                                 backgroundColor:'#29282A', width:'45%', justifyContent:'center'
                                                             }}
                                                         >
                                                             <Text style={{textAlign: 'center', color:'red', fontWeight:'bold'}}>{name}</Text>
-                                                            <View style={{flexDirection:'row',  justifyContent:'center'}}>
+                                                            <View style={{flexDirection:'row',  justifyContent:'center', marginTop:3}}>
                                                                 <Text style={{fontWeight:'bold', textAlign:'center', color: '#fff'}}>Set:</Text>
                                                                 <Text style={{marginLeft: 3,textAlign:'center', color: '#fff'}}>{setName}</Text>
                                                             </View>
                                                         </View>
 
                                                     )}
-                                                    <View style={{flex:1}}>
-                                                        <View style={{flexDirection:'row', padding:5, alignContent:'center', justifyContent:'space-around', backgroundColor: '#931414', height: 30}}>
-                                                            <Text style={{fontWeight:'bold',textAlign:'center',width:'45%', color: '#fff'}}>Weight:</Text>
-                                                            <Text style={{fontWeight:'bold',textAlign:'center',width:'45%', color: '#fff'}}>Reps:</Text>
+                                                    <View style={{flex:1, borderWidth:2, borderColor:'#fff'}}>
+                                                        <View style={{flexDirection:'row', padding:5, alignContent:'center', justifyContent:'space-around', backgroundColor: '#931414', height: 35, borderWidth:3, borderColor:'#fff'}}>
+                                                            <Text style={{fontWeight:'bold',textAlign:'center',width:'48%', color: '#fff',alignSelf:'center'}}>Weight:</Text>
+                                                            <Text style={{fontWeight:'bold',textAlign:'center',width:'48%', color: '#fff',alignSelf:'center'}}>Reps:</Text>
                                                         </View>
-                                                        <View style={{flexDirection:'row', padding:5, alignContent:'center', justifyContent:'center'}}>
-                                                            <Text style={{textAlign:'center',width:'45%'}}>{weightUsed} lbs</Text>
-                                                            <Text style={{textAlign:'center',width:'45%'}}>{repsHit}</Text>
+                                                        <View style={{flexDirection:'row', padding:5, alignContent:'center', justifyContent:'space-around', height: 40, borderWidth:2, borderColor:'#fff'}}>
+                                                            <Text style={{textAlign:'center',width:'48%', color: '#fff', borderWidth:1, borderColor:'#fff', alignSelf:'center'}}>{weightUsed} lbs</Text>
+                                                            <Text style={{textAlign:'center',width:'48%', color: '#fff', borderWidth:1, borderColor:'#fff', alignSelf:'center'}}>{repsHit}</Text>
                                                         </View>
                                                     </View>
 
                                                 </View>
-
-
                                             ))}
                                         </View>
-
-
                                     </ScrollView>
-
-
                                 </Modal>
                             </View>
                         );
@@ -161,8 +148,8 @@ const styles = StyleSheet.create({
         width: WIDTH * .98,
         height: 80,
         borderWidth: 2,
-        borderColor: "#000",
-        backgroundColor: '#cdcdcd',
+        borderColor: "#fff",
+        backgroundColor: '#29282A',
         margin:1,
         padding: 0,
     },

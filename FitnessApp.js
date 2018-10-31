@@ -53,7 +53,7 @@ class FitnessApp extends React.Component{
         }
         const Layout = createRootNavigator(signedIn);
         return(
-        <SafeAreaView style={{flex:1, height: 0, margin:0}} forceInset={{ top: 8}}>
+        <SafeAreaView style={{flex:1, height: 0, margin:0}} forceInset={{ top: 5}}>
 
             <Layout/>
 
