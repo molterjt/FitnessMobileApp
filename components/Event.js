@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image, Modal, WebView} from 'react-native';
-import { Ionicons, MaterialIcons, MaterialCommunityIcons} from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
 
 class Event extends React.Component{
@@ -9,7 +9,6 @@ class Event extends React.Component{
         this.state={
             eventRegisterModal: false
         }
-
     }
     showEventRegisterModal(visible){
         this.setState({eventRegisterModal: visible})
@@ -21,7 +20,9 @@ class Event extends React.Component{
                 <View style={styles.imageRowContainer}>
                     <Image source={{uri: this.props.image}}
                            style={styles.image}
-                           resizeMode="contain" />
+                           resizeMode="contain"
+                           alt={'Banner image for this event'}
+                    />
                 </View>
                 <View style={styles.rowContainer} key={this.props.id}>
                     <View style={styles.rowText} >
@@ -64,20 +65,15 @@ class Event extends React.Component{
                                 />
                             </TouchableOpacity>)
                             : null
-
                         }
-
                     </View>
                 </View>
-
                 <Modal
                     transparent={false}
                     animationType={"fade"}
                     visible={this.state.eventRegisterModal}
                     onRequestClose={() => {this.showEventRegisterModal(!this.state.eventRegisterModal)} }
                 >
-
-
                     <TouchableOpacity
                         onPress={() => {this.showEventRegisterModal(!this.state.eventRegisterModal)}}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
@@ -89,22 +85,18 @@ class Event extends React.Component{
                         ?
                         (
                             <WebView
-                            source={{uri:"http://recmiamioh.maxgalaxy.net/Registration.aspx?ActivityID=" + this.props.registerUrl}}
-                            style={{flex: 1}}
-                            javaScriptEnabled={true}
-                            domStorageEnabled={true}
-                        />
+                                source={{uri:"http://recmiamioh.maxgalaxy.net/Registration.aspx?ActivityID=" + this.props.registerUrl}}
+                                style={{flex: 1}}
+                                javaScriptEnabled={true}
+                                domStorageEnabled={true}
+                            />
                         )
                         :
                         (
                             <Text>No Need To Register {'\n'} Free Event</Text>
-
                         )
                     }
-
                 </Modal>
-
-
             </View>
         );
     }
@@ -120,17 +112,11 @@ const styles = StyleSheet.create({
         shadowOffset:{  width: -1,  height: 1,  },
         shadowColor: 'black',
         shadowOpacity: 1.0,
-        shadowRadius: 3
+        shadowRadius: 3,
+        borderWidth:1,
+        borderColor: '#fff'
     },
-    exerciseCard:{
-        marginTop: 10,
-        padding: 2,
-        borderRadius: 2,
-        borderColor: 'white',
-        borderWidth: 1,
 
-
-    },
     rowContainer: {
         flexDirection: 'row',
         backgroundColor: '#29282A',
@@ -147,7 +133,7 @@ const styles = StyleSheet.create({
     },
     imageRowContainer: {
         flexDirection: 'row',
-
+        backgroundColor: 'transparent',
         height: 200,
         padding: 5,
         marginRight: 10,
@@ -195,9 +181,10 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end'
     },
     image: {
-        flex: 4,
+        flex: 1,
         height: undefined,
-        width: 160
+        width: '100%',
+        backgroundColor: 'transparent'
     },
     rowText: {
         flex: 4,

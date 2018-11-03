@@ -133,7 +133,7 @@ class SingleClassDetailScreen extends React.Component {
                     userCommentId={ queryUserId}
                     classCommentId={this.props.navigation.state.params.itemId}
                     userComment={this.props.userComment}
-                    video={this.props.videoUrl}
+                    videoUrl={this.props.data.GroupFitClass.videoUrl}
                     classStart={this.props.data.GroupFitClass.startTime}
                     userCheckinId={queryUserId}
                     classCheckinId={this.props.data.GroupFitClass.id}

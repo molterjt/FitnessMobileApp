@@ -34,12 +34,23 @@ const HomeStack = StackNavigator(
         Home: {
             screen: HomeScreen,
             navigationOptions:{
-                title: 'MiamiOH Rec Fit',
+                title: 'MiamiOH Fit',
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                    fontFamily: 'Optima-BoldItalic',
+                    fontSize:24,
+                    color:'#931414',
 
+                    marginTop:5,
+                    borderBottomWidth: 3,
+                },
+                headerTintColor: '#000',
                 headerStyle:{
+                    backgroundColor: "#fff",
+                    paddingTop:4
+                },
 
-                    backgroundColor: "#fff"
-                }
+
             },
         },
         Settings: {

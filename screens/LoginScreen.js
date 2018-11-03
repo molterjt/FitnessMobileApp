@@ -238,7 +238,7 @@ class Login extends React.Component{
                                     this.setState({password});
                                     this.setState({passwordError: validate('password', password)});
                                 }}
-                                onBlur={() => this.setState({graphQL_Error: null})}
+                                onBlur={() => this.setState({graphQL_Error: null, registerActivity: false})}
                                 type={"password"}
                                 placeholder={'Enter a Password'}
                                 secureTextEntry={true}
@@ -252,7 +252,7 @@ class Login extends React.Component{
                                 ? <Text style={{color: 'white', textAlign:'center'}}>{passwordError}</Text>
                                 : null
                             }
-                            {registerActivity && !passwordError && !emailError && !graphQL_Error && password > 6 && email > 6
+                            {registerActivity && !passwordError && !emailError && !graphQL_Error
                                 ? <ActivityIndicator size="large" color={'#0a3efa'}/>
                                 : null
                             }
@@ -503,3 +503,38 @@ const styles = StyleSheet.create({
         opacity: 0.2
     }
 });
+
+`
+GraphQL error: {
+    "logs":[
+        {"2018-10-31T23:57:15.571Z":
+                { data: " +
+                { email: 'molterjt@miamioh.edu', password: 'one4one9' },\n  " +
+                context: { 
+                    request: { 
+                        sourceIp: '134.53.88.154', 
+                        headers: {}, 
+                        httpMethod: 'post'
+                        auth: null,
+                        sessionCache: {},
+                        environment: {},
+                        graphcool: { 
+                            rootToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDEwMzA1MzQsImlhdCI6MTU0MTAzMDIzNCwiY2xpZW50SWQiOiJfIiwicHJvamVjdElkIjoiY2pmNnpzcXhqM240MjAxNDF6MDlycHY5aiIsInBlcm1hbmVudEF1dGhUb2tlbklkIjoiY2pueHRtMzQ1MG9kOTAxNjRqejFxZ3Y2MiJ9.Z64Wj2C4hXVVKzr5WgtdIqwrIYCBG2nVJQpD2EoVmjk',
+                            endpoints: [Object],
+                            projectId: 'cjf6zsqxj3n420141z09rpv9j',
+                            alias: null,
+                            pat: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDEwMzA1MzQsImlhdCI6MTU0MTAzMDIzNCwiY2xpZW50SWQiOiJfIiwicHJvamVjdElkIjoiY2pmNnpzcXhqM240MjAxNDF6MDlycHY5aiIsInBlcm1hbmVudEF1dGhUb2tlbklkIjoiY2pueHRtMzQ1MG9kOTAxNjRqejFxZ3Y2MiJ9.Z64Wj2C4hXVVKzr5WgtdIqwrIYCBG2nVJQpD2EoVmjk',
+                            serviceId: 'cjf6zsqxj3n420141z09rpv9j' 
+                        } 
+                    }
+                }
+        },
+        {
+            "2018-10-31T23:57:29.941Z b0c81593-dd68-11e8-ad4d-0d204d9c1eb0 
+            Task timed out after 15.02 seconds": 2018-10-31T23:57:29.941Z b0c81593-dd68-11e8-ad4d-0d204d9c1eb0 Task timed out after 15.02 seconds
+        }
+    ], 
+     "response": {
+        "errorMessage":"2018-10-31T23:57:29.941Z b0c81593-dd68-11e8-ad4d-0d204d9c1eb0 Task timed out after 15.02 seconds"
+    }}
+`

@@ -16,7 +16,7 @@ const HEIGHT = Dimensions.get('window').height;
 
 const AllTRAINERS = gql`
     query{
-        allTrainers(orderBy: firstName_ASC){
+        allTrainers(orderBy: createdAt_ASC){
             firstName
             lastName
             imageUrl
@@ -44,9 +44,9 @@ class TrainerProfile extends React.Component{
 
     render(){
         return(
-            <ScrollView style={styles.rowColumn}>
-                <ImageBackground
-                    resizeMode={"contain"}
+            <View style={styles.rowColumn}>
+                {/*<ImageBackground
+                    resizeMode={"cover"}
                     source={this.props.imageUrl ? {uri: this.props.imageUrl} : require("../assets/images/blank-profile.png")}
                     style={styles.profileImage}
                     alt={"Personal Trainer `${this.props.firstName}`"}
@@ -64,7 +64,38 @@ class TrainerProfile extends React.Component{
                             style={{fontWeight: 'bold', justifyContent:'flex-end'}}
                         />
                     </TouchableOpacity>
-                </ImageBackground>
+                </ImageBackground>*/}
+
+                    <View style={{backgroundColor: 'rgba(14, 14, 16, 0.66)', width:'100%'}}>
+                        <Text style={styles.profileName}>{this.props.firstName ? this.props.firstName : ''}</Text>
+                        <Text style={styles.profileName}>{this.props.lastName ? this.props.lastName : ''}</Text>
+                    </View>
+                    <View >
+                        <Image
+                            resizeMode={"cover"}
+                            source={this.props.imageUrl ? {uri: this.props.imageUrl} : require("../assets/images/blank-profile.png")}
+                            height={180}
+                            width={WIDTH*.3}
+                            style={styles.profileImage}
+                            alt={"Personal Trainer `${this.props.firstName}`"}
+                        />
+
+                    </View>
+
+                <TouchableOpacity
+                    style={styles.profileButton}
+                    onPress={() => {this.showPTInfoFormModal(true)}}
+                >
+                    <Ionicons
+                        name={"ios-expand"}
+                        size={28}
+                        alt={"expand facility info"}
+                        color={"white"}
+                        style={{fontWeight: 'bold'}}
+                    />
+                </TouchableOpacity>
+
+
                 <Modal
                     transparent={true}
                     animationType={"none"}
@@ -80,14 +111,14 @@ class TrainerProfile extends React.Component{
                                         <TouchableOpacity
                                             onPress={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)}}
                                             style={styles.closeButton}>
-                                            <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"} />
+                                            <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#fff"} />
                                         </TouchableOpacity>
                                         <View style={{alignContent: 'center', alignItems: 'center', backgroundColor:'#29282A', borderWidth: 0, borderColor: '#fff'}}>
                                             <Image
                                                 source={{uri: this.props.imageUrl}}
                                                 alt={"Trainer Profile Image"}
-                                                resizeMode={"contain"}
-                                                style={{width: WIDTH * .6, height: HEIGHT*.25, }}
+                                                resizeMode={"cover"}
+                                                style={{width: WIDTH * .6, height: HEIGHT*.37}}
                                             />
                                         </View>
                                         <View style={{
@@ -108,7 +139,7 @@ class TrainerProfile extends React.Component{
                         </ScrollView>
                     </TouchableOpacity>
                 </Modal>
-            </ScrollView>
+            </View>
         );
     }
 }
@@ -135,7 +166,7 @@ class TrainerListView extends React.Component{
             return <Text>Sorry, there was an error</Text>
         }
         return(
-            <ScrollView style={{flex: 1, justifyContent: 'space-evenly',}}
+            <ScrollView style={{flex: 1, justifyContent: 'space-evenly', }}
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.refreshing}
@@ -144,7 +175,7 @@ class TrainerListView extends React.Component{
                     />
                 }
             >
-                <View style={{flex:3, borderWidth:1, flexDirection:"row", justifyContent:'space-around', flexWrap: 'wrap'}}>
+                <View style={{flex:3, borderWidth:0, flexDirection:"row", justifyContent:'space-around', flexWrap: 'wrap',marginBottom:50}}>
                     {allTrainers.map((obj, index) => (
                         <TrainerProfile
                             key={index}
@@ -193,7 +224,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'space-between',
         width: WIDTH * .32,
-        height: 200,
+        height: 250,
         borderWidth: 2,
         borderColor: "#000",
         backgroundColor: '#cdcdcd',
@@ -203,36 +234,47 @@ const styles = StyleSheet.create({
         backgroundColor: "#000",
         alignItems: 'center',
         alignContent: 'center',
+        alignSelf: 'center',
         // justifyContent: 'flex-start',
-        height: 200,
+        height: 180,
         width: WIDTH * .3,
-        borderWidth: 1,
+        borderWidth: 0,
         borderRadius: 10,
         padding:4,
+        marginTop:0
     },
     profileName:{
         color: '#fff',
+        fontWeight:'bold',
         fontSize: 12,
-        fontWeight: '0.5',
-        alignContent: 'center'
+        paddingBottom:2,
+
+        alignContent: 'center',
+        textAlign:'center'
+
     },
     profileEmail: {
         color: '#fff',
         fontSize: 10,
     },
     profileButton:{
-        alignContent: "end",
+        alignContent: "center",
+        justifyContent: 'center',
+        alignItems:'center',
+        borderWidth:1,
         // marginTop: 120,
-        paddingTop: 125,
-        fontWeight: '800'
+        paddingTop: 0,
+        fontWeight: '800',
+        backgroundColor: '#931414', width:'100%'
     },
     modalContainer: {
-        marginTop: 40,
+        marginTop: 0,
         height: '95%',
         flexDirection: 'column',
-        justifyContent:'flex-start',
+        justifyContent:'center',
         alignItems:'center',
         padding: 2,
+        marginBottom:30
 
     },
     ModalInsideView:{

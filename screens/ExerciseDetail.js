@@ -19,6 +19,7 @@ const EXERCISE_QUERY = gql`
             tempo
             imageUrl
             restIntervals
+            videoUrl
         }
     }
 `
@@ -55,6 +56,8 @@ class ExerciseDetail extends Component {
                     restIntervals={this.props.data.Exercise.restIntervals}
                     description={this.props.data.Exercise.description}
                     image={this.props.data.Exercise.imageUrl}
+                    videoUrl={this.props.data.Exercise.videoUrl}
+                    theReFetched={this.props.data}
                 />
             </View>
         );

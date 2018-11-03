@@ -108,7 +108,7 @@ class Workout extends React.Component{
                 <View style={styles.imageRowContainer}>
                     <Image source={{uri: this.props.image}}
                            style={styles.image}
-                           resizeMode="contain" />
+                           resizeMode="cover" />
                 </View>
                 <View style={styles.rowContainer} key={this.props.id}>
                     <View style={styles.rowText} >
@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
 
     rowCard:{
         marginTop: 10,
+        padding:5,
         borderRadius: 4,
         shadowOffset:{  width: -1,  height: 1,  },
         shadowColor: 'black',
@@ -178,10 +179,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#29282A',
         height: 'auto',
         padding: 10,
-        marginBottom: 5,
         marginRight: 10,
         marginLeft: 10,
-        borderRadius: 4,
+        borderRadius: 10,
         shadowOffset:{  width: 1,  height: 1,  },
         shadowColor: '#CCC',
         shadowOpacity: 1.0,
@@ -189,12 +189,13 @@ const styles = StyleSheet.create({
     },
     imageRowContainer: {
         flexDirection: 'row',
-
-        height: 200,
+        height: 300,
         padding: 5,
         marginRight: 10,
         marginLeft: 10,
-        marginTop: 10,
+        borderRadius: 10,
+
+
     },
     title: {
         paddingLeft: 10,
@@ -236,12 +237,12 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end'
     },
     image: {
-        flex: 4,
+        flex: 1,
         height: undefined,
-        width: 160
+        width: 'auto'
     },
     rowText: {
-        flex: 4,
+        flex: 1,
         flexDirection: 'column'
     }
 });

@@ -42,6 +42,7 @@ class EventList extends React.Component{
         if(error) console.log(error);
         return(
             <ScrollView
+                style={{backgroundColor: '#939ca4', paddingBottom:30}}
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.refreshing}
@@ -66,6 +67,7 @@ class EventList extends React.Component{
                         />
                     )
                 )}
+                <View style={{height:30}}/>
             </ScrollView>
         );
     }

@@ -3,7 +3,7 @@ import {
     View, Text, TouchableOpacity, StyleSheet, Image, AlertIOS, TouchableWithoutFeedback,
     Dimensions, Alert, Modal, TextInput, WebView, Platform,
 } from 'react-native';
-import {Constants, Location, Permissions} from 'expo';
+import {Constants, Location, Permissions, Video} from 'expo';
 import gql from 'graphql-tag';
 import {graphql, Mutation, compose } from 'react-apollo';
 import {FontAwesome, MaterialCommunityIcons, MaterialIcons, Ionicons} from '@expo/vector-icons';
@@ -18,6 +18,15 @@ const GEOLOCATION_OPTIONS = { enableHighAccuracy: true, timeout: 20000, maximumA
 const REC_LAT = '39.502590979032284';
 const REC_LONG = '-84.73775267601013';
 const CHECK_IN_BOUNDARY =  100.00;
+
+const isLandscapeWidth = () => {
+    const dim = Dimensions.get('screen');
+    if(dim.width >= dim.height) return dim.width;
+};
+const isLandscapeHeight = () => {
+    const dim = Dimensions.get('screen');
+    if(dim.width >= dim.height) return dim.height;
+};
 
 
 moment.relativeTimeThreshold('m', 59);
@@ -79,6 +88,8 @@ class GroupFitnessClass extends React.Component{
         this._submitClassCheckIn = this._submitClassCheckIn.bind(this);
         this._switchCheckInDisable = this._switchCheckInDisable.bind(this);
     }
+
+
 
     _switchCheckInDisable = () =>
         this.setState({checkInDisable: true});
@@ -359,25 +370,34 @@ class GroupFitnessClass extends React.Component{
                         <Text style={styles.description}>
                             Description: {this.props.description}
                         </Text>
-                        <View style={{flexDirection: "row",justifyContent:"center", alignItems:"center", marginTop: 25, }}>
-                            <TouchableOpacity
-                                disabled={true}
-                                onPress={() => {
-                                    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE_RIGHT);
-                                    this.showVideoModal(true)}
-                                }
-                                style={{alignItems: "center", marginRight: 50}}
-                            >
-                                <MaterialIcons
-                                    name={"ondemand-video"}
-                                    size={30}
-                                    color={'#fff'}
-                                />
-                                <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Class Video</Text>
-                            </TouchableOpacity>
+                        <View style={{flexDirection: "row", justifyContent:"center", alignItems:"center", marginTop: 25, }}>
+                            {
+                                this.props.videoUrl
+                                ?
+                                (
+                                    <TouchableOpacity
+                                        disabled={false}
+                                        onPress={() => {
+                                            Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE_RIGHT);
+                                            this.showVideoModal(true)}
+                                        }
+                                        style={{alignItems: "center", flex:3}}
+                                    >
+                                        <MaterialIcons
+                                            name={"ondemand-video"}
+                                            size={30}
+                                            color={'#fff'}
+                                        />
+                                        <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Class Video</Text>
+                                    </TouchableOpacity>
+                                )
+                                :
+                                (null)
+                            }
+
                             {this.state.goodToCheckIn === true
                                 ? (<TouchableOpacity
-                                    style={{alignItems: "center", marginRight: 50}}
+                                    style={{alignItems: "center", flex:3}}
                                     disabled={this.state.checkInDisable}
                                     onPress={() => this._distanceUserFromRSC()}
                                 >
@@ -385,7 +405,7 @@ class GroupFitnessClass extends React.Component{
                                     <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 0}}>Check-In</Text>
                                 </TouchableOpacity>)
                                 : (<TouchableOpacity
-                                    style={{alignItems: "center", marginRight: 50}}
+                                    style={{alignItems: "center", flex:3}}
                                     disabled={false}
                                     onPress={ () => {
                                         Alert.alert(
@@ -404,7 +424,7 @@ class GroupFitnessClass extends React.Component{
                             }
                             <TouchableOpacity
                                 onPress={() => {this.showCommentModal(true)}}
-                                style={{alignItems: "center"}}>
+                                style={{alignItems: "center", flex:3}}>
                                 <FontAwesome name={"commenting-o"} size={30} color={'#fff'}/>
                                 <Text style={{color:"#fff", alignSelf: "center", fontSize: 10, marginTop: 3}}>Comment</Text>
                             </TouchableOpacity>
@@ -460,18 +480,23 @@ class GroupFitnessClass extends React.Component{
                                 Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
                                 this.showVideoModal(!this.state.videoModalVisible)
                             }}
-                            style={{marginTop: 50}}
+                            style={{backgroundColor:'transparent', alignSelf:'center'}}
                         >
-                            <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#156DFA"} title={"Go Back"}/>
+                            <Text style={{color:'red'}}>CLOSE</Text>
                         </TouchableOpacity>
 
-                            <WebView
-                                source={{html: '<html><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />' +
-                                    '<iframe src="https://www.youtube.com/embed/mZ6XRz1pmt4?modestbranding=1&playsinline=1&showinfo=0&rel=0" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="75%"></iframe></html>'}}
-                                style={{flex: 1}}
-                                javaScriptEnabled={true}
-                                domStorageEnabled={true}
-                            />
+                        {/*<Video*/}
+                            {/*source={{ uri: 'https://www.youtube.com/watch?v=A-CArHYqcfo' }}*/}
+                            {/*shouldPlay*/}
+                            {/*resizeMode="cover"*/}
+                            {/*style={{ width: HEIGHT, height: WIDTH }}*/}
+                        {/*/>*/}
+                        <WebView
+                            style={{flex:1}}
+                            javaScriptEnabled={true}
+                            source={{uri: this.props.videoUrl}}
+
+                        />
                     </Modal>
                 </View>
             </View>
@@ -479,8 +504,6 @@ class GroupFitnessClass extends React.Component{
     }
 
 }
-//<iframe width="560" height="315" src="https://www.youtube.com/embed/mZ6XRz1pmt4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-//<iframe width="560" height="315" src="https://www.youtube.com/embed/Jvv9w5QGRI0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 export default compose(

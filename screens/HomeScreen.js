@@ -72,12 +72,11 @@ class NewsItemWindow extends React.Component{
             <Query query={GET_NEWSITEMS}>
                 {({loading, error, data}) => {
                     if(loading){
-                        return <ActivityIndicator/>
+                        return <ActivityIndicator size={'large'} color={'#fff'} />
                     }
                     if(error){
                         console.log(error);
-
-                        return <Text>Sorry, there was an error.  Are you connected to the internet or cellular data?</Text>
+                        return <Text>Sorry, we have encountered an error!  Are you connected to the internet or cellular data?</Text>
                     }
                     return(
                         <FlatList
@@ -220,7 +219,7 @@ class HomeScreen extends React.Component{
 
             <StatusBar barStyle="default"/>
             <ImageBackground
-                source={require('../assets/images/silver-background.jpg')}
+                source={require('../assets/images/Rig-FullView.jpg')}
                 style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center'}}
                 resizeMode='cover'
             >

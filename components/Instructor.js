@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         color: '#ACACAC'
     },
     image: {
-        flex: 4,
+        flex: 1,
         height: undefined,
         width: 160
     },
