@@ -1,9 +1,7 @@
 import React from 'react'
-import {ActivityIndicator, View, Text, StyleSheet, Dimensions, TouchableOpacity, Modal, ScrollView, WebView} from 'react-native';
-import {Ionicons, Entypo} from '@expo/vector-icons';
-import Logout from '../components/Logout';
+import {ActivityIndicator, Text, Dimensions, WebView} from 'react-native';
 import gql from "graphql-tag";
-import {graphql, Query, compose, Mutation} from "react-apollo";
+import {graphql} from "react-apollo";
 
 const WIDTH=Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -29,6 +27,9 @@ class TermsScreen extends React.Component{
             return(
                 <ActivityIndicator/>
             )
+        }
+        if(error){
+            return <Text style={{textAlign:'center', marginTop: 30, fontWeight:'bold'}}>{error.message}</Text>
         }
         return(
             <WebView source={{uri: User.phone}} />

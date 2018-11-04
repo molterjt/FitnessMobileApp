@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {View, Text, Image, StyleSheet, } from 'react-native';
-import {withNavigation} from 'react-navigation';
+import {View, Text} from 'react-native';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
 

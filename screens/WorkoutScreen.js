@@ -24,9 +24,7 @@ const GET_WORKOUTS = gql`
 
 let queryUserId;
 
-
 class WorkoutView extends React.Component{
-
     constructor(props) {
         super(props);
         this.state={
@@ -69,10 +67,13 @@ class WorkoutView extends React.Component{
     }
     render() {
         const {data} = this.props;
-        const { loading, allWorkouts } = this.props.data;
+        const { loading, error, allWorkouts } = this.props.data;
         const {navigation} = this.props;
         if(loading){
             return <ActivityIndicator size={'large'} color={'#931414'} />
+        }
+        if(error){
+            return <Text style={{textAlign:'center', fontWeight:'bold', marginTop: 30}}>{error.message}</Text>
         }
         return(
             <ScrollView
@@ -94,6 +95,9 @@ class WorkoutView extends React.Component{
                             exercises={obj.exercises.map(({name, reps, sets, intensity, id, tempo}) => (
                                     <View key={id}>
                                         <TouchableOpacity
+                                            accessible={true}
+                                            accessibilityLabel={'Exercise Detail Link Button'}
+                                            accessibilityRole={'link'}
                                             onPress={() => this.handlePressExercise(id, name)}
                                             key={id}
                                             style={{flexDirection:'row'}}
@@ -129,6 +133,9 @@ class WorkoutView extends React.Component{
                 )}
                 <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center', marginTop: 10}}>
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Show More Workouts Button'}
+                        accessibilityRole={'button'}
                         style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
                         onPress={ () => {
                             this.props.data.fetchMore({
@@ -155,9 +162,7 @@ class WorkoutView extends React.Component{
                             style={{textAlign:"center"}}
                         />
                     </TouchableOpacity>
-
                 </View>
-
             </ScrollView>
         );
     }
@@ -250,6 +255,9 @@ class WorkoutScreen extends React.Component{
                         keyboardType={'number-pad'}
                     />
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'One Rep Max Intensity Calculation'}
+                        accessibilityRole={'button'}
                         style={{marginLeft: 10, marginRight: 10}}
                         onPress={() => this.estimated1RMLanderFormula(weightLifted, repCount)}>
                         <MaterialCommunityIcons name={"arrow-right-bold-box-outline"} size={35} color={"#156DFA"}/>
@@ -292,6 +300,9 @@ class WorkoutScreen extends React.Component{
                         keyboardType={'number-pad'}
                     />
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Percentage of Weight Calculation Button'}
+                        accessibilityRole={'button'}
                         style={{marginLeft: 10, marginRight: 10}}
                         onPress={() => this.suggestedIntensity(maxForPercent, intensityPercent)}>
                         <MaterialCommunityIcons name={"arrow-right-bold-box-outline"} size={35} color={"#156DFA"}/>

@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import {graphql, compose} from 'react-apollo';
+import {graphql} from 'react-apollo';
 import {
-    StyleSheet, Button, ActivityIndicator,
-    Image, Text, View,
-    StatusBar, TouchableWithoutFeedback,
-    ScrollView, TouchableOpacity, FlatList  } from 'react-native';
-import {Ionicons, MaterialIcons} from '@expo/vector-icons';
-
+    StyleSheet, ActivityIndicator, Image, Text, View,
+    ScrollView, TouchableOpacity,
+} from 'react-native';
 
 const getInstructor = gql`
     query($id: ID!){
@@ -39,6 +36,7 @@ class InstructorContainer extends React.Component {
                 <View style={styles.rowContainer}>
                     <Image source={{uri: this.props.image}}
                            style={styles.image}
+                           alt={'Instructor Profile'}
                            resizeMode="contain" />
                     <View style={styles.rowText}>
                         <Text style={styles.title} numberOfLines={1} ellipsizeMode ={'tail'}>
@@ -66,14 +64,11 @@ class InstructorContainer extends React.Component {
 }
 
 class SingleInstructorDetail extends React.Component {
-
     static navigationOptions = ({navigation}) => {
         const { params } = this.props.navigation.state;
     };
-
     constructor(props){
         super(props);
-
     }
     _keyExtractor = (item) => item.id;
 
@@ -96,31 +91,41 @@ class SingleInstructorDetail extends React.Component {
                     classListings=
                     {Instructor.classes.map(({title, time, days, id, location}) => (
                         <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('ClassDetail', {itemId: id}) }
-                        style={styles.scheduleBox}
+                            accessible={true}
+                            accessibilityLabel={'Class Detail Link'}
+                            accessibilityHint={'Opens a new screen of respective fitness class'}
+                            accessibilityRole={'link'}
+                            onPress={() => this.props.navigation.navigate('ClassDetail', {itemId: id}) }
+                            style={styles.scheduleBox}
                         >
-                        <View style={{flexDirection:'row'}}>
-                        <Text style={styles.title}>{title} </Text>
-                        <Text style={styles.time}>{time}</Text>
-                        </View>
-                        <View>
-                        <Text style={styles.days}>{days.map(({name}) => name).join(' | ')} </Text>
-                        <Text style={styles.days}>{location.buildingName}: {location.facilityName}</Text>
-                        </View>
+                            <View style={{flexDirection:'row'}}>
+                                <Text style={styles.title}>{title} </Text>
+                                <Text style={styles.time}>{time}</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.days}>{days.map(({name}) => name).join(' | ')} </Text>
+                                <Text style={styles.days}>{location.buildingName}: {location.facilityName}</Text>
+                            </View>
                         </TouchableOpacity>
-                        ))}
+                    ))}
                 />
                 <Text style={styles.classListHeader}>{}</Text>
                 {Instructor.alsoTrainer.map(({workouts}) => (
                     workouts.map(({title, imageUrl, type}) => (
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Workouts Screen Link Button'}
+                            accessibilityHint={'Opens a to Workouts Screen'}
+                            accessibilityRole={'link'}
                             onPress={() => this.props.navigation.navigate('Workouts')}
                             style={styles.scheduleBox}
                         >
                             <View style={{flexDirection:'row'}}>
-                                <Image resizeMode={"cover"} source={{uri: imageUrl}}
-                                       style={{height: 90, width: 110, borderWidth: 1, borderRadius: 16}}
-
+                                <Image
+                                    resizeMode={"cover"}
+                                    source={{uri: imageUrl}}
+                                    style={{height: 90, width: 110, borderWidth: 1, borderRadius: 16}}
+                                    alt={'Workout Image'}
                                 />
                                 <View style={{marginLeft: 5}}>
                                     <Text style={styles.title}>{title} </Text>
@@ -130,9 +135,7 @@ class SingleInstructorDetail extends React.Component {
                                         )}
                                 </View>
                             </View>
-
                         </TouchableOpacity>
-
                         )
                     )
                 ))}
@@ -160,7 +163,6 @@ class InstructorScreen extends Component{
     render(){
         return(
             <WithInstructorInfo navigation = {this.props.navigation} />
-
         );
     }
 }
@@ -282,23 +284,3 @@ const styles = StyleSheet.create({
     },
 
 });
-
-/*
- <Text style={styles.classListHeader}> Checkout my classes: </Text>
-
-                {Instructor.classes.map(({title, time, days, id, location}) => (
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('ClassDetail', {itemId: id}) }
-                        style={styles.scheduleBox}
-                    >
-                        <View style={{flexDirection:'row'}}>
-                        <Text style={styles.title}>{title} </Text>
-                        <Text style={styles.time}>{time}</Text>
-                        </View>
-                        <View>
-                        <Text style={styles.days}>{days.map(({name}) => name).join(' | ')} </Text>
-                        <Text style={styles.days}>{location.buildingName}: {location.facilityName}</Text>
-                        </View>
-                    </TouchableOpacity>
-                ))}
-**/

@@ -11,7 +11,9 @@ class InstructorContainer extends React.Component {
                 <View style={styles.rowContainer}>
                     <Image source={{uri: this.props.image}}
                            style={styles.image}
-                           resizeMode="contain" />
+                           resizeMode="contain"
+                           alt={'Instructor Profile Image'}
+                    />
                     <View style={styles.rowText}>
                         <Text style={styles.title} numberOfLines={1} ellipsizeMode ={'tail'}>
                             {this.props.firstName + " " + this.props.lastName}
@@ -29,6 +31,9 @@ class InstructorContainer extends React.Component {
                 </View>
                 <Text style={styles.classListHeader}> Checkout my classes: </Text>
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Group Fit Class Detail Link Button'}
+                        accessibilityRole={'button'}
                         onPress={() => this.props.navigation.navigate('ClassDetail', {itemId: id}) }
                         style={styles.scheduleBox}
                     >

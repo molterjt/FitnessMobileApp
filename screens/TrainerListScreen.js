@@ -1,15 +1,11 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import gql from 'graphql-tag';
-import {graphql, compose} from 'react-apollo';
+import {graphql} from 'react-apollo';
 import {
-    StyleSheet, Button, ActivityIndicator, Modal,
-    Image, Text, View, Dimensions, ImageBackground,
-    StatusBar, TouchableWithoutFeedback, RefreshControl,
-    ScrollView, TouchableOpacity, FlatList  } from 'react-native';
+    StyleSheet, ActivityIndicator, Modal, Image, Text,
+    View, Dimensions, TouchableWithoutFeedback, RefreshControl,
+    ScrollView, TouchableOpacity} from 'react-native';
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
-
-import blankProfile from '../assets/images/blank-profile.png';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -29,7 +25,6 @@ const AllTRAINERS = gql`
     }
 `
 
-
 class TrainerProfile extends React.Component{
     constructor(props){
         super(props);
@@ -37,52 +32,32 @@ class TrainerProfile extends React.Component{
             personalTrainingInfo: false,
         }
     }
-
     showPTInfoFormModal(visible){
         this.setState({personalTrainingInfo: visible})
     }
-
     render(){
         return(
             <View style={styles.rowColumn}>
-                {/*<ImageBackground
-                    resizeMode={"cover"}
-                    source={this.props.imageUrl ? {uri: this.props.imageUrl} : require("../assets/images/blank-profile.png")}
-                    style={styles.profileImage}
-                    alt={"Personal Trainer `${this.props.firstName}`"}
-                >
+                <View style={{backgroundColor: 'rgba(14, 14, 16, 0.66)', width:'100%'}}>
                     <Text style={styles.profileName}>{this.props.firstName ? this.props.firstName : ''}</Text>
                     <Text style={styles.profileName}>{this.props.lastName ? this.props.lastName : ''}</Text>
-                    <TouchableOpacity
-                        style={styles.profileButton}
-                        onPress={() => {this.showPTInfoFormModal(true)}}
-                    >
-                        <Ionicons
-                            name={"ios-information-circle-outline"}
-                            size={30}
-                            color={"#156DFA"}
-                            style={{fontWeight: 'bold', justifyContent:'flex-end'}}
-                        />
-                    </TouchableOpacity>
-                </ImageBackground>*/}
-
-                    <View style={{backgroundColor: 'rgba(14, 14, 16, 0.66)', width:'100%'}}>
-                        <Text style={styles.profileName}>{this.props.firstName ? this.props.firstName : ''}</Text>
-                        <Text style={styles.profileName}>{this.props.lastName ? this.props.lastName : ''}</Text>
-                    </View>
-                    <View >
-                        <Image
-                            resizeMode={"cover"}
-                            source={this.props.imageUrl ? {uri: this.props.imageUrl} : require("../assets/images/blank-profile.png")}
-                            height={180}
-                            width={WIDTH*.3}
-                            style={styles.profileImage}
-                            alt={"Personal Trainer `${this.props.firstName}`"}
-                        />
-
-                    </View>
+                </View>
+                <View >
+                    <Image
+                        resizeMode={"cover"}
+                        source={this.props.imageUrl ? {uri: this.props.imageUrl} : require("../assets/images/blank-profile.png")}
+                        height={180}
+                        width={WIDTH*.3}
+                        style={styles.profileImage}
+                        alt={"Personal Trainer `${this.props.firstName}`"}
+                    />
+                </View>
 
                 <TouchableOpacity
+                    accessible={true}
+                    accessibilityLabel={'Show Trainer Profile Button'}
+                    accessibilityHint={'Opens modal window with trainer info'}
+                    accessibilityRole={'button'}
                     style={styles.profileButton}
                     onPress={() => {this.showPTInfoFormModal(true)}}
                 >
@@ -94,8 +69,6 @@ class TrainerProfile extends React.Component{
                         style={{fontWeight: 'bold'}}
                     />
                 </TouchableOpacity>
-
-
                 <Modal
                     transparent={true}
                     animationType={"none"}
@@ -109,6 +82,8 @@ class TrainerProfile extends React.Component{
                             <TouchableWithoutFeedback>
                                 <View style={{backgroundColor: '#29282A', height: 'auto', width: '90%'}}>
                                         <TouchableOpacity
+                                            accessible={true}
+                                            accessibilityLabel={'Close Trainer Profile Button'}
                                             onPress={() => {this.showPTInfoFormModal(!this.state.personalTrainingInfo)}}
                                             style={styles.closeButton}>
                                             <MaterialCommunityIcons name={"close-box-outline"} size={30} color={"#fff"} />
@@ -155,7 +130,6 @@ class TrainerListView extends React.Component{
             this.setState({refreshing: false});
         });
     };
-
     render(){
         const { loading, error, allTrainers } = this.props.data;
         if(loading){
@@ -195,7 +169,6 @@ class TrainerListView extends React.Component{
     }
 }
 const TrainingListViewWithData = graphql(AllTRAINERS)(TrainerListView);
-
 
 class TrainerListScreen extends React.Component{
     constructor(props){
@@ -306,81 +279,3 @@ const styles = StyleSheet.create({
     }
 });
 
-/*
-
-                    <View style={{backgroundColor: "red", height: HEIGHT * .22, width: WIDTH*.33 }}></View>
-                    <View style={{backgroundColor: "green", height: HEIGHT * .22, width: WIDTH*.33 }}></View>
-                    <View style={{backgroundColor: "blue", height: HEIGHT * .22, width: WIDTH*.33}}></View>
-                    <View style={{backgroundColor: "yellow", height: HEIGHT * .22, width: WIDTH*.33 }}></View>
-                    <View style={{backgroundColor: "red", height: HEIGHT * .22, width: WIDTH*.33 }}></View>
-                    <View style={{backgroundColor: "green", height: HEIGHT * .22, width: WIDTH*.33 }}></View>
-                    <View style={{backgroundColor: "blue", height: HEIGHT * .22, width: WIDTH*.33}}></View>
-                    <View style={{backgroundColor: "yellow", height: HEIGHT * .22, width: WIDTH*.33}}></View>
-
-<View style={styles.containerRow}>
-                    <View style={styles.rowColumn}>
-                        <ImageBackground
-                            resizeMode={"contain"}
-                            source={require("../assets/images/blank-profile.png")}
-                            style={styles.profileImage}
-                            alt={"Personal Trainer"}
-                        >
-                            <Text style={styles.profileName}>FirstName</Text>
-                            <Text style={styles.profileName}>LastName</Text>
-                            <TouchableOpacity
-                                style={styles.profileButton}
-                            >
-                                <Ionicons
-                                    name={"ios-information-circle-outline"}
-                                    size={30}
-                                    color={"white"}
-                                    style={{fontWeight: 'bold'}}
-                                />
-                            </TouchableOpacity>
-                        </ImageBackground>
-                    </View>
-                    <View style={styles.rowColumn}>
-                        <ImageBackground
-                            resizeMode={"contain"}
-                            source={this.props.imageUrl ? this.props.imageUrl : require("../assets/images/blank-profile.png")}
-                            style={styles.profileImage}
-                            alt={"Personal Trainer"}
-                        >
-                            <Text style={styles.profileName}>{this.props.firstName ? this.props.firstName : ''}</Text>
-                            <Text style={styles.profileName}>{this.props.lastName ? this.props.lastName : ''}</Text>
-                            <TouchableOpacity
-                                style={styles.profileButton}
-                            >
-                                <Ionicons
-                                    name={"ios-information-circle-outline"}
-                                    size={30}
-                                    color={"white"}
-                                    style={{fontWeight: 'bold'}}
-                                />
-                            </TouchableOpacity>
-                        </ImageBackground>
-                    </View>
-                    <View style={styles.rowColumn}></View>
-                </View>
-                <View style={styles.containerRow}>
-                    <View style={styles.rowColumn}></View>
-                    <View style={styles.rowColumn}></View>
-                    <View style={styles.rowColumn}></View>
-                </View>
-                <View style={styles.containerRow}>
-                    <View style={styles.rowColumn}></View>
-                    <View style={styles.rowColumn}></View>
-                    <View style={styles.rowColumn}></View>
-                </View>
-                <View style={styles.containerRow}>
-                    <View style={styles.rowColumn}></View>
-                    <View style={styles.rowColumn}></View>
-                    <View style={styles.rowColumn}></View>
-                </View>
-
-
-
-
-
-
-*/

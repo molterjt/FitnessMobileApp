@@ -1,14 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
-    Button, AsyncStorage, Text, View, ActivityIndicator, ScrollView,
-    TouchableOpacity, Dimensions, Modal, StyleSheet, TouchableWithoutFeedback
+    Text, View, ActivityIndicator, ScrollView,
+    TouchableOpacity, Dimensions, Modal, StyleSheet,
 } from 'react-native';
 import {Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
-import UserProfile from '../components/UserProfile';
-import Logout from '../components/Logout';
 import gql from "graphql-tag";
-import {graphql, Query, compose} from "react-apollo";
+import {Query} from "react-apollo";
 
 import moment from 'moment';
 
@@ -16,7 +13,6 @@ const { width, height } = Dimensions.get("window");
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
-
 
 const GET_WORKOUT_RECORD = gql`
     query WorkoutRecords($userId:ID, $timeCheck: String, $workout:ID){
@@ -54,11 +50,13 @@ class WorkoutRecord extends React.Component{
     toggleWorkoutRecordModal(visible){
         this.setState({showWorkoutRecord: visible});
     }
-
     render(){
         return(
             <View>
                 <TouchableOpacity
+                    accessible={true}
+                    accessibilityLabel={'Open Workout Record Button'}
+                    accessibilityRole={'button'}
                     onPress={() => this.toggleWorkoutRecordModal(true)}
                     style={{alignItems:'center', justifyContent:'center', backgroundColor: 'transparent', width: '30%', alignSelf:'center', borderRadius: 20, borderWidth:2, borderColor: '#931414'}}
                 >
@@ -81,6 +79,9 @@ class WorkoutRecord extends React.Component{
                                     visible={this.state.showWorkoutRecord}
                                     onRequestClose={() => this.toggleWorkoutRecordModal(!this.state.showWorkoutRecord)}>
                                     <TouchableOpacity
+                                        accessible={true}
+                                        accessibilityLabel={'Close Workout Record Button'}
+                                        accessibilityRole={'button'}
                                         onPress={() => {
                                             this.toggleWorkoutRecordModal(!this.state.showWorkoutRecord)
                                         }}

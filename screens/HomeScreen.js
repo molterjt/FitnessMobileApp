@@ -1,19 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    ScrollView, Button, Text, View, StatusBar, StyleSheet, ImageBackground, TouchableOpacity, FlatList,
-    AsyncStorage, Animated, Modal, WebView, Image, Linking, ActivityIndicator, Alert, RefreshControl,
+    Text, View, StatusBar, StyleSheet, ImageBackground, TouchableOpacity, FlatList, TextInput, ScrollView,
+    AsyncStorage, Animated, Modal, Image, Linking, ActivityIndicator, RefreshControl,KeyboardAvoidingView
 } from 'react-native';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
 import NewsItem from '../components/NewsItem';
-import {graphql,Query, withApollo} from "react-apollo";
-import {withNavigation, SafeAreaView} from 'react-navigation';
+import {graphql,Query} from "react-apollo";
+import {withNavigation} from 'react-navigation';
 import gql from "graphql-tag";
-import Logout from '../components/Logout';
-import {AUTH_TOKEN} from "../constants/auth";
 
-//clientId: "3fbfc0bbcbe2479380819ec95f9a91f9"
-//access_token: "access_token=903600607.3fbfc0b.7141650ef26342dd8706c5e30e476ba1"
 
 const accessToken = "903600607.3fbfc0b.7141650ef26342dd8706c5e30e476ba1"
 const instaUserId = "903600607"
@@ -27,6 +23,20 @@ const GET_NEWSITEMS = gql`
             blurb
             instructor
             location
+        }
+    }
+`
+
+const CreateCommentByUser = gql`
+    mutation createComment($content: String!, $userCommentId: ID!){
+        createComment(
+            content: $content,
+            userCommentId: $userCommentId,
+        ){
+            id
+            content
+            classComment{title}
+            userComment{username}
         }
     }
 `
@@ -76,7 +86,7 @@ class NewsItemWindow extends React.Component{
                     }
                     if(error){
                         console.log(error);
-                        return <Text>Sorry, we have encountered an error!  Are you connected to the internet or cellular data?</Text>
+                        return <Text style={{backgroundColor:'#4048e1', padding:10, fontWeight:'bold', color:'#fff', textAlign:'center'}}>Sorry, we have encountered an error!  Are you connected to the internet or cellular data?</Text>
                     }
                     return(
                         <FlatList
@@ -101,8 +111,6 @@ class NewsItemWindow extends React.Component{
 
 const NewsItemWindowWithData = graphql(GET_NEWSITEMS)(NewsItemWindow);
 
-
-
 class HomeScreen extends React.Component{
 
     static navigationOptions = ({ navigation }) => {
@@ -110,6 +118,10 @@ class HomeScreen extends React.Component{
         return {
             headerRight: (
                 <TouchableOpacity
+                    accessible={true}
+                    accessibilityLabel={'Navigation to Settings Button'}
+                    accessibilityHint={'Opens a new window Settings Screen'}
+                    accessibilityRole={'link'}
                     style={{marginRight: 15, marginTop:7}}
                     onPress={() => navigation.navigate('Settings')}>
                     <FontAwesome
@@ -119,11 +131,14 @@ class HomeScreen extends React.Component{
             ),
             headerLeft: (
                 <TouchableOpacity
+                    accessible={true}
+                    accessibilityLabel={'Navigation to Workouts Button'}
+                    accessibilityHint={'Opens a new window Workouts Screen'}
+                    accessibilityRole={'link'}
                     style={{marginLeft: 15, marginTop:7}}
                     onPress={() => navigation.navigate('Workouts')}>
                     <MaterialIcons
                         name={"fitness-center"} type={"MaterialIcons"} size={30} color={'#931414'}
-
                     />
                 </TouchableOpacity>
             ),
@@ -133,6 +148,8 @@ class HomeScreen extends React.Component{
         super(props);
         this.state = {
             loaded: false,
+            userComment: '',
+            commentError:'',
             data: null,
             comments: [],
             springVal: new Animated.Value(0),
@@ -140,80 +157,41 @@ class HomeScreen extends React.Component{
             currentUserId: '',
             currentUserToken: '',
 
-        }
+        };
+        this._createComment = this._createComment.bind(this);
+        this.checkCommentCredentials = this.checkCommentCredentials.bind(this);
+        this.findYourFitModal=this.findYourFitModal.bind(this);
     }
-
-    /*
-    async fetchFeed() {
-        let response = await fetch(
-            'https://api.instagram.com/v1/users/Bht0gbzBrz1' +
-            instaUserId +
-            '/media/recent/?access_token=' +
-            accessToken
-        );
-        let posts = await response.json();
-
-        this.setState({
-            data: posts.data,
-            loaded: true
-        })
-    }
-
-    createPost(postInfo, index){
-        let imageUri = postInfo.images.standard_resolution.url;
-        let username = postInfo.user.username;
-        let numlikes = postInfo.likes.count;
-
-        return (
-            <View style={{marginLeft: 50}}>
-                <Image
-                    source={{uri: imageUri}}
-                    style={{width: 200, height: 250,}}
-                />
-                <View style={{backgroundColor: "#fff"}}>
-                    <Text>{username}</Text>
-                    <Text>{numlikes}</Text>
-                </View>
-            </View>
-        )
-    }
-
-    */
-
     findYourFitModal(visible){
         this.setState({showModal: visible})
     }
 
-
-    /*
     componentDidMount(){
-
-
-        //this.fetchFeed();
-
-        try{
-            AsyncStorage.getItem(AUTH_TOKEN).then((value) => {
-                console.log('AuthToken: ' + value);
-                this.setState({currentUserToken: value});
-            }).done();
-
-        } catch (error){
-            console.log("No Authtoken Found: " + error);
-        }
-        try{
-            AsyncStorage.getItem("MyUserId").then( (dataId) => {
-                console.log('UserAuthId: ' +  dataId);
-                this.setState({currentUserId: dataId});
-            }).done();
-
-        } catch (error){
-            console.log("Error: " + error)
-        }
-
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = JSON.parse(dataId);
+            this.setState({currentUserId: queryUserId, isLoading: false});
+            console.log("queryUserId === " + queryUserId);
+            return queryUserId;
+        }).done();
     }
-    */
+    _createComment = async () => {
+        const {userComment} = this.state;
+        await this.props.createComment({
+            variables: {
+                content: userComment,
+                userCommentId: queryUserId,
+            }
+        });
+        console.log(userComment);
+        this.setState({userComment: ""});
+        this.findYourFitModal(!this.state.showModal)
+    };
+    checkCommentCredentials(){
+        const {userComment, commentError} = this.state;
+        if(userComment < 1 || commentError) return true;
+        else return false;
+    };
     render(){
-
         return (
         <View style={{flex: 1, backgroundColor: 'transparent'}}>
 
@@ -229,6 +207,10 @@ class HomeScreen extends React.Component{
                 </View>
                 <NewsItemWindowWithData/>
                 <TouchableOpacity
+                    accessible={true}
+                    accessibilityLabel={'FindYourFit Form Button'}
+                    accessibilityHint={'Opens a new modal window for find your fitness form'}
+                    accessibilityRole={'button'}
                     onPress={() => {
                         this.findYourFitModal(true)
                     }}
@@ -246,12 +228,17 @@ class HomeScreen extends React.Component{
                         color={"white"}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => Linking.openURL("https://www.instagram.com/miamiuniversityfitness/")}
-                                  style={{
-                                      marginBottom: 20, flexDirection: "row",
-                                      justifyContent: 'center', alignItems: 'center',
-                                      alignSelf: "center"
-                                  }}>
+                <TouchableOpacity
+                    accessible={true}
+                    accessibilityLabel={'Navigation to MiamiUniversityFitness Instagram'}
+                    accessibilityHint={'Opens a new window Settings Screen'}
+                    accessibilityRole={'link'}
+                    onPress={() => Linking.openURL("https://www.instagram.com/miamiuniversityfitness/")}
+                    style={{
+                          marginBottom: 20,marginTop: 10, flexDirection: "row",
+                          justifyContent: 'center', alignItems: 'center',
+                          alignSelf: "center"
+                    }}>
                     <FontAwesome
                         name={"instagram"}
                         size={20}
@@ -268,6 +255,10 @@ class HomeScreen extends React.Component{
                     }}
                 >
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Close FindYourFit Form Button'}
+                        accessibilityHint={'Closes modal window for find your fitness form'}
+                        accessibilityRole={'button'}
                         onPress={() => {
                             this.findYourFitModal(!this.state.showModal)
                         }}
@@ -275,17 +266,52 @@ class HomeScreen extends React.Component{
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
-                    <View style={{alignItems:'center'}}>
+                    <ScrollView style={{alignContent:'center'}}>
+                        <KeyboardAvoidingView behavior="position" enabled keyboardVerticalOffset={80}>
                         <Image
+                            accessibilityRole={'image'}
                             source={{uri: "https://i.imgur.com/xfTySI5.jpg"}}
                             alt={'Miami Recreation Fitness design element'}
                             resizeMode={'cover'}
-                            style={{width: 400, height: 380}}
+                            style={{width: 360, height: 340, alignSelf:'center'}}
                         />
-                        <Text style={{fontStyle:'italic', padding: 10}}>
-                            The Fitness Department strives to create an environment of inclusion for the Miami Recreation community to develop their fitness identity through a variety of opportunities to reach individual fitness goals.
+                        <Text style={{fontStyle:'italic', padding: 20, textAlign:'center'}}>
+                            The Fitness Department strives to create an environment of
+                            inclusion for the Miami Recreation community to develop their
+                            fitness identity through a variety of options to reach and discover
+                            their individual fitness goals.
                         </Text>
-                    </View>
+
+                            <Text style={{textAlign:'center'}}>
+                                Tell us how we can help you find your Fit:
+                            </Text>
+
+                            <TextInput
+                                multiline={true}
+                                numberOfLines={9}
+                                accessibilityLabel={'Paragraph form field to leave a question or concern'}
+                                onChangeText={ (userComment) => this.setState({userComment})}
+                                value={this.state.userComment}
+                                blurOnSubmit={true}
+                                type={"text"}
+                                placeholder={'Please provide your feedback'}
+                                style={styles.textInput}
+                                underlineColorAndroid={'transparent'}
+                                autoCorrect={true}
+                                keyboardAppearance={'dark'}
+                            />
+                            <TouchableOpacity
+                                accessible={true}
+                                accessibilityLabel={'Submit Comment Button'}
+                                accessibilityRole={'button'}
+                                disabled={this.checkCommentCredentials()}
+                                onPress={ () => this._createComment()}
+                                style={styles.formButton}
+                            >
+                                <Text style={{color:'#fff', fontWeight:'bold'}}>Submit</Text>
+                            </TouchableOpacity>
+                        </KeyboardAvoidingView>
+                    </ScrollView>
                 </Modal>
             </ImageBackground>
         </View>
@@ -300,7 +326,7 @@ HomeScreen.propTypes = {
     }),
 };
 
-export default withNavigation(HomeScreen);
+export default graphql(CreateCommentByUser, {name: 'createComment'})(withNavigation(HomeScreen));
 
 const styles = StyleSheet.create({
     container: {
@@ -341,11 +367,27 @@ const styles = StyleSheet.create({
         left: 0,
         backgroundColor: 'black',
         opacity: 0.3
-    }
+    },
+    textInput: {
+        alignSelf: 'stretch',
+        height: 200,
+        margin: 12,
+        padding: 5,
+        borderBottomColor: '#000000',
+        borderWidth: 1,
+    },
+    formButton: {
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(155, 10, 2, 0.9)',
+        padding: 20,
+        marginTop: 10,
+        marginBottom: 40,
+        width: '33%',
+        height: 15,
+        borderWidth: 2,
+        borderRadius: 15,
+        borderColor: "#000000"
+    },
 });
-
-/* const userIdentity = AsyncStorage.getItem("MyUserId").then( (dataId) => {
-            console.log("dataId " + dataId);
-            return (dataId);
-        }).done();
-        */

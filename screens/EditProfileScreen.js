@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Text, View, StatusBar, ActivityIndicator, TextInput, TouchableOpacity,StyleSheet,
-    Dimensions, ScrollView, Alert
+    Dimensions, ScrollView, Alert, AccessibilityInfo
 } from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements'
@@ -84,8 +84,10 @@ class EditScreen extends React.Component {
         return (
             <ScrollView style={styles.rowContainer}>
                 <StatusBar barStyle="default"/>
-                <View >
+                <View accessible={true} accessiilityLabel={'Profile Form Field Container'}>
                     <TextInput
+                        accessible={true}
+                        accessibilityLabel={'First Name Form Field'}
                         onChangeText={(firstName) => this.setState({firstName})}
                         type={"text"}
                         placeholder={"First Name"}
@@ -93,8 +95,11 @@ class EditScreen extends React.Component {
                         underlineColorAndroid={'transparent'}
                         autoCorrect={false}
                         value={this.state.firstName}
+                        keyboardAppearance={'dark'}
                     />
                     <TextInput
+                        accessible={true}
+                        accessibilityLabel={'Last Name Form Field'}
                         onChangeText={(lastName) => this.setState({lastName})}
                         type={"text"}
                         placeholder={"Last Name"}
@@ -102,8 +107,11 @@ class EditScreen extends React.Component {
                         underlineColorAndroid={'transparent'}
                         autoCorrect={false}
                         value={this.state.lastName}
+                        keyboardAppearance={'dark'}
                     />
                     <TextInput
+                        accessible={true}
+                        accessibilityLabel={'Birth Date Form Field'}
                         onChangeText={(dateOfBirth) => this.setState({dateOfBirth})}
                         type={"text"}
                         placeholder={"Birthday: dd/mm/yyyy"}
@@ -111,10 +119,17 @@ class EditScreen extends React.Component {
                         underlineColorAndroid={'transparent'}
                         autoCorrect={false}
                         value={this.state.dateOfBirth}
+                        keyboardAppearance={'dark'}
                     />
                 </View>
-                <ScrollView style={{flexDirection: 'column', }}>
-                    <Text style={{textAlign:'center', fontStyle:'italic', color: '#fff', fontSize: 12}}>Select Your Interests & Press Submit:</Text>
+                <ScrollView>
+                    <Text
+                        style={{textAlign:'center', fontStyle:'italic', color: '#fff', fontSize: 12}}
+                        accessibilityLabel={'Interest Check Box Header'}
+                        accessibilityRole={'header'}
+                    >
+                        Select Your Interests & Press Submit:
+                    </Text>
                     <Query query={INTEREST_LIST} >
                         {({loading, error, data}) => {
                             if(loading){
@@ -122,14 +137,16 @@ class EditScreen extends React.Component {
                             }
                             if(error){
                                 console.log(error);
-                                return <Text>Sorry, there was an error.  Are you connected to the internet or cellular data?</Text>
+                                return <Text>Sorry, there was an error. Check that you are connected to the internet or cellular data?</Text>
                             }
                             return(
-
                                 <View style={{flexDirection:'row', flexWrap: 'wrap', marginBottom: 10, justifyContent:'center',}}>
                                     {data.allInterests.map((obj, index) =>
 
-                                            <View key={index} style={styles.containerRow}>
+                                            <View
+                                                accessibilityLabel={'Checkbox Option'} accessibilityHint={'Tap to select if interested'}
+                                                key={index} style={styles.containerRow}
+                                            >
                                                 <CheckBox
                                                     ref={obj.id}
                                                     containerStyle={{ borderRadius:15, borderWidth:2, borderColor:'#000', backgroundColor: '#fff'}}
@@ -137,8 +154,8 @@ class EditScreen extends React.Component {
                                                     value={obj.id}
                                                     title={obj.title}
                                                     checkedColor={'#931414'}
-                                                    checkedIcon='dot-circle-o'
-                                                    uncheckedIcon='circle-o'
+                                                    checkedIcon={'dot-circle-o'}
+                                                    uncheckedIcon={'circle-o'}
                                                     onPress={() => this._handleInterestListCheck(obj.id)}
                                                     checked={this.state.checkedInterests && this.state.checkedInterests.includes(obj.id)}
                                                 />
@@ -149,12 +166,17 @@ class EditScreen extends React.Component {
                         }}
                     </Query>
                 </ScrollView>
-
-                <TouchableOpacity onPress={() => this._updateInfo()} style={styles.formButton}>
+                <TouchableOpacity
+                    accessibilityLabel={'Press to Submit Interest List'}
+                    accessibilityRole={'button'}
+                    onPress={() => this._updateInfo()}
+                    style={styles.formButton}
+                >
                     <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
-                {/*<RemoveUser id={this.state.userId}/>*/}
                 <TouchableOpacity
+                    accessibilityLabel={'Press to Delete you user account'}
+                    accessibilityRole={'button'}
                     style={{marginBottom: 40, marginTop: 0, borderRadius: 8, padding:3, alignSelf: 'center', justifyContent: 'center',alignItems:'center', width: '40%', borderWidth:1, borderColor: '#fff'}}
                     onPress={() => this._deleteThisUser()}>
                     <MaterialCommunityIcons
@@ -164,7 +186,6 @@ class EditScreen extends React.Component {
                     />
                     <Text style={{color: "#fff", fontSize: 12, fontWeight:'bold', marginTop:5, alignSelf: 'center'}}>Delete Account</Text>
                 </TouchableOpacity>
-
             </ScrollView>
         );
     }

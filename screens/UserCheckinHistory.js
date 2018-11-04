@@ -1,21 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
-    Button, AsyncStorage, Text, View, ActivityIndicator, ScrollView,
-    TouchableOpacity, Dimensions, Modal, StyleSheet, TouchableWithoutFeedback, Alert
+    AsyncStorage, Text, View, ActivityIndicator, ScrollView,
+    TouchableOpacity, Dimensions, Alert
 } from 'react-native';
 import {Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 
 import gql from "graphql-tag";
-import {graphql, Query, compose, Mutation} from "react-apollo";
-import {withNavigation} from 'react-navigation';
+import {graphql, compose} from "react-apollo";
 import WorkoutRecord from '../components/WorkoutRecord';
 import moment from 'moment';
 
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
-
 
 let queryUserId;
 
@@ -61,9 +58,6 @@ const GET_USER_CHECKIN_HISTORY = gql`
     }
 `
 
-
-
-
 class UserCheckinHistory extends React.Component{
     constructor(props){
         super(props);
@@ -72,8 +66,6 @@ class UserCheckinHistory extends React.Component{
             workoutToggleButtonVisible: true,
             classesVisible:false,
             classesToggleButtonVisible: true,
-
-
         };
         this._deleteThisCheckin=this._deleteThisCheckin.bind(this);
         this._toggleClassesVisible=this._toggleClassesVisible.bind(this);
@@ -82,10 +74,10 @@ class UserCheckinHistory extends React.Component{
 
     _toggleWorkoutsVisible = (visible) => {
         this.setState({workoutsVisible: visible})
-    }
+    };
     _toggleClassesVisible = (visible) => {
         this.setState({classesVisible: visible})
-    }
+    };
 
     _deleteThisCheckin = async (checkID) => {
         const {userId} = this.state;
@@ -109,9 +101,7 @@ class UserCheckinHistory extends React.Component{
             ],
             { cancelable: true },
         );
-    }
-
-
+    };
     render(){
         const {error, loading, allCheckins } = this.props.data;
         const {workoutsVisible,classesVisible, workoutToggleButtonVisible, classesToggleButtonVisible} = this.state;
@@ -143,6 +133,9 @@ class UserCheckinHistory extends React.Component{
                                 <View style={{borderRadius: 4,
                                     shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
                                     <TouchableOpacity
+                                        accessible={true}
+                                        accessibilityLabel={'Delete Check-in Record Instance Button'}
+                                        accessibilityRole={'button'}
                                         style={{flexDirection:'row', marginBottom:2, position:'flex', justifyContent: 'flex-end'}}
                                         onPress={() => this._deleteThisCheckin(id)}
                                     >
@@ -163,14 +156,13 @@ class UserCheckinHistory extends React.Component{
                                     </View>
                                     <WorkoutRecord userId={users.id} timeCheck={timeCheck} workoutId={obj.id} workoutTitle={obj.title}/>
                                 </View>
-
-
                             ))
-
-
                         ))}
                                 <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center'}}>
                                     <TouchableOpacity
+                                        accessible={true}
+                                        accessibilityLabel={'Show Workout Completion History Button'}
+                                        accessibilityRole={'button'}
                                         style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
                                         onPress={ () => this._toggleWorkoutsVisible(!this.state.workoutsVisible)
                                         }
@@ -189,6 +181,9 @@ class UserCheckinHistory extends React.Component{
                         :
                         ( <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center'}}>
                                 <TouchableOpacity
+                                    accessible={true}
+                                    accessibilityLabel={'Close Workout Completion History Button'}
+                                    accessibilityRole={'button'}
                                     style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
                                     onPress={ () => this._toggleWorkoutsVisible(!this.state.workoutsVisible)
                                     }
@@ -215,10 +210,8 @@ class UserCheckinHistory extends React.Component{
                         borderColor: '#000',
                         borderWidth: 2,
                         alignItems: 'center',
-
                     }}>
                         <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>GroupFit Class Checkin History</Text>
-
                     </View>
                     {
                         classesVisible
@@ -230,6 +223,9 @@ class UserCheckinHistory extends React.Component{
                                             shadowOffset:{  width: 1,  height: 1,  },
                                             shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
                                             <TouchableOpacity
+                                                accessible={true}
+                                                accessibilityLabel={'Delete Check-in Record Instance Button'}
+                                                accessibilityRole={'button'}
                                                 style={{flexDirection:'row', marginBottom:2, position:'flex', justifyContent: 'flex-end'}}
                                                 onPress={() => this._deleteThisCheckin(id)}
                                             >
@@ -255,6 +251,9 @@ class UserCheckinHistory extends React.Component{
                                 ))}
                                 <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center'}}>
                                     <TouchableOpacity
+                                        accessible={true}
+                                        accessibilityLabel={'Hide Group Fit Class Check-in History Button'}
+                                        accessibilityRole={'button'}
                                         style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
                                         onPress={ () => this._toggleClassesVisible(!this.state.classesVisible)
                                         }
@@ -273,6 +272,9 @@ class UserCheckinHistory extends React.Component{
                         : (
                                 <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center'}}>
                                     <TouchableOpacity
+                                        accessible={true}
+                                        accessibilityLabel={'Show Group Fit Class Check-in History Button'}
+                                        accessibilityRole={'button'}
                                         style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
                                         onPress={ () => this._toggleClassesVisible(!this.state.classesVisible)
                                         }
@@ -286,13 +288,8 @@ class UserCheckinHistory extends React.Component{
 
                                 </View>
                             )
-
                     }
-
-
-
                 </ScrollView>
-
         );
     }
 }

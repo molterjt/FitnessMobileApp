@@ -1,5 +1,5 @@
 import React from 'react'
-import {Platform, View, Text, StyleSheet, Dimensions, TouchableOpacity, Modal, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, TouchableOpacity, Modal, ScrollView} from 'react-native';
 import {Ionicons, Entypo} from '@expo/vector-icons';
 import Logout from '../components/Logout';
 
@@ -12,7 +12,6 @@ class SettingsScreen extends React.Component{
         super(props);
         this.state={
             showHelpModal: false,
-
         };
     }
     helpModalToggle(visible){
@@ -25,6 +24,10 @@ class SettingsScreen extends React.Component{
                     <Text style={styles.headText}>Profile</Text>
                     <View style={styles.boxInner}>
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Profile Screen Link Button'}
+                            accessibilityHint={'Links to new Profile Screen'}
+                            accessibilityRole={'link'}
                             onPress={() => this.props.navigation.navigate('Profile')}
                         >
                             <Ionicons name={"md-person"} type={"Ionicons"} size={95}/>
@@ -35,6 +38,10 @@ class SettingsScreen extends React.Component{
                     <Text style={styles.headText}>Help</Text>
                     <View style={styles.boxInner}>
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Help Screen Button'}
+                            accessibilityHint={'Opens modal window with Help screen'}
+                            accessibilityRole={'button'}
                             onPress={() => {
                                 this.helpModalToggle(true)
                             }}
@@ -47,6 +54,10 @@ class SettingsScreen extends React.Component{
                     <Text style={styles.headText}>Privacy/Terms</Text>
                     <View style={styles.boxInner}>
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Terms Link Button'}
+                            accessibilityHint={'Links to the Terms and Privacy Screen'}
+                            accessibilityRole={'link'}
                             onPress={() => this.props.navigation.navigate('Terms')}
                         >
                             <Entypo name={"text-document-inverted"} type={"Ionicons"} size={85}/>
@@ -71,6 +82,10 @@ class SettingsScreen extends React.Component{
                     }}
                 >
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Close Help Window Button'}
+                        accessibilityHint={'Closes the Help modal window'}
+                        accessibilityRole={'button'}
                         onPress={() => {
                             this.helpModalToggle(false)
                         }}
@@ -106,12 +121,9 @@ class SettingsScreen extends React.Component{
                                 <Text>[ cropensw@MiamiOH.edu ]</Text>
                                 <Text>(513) 529-6007</Text>
                             </View>
-
                         </View>
                     </ScrollView>
-
                 </Modal>
-
             </View>
         );
     }

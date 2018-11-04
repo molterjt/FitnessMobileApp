@@ -2,7 +2,6 @@ import React from 'react'
 import {View,Text,Image, StyleSheet,Dimensions,ScrollView,TouchableOpacity,RefreshControl } from 'react-native';
 import {MaterialCommunityIcons } from '@expo/vector-icons';
 
-
 const WIDTH = Dimensions.get('window').width;
 
 class ExerciseCard extends React.Component{
@@ -80,6 +79,9 @@ class ExerciseCard extends React.Component{
                     (
                         <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center'}}>
                             <TouchableOpacity
+                                accessible={true}
+                                accessibilityLabel={'Hide Example Gif Button'}
+                                accessibilityRole={'button'}
                                 style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
                                 onPress={ () => this._toggleGIFVisible(!this.state.gifVisible)
                                 }
@@ -100,6 +102,7 @@ class ExerciseCard extends React.Component{
                     (<View>
                         <View style={styles.gifContainer}>
                             <Image
+                                alt={'Exercise Example Gif format'}
                                 source={{uri: this.props.videoUrl}}
                                 resizeMode={'contain'}
                                 style={{ width: 'auto', height: 400 }}
@@ -107,6 +110,9 @@ class ExerciseCard extends React.Component{
                         </View>
                         <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center', marginTop:5}}>
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Show Example Gif Button'}
+                            accessibilityRole={'button'}
                             style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
                             onPress={ () => this._toggleGIFVisible(!this.state.gifVisible)}
                         >

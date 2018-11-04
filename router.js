@@ -10,7 +10,6 @@ import EditScreen from './screens/EditProfileScreen';
 import EventsScreen from './screens/EventsScreen';
 import WorkoutScreen from './screens/WorkoutScreen';
 import SingleClassDetailScreen from './screens/SingleClassDetailScreen';
-import CategoryScreen from './screens/CategoryScreen';
 import ExerciseDetail from './screens/ExerciseDetail';
 import IntroScreen from './screens/IntroScreen';
 import LoginScreen from "./screens/LoginScreen";
@@ -214,10 +213,6 @@ const GFStack = StackNavigator(
                 }
             }
         },
-        CategoryDetail: {
-            screen: CategoryScreen
-        },
-
     }
 );
 const FacilityStack = StackNavigator(

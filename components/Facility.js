@@ -1,11 +1,10 @@
 import React from "react";
-import {View, Text, TouchableOpacity, StyleSheet, Image,} from 'react-native';
+import {View, Text, StyleSheet, Image,} from 'react-native';
 
 class Facility extends React.Component{
     constructor(props){
         super(props);
     }
-
     render(){
         return(
             <View style={styles.rowCard}>

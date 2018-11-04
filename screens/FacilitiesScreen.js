@@ -1,13 +1,12 @@
 import React from 'react';
 import {
-    Text, View, TouchableOpacity, Modal, RefreshControl, TouchableWithoutFeedback,StatusBar,
+    Text, View, TouchableOpacity, Modal,TouchableWithoutFeedback,
     ScrollView, Animated, Dimensions, Image, StyleSheet
 } from 'react-native';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import MapView from "react-native-maps";
-
 
 const { width, height } = Dimensions.get("window");
 
@@ -41,32 +40,31 @@ class FacilityDetail extends React.Component{
     showFacilityModal(visible){
         this.setState({facilityInfo: visible})
     }
-    _onRefresh = () => {
-        this.setState({refreshing:true});
-        this.props.data.allFacilities.refetch({buildingTitle: this.props.buildingName}).then(() => {
-            this.setState({refreshing: false});
-        });
-    };
+
     render(){
         return(
             <View style={{marginTop:5}} >
-            <TouchableOpacity
-                style={styles.profileButton}
-                onPress={() => {this.showFacilityModal(true)}}
-            >
-                <Ionicons
-                    name={"ios-expand"}
-                    size={28}
-                    alt={"expand facility info"}
-                    color={"white"}
-                    style={{fontWeight: 'bold'}}
-                />
-            </TouchableOpacity>
+                <TouchableOpacity
+                    accessibilityLabel={'Button for Facility Details'}
+                    accessibilityHint={'Will open a new screen with facility detail information'}
+                    accessibilityRole={'button'}
+                    style={styles.profileButton}
+                    onPress={() => {this.showFacilityModal(true)}}
+                >
+                    <Ionicons
+                        name={"ios-expand"}
+                        accessibilityRole={'imageButton'}
+                        size={28}
+                        alt={"expand facility info"}
+                        color={"white"}
+                        style={{fontWeight: 'bold'}}
+                    />
+                </TouchableOpacity>
 
             <Query query={FACILITYLIST} variables={{buildingTitle: this.props.buildingName  }}>
                 {({loading, error, data}) => {
                     if (loading) return <Text>"Loading..."</Text>
-                    if (error) return <Text>`Error! ${error.message}`;</Text>
+                    if (error) return <Text style={{textAlign:'center', fontWeight:'bold', marginTop:5}}>{error.message}</Text>
                     return (
                         <View>
                         <Modal
@@ -78,6 +76,9 @@ class FacilityDetail extends React.Component{
                             }}
                         >
                             <TouchableOpacity
+                                accessibilityLabel={'Outside Modal Window Button Close'}
+                                accessibilityHint={'Clicking outside of the modal window will close the window'}
+                                accessibilityRole={'imageButton'}
                                 onPress={() => {
                                     this.showFacilityModal(!this.state.facilityInfo)
                                 }}
@@ -85,11 +86,17 @@ class FacilityDetail extends React.Component{
 
                                 <View style={styles.ModalInsideView}>
                                     <TouchableOpacity
+                                        accessibilityLabel={'Facility Details Modal Window Close Button'}
+                                        accessibilityHint={'Will close the facility detail modal window'}
+                                        accessibilityRole={'button'}
                                         onPress={() => {
                                             this.showFacilityModal(!this.state.facilityInfo)
                                         }}
                                         style={styles.closeButton}>
                                         <MaterialCommunityIcons
+                                            accessibilityLabel={'Button for Facility Details'}
+                                            accessibilityHint={'Will open a new screen with facility detail information'}
+                                            accessibilityRole={'imageButton'}
                                             name={"close-box-outline"}
                                             size={30}
                                             color={"#156DFA"}
@@ -108,6 +115,7 @@ class FacilityDetail extends React.Component{
                                                 }
                                             </View>
                                             <Image
+                                                accessibilityRole={'image'}
                                                 source={{uri: imageUrl}}
                                                 alt={"Fitness Facility Image"}
                                                 resizeMode={"cover"}
@@ -307,14 +315,17 @@ class FacilitiesScreen extends React.Component {
         });
         return (
             <View style={styles.container}>
-
                 <View style={{marginTop: 0, flexDirection: "row", backgroundColor: "#fff", justifyContent:"center"}}>
                     <TouchableOpacity
+                        accessibilityLabel={'Reset Map Button'}
+                        accessibilityHint={'Will reset map to preset coordinates'}
+                        accessibilityRole={'button'}
                         onPress={() => this.map.animateToRegion(this.state.region, 200)}
                         style={{alignItems:"center", flexDirection:"row", padding: 5, marginTop:22,}}
                     >
                         <Text style={{color:"blue", fontSize: 16, marginRight: 10}}>Reset Map</Text>
                         <Ionicons
+                            accessibilityRole={'imageButton'}
                             name={"ios-locate-outline"}
                             type={"ionicon"} size={35}
                             color={"blue"}
@@ -354,9 +365,9 @@ class FacilitiesScreen extends React.Component {
                             <View style={styles.myMarker} />
                         </Animated.View>
                     </MapView.Marker>
-
                 </MapView>
                 <Animated.ScrollView
+                    accessibilityRole={'adjustable'}
                     horizontal
                     scrollEventThrottle={1}
                     showsHorizontalScrollIndicator={false}
@@ -379,6 +390,8 @@ class FacilitiesScreen extends React.Component {
                     {this.state.markers.map((marker, index) => (
                         <View style={styles.card} key={index}>
                             <Image
+                                accessibilityHint={'Image representing a fitness facility'}
+                                accessibilityRole={'image'}
                                 source={marker.image}
                                 style={styles.cardImage}
                                 resizeMode="cover"

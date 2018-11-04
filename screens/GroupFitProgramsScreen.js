@@ -65,7 +65,6 @@ class GroupFitMembership extends React.Component{
             <View style={{alignItems:'center', borderBottomWidth:1}}>
                 <View style={{marginTop: 18, marginLeft: 10}}>
                     <Text style={{color:"#000", fontWeight:"bold", fontSize: 16}}>{this.props.title}</Text>
-
                         {
                             this.props.memberRate
                             ?
@@ -80,14 +79,18 @@ class GroupFitMembership extends React.Component{
                 {
                     this.props.registerUrl
                         ?
-                        <TouchableOpacity onPress={() => {this.showGFRegisterModal(true)}}
-                                          style={{marginTop: 5, marginLeft:10, marginBottom: 4,
-                                              flexDirection: "row",
-                                              justifyContent: 'center', alignItems: 'center', borderRadius: 15,
-                                              backgroundColor: "#931414", width: "50%",}}>
-
+                        <TouchableOpacity
+                            accessibilityLabel={"Program Register Button"}
+                            accessibilityHint={"Opens a web page view to register for respective fitness program"}
+                            accessibilityRole={"button"}
+                            onPress={() => {this.showGFRegisterModal(true)}}
+                            style={{marginTop: 5, marginLeft:10, marginBottom: 4, flexDirection: "row",
+                                justifyContent: 'center', alignItems: 'center', borderRadius: 15,
+                                backgroundColor: "#931414", width: "50%",
+                            }}>
                             <Text style={{color: "#fff", fontSize: 11}}>Register</Text>
                             <MaterialCommunityIcons
+                                accessibilityRole={'imagebutton'}
                                 name={"checkbox-marked-circle-outline"}
                                 size={18}
                                 color={"white"}
@@ -105,6 +108,10 @@ class GroupFitMembership extends React.Component{
                     onRequestClose={() => {this.showGFRegisterModal(!this.state.showGFRegisterModal)} }
                 >
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Close Button'}
+                        accessibilityHint={'Closes the window from the web page opened to register for fitness program'}
+                        accessibilityRole={'button'}
                         onPress={() => {this.showGFRegisterModal(!this.state.showGFRegisterModal)}}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>
@@ -161,18 +168,9 @@ class GroupFitProgramsScreen extends React.Component{
                             );
                         }}
                     </Query>
-                    {/*<GroupFitMembership*/}
-                        {/*title={"Single Class Pass"}*/}
-                        {/*memberRate={"$15"}*/}
-                        {/*registerUrl={"71"}*/}
-                    {/*/>*/}
-                    {/*<GroupFitMembership*/}
-                        {/*title={"10 Class Pass"}*/}
-                        {/*memberRate={"$60"}*/}
-                        {/*registerUrl={"216"}*/}
-                    {/*/>*/}
                     <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A'}}>
                         <MaterialCommunityIcons
+                            accessibilityRole={'image'}
                             name={"dumbbell"}
                             size={30}
                             color={"white"}
@@ -206,40 +204,17 @@ class GroupFitProgramsScreen extends React.Component{
                             );
                         }}
                     </Query>
-
-                    {/*<GroupFitMembership*/}
-                        {/*title={"Monthly Subscription"}*/}
-                        {/*memberRate={"$40"}*/}
-
-                    {/*/>*/}
-                    {/*<GroupFitMembership*/}
-                        {/*title={"Semester Pass"}*/}
-                        {/*memberRate={"$130"}*/}
-                        {/*registerUrl={"246"}*/}
-                    {/*/>*/}
-                    {/*<GroupFitMembership*/}
-                        {/*title={"Academic Year Pass"}*/}
-                        {/*memberRate={"$230"}*/}
-                        {/*registerUrl={"290"}*/}
-                    {/*/>*/}
-                    {/*<GroupFitMembership*/}
-                        {/*title={"12 Month Pass"}*/}
-                        {/*memberRate={"$380"}*/}
-                        {/*registerUrl={"81"}*/}
-                    {/*/>*/}
                     <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A'}}>
                         <MaterialCommunityIcons
+                            accessibilityRole={'image'}
                             name={"weight"}
                             size={30}
                             color={"white"}
                             style={{paddingLeft: 20, paddingRight: 5, paddingTop: 2}}
                         />
                         <Text style={{marginTop: 5, paddingRight: 20, color:"#fff", fontWeight:"bold",  justifyContent:'center',
-                            fontSize: 18, alignSelf:'center', padding: 5,}}>
-
-                            functionalFit
-
-                        </Text>
+                            fontSize: 18, alignSelf:'center', padding: 5,
+                        }}>functionalFit</Text>
                     </View>
                     <Query  query={GET_MEMBERSHIPS} variables={{skipFF:0, skipGF:3}}>
                         {({loading, error, data, fetchMore}) => {
@@ -264,27 +239,9 @@ class GroupFitProgramsScreen extends React.Component{
                             );
                         }}
                     </Query>
-                    {/*<GroupFitMembership*/}
-                        {/*title={"Monthly Subscription"}*/}
-                        {/*memberRate={"$40"}*/}
-                    {/*/>*/}
-                    {/*<GroupFitMembership*/}
-                        {/*title={"Semester Pass"}*/}
-                        {/*memberRate={"$150"}*/}
-                        {/*registerUrl={"272"}*/}
-                    {/*/>*/}
-                    {/*<GroupFitMembership*/}
-                        {/*title={"Academic Year Pass"}*/}
-                        {/*memberRate={"$225"}*/}
-                        {/*registerUrl={"291"}*/}
-                    {/*/>*/}
-                    {/*<GroupFitMembership*/}
-                        {/*title={"12 Month Pass"}*/}
-                        {/*memberRate={"$300"}*/}
-                        {/*registerUrl={"188"}*/}
-                    {/*/>*/}
                     <View style={{display: 'flex', flexDirection: 'row', backgroundColor: '#29282A'}}>
                         <MaterialCommunityIcons
+                            accessibilityRole={'image'}
                             name={"calendar-check"}
                             size={30}
                             color={"white"}
@@ -296,10 +253,15 @@ class GroupFitProgramsScreen extends React.Component{
                         </Text>
                     </View>
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Request a Private Fitness Class Button'}
+                        accessibilityHint={'Opens a new window to complete form requesting a private fitness class'}
+                        accessibilityRole={'button'}
                         onPress={() => {this.showPrivateClassModal(true)}}
                         style={styles.exploreButtons}>
                         <Text style={styles.exploreButtonText}>Request A Class</Text>
                         <MaterialCommunityIcons
+                            accessibilityRole={'imagebutton'}
                             name={"checkbox-marked-circle-outline"}
                             size={35}
                             color={"white"}
@@ -313,6 +275,10 @@ class GroupFitProgramsScreen extends React.Component{
                     onRequestClose={() => {this.showPrivateClassModal(!this.state.showGFPrivateClassModal)} }
                 >
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Close Private Fitness Class Button'}
+                        accessibilityHint={'Closes window to complete form requesting a private fitness class'}
+                        accessibilityRole={'button'}
                         onPress={() => {this.showPrivateClassModal(!this.state.showGFPrivateClassModal)}}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>

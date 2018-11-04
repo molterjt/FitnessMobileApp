@@ -11,9 +11,12 @@ class ScheduleItem extends React.Component{
     render(){
         return(
             <View style={styles.rowContainer}>
-                <Image source={{uri: this.props.thumbnail}}
-                       style={styles.thumbnail}
-                       resizeMode="cover" />
+                <Image
+                    source={{uri: this.props.thumbnail}}
+                    style={styles.thumbnail}
+                    resizeMode="cover"
+                    alt={'Group Fit Class Thumbnail'}
+                />
                 <View style={styles.rowText}>
                     <Text style={{paddingLeft: 10, paddingTop: 5, fontSize: 14,
                         fontWeight: 'bold', color: 'red'}}>

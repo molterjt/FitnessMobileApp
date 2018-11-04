@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image,} from 'react-native';
+import {View, Text, StyleSheet, Image,} from 'react-native';
 
 class NewsItem extends React.Component{
     constructor(props){
@@ -11,9 +11,12 @@ class NewsItem extends React.Component{
     render(){
         return(
             <View style={styles.rowContainer}>
-                <Image source={{uri: this.props.thumbnail}}
-                       style={styles.thumbnail}
-                       resizeMode="cover" />
+                <Image
+                    source={{uri: this.props.thumbnail}}
+                    style={styles.thumbnail}
+                    resizeMode="cover"
+                    alt={'NewsItem Picture Representation Thumbnail'}
+                />
                 <View style={styles.rowText}>
                     <Text style={styles.title} numberOfLines={2} >
                         {this.props.title}

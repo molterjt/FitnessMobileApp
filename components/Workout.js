@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image, Alert, Modal, TextInput} from 'react-native';
-import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {View, Text, TouchableOpacity, StyleSheet, Image,} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import {withNavigation} from 'react-navigation';
 import gql from 'graphql-tag';
-import {graphql, Mutation, compose } from 'react-apollo';
+import {graphql, compose } from 'react-apollo';
 
 const CreateWorkoutCheckIn = gql`
     mutation($checked: Boolean, $workoutIdsArr: [ID!], $userIdsArr: [ID!]){
@@ -49,8 +49,6 @@ class Workout extends React.Component{
             setName: undefined,
             exerciseIds: [],
             userId: undefined,
-
-            //$userId:[ID!], $repsHit: String, $setName: String, $workout:ID, $weightUsed: String, $exercise:[ID!]
         };
         this._submitClassCheckIn = this._submitClassCheckIn.bind(this);
         this._createComment = this._createComment.bind(this);
@@ -108,7 +106,9 @@ class Workout extends React.Component{
                 <View style={styles.imageRowContainer}>
                     <Image source={{uri: this.props.image}}
                            style={styles.image}
-                           resizeMode="cover" />
+                           resizeMode="cover"
+                           alt={'Workout Thumbnail'}
+                    />
                 </View>
                 <View style={styles.rowContainer} key={this.props.id}>
                     <View style={styles.rowText} >
@@ -130,6 +130,9 @@ class Workout extends React.Component{
                         <View style={{alignItems:'center', justifyContent: 'center', alignContent: 'center',
                             textAlign: 'center', display: 'center', alignSelf: 'center', marginTop: 10}}>
                             <TouchableOpacity
+                                accessible={true}
+                                accessibilityLabel={'Workout Record Link Button'}
+                                accessibilityRole={'link'}
                                 style={{alignSelf: 'center', alignItems: 'center', textAlign: 'center',
                                     alignContent: 'center',
                                     justifyContent: 'center',
@@ -246,20 +249,3 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     }
 });
-
-/*
-<TouchableOpacity
-                            style={{alignSelf: 'flex-end', alignItems: 'center', flexDirection: 'row', justifyContent:'center', marginRight:2}}
-                            onPress={ () => {
-                                this.props.navigation.navigate('Instructor', {itemId: `${this.props.authorId}`})
-                            }}
-                        >
-                            <Text style={styles.author} numberOfLines={2} ellipsizeMode ={'tail'}>
-                                {`{Author:`} {this.props.authorFirstName}}
-                            </Text>
-                            <MaterialCommunityIcons
-                                name={"arrow-expand-all"} type={"FontAwesome"}
-                                size={20} color={"#156DFA"}
-                            />
-                        </TouchableOpacity>
-*/

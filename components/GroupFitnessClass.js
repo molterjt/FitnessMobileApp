@@ -1,12 +1,11 @@
 import React from 'react';
 import {
-    View, Text, TouchableOpacity, StyleSheet, Image, AlertIOS, TouchableWithoutFeedback,
-    Dimensions, Alert, Modal, TextInput, WebView, Platform,
+    View, Text, TouchableOpacity, StyleSheet, Image, Dimensions, Alert, Modal, TextInput, WebView, Platform,
 } from 'react-native';
-import {Constants, Location, Permissions, Video} from 'expo';
+import {Constants, Location, Permissions} from 'expo';
 import gql from 'graphql-tag';
-import {graphql, Mutation, compose } from 'react-apollo';
-import {FontAwesome, MaterialCommunityIcons, MaterialIcons, Ionicons} from '@expo/vector-icons';
+import {graphql, compose } from 'react-apollo';
+import {FontAwesome, MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';
 import moment from 'moment';
 import {withNavigation} from "react-navigation";
 
@@ -89,8 +88,6 @@ class GroupFitnessClass extends React.Component{
         this._switchCheckInDisable = this._switchCheckInDisable.bind(this);
     }
 
-
-
     _switchCheckInDisable = () =>
         this.setState({checkInDisable: true});
 
@@ -157,8 +154,6 @@ class GroupFitnessClass extends React.Component{
             userLocationAccuracy: location.coords.accuracy,
         });
         console.log('From State: ' + "\n" + this.state.userLatitude + '\n' + this.state.userLongitude + '\n' + this.state.userLocationAccuracy)
-
-
     };
 
     _degreesToRadians(degrees){
@@ -207,9 +202,6 @@ class GroupFitnessClass extends React.Component{
         const {userLatitude, userLongitude, userLocationAccuracy} = this.state;
         try {
             let userDistance =  await this._haversineFormula_GlobeDistance(REC_LAT, REC_LONG, userLatitude, userLongitude);
-            //let userDistance = await this._haversineFormula_GlobeDistance(REC_LAT, REC_LONG, 39.50302081706743, -84.7374604620363);
-            //let userDistance = await this._distanceBetweenCoordinates(REC_LAT, REC_LONG, userLatitude, userLongitude);
-            //let userDistance = await this._distanceBetweenCoordinates(REC_LAT, REC_LONG, 39.50302081706743, -84.7374604620363);
             console.log('UserDistance: ' + userDistance);
 
             if(userDistance < 70 + userLocationAccuracy){
@@ -246,7 +238,6 @@ class GroupFitnessClass extends React.Component{
         catch(error){
             console.log("_distanceUserFromRSC Error: ******************* " + error);
         }
-
     };
 
     _timeCheckInControl = async (e) => {
@@ -258,7 +249,6 @@ class GroupFitnessClass extends React.Component{
             console.log('Current Day: ' + currentDay);
             console.log('Current Time:' + currentTime);
 
-            //let classDays = ['Monday', 'Wednesday', 'Friday'];
             let classDays = this.props.days;
             let containsClassDay = (classDays.indexOf(currentDay) > -1);
             console.log(containsClassDay);  //true or false
@@ -326,9 +316,11 @@ class GroupFitnessClass extends React.Component{
         return(
             <View style={styles.rowCard}>
                 <View style={styles.imageRowContainer}>
-                    <Image source={{uri: this.props.image}}
-                           style={styles.image}
-                           resizeMode="cover"
+                    <Image
+                        source={{uri: this.props.image}}
+                        alt={'Group Fit Class Example'}
+                        style={styles.image}
+                        resizeMode="cover"
                     />
                 </View>
                 <View style={styles.rowContainer}>
@@ -341,6 +333,9 @@ class GroupFitnessClass extends React.Component{
                             </View>
                             <View style = {{position: 'absolute', right: 0, alignItems: 'center'}}>
                                 <TouchableOpacity
+                                    accessible={true}
+                                    accessibilityLabel={'Group Fit Programs Link Button'}
+                                    accessibilityRole={'link'}
                                     style={{marginBottom: 0, marginTop: 1,  textAlign:'center', justifyContent:"center", alignItems:"center"}}
                                     onPress={() => this.props.navigation.navigate('GroupFitPrograms')}>
                                     <MaterialCommunityIcons
@@ -376,6 +371,9 @@ class GroupFitnessClass extends React.Component{
                                 ?
                                 (
                                     <TouchableOpacity
+                                        accessible={true}
+                                        accessibilityLabel={'Play Group Fit Class Preview Video Button'}
+                                        accessibilityRole={'button'}
                                         disabled={false}
                                         onPress={() => {
                                             Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE_RIGHT);
@@ -397,6 +395,9 @@ class GroupFitnessClass extends React.Component{
 
                             {this.state.goodToCheckIn === true
                                 ? (<TouchableOpacity
+                                    accessible={true}
+                                    accessibilityLabel={'Group Fit Class Check-in Button'}
+                                    accessibilityRole={'button'}
                                     style={{alignItems: "center", flex:3}}
                                     disabled={this.state.checkInDisable}
                                     onPress={() => this._distanceUserFromRSC()}
@@ -423,6 +424,9 @@ class GroupFitnessClass extends React.Component{
 
                             }
                             <TouchableOpacity
+                                accessible={true}
+                                accessibilityLabel={'Leave a Class Comment Button'}
+                                accessibilityRole={'button'}
                                 onPress={() => {this.showCommentModal(true)}}
                                 style={{alignItems: "center", flex:3}}>
                                 <FontAwesome name={"commenting-o"} size={30} color={'#fff'}/>
@@ -439,6 +443,9 @@ class GroupFitnessClass extends React.Component{
                         <View style={styles.modalContainer}>
                             <View style={styles.ModalInsideView}>
                                 <TouchableOpacity
+                                    accessible={true}
+                                    accessibilityLabel={'Close Class Comment Button'}
+                                    accessibilityRole={'button'}
                                     onPress={() => {this.showCommentModal(!this.state.addCommentModalVisible)}}
                                     style={styles.closeButton}
                                 >
@@ -449,6 +456,7 @@ class GroupFitnessClass extends React.Component{
                                 <TextInput
                                     multiline={true}
                                     numberOfLines={9}
+                                    accessibilityLabel={'Paragraph form field to leave a class comment'}
                                     onChangeText={ (userComment) => this.setState({userComment})}
                                     value={this.props.userComment = this.state.userComment}
                                     blurOnSubmit={true}
@@ -459,6 +467,9 @@ class GroupFitnessClass extends React.Component{
                                     autoCorrect={true}
                                 />
                                 <TouchableOpacity
+                                    accessible={true}
+                                    accessibilityLabel={'Submit Class Comment Button'}
+                                    accessibilityRole={'button'}
                                     disabled={this.checkCommentCredentials()}
                                     onPress={ () => this._createComment()}
                                     style={styles.formButton}
@@ -475,6 +486,9 @@ class GroupFitnessClass extends React.Component{
                         onRequestClose={() => {this.showVideoModal(!this.state.videoModalVisible)} }
                     >
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Close Group Fit Class Video Button'}
+                            accessibilityRole={'button'}
                             disabled={false}
                             onPress={() => {
                                 Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
@@ -689,65 +703,3 @@ const styles = StyleSheet.create({
     },
 });
 
-
-/*
-    <View style={styles.checkinButton}>
-        <Button
-            title={'Check-In'}
-            color={"#000000"}
-            onPress={ () => Alert.alert(
-                'Alert',
-                'Do you want to check-in?',
-                [
-                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                    {text: 'Yes', onPress: () => console.log('Yes, Check-in')}
-                ],
-                { cancelable: false }
-            )}
-        />
-    </View>
-
-let text = 'Waiting ...';
-        if(this.state.errorMessage){
-            text = this.state.errorMessage;
-        }else if(this.state.location){
-            text = JSON.stringify(this.state.location);
-            console.log("lat2: " + JSON.stringify(this.state.location.coords.latitude));
-            console.log("long2: " + JSON.stringify(this.state.location.coords.longitude));
-            console.log("accuracy: " + JSON.stringify(this.state.location.coords.accuracy));
-
-        }
-
-        console.log('distance between coords: ' + this._distanceBetweenCoordinates(REC_LAT,REC_LONG,39.50302081706743, -84.7374604620363));
-        console.log('distance between state coords: ' + JSON.stringify(this._distanceBetweenCoordinates(REC_LAT, REC_LONG, this.state.userLatitude, this.state.userLongitude)));
-        console.log('havisine between coords: ' + JSON.stringify(this._haversineFormula_GlobeDistance(REC_LAT,REC_LONG, 39.50302081706743, -84.7374604620363)));
-        console.log('havisine between state coords: ' + JSON.stringify(this._haversineFormula_GlobeDistance(REC_LAT, REC_LONG, this.state.userLatitude, this.state.userLongitude)));
-
-onPress={ () => {
-                                        if(this._distanceUserFromRSC().then((data) => {return data}) === true){
-                                            Alert.alert(
-                                                'Check-In is Available',
-                                                'Press OK to Check-in',
-                                                [
-                                                    {text: 'OK', onPress: () => {
-                                                            this._submitClassCheckIn()
-                                                                .then((data) => console.log(data.id))
-                                                                .catch((error) => console.log(error))
-                                                                .done();
-                                                            Alert.alert('You have successfully checked-in!');
-                                                            console.log('Check In Success');
-                                                            this._switchCheckInDisable();
-                                                            console.log('*************************************')
-                                                        },
-
-                                                    },
-                                                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')}
-
-                                                ],
-                                                { cancelable: true }
-                                            )
-                                        }
-
-
-
-*/

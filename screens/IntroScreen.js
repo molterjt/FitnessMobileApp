@@ -1,9 +1,9 @@
-import {Animated, View, Text, AsyncStorage, ActivityIndicator, ImageBackground, Dimensions, TouchableOpacity} from "react-native";
+import {Animated, View, ImageBackground, Dimensions, TouchableOpacity} from "react-native";
 import React from "react";
 import {withNavigation} from 'react-navigation';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import {graphql, compose, Query} from 'react-apollo';
+import {graphql} from 'react-apollo';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -16,22 +16,9 @@ const getUsername = gql`
     }
 `
 
-
 let queryUserId;
-/*
-try{
-    AsyncStorage.getItem("MyUserId").then( (dataId) => {
-        queryUserId = dataId;
-        console.log("queryUserId === " + queryUserId);
-        return queryUserId;
-    }).done();
-} catch (error) {
-    console.log("MyUserId error" + error);
-}
-*/
 
 class IntroScreen extends React.Component{
-
     constructor(props){
         super(props);
         this.state = {
@@ -63,19 +50,12 @@ class IntroScreen extends React.Component{
         ]).start( () => this.props.navigation.navigate('Home'));
     }
     render(){
-        /*const {data} = this.props;
-        const {loading, User, error}  = this.props.data;
-        if(loading)return <ActivityIndicator />;
-        if(error){
-            console.log("Intro Error: " + error);
-            this.props.navigation.navigate('Home');
-        }*/
-        //console.log('IntroScreen User Query: ' + this.props.data.User.username)
+
         return(
-                <TouchableOpacity
-                    style={{backgroundColor: "#000000"}}
-                    onPress={() => this.props.navigation.navigate('Home')}
-                >
+            <TouchableOpacity
+                style={{backgroundColor: "#000000"}}
+                onPress={() => this.props.navigation.navigate('Home')}
+            >
                 <View style={{height:"100%", width: '100%',
                     alignItems: "center", justifyContent:"center", backgroundColor: "#000000"}}>
 
@@ -87,15 +67,18 @@ class IntroScreen extends React.Component{
 
                         <ImageBackground
                             source={require('../assets/images/MiamiFitness.png')}
-                            style={{flex:1, backgroundColor: 'transparent', width: SCREEN_WIDTH,
+                            style={{
+                                flex:1, backgroundColor: 'transparent',
+                                width: SCREEN_WIDTH,
                                 height: "100%",
-                                justifyContent: 'center'}}
+                                justifyContent: 'center'
+                            }}
                             resizeMode='contain'
+                            alt={'Miami Fitness Logo'}
                         />
-
                     </Animated.View>
                 </View>
-                </TouchableOpacity>
+            </TouchableOpacity>
         );
     }
 }
@@ -119,7 +102,6 @@ class IntroView extends React.Component{
     render(){
         return(
             <IntroScreen navigation = {this.props.navigation}/>
-            //<IntroWithHello navigation = {this.props.navigation}/>
         );
     }
 }

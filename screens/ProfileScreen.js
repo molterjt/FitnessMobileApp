@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Button, AsyncStorage, Text, View, ActivityIndicator, ScrollView,
-    TouchableOpacity, Dimensions, Modal, StyleSheet, TouchableWithoutFeedback
+    TouchableOpacity, Dimensions, StyleSheet,
 } from 'react-native';
 import {Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 import UserProfile from '../components/UserProfile';
@@ -111,10 +111,8 @@ class ProfileScreen extends React.Component{
             headerRight: (
                 <Logout buttonText={'Logout'}/>
             ),
-
         };
     };
-
     componentDidMount(){
         AsyncStorage.getItem("MyUserId").then( (dataId) => {
             queryUserId = JSON.parse(dataId);
@@ -124,14 +122,12 @@ class ProfileScreen extends React.Component{
         }).done();
         this.setState({isLoading: false});
     }
-
     jumpToUserCheckinHistory = (userIdentity) => {
         this.props.navigation.navigate("CheckinHistory", {itemId: userIdentity});
     };
     toggleClassCheckinsModal(visible){
         this.setState({showAllClassCheckins: visible});
     }
-
     render(){
         if (this.state.isLoading) {
             return <View><Text>Loading...</Text></View>;
@@ -160,6 +156,10 @@ class ProfileScreen extends React.Component{
             <View style={{flex: 1, backgroundColor: '#931414', marginBottom: 0, paddingTop: 0}}>
                 <View style={{width: WIDTH, backgroundColor: "#ebebeb", borderBottomColor: '#000', borderBottomWidth:1}}>
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Refresh Button'}
+                        accessibilityHint={'Refresh if Profile does not successfully load'}
+                        accessibilityRole={'button'}
                         onPress={ () => this.props.data.refetch({id: queryUserId})}
                         style={{alignItems: 'center',}}
                     >
@@ -181,6 +181,10 @@ class ProfileScreen extends React.Component{
                     />
                     <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center', marginTop:10}}>
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Check-in and Workout History Link Button'}
+                            accessibilityHint={'Links to new screen with check-in history'}
+                            accessibilityRole={'link'}
                             style={{alignItems:'center', flexDirection:'column', justifyContent:'center',marginTop:10}}
                             onPress={() => {
                                 this.jumpToUserCheckinHistory(User.id);
@@ -244,6 +248,10 @@ class ProfileScreen extends React.Component{
 
                                     <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center'}}>
                                         <TouchableOpacity
+                                            accessible={true}
+                                            accessibilityLabel={'Load More Button'}
+                                            accessibilityHint={'Loads more workout completion history'}
+                                            accessibilityRole={'button'}
                                             style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
                                             onPress={ () => {
                                                 fetchMore({
@@ -320,7 +328,6 @@ export default compose(
     graphql(GET_USER,{
         options: ({props}) => {
             return{
-                //skip: !queryUserId,
                 fetchPolicy: 'network-only',
                 variables: {
                     id: queryUserId,

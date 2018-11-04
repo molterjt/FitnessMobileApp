@@ -1,11 +1,9 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Button, Text, AsyncStorage, TouchableOpacity} from 'react-native';
-import { ApolloClient, withApollo, graphql, gql } from 'react-apollo';
+import { ApolloClient, gql } from 'react-apollo';
 import {AUTH_TOKEN} from "../constants/auth";
 import {withNavigation} from 'react-navigation';
-
 
 class Logout extends React.Component{
     constructor(props){
@@ -13,10 +11,8 @@ class Logout extends React.Component{
         this.state = {
             auth: '',
         }
-
     }
     componentDidMount(){
-
         try{
             AsyncStorage.getItem(AUTH_TOKEN).then((value) => {
                 if(value === null){
@@ -33,21 +29,6 @@ class Logout extends React.Component{
         } catch (error){
             console.log(error);
         }
-       /*
-        try{
-            const authToken = async() => await AsyncStorage.getItem(AUTH_TOKEN).then((value) => {
-                return value;
-            }).done();
-            if(authToken !== null){
-                console.log(authToken);
-                this.setState({auth: authToken});
-            } else{
-                console.log('No authToken found in AsyncStorage')
-            }
-        } catch (error){
-            console.log(error);
-        }
-        */
     }
 
      async removeItemsByKey(key) {
@@ -68,6 +49,9 @@ class Logout extends React.Component{
                 {auth ? (
                     <View>
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Logout Link Button'}
+                            accessibilityRole={'link'}
                             onPress={ () => {
                                 this.removeItemsByKey(AUTH_TOKEN);
                                 this.removeItemsByKey("MyUserId");

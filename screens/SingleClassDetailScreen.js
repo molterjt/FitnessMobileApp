@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {graphql, Query} from 'react-apollo';
 import {
-    StyleSheet, ActivityIndicator, Platform, Text, View, Modal,
+    StyleSheet, ActivityIndicator, Text, View, Modal,
     ScrollView, TouchableOpacity, AsyncStorage, TouchableWithoutFeedback
 } from 'react-native';
 import GroupFitnessClass from '../components/GroupFitnessClass';
@@ -29,19 +29,6 @@ const SINGLE_CLASS_QUERY = gql`
         }
     }
 `
-
-/*
-let queryUserId;
-try{
-    AsyncStorage.getItem("MyUserId").then( (dataId) => {
-        queryUserId = JSON.parse(dataId);
-        console.log("queryUserId === " + queryUserId);
-        return queryUserId;
-    }).done();
-} catch (error) {
-    console.log("MyUserId error" + error);
-}
-*/
 
 const ClassComments = ({id}) => (
 
@@ -91,7 +78,6 @@ class SingleClassDetailScreen extends React.Component {
     showModal(visible){
         this.setState({commentModalVisible: visible})
     }
-
     componentDidMount(){
         AsyncStorage.getItem("MyUserId").then( (dataId) => {
             queryUserId = JSON.parse(dataId);
@@ -99,7 +85,6 @@ class SingleClassDetailScreen extends React.Component {
             console.log("queryUserId === " + queryUserId);
             return queryUserId;
         }).done();
-
     }
     render() {
         if (this.state.isLoading) {
@@ -112,8 +97,8 @@ class SingleClassDetailScreen extends React.Component {
         }
         if(error) {
             return (
-                <View>
-                    <Text>Error</Text>
+                <View style={{alignContent:'center', justifyContent:'center'}}>
+                    <Text>Error: {error.message}</Text>
                     {console.log(error)}
                 </View>
             )
@@ -142,6 +127,10 @@ class SingleClassDetailScreen extends React.Component {
                 <View style={{flexDirection: "row", justifyContent:"center", alignSelf: "center",
                     padding: 5, backgroundColor: "transparent", height: 68, width: "80%", marginTop: 15}}>
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Instructor Button Link'}
+                        accessibilityHint={'Links to fitness class instructor profile'}
+                        accessibilityRole={'link'}
                         style={{ marginRight: 50 }}
                         onPress={ () => {
                             console.log( `${GroupFitClass.instructor.id}`);
@@ -154,9 +143,14 @@ class SingleClassDetailScreen extends React.Component {
                             style={styles.thumb}
                         />
                         <Text style={styles.buttonText}>More with {GroupFitClass.instructor.firstName}</Text>
-
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {this.showModal(true)}} >
+                    <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Class Comments Button'}
+                        accessibilityHint={'Opens modal window of class comments left from all users'}
+                        accessibilityRole={'button'}
+                        onPress={() => {this.showModal(true)}}
+                    >
                         <MaterialCommunityIcons
                             name={"comment-text-outline"}
                             size={30} color={"#156DFA"}
@@ -172,6 +166,10 @@ class SingleClassDetailScreen extends React.Component {
                         onRequestClose={() => {this.showModal(!this.state.commentModalVisible)} }
                     >
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Close Class Comments Button'}
+                            accessibilityHint={'Closes modal window'}
+                            accessibilityRole={'button'}
                             onPress={() => this.showModal(!this.state.commentModalVisible)}
                             style={{ marginTop: 20, alignItems:'center', height: '85%'}}
                         >
@@ -191,11 +189,8 @@ class SingleClassDetailScreen extends React.Component {
                                         </View>
                                 </TouchableWithoutFeedback>
                             </ScrollView>
-
                         </TouchableOpacity>
-
                     </Modal>
-
             </ScrollView>
         );
     }

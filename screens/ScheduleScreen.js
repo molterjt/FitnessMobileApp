@@ -5,11 +5,11 @@ import {
     TouchableOpacity, FlatList, RefreshControl,
 } from 'react-native';
 import gql from 'graphql-tag';
-import {graphql, compose}  from 'react-apollo';
+import {graphql}  from 'react-apollo';
 import ScheduleItem from '../components/ScheduleItem';
 import {Entypo} from '@expo/vector-icons';
 import Swiper from 'react-native-swiper';
-import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 const ALL_DAYS_SCHEDULE_QUERY = gql`
     query{
@@ -130,10 +130,8 @@ class AllGFClassView extends React.Component {
             refreshing: false,
         };
     }
-
     componentDidMount() {
         setTimeout(() => this.setState({loading: false}), 800);
-
         this.setState({
             items: [
                 { title: 'Monday', data: this.props.Mondays },
@@ -177,36 +175,21 @@ class AllGFClassView extends React.Component {
         )
     };
 
-    /*
-       const { mondays} = this.props.MondayScheduleQuery;
-       const { tuesdays} = this.props.TuesdayScheduleQuery;
-       const { wednesdays } = this.props.WednesdayScheduleQuery;
-       const {thursdays } = this.props.ThursdayScheduleQuery;
-       const {fridays} = this.props.FridayScheduleQuery;
-       const {saturdays} = this.props.SaturdayScheduleQuery;
-       const {sundays} = this.props.SundayScheduleQuery;
-       const {items} = this.state;
-       */
-
     _keyExtractor = (item) => item.id;
 
     render() {
-        //this.props.data.refetch({});
         const {loading, error} = this.props;
         const {Mondays, Tuesdays, Wednesdays, Thursdays, Fridays, Saturdays, Sundays} = this.props.data;
-
-
         if(loading || this.state.loading === true){
             return  <ActivityIndicator size="large" color="#931414" style={{marginTop: 20}} />
         }
         if(error){
             console.log(error);
             return (
-                <Text>Seems like we tripped up somewhere</Text>
+                <Text style={{textAlign:'center', marginTop:30}}>{error.message}</Text>
             );
         }
         return (
-
             <Swiper
                 style={styles.wrapper}
                 index={this.state.position}
@@ -240,7 +223,6 @@ class AllGFClassView extends React.Component {
                                 tintColor={'#931414'}
                             />
                         }
-
                     />
                     <View style={{margin:25}}>
                     </View>
@@ -436,154 +418,7 @@ AllGFClassView.propTypes = {
 
 };
 
-
-/*
-const MONDAY_QUERY = gql`
-    query MondayScheduleQuery{
-        mondays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Monday"},
-            isPublished: true,
-        }, orderBy: startTime_ASC){
-            id
-            title
-            time
-            cancelled
-            location{buildingName, facilityName}
-            days{name}
-            instructor{firstName,lastName,email, id}
-            imageUrl
-        }
-    }
-
-`
-const TUESDAY_QUERY = gql`
-    query TuesdayScheduleQuery{
-        tuesdays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Tuesday"},
-            isPublished: true,
-        }, orderBy: startTime_ASC){
-            id
-            title
-            time
-            cancelled
-            location{buildingName, facilityName}
-            days{name}
-            instructor{firstName,lastName,email, id}
-            imageUrl
-        }
-    }
-
-`
-const WEDNESDAY_QUERY = gql`
-    query WednesdayScheduleQuery{
-        wednesdays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Wednesday"},
-            isPublished: true,
-        }, orderBy: startTime_ASC){
-            id
-            title
-            time
-            cancelled
-            location{buildingName, facilityName}
-            days{name}
-            instructor{firstName,lastName,email, id}
-            imageUrl
-        }
-    }
-
-`
-const THURSDAY_QUERY = gql`
-    query ThursdayScheduleQuery{
-        thursdays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Thursday"},
-            isPublished: true,
-        }, orderBy: startTime_ASC){
-            id
-            title
-            time
-            cancelled
-            location{buildingName, facilityName}
-            days{name}
-            instructor{firstName,lastName,email, id}
-            imageUrl
-        }
-    }
-
-`
-const FRIDAY_QUERY = gql`
-    query FridayScheduleQuery{
-        fridays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Friday"},
-            isPublished: true,
-        }, orderBy: startTime_ASC){
-            id
-            title
-            time
-            cancelled
-            location{buildingName, facilityName}
-            days{name}
-            instructor{firstName,lastName,email, id}
-            imageUrl
-            isPublished
-        }
-    }
-
-`
-const SATURDAY_QUERY = gql`
-    query SaturdayScheduleQuery{
-        saturdays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Saturday"},
-            isPublished: true,
-        }, orderBy: startTime_ASC){
-            id
-            title
-            time
-            cancelled
-            location{buildingName, facilityName}
-            days{name}
-            instructor{firstName,lastName,email, id}
-            imageUrl
-            isPublished
-        }
-    }
-
-`
-const SUNDAY_QUERY = gql`
-    query SundayScheduleQuery{
-        sundays: allGroupFitClasses(filter:{
-            days_some: {name_contains: "Sunday"},
-            isPublished: true,
-        }, orderBy: startTime_ASC){
-            id
-            title
-            time
-            cancelled
-            location{buildingName, facilityName}
-            days{name}
-            instructor{firstName,lastName,email, id}
-            imageUrl
-            isPublished
-        }
-    }
-
-`
-
-*/
-
 const FullClassSCheduleWithData = graphql(ALL_DAYS_SCHEDULE_QUERY)(AllGFClassView);
-
-/*
-const AllGFClassViewWithData = compose(
-    graphql(TUESDAY_QUERY, {name: 'TuesdayScheduleQuery'}),
-    graphql(WEDNESDAY_QUERY, {name: 'WednesdayScheduleQuery'}),
-    graphql(THURSDAY_QUERY, {name: 'ThursdayScheduleQuery'}),
-    graphql(FRIDAY_QUERY, {name: 'FridayScheduleQuery'}),
-    graphql(SATURDAY_QUERY, {name: 'SaturdayScheduleQuery'}),
-    graphql(SUNDAY_QUERY, {name: 'SundayScheduleQuery'}),
-    graphql(MONDAY_QUERY, {name: 'MondayScheduleQuery'}),
-
-)(AllGFClassView);
-*/
 
 class ScheduleScreen extends React.Component{
     static navigationOptions = ({ navigation }) => {
@@ -591,6 +426,10 @@ class ScheduleScreen extends React.Component{
         return {
             headerRight: (
                 <TouchableOpacity
+                    accessible={true}
+                    accessibilityLabel={'GroupFit Programs Screen Link Button'}
+                    accessibilityHint={'Links to new screen with fitness programs'}
+                    accessibilityRole={'link'}
                     style={{marginBottom: 2, marginTop: 2, marginRight: 15, borderRadius: 8, padding:3, alignItems:'center',}}
                     onPress={() => navigation.navigate('GroupFitPrograms')}>
                     <MaterialCommunityIcons
@@ -601,17 +440,13 @@ class ScheduleScreen extends React.Component{
                     <Text style={{color: "#000", fontSize: 10, fontWeight:'bold', marginTop:-5, alignSelf: 'center'}}>Register</Text>
                 </TouchableOpacity>
             ),
-
         };
     };
-
     constructor(props){
         super(props);
     };
     render(){
-
         return(
-            //<AllGFClassViewWithData navigation = {this.props.navigation} />
             <FullClassSCheduleWithData navigation = {this.props.navigation} />
         );
     }

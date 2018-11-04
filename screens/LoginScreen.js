@@ -1,22 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
     Button, Text, TextInput, Alert, ActivityIndicator,
     View, StyleSheet, ImageBackground,
-    KeyboardAvoidingView, TouchableOpacity,AsyncStorage
+    TouchableOpacity, AsyncStorage
 } from 'react-native';
-import { Ionicons, MaterialIcons} from '@expo/vector-icons';
 import {withNavigation} from 'react-navigation';
 import gql from 'graphql-tag';
 import {graphql, compose} from 'react-apollo';
-import Logout from '../components/Logout';
 import {AUTH_TOKEN} from "../constants/auth";
 import validation from 'validate.js';
-
-
-
-
-
 
 let queryUserId;
 
@@ -26,7 +18,6 @@ AsyncStorage.getItem("MyUserId").then( (dataId) => {
     console.log("queryUserId:" + queryUserId);
     return queryUserId;
 }).done();
-
 
 const constraints = {
     email:{
@@ -147,11 +138,8 @@ class Login extends React.Component{
             console.log("Token: " +token);
             console.log("ID: " + id);
 
-
-            //this.props.navigation.navigate('Home', {username});
             this.props.navigation.navigate('Intro', {itemId: id});
         } else {
-
             const result = await this.props.signupUser({
                 variables: {email, password, username}
             }).catch(error => {
@@ -167,7 +155,6 @@ class Login extends React.Component{
             this._saveUserToken(token);
             this._saveUserId(id);
 
-
             this.props.navigation.navigate('Login');
         }
     };
@@ -178,6 +165,7 @@ class Login extends React.Component{
         return(
             <View style={{flex: 1, backgroundColor: 'transparent'}}>
                 <ImageBackground
+                    alt={'Background image of abstract lines'}
                     source={require('../assets/images/abstract-architectural.jpg')}
                     style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center', marginTop: -20}}
                     resizeMode='cover'
@@ -204,6 +192,7 @@ class Login extends React.Component{
                                     autoCapitalize={'none'}
                                     underlineColorAndroid={'transparent'}
                                     autoCorrect={false}
+                                    keyboardAppearance={'dark'}
                                 />
                                     {usernameError
                                         ? <Text style={{color: 'white', textAlign:'center'}}>{usernameError}</Text>
@@ -223,9 +212,11 @@ class Login extends React.Component{
                                 placeholder={'uniqueId@MiamiOH.edu'}
                                 style={styles.textInput}
                                 autoCapitalize={'none'}
+                                accessibilityLabel={'Email field for Registration/Login'}
                                 underlineColorAndroid={'transparent'}
                                 autoCorrect={false}
                                 label={'Email'}
+                                keyboardAppearance={'dark'}
 
                             />
                             {emailError
@@ -242,10 +233,12 @@ class Login extends React.Component{
                                 type={"password"}
                                 placeholder={'Enter a Password'}
                                 secureTextEntry={true}
+                                accessibilityLabel={'Password field for Registration/Login'}
                                 underlineColorAndroid={'transparent'}
                                 style={styles.textInput}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
+                                keyboardAppearance={'dark'}
 
                             />
                             {passwordError
@@ -264,6 +257,10 @@ class Login extends React.Component{
                         {!login
                             ?
                             (<TouchableOpacity
+                                accessible={true}
+                                accessibilityLabel={'Register Button'}
+                                accessibilityHint={'Complete form field then press Register Button'}
+                                accessibilityRole={'button'}
                                 onPress={ () => {
                                     this.showRegisterActivity();
                                     this._confirm();
@@ -278,6 +275,10 @@ class Login extends React.Component{
                             </TouchableOpacity>)
                             :
                             (<TouchableOpacity
+                                accessible={true}
+                                accessibilityLabel={'Login Button'}
+                                accessibilityHint={'Complete form field then press Login Button'}
+                                accessibilityRole={'button'}
                                 onPress={ () => {
                                     this.showRegisterActivity();
                                     this._confirm();
@@ -312,8 +313,6 @@ class Login extends React.Component{
                                 />
                             }
                         </View>
-
-
                     </View>
                 </ImageBackground>
             </View>
@@ -363,10 +362,9 @@ class LoginView extends React.Component{
         super(props);
     }
     render(){
-
         return(
             <View style={{flex: 1, backgroundColor: 'rgba(0, 10, 0, 0.0)'}}>
-            <LoginFlow/>
+                <LoginFlow/>
             </View>
         );
     }
@@ -503,38 +501,3 @@ const styles = StyleSheet.create({
         opacity: 0.2
     }
 });
-
-`
-GraphQL error: {
-    "logs":[
-        {"2018-10-31T23:57:15.571Z":
-                { data: " +
-                { email: 'molterjt@miamioh.edu', password: 'one4one9' },\n  " +
-                context: { 
-                    request: { 
-                        sourceIp: '134.53.88.154', 
-                        headers: {}, 
-                        httpMethod: 'post'
-                        auth: null,
-                        sessionCache: {},
-                        environment: {},
-                        graphcool: { 
-                            rootToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDEwMzA1MzQsImlhdCI6MTU0MTAzMDIzNCwiY2xpZW50SWQiOiJfIiwicHJvamVjdElkIjoiY2pmNnpzcXhqM240MjAxNDF6MDlycHY5aiIsInBlcm1hbmVudEF1dGhUb2tlbklkIjoiY2pueHRtMzQ1MG9kOTAxNjRqejFxZ3Y2MiJ9.Z64Wj2C4hXVVKzr5WgtdIqwrIYCBG2nVJQpD2EoVmjk',
-                            endpoints: [Object],
-                            projectId: 'cjf6zsqxj3n420141z09rpv9j',
-                            alias: null,
-                            pat: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDEwMzA1MzQsImlhdCI6MTU0MTAzMDIzNCwiY2xpZW50SWQiOiJfIiwicHJvamVjdElkIjoiY2pmNnpzcXhqM240MjAxNDF6MDlycHY5aiIsInBlcm1hbmVudEF1dGhUb2tlbklkIjoiY2pueHRtMzQ1MG9kOTAxNjRqejFxZ3Y2MiJ9.Z64Wj2C4hXVVKzr5WgtdIqwrIYCBG2nVJQpD2EoVmjk',
-                            serviceId: 'cjf6zsqxj3n420141z09rpv9j' 
-                        } 
-                    }
-                }
-        },
-        {
-            "2018-10-31T23:57:29.941Z b0c81593-dd68-11e8-ad4d-0d204d9c1eb0 
-            Task timed out after 15.02 seconds": 2018-10-31T23:57:29.941Z b0c81593-dd68-11e8-ad4d-0d204d9c1eb0 Task timed out after 15.02 seconds
-        }
-    ], 
-     "response": {
-        "errorMessage":"2018-10-31T23:57:29.941Z b0c81593-dd68-11e8-ad4d-0d204d9c1eb0 Task timed out after 15.02 seconds"
-    }}
-`

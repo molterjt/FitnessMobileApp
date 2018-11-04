@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image, Modal, WebView} from 'react-native';
 import { Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
-
 class Event extends React.Component{
     constructor(props){
         super(props);
@@ -51,12 +50,16 @@ class Event extends React.Component{
                         </Text>
 
                         {this.props.registerUrl
-                            ? (<TouchableOpacity onPress={() => {this.showEventRegisterModal(true)}}
-                                                 style={{marginTop: 25, flexDirection: "row",
-                                                     justifyContent: 'center', alignItems: 'center',
-                                                     backgroundColor: "#931414", width: "50%", alignSelf: "center"
+                            ? (<TouchableOpacity
+                                    accessible={true}
+                                    accessibilityLabel={'Show Registration Window Button'}
+                                    accessibilityRole={'button'}
+                                    onPress={() => {this.showEventRegisterModal(true)}}
+                                    style={{marginTop: 25, flexDirection: "row", justifyContent: 'center',
+                                        alignItems: 'center', backgroundColor: "#931414", width: "50%", alignSelf: "center"
 
-                                                 }}>
+                                    }}
+                            >
                                 <Text style={{color: "#fff", fontSize: 12}}>Register</Text>
                                 <MaterialCommunityIcons
                                     name={"checkbox-marked-circle-outline"}
@@ -75,6 +78,9 @@ class Event extends React.Component{
                     onRequestClose={() => {this.showEventRegisterModal(!this.state.eventRegisterModal)} }
                 >
                     <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel={'Close Event Registration Window Button'}
+                        accessibilityRole={'button'}
                         onPress={() => {this.showEventRegisterModal(!this.state.eventRegisterModal)}}
                         style={{marginLeft: 5, marginTop: 50, flexDirection: "row"}}>
                         <Ionicons name={"md-arrow-back"} size={30} color={"#156DFA"}/>

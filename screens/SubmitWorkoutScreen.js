@@ -55,9 +55,6 @@ AsyncStorage.getItem("MyUserId").then( (dataId) => {
     return queryUserId;
 }).done();
 
-
-
-
 class SubmitWorkoutScreen extends React.Component{
     constructor(props){
         super(props);
@@ -81,7 +78,6 @@ class SubmitWorkoutScreen extends React.Component{
             setName: undefined,
             exerciseIds: [],
             userIds: [],
-            //$userId:[ID!], $repsHit: String, $setName: String, $workout:ID, $weightUsed: String, $exercise:[ID!]
         };
 
         this.createExerciseSet = this.createExerciseSet.bind(this);
@@ -118,8 +114,6 @@ class SubmitWorkoutScreen extends React.Component{
         console.log('timeCheck: ' + moment(timeCheck).format('M/D/Y h a'));
     };
 
-
-
     createExerciseSet(ExId, WorkId, Sets){
         const {ExSets} = this.state;
         let q = 0;
@@ -133,13 +127,12 @@ class SubmitWorkoutScreen extends React.Component{
                 return JSON.stringify(SetIdentity) === JSON.stringify(elem.SetId);
             });
             if(contains) {
-                // console.log(' ^^ SetIdentity is duplicated')
+
             } else {
                 const mySets = [newEntry, ...ExSets];
                 this.setState({ExSets: mySets});
             }
         }
-       //console.log(ExSets.map((obj) => (obj.SetId + "===" + obj.setNo)));
     }
 
     handleSetRepUpdate(id, repHit){
@@ -199,7 +192,6 @@ class SubmitWorkoutScreen extends React.Component{
         Alert.alert('You successfully submitted your workout!');
         console.log('Workout Record has been Submitted');
         console.log('Submit Time: ' + moment(setTimeCheck).format('M/D/Y h a'));
-
     };
 
     _CheckinThenSubmitMyWorkoutRecord = async (id) => {
@@ -233,7 +225,6 @@ class SubmitWorkoutScreen extends React.Component{
                 </View>
             )
         }
-
         const {ExSets, UniqueSets, Loaded} = this.state;
         Workout.exercises.map(({sets, id}) =>
             this.createExerciseSet(id, Workout.id, sets)
@@ -265,11 +256,11 @@ class SubmitWorkoutScreen extends React.Component{
                                             <KeyboardAvoidingView style={{padding:2, }} behavior="padding">
                                                 <View style={{flexDirection: 'row', display:'flex', justifyContent:'center'}} key={obj.SetId}>
                                                     <Text style={{color:'white', margin:5}}>{obj.setNo}</Text>
-
                                                     <TextInput
                                                         style={{color:'#fff', borderColor:'#fff', borderWidth:1, width:'40%', padding:2, height: 30, margin:5, textAlign:'center'}}
                                                         placeholder={'Weight Hit {lbs}'}
                                                         value={obj.weightUse}
+                                                        accessibilityLabel={'Form field for weight used for workout exercise set'}
                                                         placeholderTextColor={'#fff'}
                                                         onChangeText={(weight) => this.handleSetWeightUpdate(obj.SetId, weight)}
                                                         type={"number"}
@@ -280,6 +271,7 @@ class SubmitWorkoutScreen extends React.Component{
                                                     <TextInput
                                                         style={{color:'#fff', borderColor:'#fff', borderWidth:1, width:'40%', padding:2, height: 30, margin:5, textAlign:'center'}}
                                                         placeholder={'Reps Hit'}
+                                                        accessibilityLabel={'Form field for reps completed for workout exercise set'}
                                                         value={obj.repUse}
                                                         placeholderTextColor={'#fff'}
                                                         onChangeText={(rep) => this.handleSetRepUpdate(obj.SetId,rep)}
@@ -298,6 +290,10 @@ class SubmitWorkoutScreen extends React.Component{
                         <View style={{alignItems:'center', justifyContent: 'center', alignContent: 'center',
                             textAlign: 'center', display: 'center', alignSelf: 'center', marginTop: 10}}>
                             <TouchableOpacity
+                                accessible={true}
+                                accessibilityLabel={'Submission Button for Workout Completion'}
+                                accessibilityHint={'Completes the submission process for a workout record'}
+                                accessibilityRole={'button'}
                                 style={{alignSelf: 'center', alignItems: 'center', textAlign: 'center',
                                     alignContent: 'center',
                                     justifyContent: 'center',

@@ -1,9 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Dimensions,} from 'react-native';
-
-import {Entypo, Ionicons} from '@expo/vector-icons'
+import {Entypo} from '@expo/vector-icons'
 import {withNavigation} from 'react-navigation';
-
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -16,13 +14,15 @@ class UserProfile extends React.Component{
     render(){
         return(
             <View style={{ padding: 5}}>
-
                 <View style={styles.rowContainer}>
-
                     <View style={styles.rowText}>
                         <TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Edit Profile Link Button'}
+                            accessibilityRole={'link'}
                             style={{alignItems:'flex-end', paddingRight: 16}}
-                            onPress={() => this.props.navigation.navigate('Edit', {itemId: this.props.id})}>
+                            onPress={() => this.props.navigation.navigate('Edit', {itemId: this.props.id})}
+                        >
                             <Entypo
                                 name={"edit"} type={"MaterialIcons"} size={30} color={'#156DFA'}
                             />
@@ -47,11 +47,8 @@ class UserProfile extends React.Component{
                             </Text>
                         </View>
                     </View>
-
-
                 </View>
             </View>
-
         );
     }
 }

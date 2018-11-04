@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "Miami Rec Fitness",
+    "name": "MiamiOH Fit",
     "icon": "./assets/images/MiamiFitnessSplash.png",
-    "version": "1.3.0",
-    "slug": "Miami-Rec-Fit-App",
+    "version": "1.4.0",
+    "slug": "MiamiOH-Rec-Fit-App",
     "sdkVersion": "25.0.0",
     "orientation": "portrait",
     "splash": {
@@ -11,13 +11,13 @@
       "backgroundColor": "#000"
     },
     "ios": {
-      "bundleIdentifier": "com.JeffreyT513.fitApp",
+      "bundleIdentifier": "com.J14Development.MiamiOHFit",
       "infoPlist": {
         "NSLocationAlwaysUsageDescription" : "Application needs to collect GPS location for feature access"
       }
     },
     "android": {
-      "package": "com.JeffreyT513.fitApp"
+      "package": "com.J14Development.MiamiOHFit"
     }
   }
 }
