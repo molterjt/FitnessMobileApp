@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Button, AsyncStorage, Text, View, ActivityIndicator, ScrollView,
-    TouchableOpacity, Dimensions, StyleSheet,
+    TouchableOpacity, Dimensions, StyleSheet, RefreshControl, Easing, Animated
 } from 'react-native';
 import {Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 import UserProfile from '../components/UserProfile';
 import Logout from '../components/Logout';
 import gql from "graphql-tag";
-import {graphql, Query, compose} from "react-apollo";
+import {graphql, compose} from "react-apollo";
 import WorkoutRecord from '../components/WorkoutRecord';
 
 import moment from 'moment';
@@ -56,45 +56,43 @@ const GET_USER = gql`
             workouts{id, createdAt, title, days{name}, type{title}}
             memberships{title}
             classes{title}
-            checkins(orderBy: createdAt_DESC, first:2){classes{id, title, category{title}, time, days{name}},timeCheck, createdAt}
+            classCheckIns: checkins( filter:{workouts_none:{}} orderBy: createdAt_DESC, first:1){
+                classes{
+                    id, title, category{title}, time, days{name}
+                },
+                timeCheck, 
+                createdAt
+            }
+            workoutCheckins: checkins(filter:{classes_none: {}} orderBy: createdAt_DESC, first:1){
+                workouts{
+                    id,
+                    title,
+                    type{title},
+                    exercises{
+                        name,
+                        reps,
+                        sets
+                    }
+                }
+                timeCheck
+                createdAt
+            }
+            
         }
     }
 `
 
-const GET_WORKOUT_CHECKINS = gql`
-    query($uId:ID, $load2:Int, $skip2:Int,){
-        allCheckins(
-            filter:{
-                users_every: {
-                    id: $uId
-                }
-                AND:{classes_none: {}}
-            }
-            orderBy: createdAt_DESC,
-            first:$load2, skip:$skip2
-        ){
-            workouts{
-                id,
-                title,
-                type{title},
-                exercises{
-                    name,
-                    reps,
-                    sets
-                }
-            }
-            timeCheck
-            createdAt
-        }
-    }
-`;
-
 let queryUserId;
+
+// setTimeout(() => {}, 1000);
 
 class ProfileScreen extends React.Component{
     constructor(props){
         super(props);
         this.state={
+            springVal: new Animated.Value(0.8),
+            loading: true,
+            refreshing:false,
             currentUserToken: '',
             currentUserId: '',
             profileUpdate: false,
@@ -104,6 +102,9 @@ class ProfileScreen extends React.Component{
         };
         this.toggleClassCheckinsModal=this.toggleClassCheckinsModal.bind(this);
         this.jumpToUserCheckinHistory=this.jumpToUserCheckinHistory.bind(this);
+        this._onRefresh=this._onRefresh.bind(this);
+        this.fetchUserIdentity=this.fetchUserIdentity.bind(this);
+        this.spinValue= new Animated.Value(0)
     }
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
@@ -113,14 +114,61 @@ class ProfileScreen extends React.Component{
             ),
         };
     };
-    componentDidMount(){
-        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+    spin(){
+        this.spinValue.setValue(0);
+        Animated.timing(
+            this.spinValue,{
+                toValue:1,
+                duration:6000,
+                easing: Easing.linear()
+            }
+        ).start( () => this.spin());
+    }
+
+    spring(){
+        this.spinValue.setValue(0);
+        Animated.sequence([
+            Animated.spring(this.state.springVal, {
+                toValue: 0.25,
+                friction: 10,
+                tension: 12
+            }),
+            Animated.parallel([
+                Animated.spring(this.state.springVal, {
+                    toValue: 3.5,
+                    friction: 10,
+                    tension: 12
+                }),
+                Animated.timing(
+                    this.spinValue,{
+                        toValue:1,
+                    }
+                ),
+            ])
+        ]).start( () => this.spring());
+    }
+
+    _onRefresh = () => {
+        this.setState({refreshing:true});
+        this.props.data.refetch().then(() => {
+            this.setState({refreshing: false});
+        });
+    };
+    fetchUserIdentity = async () =>{
+        await AsyncStorage.getItem("MyUserId").then( (dataId) => {
             queryUserId = JSON.parse(dataId);
             this.setState({currentUserId: queryUserId});
             console.log("queryUserId === " + queryUserId);
             return queryUserId;
         }).done();
         this.setState({isLoading: false});
+    };
+    componentDidMount(){
+        //setTimeout(() => this.fetchUserIdentity(), 800);
+        this.fetchUserIdentity();
+        this.spring();
+        setTimeout(() => this.setState({loading:false}), 2900);
+
     }
     jumpToUserCheckinHistory = (userIdentity) => {
         this.props.navigation.navigate("CheckinHistory", {itemId: userIdentity});
@@ -129,9 +177,30 @@ class ProfileScreen extends React.Component{
         this.setState({showAllClassCheckins: visible});
     }
     render(){
-        if (this.state.isLoading) {
-            return <View><Text>Loading...</Text></View>;
+        if(this.state.loading){
+            const spin = this.spinValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: ['0deg', '720deg']
+            });
+
+            return (
+                <View style={styles.animationContainer}>
+                    <Animated.View
+                        style={{
+                            transform: [{scale: this.state.springVal }]
+                        }}>
+                        <Animated.Image
+                            style={{
+                                width: 150,
+                                height: 150,
+                                transform: [{rotate: spin}] }}
+                            source={require('../assets/images/MiamiFitnessSplash.png')}
+                        />
+                    </Animated.View>
+                </View>
+            )
         }
+
         this.props.data.refetch({id: queryUserId});
         const {currentUserId, currentUserToken} = this.state;
         const { loading, error, User,  } = this.props.data;
@@ -140,36 +209,50 @@ class ProfileScreen extends React.Component{
         console.log('queryUserId:  ' + queryUserId);
         console.log("@render: currentUserId: " + currentUserId);
 
-        if (loading) return <View style={{marginTop: 50}}><ActivityIndicator/></View>;
-        if (error) {
-            console.log("Profile Err: " + error);
+        if (loading) return <View style={{marginTop: 50}}>
+            <ActivityIndicator size={'large'} color={'#fff'}/>
+        </View>;
+        if(error){
+            const spin = this.spinValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: ['0deg', '720deg']
+            });
+
             return (
-                <View>
-                    <Button
-                        title={'retry'}
-                        onPress={ () => this.props.data.refetch({id: queryUserId})}
-                    />
+                <View style={styles.animationContainer}>
+                    <Animated.View
+                        style={{
+                            transform: [{scale: this.state.springVal }]
+                        }}>
+                        <Animated.Image
+                            style={{
+                                width: 150,
+                                height: 150,
+                                transform: [{rotate: spin}] }}
+                            source={require('../assets/images/MiamiFitnessSplash.png')}
+                        />
+                    </Animated.View>
                 </View>
             )
         }
         return(
             <View style={{flex: 1, backgroundColor: '#931414', marginBottom: 0, paddingTop: 0}}>
-                <View style={{width: WIDTH, backgroundColor: "#ebebeb", borderBottomColor: '#000', borderBottomWidth:1}}>
-                    <TouchableOpacity
-                        accessible={true}
-                        accessibilityLabel={'Refresh Button'}
-                        accessibilityHint={'Refresh if Profile does not successfully load'}
-                        accessibilityRole={'button'}
-                        onPress={ () => this.props.data.refetch({id: queryUserId})}
-                        style={{alignItems: 'center',}}
-                    >
-                        <Ionicons
-                            name={"ios-refresh"} type={"Ionicons"} size={35} color={'blue'}
+                <ScrollView
+                    style={{padding: 5, paddingBottom:20, marginBottom: 10}}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh}
+                            tintColor={'#156DFA'}
                         />
-                        <Text style={{color:'midnightblue'}}>Refresh</Text>
-                    </TouchableOpacity>
-                </View>
-                <ScrollView style={{padding: 5, paddingBottom:20, marginBottom: 10}}>
+                    }
+                >
+                    <View style={{width: WIDTH, backgroundColor: "transparent", alignContent:'center',justifyContent:'center', alignItems:'center' }}>
+                        <Text style={{color:'white'}}>Pull-To-Refresh</Text>
+                        <MaterialCommunityIcons
+                            name={"chevron-double-down"} type={"MaterialCommunityIcons"} size={35} color={'blue'}
+                        />
+                    </View>
                     <UserProfile
                         id={User.id}
                         username={User.username}
@@ -197,98 +280,51 @@ class ProfileScreen extends React.Component{
                             />
                         </TouchableOpacity>
                     </View>
-                    <Query query={GET_WORKOUT_CHECKINS} variables={{uId:User.id , load2:1 , skip2:0 }} >
-                        {({loading, error, data, fetchMore}) => {
-                            if(loading){
-                                return (
-                                    <View style={{alignContent:'center', justifyContent:'center'}}>
-                                        <ActivityIndicator color={"#fff"}/>
-                                    </View>);
-                            }
-                            if (error) return <Text>`Error! ${error.message}`</Text>;
-                            return (
-                                <View>
-                                    <View style={{borderRadius: 4, shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#fff', margin:5, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
-                                        <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>Latest Workout Completed</Text>
-                                    </View>
-                                    {data.allCheckins.map(({workouts, createdAt, timeCheck}) => (
-                                        workouts.map((obj) => (
-                                            <View style={{borderRadius: 4,
-                                                shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
-                                                <View style={{flexDirection: 'row', display: 'flex'}}>
-                                                    <Text style={{fontSize: 16, fontWeight: 'bold', color: '#931414', marginBottom: 4}}>{obj.title}</Text>
-                                                </View>
-                                                <View style={{flexDirection:'row', marginTop: 5, marginBottom:5}}>
-                                                    <Text style={{fontWeight: 'bold'}}>TimeStamp: </Text>
-                                                    <Text style={{fontStyle: 'italic'}}>{moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm a')}</Text>
-                                                </View>
-                                                <View style={{flexDirection:'row', flexWrap:'wrap', marginBottom: 5}}>
-                                                    <Text style={{fontWeight: 'bold'}}>Type: </Text>
-                                                    <Text style={{fontStyle: 'italic'}}>{obj.type.map(({title}) => title).join(', ')}</Text>
-                                                </View>
-                                                <View style={{borderWidth: 1, padding: 5}}>
-                                                <View style={{flex:1, flexDirection:'row', flexWrap:'wrap', marginTop:10}}>
-                                                    <Text style={{width: '55%', fontWeight:'bold', paddingLeft: 10}}>Exercises:</Text>
-                                                    <Text style={{width: '20%', fontWeight:'bold'}}>Sets:</Text>
-                                                    <Text style={{width: '20%', fontWeight:'bold'}}>Reps:</Text>
-                                                </View>
-                                                {obj.exercises.map(({name, sets, reps}) => (
-                                                    <View style={{flex:1, flexDirection:'row', flexWrap:'wrap',}}>
-                                                        <Text style={{ fontStyle: 'italic', padding:3, width: '55%', paddingLeft:10}}>{name}</Text>
-                                                        <Text style={{ fontStyle: 'italic', padding:3, width: '20%'}}>{sets}</Text>
-                                                        <Text style={{fontStyle: 'italic', padding:3, width: '20%'}}>{reps}</Text>
-                                                    </View>
-                                                ))}
-                                                </View>
-                                                <View style={{marginBottom: 6}}/>
-                                                <WorkoutRecord userId={User.id} timeCheck={timeCheck} workoutId={obj.id} workoutTitle={obj.title}/>
-                                            </View>
-                                        ))
-                                    ))}
 
-                                    <View sytle={{flexDirection:'row',alignContent: 'center', justifyContent:'center', alignSelf: 'center'}}>
-                                        <TouchableOpacity
-                                            accessible={true}
-                                            accessibilityLabel={'Load More Button'}
-                                            accessibilityHint={'Loads more workout completion history'}
-                                            accessibilityRole={'button'}
-                                            style={{alignItems:'center', flexDirection:'column', justifyContent:'center'}}
-                                            onPress={ () => {
-                                                fetchMore({
-                                                    variables:{
-                                                        id: User.id,
-                                                        load2: 1,
-                                                        skip2: data.allCheckins.length
-                                                    },
-                                                    updateQuery: (previousResult, {fetchMoreResult}) => {
-                                                        if (!fetchMoreResult){
-                                                            console.log('NO FetchMore');
-                                                            return previousResult;
-                                                        }
-                                                        console.log('trying to copy data');
-                                                        return Object.assign({}, previousResult, {
-                                                            allCheckins : [...previousResult.allCheckins, ...fetchMoreResult.allCheckins]
-                                                        });
-                                                    }
-                                                })
-                                            }}
-                                        >
-                                            <Text style={{textAlign:"center", color: "#fff", marginRight: 6}}>More</Text>
-                                            <MaterialCommunityIcons
-                                                name={"chevron-double-down"} type={"MaterialCommunityIcons"} size={35} color={'#fff'}
-                                                style={{textAlign:"center"}}
-                                            />
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            );
-                        }}
-                    </Query>
                     <View>
+                        <View style={{borderRadius: 4, shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#fff', margin:5, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
+                            <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>Latest Workout Completed</Text>
+                        </View>
+                        {User.workoutCheckins.map(({workouts, createdAt, timeCheck}) => (
+                            workouts.map((obj) => (
+                                <View style={{borderRadius: 4,
+                                    shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#eff4f4', margin:2, padding:5, borderColor: '#000', borderWidth: 2}}>
+                                    <View style={{flexDirection: 'row', display: 'flex'}}>
+                                        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#931414', marginBottom: 4}}>{obj.title}</Text>
+                                    </View>
+                                    <View style={{flexDirection:'row', marginTop: 5, marginBottom:5}}>
+                                        <Text style={{fontWeight: 'bold'}}>TimeStamp: </Text>
+                                        <Text style={{fontStyle: 'italic'}}>{moment(createdAt).format('M/D/Y')} at {moment(createdAt).format('hh:mm a')}</Text>
+                                    </View>
+                                    <View style={{flexDirection:'row', flexWrap:'wrap', marginBottom: 5}}>
+                                        <Text style={{fontWeight: 'bold'}}>Type: </Text>
+                                        <Text style={{fontStyle: 'italic'}}>{obj.type.map(({title}) => title).join(', ')}</Text>
+                                    </View>
+                                    <View style={{borderWidth: 1, padding: 5}}>
+                                    <View style={{flex:1, flexDirection:'row', flexWrap:'wrap', marginTop:10}}>
+                                        <Text style={{width: '55%', fontWeight:'bold', paddingLeft: 10}}>Exercises:</Text>
+                                        <Text style={{width: '20%', fontWeight:'bold'}}>Sets:</Text>
+                                        <Text style={{width: '20%', fontWeight:'bold'}}>Reps:</Text>
+                                    </View>
+                                    {obj.exercises.map(({name, sets, reps}) => (
+                                        <View style={{flex:1, flexDirection:'row', flexWrap:'wrap',}}>
+                                            <Text style={{ fontStyle: 'italic', padding:3, width: '55%', paddingLeft:10}}>{name}</Text>
+                                            <Text style={{ fontStyle: 'italic', padding:3, width: '20%'}}>{sets}</Text>
+                                            <Text style={{fontStyle: 'italic', padding:3, width: '20%'}}>{reps}</Text>
+                                        </View>
+                                    ))}
+                                    </View>
+                                    <View style={{marginBottom: 6}}/>
+                                    <WorkoutRecord userId={User.id} timeCheck={timeCheck} workoutId={obj.id} workoutTitle={obj.title}/>
+                                </View>
+                            ))
+                        ))}
+                    </View>
+                    <View style={{marginTop:20}}>
                         <View style={{borderRadius: 4, shadowOffset:{  width: 1,  height: 1,  }, shadowColor: '#CCC',backgroundColor: '#fff', margin:5, padding:5, borderColor: '#000', borderWidth: 2, alignItems: 'center'}}>
                             <Text style={{fontStyle: 'italic', fontWeight: 'bold', fontSize: 16}}>Latest GroupFit Class Checkin</Text>
                         </View>
-                        {User.checkins.map(({createdAt, classes}) => (
+                        {User.classCheckIns.map(({createdAt, classes}) => (
                             classes.map((obj, index) => (
                                 <View style={{borderRadius: 4,
                                     shadowOffset:{  width: 1,  height: 1,  },
@@ -328,13 +364,11 @@ export default compose(
     graphql(GET_USER,{
         options: ({props}) => {
             return{
-                fetchPolicy: 'network-only',
+                // fetchPolicy: 'network-only',
                 variables: {
-                    id: queryUserId,
-                    load:10,
-                    skip:0
-
+                    id: queryUserId
                 },
+                notifyonnetworkstatuschange: true
             }
         },
     }),
@@ -409,5 +443,13 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 16
+    },
+    animationContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        backgroundColor: 'white',
+        justifyContent:'center',
+        alignItems:'center',
     }
 });

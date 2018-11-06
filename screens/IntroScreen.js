@@ -27,7 +27,7 @@ class IntroScreen extends React.Component{
         };
     }
     componentDidMount(){
-        setTimeout( () => this.spring(), 1500);
+        setTimeout( () => this.spring(), 800);
     }
     spring(){
         Animated.sequence([
@@ -44,7 +44,7 @@ class IntroScreen extends React.Component{
                 }),
                 Animated.timing(this.state.fadeVal, {
                     toValue: 0,
-                    duration: 500
+                    duration: 250
                 })
             ])
         ]).start( () => this.props.navigation.navigate('Home'));
@@ -52,33 +52,24 @@ class IntroScreen extends React.Component{
     render(){
 
         return(
-            <TouchableOpacity
-                style={{backgroundColor: "#000000"}}
-                onPress={() => this.props.navigation.navigate('Home')}
-            >
                 <View style={{height:"100%", width: '100%',
-                    alignItems: "center", justifyContent:"center", backgroundColor: "#000000"}}>
+                    alignItems: "center", justifyContent:"center", backgroundColor: "#fff"}}>
 
                     <Animated.View
                         style={{
                             opacity: this.state.fadeVal,
                             transform: [{scale: this.state.springVal }]
                         }}>
-
-                        <ImageBackground
-                            source={require('../assets/images/MiamiFitness.png')}
+                        <Animated.Image
                             style={{
-                                flex:1, backgroundColor: 'transparent',
-                                width: SCREEN_WIDTH,
-                                height: "100%",
-                                justifyContent: 'center'
+                                width: 150,
+                                height: 150,
+                                // transform: [{rotate: spin}]
                             }}
-                            resizeMode='contain'
-                            alt={'Miami Fitness Logo'}
+                            source={require('../assets/images/MiamiFitnessSplash.png')}
                         />
                     </Animated.View>
                 </View>
-            </TouchableOpacity>
         );
     }
 }

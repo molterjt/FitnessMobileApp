@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-    Button, Text, TextInput, Alert, ActivityIndicator,
-    View, StyleSheet, ImageBackground,
+    Button, Text, TextInput, Alert, ActivityIndicator,Dimensions,
+    View, StyleSheet, ImageBackground,Animated,Easing,
     TouchableOpacity, AsyncStorage
 } from 'react-native';
 import {withNavigation} from 'react-navigation';
@@ -9,6 +9,9 @@ import gql from 'graphql-tag';
 import {graphql, compose} from 'react-apollo';
 import {AUTH_TOKEN} from "../constants/auth";
 import validation from 'validate.js';
+
+const W = Dimensions.get('window').width;
+const H = Dimensions.get('window').height;
 
 let queryUserId;
 
@@ -63,10 +66,17 @@ const validate = (fieldName, value) => {
 };
 
 
+const arr = [];
+for(let i = 0; i < 200; i++){
+    arr.push(i);
+}
+
 class Login extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            springVal: new Animated.Value(0.8),
+            fadeVal: new Animated.Value(0.5),
             loading: true,
             login: true,
             registerActivity: false,
@@ -86,7 +96,64 @@ class Login extends React.Component{
         this.clearUserFormInputs = this.clearUserFormInputs.bind(this);
         this.showRegisterActivity = this.showRegisterActivity.bind(this);
         this.hideActivityIndicator = this.hideActivityIndicator.bind(this);
+        this.animatedValue = [];
+
+        arr.forEach((value) => {
+            this.animatedValue[value] = new Animated.Value(0)
+        });
+
+        this.spinValue= new Animated.Value(0)
+
     }
+    spin(){
+        this.spinValue.setValue(0);
+        Animated.timing(
+            this.spinValue,{
+                toValue:1,
+                duration:6000,
+                easing: Easing.linear()
+            }
+        ).start( () => this.spin());
+    }
+
+    spring(){
+        this.spinValue.setValue(0);
+        Animated.sequence([
+            Animated.spring(this.state.springVal, {
+                toValue: 0.25,
+                friction: 10,
+                tension: 12
+            }),
+            Animated.parallel([
+                Animated.spring(this.state.springVal, {
+                    toValue: 3.5,
+                    friction: 10,
+                    tension: 12
+                }),
+                Animated.timing(
+                    this.spinValue,{
+                        toValue:1,
+                        //duration:6000,
+                        //easing: Easing.linear()
+                    }
+                ),
+            ])
+        ]).start( () => this.spring());
+    }
+
+    animate () {
+        const animations = arr.map((item) => {
+            return Animated.timing(
+                this.animatedValue[item],
+                {
+                    toValue: 1,
+                    duration: 3000
+                }
+            )
+        });
+        Animated.stagger(5, animations).start()
+    }
+
     checkRegisterCredentials(){
         const {email, password, username, emailError, passwordError, usernameError} = this.state;
         if(email < 7 || emailError) return true;
@@ -106,7 +173,13 @@ class Login extends React.Component{
             password: '',
             username: ''
         });
-    }
+    };
+    componentDidMount(){
+        //this.animate();
+        //this.spin();
+        this.spring();
+        setTimeout(() => this.setState({loading:false}), 2900);
+    };
     showRegisterActivity(){
         this.setState({registerActivity: true});
     };
@@ -161,16 +234,48 @@ class Login extends React.Component{
 
     render(){
         const {login, email, password, username, emailError, passwordError, usernameError, graphQL_Error, registerActivity} = this.state;
+        if(this.state.loading){
+            /*const animations = arr.map((a, i) => {
+                return <Animated.View key={i} style={{opacity: this.animatedValue[a], height: H*.04, width: W*.1, backgroundColor: 'red', marginLeft: 1 , marginTop: 1, borderRadius: 50}} />
+            });
+            return (
+                <View style={styles.container}>
+                    {animations}
+                </View>
+            );*/
+            const spin = this.spinValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: ['0deg', '720deg']
+            });
+
+            return (
+                <View style={styles.container}>
+                    <Animated.View
+                        style={{
+                            // opacity: this.state.fadeVal,
+                            transform: [{scale: this.state.springVal }]
+                        }}>
+                        <Animated.Image
+                            style={{
+                                width: 150,
+                                height: 150,
+                                transform: [{rotate: spin}] }}
+                            source={require('../assets/images/MiamiFitnessSplash.png')}
+                        />
+                    </Animated.View>
+                </View>
+            )
+        }
 
         return(
             <View style={{flex: 1, backgroundColor: 'transparent'}}>
                 <ImageBackground
                     alt={'Background image of abstract lines'}
-                    source={require('../assets/images/abstract-architectural.jpg')}
+                    source={require('../assets/images/LoginBackground.png')}
                     style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center', marginTop: -20}}
                     resizeMode='cover'
                 >
-                    <View style={styles.overlay}/>
+                    {/*<View style={styles.overlay}/>*/}
                     <View style={{marginTop: 10}}>
                         <View style={styles.header}>
                             <Text style={styles.headerText}>Miami Rec Fitness</Text>
@@ -192,6 +297,7 @@ class Login extends React.Component{
                                     autoCapitalize={'none'}
                                     underlineColorAndroid={'transparent'}
                                     autoCorrect={false}
+                                    placeholderTextColor={'#4f4f4f'}
                                     keyboardAppearance={'dark'}
                                 />
                                     {usernameError
@@ -216,6 +322,7 @@ class Login extends React.Component{
                                 underlineColorAndroid={'transparent'}
                                 autoCorrect={false}
                                 label={'Email'}
+                                placeholderTextColor={'#4f4f4f'}
                                 keyboardAppearance={'dark'}
 
                             />
@@ -238,6 +345,7 @@ class Login extends React.Component{
                                 style={styles.textInput}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
+                                placeholderTextColor={'#4f4f4f'}
                                 keyboardAppearance={'dark'}
 
                             />
@@ -499,5 +607,13 @@ const styles = StyleSheet.create({
         left: 0,
         backgroundColor: 'grey',
         opacity: 0.2
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        backgroundColor: 'white',
+        justifyContent:'center',
+        alignItems:'center',
     }
 });

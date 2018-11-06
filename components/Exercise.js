@@ -128,6 +128,7 @@ class ExerciseCard extends React.Component{
                     :
                     (null)
                 }
+                <View style={{height:30}}/>
             </ScrollView>
         );
     }

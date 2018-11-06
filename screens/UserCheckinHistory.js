@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     AsyncStorage, Text, View, ActivityIndicator, ScrollView,
-    TouchableOpacity, Dimensions, Alert
+    TouchableOpacity, Dimensions, Alert, RefreshControl
 } from 'react-native';
 import {Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -62,6 +62,7 @@ class UserCheckinHistory extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            refreshing: false,
             workoutsVisible:false,
             workoutToggleButtonVisible: true,
             classesVisible:false,
@@ -70,8 +71,14 @@ class UserCheckinHistory extends React.Component{
         this._deleteThisCheckin=this._deleteThisCheckin.bind(this);
         this._toggleClassesVisible=this._toggleClassesVisible.bind(this);
         this._toggleWorkoutsVisible=this._toggleWorkoutsVisible.bind(this);
+        this._onRefresh=this._onRefresh.bind(this);
     }
-
+    _onRefresh = () => {
+        this.setState({refreshing:true});
+        this.props.data.refetch().then(() => {
+            this.setState({refreshing: false});
+        });
+    };
     _toggleWorkoutsVisible = (visible) => {
         this.setState({workoutsVisible: visible})
     };
@@ -90,11 +97,14 @@ class UserCheckinHistory extends React.Component{
                         this.props.deleteCheckin({
                             variables: {
                                 checkID: checkID,
-                            }
+                            },
+                            refetchQueries:[
+                                {query: GET_USER_CHECKIN_HISTORY, variables: {id: this.props.navigation.state.params.itemId}},
+                            ]
                         });
                         console.log("This record as been Deleted. Goodbye.");
                         Alert.alert('You have successfully deleted your record!');
-                        this.props.data.refetch([ GET_USER_CHECKIN_HISTORY, {variables: {id: this.props.navigation.state.params.itemId}}])
+                        // this.props.data.refetch([ GET_USER_CHECKIN_HISTORY, {variables: {id: this.props.navigation.state.params.itemId}}])
                     }
                 },
                 {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')}
@@ -110,7 +120,16 @@ class UserCheckinHistory extends React.Component{
             return (<View style={{alignContent:'center', justifyContent:'center'}}><ActivityIndicator color={"#931414"} size={"large"}/></View>);
         }
         return(
-                <ScrollView style={{flex: 1, justifyContent: 'space-evenly', marginBottom: 30}}>
+                <ScrollView
+                    style={{flex: 1, justifyContent: 'space-evenly', marginBottom: 30}}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh}
+                            tintColor={'#156DFA'}
+                        />
+                    }
+                >
 
                     <View style={{
                         borderRadius: 4,
