@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Text, View, StatusBar, StyleSheet, ImageBackground, TouchableOpacity, FlatList, TextInput, ScrollView,
+    Text, View, StatusBar, StyleSheet, ImageBackground, TouchableOpacity, FlatList, TextInput, ScrollView,Dimensions,
     AsyncStorage, Animated, Modal, Image, Linking, ActivityIndicator, RefreshControl,KeyboardAvoidingView
 } from 'react-native';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
@@ -10,6 +10,8 @@ import {graphql,Query} from "react-apollo";
 import {withNavigation} from 'react-navigation';
 import gql from "graphql-tag";
 
+const W = Dimensions.get('window').width;
+const H = Dimensions.get('window').height;
 
 const accessToken = "903600607.3fbfc0b.7141650ef26342dd8706c5e30e476ba1"
 const instaUserId = "903600607"
@@ -267,13 +269,13 @@ class HomeScreen extends React.Component{
                         <Text style={{color: "#156DFA", marginTop: 7, marginLeft: 8}}>Go Back</Text>
                     </TouchableOpacity>
                     <ScrollView style={{alignContent:'center'}}>
-                        <KeyboardAvoidingView behavior="position" enabled keyboardVerticalOffset={80}>
+                        <KeyboardAvoidingView behavior="position" enabled keyboardVerticalOffset={-20}>
                         <Image
                             accessibilityRole={'image'}
                             source={{uri: "https://i.imgur.com/xfTySI5.jpg"}}
                             alt={'Miami Recreation Fitness design element'}
                             resizeMode={'cover'}
-                            style={{width: 360, height: 340, alignSelf:'center'}}
+                            style={{width: H*.3, height: H*.3, alignSelf:'center'}}
                         />
                         <Text style={{fontStyle:'italic', padding: 20, textAlign:'center'}}>
                             The Fitness Department strives to create an environment of

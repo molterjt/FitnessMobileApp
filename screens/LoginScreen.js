@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-    Button, Text, TextInput, Alert, ActivityIndicator,Dimensions,
-    View, StyleSheet, ImageBackground,Animated,Easing,
+    Button, Text, TextInput, Alert, ActivityIndicator,Dimensions,KeyboardAvoidingView,
+    View, StyleSheet, ImageBackground,Animated,Easing, Image,
     TouchableOpacity, AsyncStorage
 } from 'react-native';
 import {withNavigation} from 'react-navigation';
@@ -268,161 +268,163 @@ class Login extends React.Component{
         }
 
         return(
-            <View style={{flex: 1, backgroundColor: 'transparent'}}>
-                <ImageBackground
-                    alt={'Background image of abstract lines'}
-                    source={require('../assets/images/LoginBackground.png')}
-                    style={{flex: 1, backgroundColor: 'transparent', justifyContent: 'center', marginTop: -20}}
-                    resizeMode='cover'
-                >
-                    {/*<View style={styles.overlay}/>*/}
-                    <View style={{marginTop: 10}}>
-                        <View style={styles.header}>
-                            <Text style={styles.headerText}>Miami Rec Fitness</Text>
-                        </View>
-                        <View>
-                            {!this.state.login && (
-                                <View>
-                                <TextInput
-                                    value={this.state.username}
-                                    onChangeText={ (username) => {
-                                        this.setState({username});
-                                        this.setState({usernameError: validate('username', username)})
-                                    }}
-                                    onBlur={() => this.setState({graphQL_Error: null})}
-                                    type={'text'}
-                                    accessibilityLabel={'Username field for Registration'}
-                                    placeholder={'Choose your username'}
-                                    style={styles.textInput}
-                                    autoCapitalize={'none'}
-                                    underlineColorAndroid={'transparent'}
-                                    autoCorrect={false}
-                                    placeholderTextColor={'#4f4f4f'}
-                                    keyboardAppearance={'dark'}
-                                />
-                                    {usernameError
-                                        ? <Text style={{color: 'white', textAlign:'center'}}>{usernameError}</Text>
-                                        : null
-                                    }
-                                </View>
-                            )}
-
+            <View style={{flex: 1, backgroundColor: 'black'}}>
+                <KeyboardAvoidingView behavior="position" enabled keyboardVerticalOffset={-140} style={{flex: 1, backgroundColor: '#fff', justifyContent: 'center', marginTop: -20}}>
+                    <View style={{alignItems:'center'}}>
+                        <Image
+                            source={require('../assets/images/MiamiFitnessSplashCircle.png')}
+                            resizeMode={'cover'}
+                            style={{height:H*.3, width:H*.3, shadowOffset:{  width: 1.0,  height: 1.0  },
+                                shadowColor: '#000',
+                                shadowOpacity: 2.0,
+                                shadowRadius: 4}}
+                        />
+                    </View>
+                    <View style={styles.header}>
+                        <Text style={styles.headerText}>MiamiOH Fit</Text>
+                    </View>
+                    <View>
+                        {!this.state.login && (
+                            <View>
                             <TextInput
-                                value={this.state.email}
-                                onChangeText={ (email) => {
-                                    this.setState({email});
-                                    this.setState({emailError: validate('email', email)});
+                                value={this.state.username}
+                                onChangeText={ (username) => {
+                                    this.setState({username});
+                                    this.setState({usernameError: validate('username', username)})
                                 }}
                                 onBlur={() => this.setState({graphQL_Error: null})}
-                                type={"text"}
-                                placeholder={'uniqueId@MiamiOH.edu'}
+                                type={'text'}
+                                accessibilityLabel={'Username field for Registration'}
+                                placeholder={'Choose your username'}
                                 style={styles.textInput}
                                 autoCapitalize={'none'}
-                                accessibilityLabel={'Email field for Registration/Login'}
                                 underlineColorAndroid={'transparent'}
-                                autoCorrect={false}
-                                label={'Email'}
-                                placeholderTextColor={'#4f4f4f'}
-                                keyboardAppearance={'dark'}
-
-                            />
-                            {emailError
-                                ? <Text style={{color: 'white', textAlign:'center'}}>{emailError}</Text>
-                                : null
-                            }
-                            <TextInput
-                                value={this.state.password}
-                                onChangeText={ (password) => {
-                                    this.setState({password});
-                                    this.setState({passwordError: validate('password', password)});
-                                }}
-                                onBlur={() => this.setState({graphQL_Error: null, registerActivity: false})}
-                                type={"password"}
-                                placeholder={'Enter a Password'}
-                                secureTextEntry={true}
-                                accessibilityLabel={'Password field for Registration/Login'}
-                                underlineColorAndroid={'transparent'}
-                                style={styles.textInput}
-                                autoCapitalize={'none'}
                                 autoCorrect={false}
                                 placeholderTextColor={'#4f4f4f'}
                                 keyboardAppearance={'dark'}
-
                             />
-                            {passwordError
-                                ? <Text style={{color: 'white', textAlign:'center'}}>{passwordError}</Text>
-                                : null
-                            }
-                            {registerActivity && !passwordError && !emailError && !graphQL_Error
-                                ? <ActivityIndicator size="large" color={'#0a3efa'}/>
-                                : null
-                            }
-                        </View>
-                        {graphQL_Error
-                            ? <Text style={{color: 'white', textAlign:'center', fontWeight: 'bold'}}>{graphQL_Error.substring(34).toUpperCase()}!!</Text>
+                                {usernameError
+                                    ? <Text style={{color: '#c81515', textAlign:'center'}}>{usernameError}</Text>
+                                    : null
+                                }
+                            </View>
+                        )}
+
+                        <TextInput
+                            value={this.state.email}
+                            onChangeText={ (email) => {
+                                this.setState({email});
+                                this.setState({emailError: validate('email', email)});
+                            }}
+                            onBlur={() => this.setState({graphQL_Error: null})}
+                            type={"text"}
+                            placeholder={'UniqueId@MiamiOH.edu'}
+                            style={styles.textInput}
+                            autoCapitalize={'none'}
+                            accessibilityLabel={'Email field for Registration/Login'}
+                            underlineColorAndroid={'transparent'}
+                            autoCorrect={false}
+                            label={'Email'}
+                            placeholderTextColor={'#4f4f4f'}
+                            keyboardAppearance={'dark'}
+
+                        />
+                        {emailError
+                            ? <Text style={{color: '#c81515', textAlign:'center'}}>{emailError}</Text>
                             : null
                         }
-                        {!login
-                            ?
-                            (<TouchableOpacity
-                                accessible={true}
-                                accessibilityLabel={'Register Button'}
-                                accessibilityHint={'Complete form field then press Register Button'}
-                                accessibilityRole={'button'}
-                                onPress={ () => {
-                                    this.showRegisterActivity();
-                                    this._confirm();
-                                    this.clearUserFormInputs();
+                        <TextInput
+                            value={this.state.password}
+                            onChangeText={ (password) => {
+                                this.setState({password});
+                                this.setState({passwordError: validate('password', password)});
+                            }}
+                            onBlur={() => this.setState({graphQL_Error: null, registerActivity: false})}
+                            type={"password"}
+                            placeholder={'Enter your Password'}
+                            secureTextEntry={true}
+                            accessibilityLabel={'Password field for Registration/Login'}
+                            underlineColorAndroid={'transparent'}
+                            style={styles.textInput}
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            placeholderTextColor={'#4f4f4f'}
+                            keyboardAppearance={'dark'}
 
-                                }}
-                                style={styles.formButton}
-                                disabled={this.checkRegisterCredentials()}
-
-                            >
-                                <Text style={styles.buttonText}>Register</Text>
-                            </TouchableOpacity>)
-                            :
-                            (<TouchableOpacity
-                                accessible={true}
-                                accessibilityLabel={'Login Button'}
-                                accessibilityHint={'Complete form field then press Login Button'}
-                                accessibilityRole={'button'}
-                                onPress={ () => {
-                                    this.showRegisterActivity();
-                                    this._confirm();
-                                    this.clearUserFormInputs();
-
-                                }}
-                                style={styles.formButton}
-                                disabled={this.checkLoginCredentials()}
-
-                            >
-                                <Text style={styles.buttonText}>Login</Text>
-                            </TouchableOpacity>)
+                        />
+                        {passwordError
+                            ? <Text style={{color: '#c81515', textAlign:'center'}}>{passwordError}</Text>
+                            : null
                         }
-
-                        <View style={{marginTop: 40}}>
-                            <Text style={{color: '#fff', alignSelf:'center'}}>
-                                {this.state.login ? 'Need to create an account?' : 'Already have account?'}
-                            </Text>
-                            {!this.state.login ?
-                                <Button
-                                    title={'Login'}
-                                    onPress={ () => this.setState({login: !this.state.login})}
-                                    color={'#0a3efa'}
-                                    style={styles.screenSwitch}
-                                />
-                                :
-                                <Button
-                                    title={'Register'}
-                                    onPress={ () => this.setState({login: !this.state.login})}
-                                    color={'#0939da'}
-                                    style={styles.screenSwitch}
-                                />
-                            }
-                        </View>
+                        {registerActivity && !passwordError && !emailError && !graphQL_Error
+                            ? <ActivityIndicator size="large" color={'#0a3efa'}/>
+                            : null
+                        }
                     </View>
-                </ImageBackground>
+                    {graphQL_Error
+                        ? <Text style={{color: '#c81515', textAlign:'center', fontWeight: 'bold'}}>{graphQL_Error.substring(34).toUpperCase()}!!</Text>
+                        : null
+                    }
+                    {!login
+                        ?
+                        (<TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Register Button'}
+                            accessibilityHint={'Complete form field then press Register Button'}
+                            accessibilityRole={'button'}
+                            onPress={ () => {
+                                this.showRegisterActivity();
+                                this._confirm();
+                                this.clearUserFormInputs();
+
+                            }}
+                            style={styles.formButton}
+                            disabled={this.checkRegisterCredentials()}
+
+                        >
+                            <Text style={styles.buttonText}>Register</Text>
+                        </TouchableOpacity>)
+                        :
+                        (<TouchableOpacity
+                            accessible={true}
+                            accessibilityLabel={'Login Button'}
+                            accessibilityHint={'Complete form field then press Login Button'}
+                            accessibilityRole={'button'}
+                            onPress={ () => {
+                                this.showRegisterActivity();
+                                this._confirm();
+                                this.clearUserFormInputs();
+
+                            }}
+                            style={styles.formButton}
+                            disabled={this.checkLoginCredentials()}
+
+                        >
+                            <Text style={styles.buttonText}>Login</Text>
+                        </TouchableOpacity>)
+                    }
+
+                    <View style={{marginTop: 10}}>
+                        <Text style={{color: '#fff', alignSelf:'center'}}>
+                            {this.state.login ? 'Need to create an account?' : 'Already have account?'}
+                        </Text>
+                        {!this.state.login ?
+                            <Button
+                                title={'Login'}
+                                onPress={ () => this.setState({login: !this.state.login})}
+                                color={'#0a3efa'}
+                                style={styles.screenSwitch}
+                            />
+                            :
+                            <Button
+                                title={'Register'}
+                                onPress={ () => this.setState({login: !this.state.login})}
+                                color={'#0939da'}
+                                style={styles.screenSwitch}
+                            />
+                        }
+                    </View>
+                </KeyboardAvoidingView>
             </View>
 
         );
@@ -486,26 +488,28 @@ const styles = StyleSheet.create({
         height: 40,
         margin: 20,
         padding: 10,
-        borderBottomColor: '#000000',
-        borderBottomWidth: 1,
+        borderWidth:0.5,
+        borderColor:'#4f4f4f',
+        // borderBottomColor: '#000000',
+        // borderBottomWidth: 1,
         backgroundColor: "#fff"
     },
     header:{
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 20,
+        marginBottom: 10,
 
     },
     headerText:{
-        fontSize: 20,
+        fontSize: 40,
+        fontFamily: 'Georgia',
         fontWeight: 'bold',
-        fontStyle: 'italic',
-        color: '#fff',
-        shadowOffset:{  width: 1.0,  height: 1.0  },
-        shadowColor: '#000',
-        shadowOpacity: 2.0,
-        shadowRadius: 4
+        color: '#c81515',
+        // shadowOffset:{  width: 1.0,  height: 1.0  },
+        // shadowColor: '#000',
+        // shadowOpacity: 2.0,
+        // shadowRadius: 4
     },
     formButton: {
         alignSelf: 'center',
@@ -514,13 +518,13 @@ const styles = StyleSheet.create({
         //backgroundColor: 'rgba(155, 10, 2, 0.9)',
         backgroundColor: '#3072b2',
         padding: 20,
-        marginTop: 40,
-        marginBottom: 40,
+        marginTop: 30,
+        marginBottom: 20,
         width: '33%',
         height: 15,
         borderWidth:1,
         borderRadius: 15,
-        borderColor: '#fff',
+        borderColor: '#000',
 
 
     },
