@@ -42,7 +42,7 @@ class Logout extends React.Component{
     }
 
     render(){
-        const auth = this.state;
+        const {auth} = this.state;
         const {client} = this.props;
         return(
             <View>
@@ -60,7 +60,9 @@ class Logout extends React.Component{
                                 try {
                                     // clear apollo client cache/store
                                     if (client && typeof client.resetStore === 'function') {
-                                        client.resetStore()
+                                        client.resetStore();
+                                        console.log('resetStore() fired');
+                                        console.log('auth: ' + auth);
                                     }
                                 } catch (e) {
                                     console.error('err client', e)

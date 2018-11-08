@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StatusBar, ScrollView, ActivityIndicator,RefreshControl } from 'react-native';
+import {Text, View, StatusBar, ScrollView, ActivityIndicator, RefreshControl, AsyncStorage} from 'react-native';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
 import Event from "../components/Event";
@@ -21,11 +21,16 @@ const GET_EVENTS = gql`
     }
 `
 
+let queryUserId;
+
 class EventList extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            refreshing: false
+            refreshing: false,
+            isLoading:true,
+            currentUserId: undefined,
+
         };
     }
     _onRefresh = () => {
@@ -34,8 +39,17 @@ class EventList extends React.Component{
             this.setState({refreshing: false});
         });
     };
+    componentDidMount(){
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = JSON.parse(dataId);
+            this.setState({currentUserId: queryUserId, isLoading: false});
+            console.log(" Event Screen -> ComponentDidMount => queryUserId === " + queryUserId);
+            return queryUserId;
+        }).done();
+    }
     render(){
         const {error, loading, allEvents} = this.props.data;
+        const {currentUserId} = this.state;
         if (loading) return <ActivityIndicator />;
         if(error){
             return(
@@ -59,6 +73,7 @@ class EventList extends React.Component{
                         <Event
                             key={id}
                             id={obj.id}
+                            eventIdentity={obj.id}
                             name={obj.name}
                             date={obj.date}
                             fees={obj.fees}

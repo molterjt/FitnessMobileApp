@@ -29,6 +29,8 @@ class WorkoutView extends React.Component{
         super(props);
         this.state={
             refreshing: false,
+            isLoading:true,
+            currentUserId: '',
             theSets: [],
             setOne: undefined,
         };
@@ -60,16 +62,15 @@ class WorkoutView extends React.Component{
         AsyncStorage.getItem("MyUserId").then( (dataId) => {
             queryUserId = JSON.parse(dataId);
             this.setState({currentUserId: queryUserId, isLoading: false});
-            console.log("queryUserId === " + queryUserId);
+            console.log("Workout Screen => queryUserId === " + queryUserId);
             return queryUserId;
         }).done();
-
     }
     render() {
         const {data} = this.props;
         const { loading, error, allWorkouts } = this.props.data;
         const {navigation} = this.props;
-        if(loading){
+        if(this.state.isLoading || loading){
             return <ActivityIndicator size={'large'} color={'#931414'} />
         }
         if(error){

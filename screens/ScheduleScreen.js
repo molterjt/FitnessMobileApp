@@ -185,8 +185,10 @@ class AllGFClassView extends React.Component {
         }
         if(error){
             console.log(error);
-            return (
-                <Text style={{textAlign:'center', marginTop:30}}>{error.message}</Text>
+            return(
+                <View style={{marginTop:50, flex:1, justifyContent:'center', alignContent:'center', alignItems:'center'}}>
+                    <Text style={{textAlign:'center', fontWeight:'bold'}}>{error.message}</Text>
+                </View>
             );
         }
         return (

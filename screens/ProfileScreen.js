@@ -56,14 +56,14 @@ const GET_USER = gql`
             workouts{id, createdAt, title, days{name}, type{title}}
             memberships{title}
             classes{title}
-            classCheckIns: checkins( filter:{workouts_none:{}} orderBy: createdAt_DESC, first:1){
+            classCheckIns: checkins( filter:{workouts_none:{} AND: {events_none:{}}} orderBy: createdAt_DESC, first:1){
                 classes{
                     id, title, category{title}, time, days{name}
                 },
                 timeCheck, 
                 createdAt
             }
-            workoutCheckins: checkins(filter:{classes_none: {}} orderBy: createdAt_DESC, first:1){
+            workoutCheckins: checkins(filter:{classes_none: {} AND: {events_none:{}}} orderBy: createdAt_DESC, first:1){
                 workouts{
                     id,
                     title,
@@ -104,7 +104,15 @@ class ProfileScreen extends React.Component{
         this.jumpToUserCheckinHistory=this.jumpToUserCheckinHistory.bind(this);
         this._onRefresh=this._onRefresh.bind(this);
         this.fetchUserIdentity=this.fetchUserIdentity.bind(this);
-        this.spinValue= new Animated.Value(0)
+        this.spinValue= new Animated.Value(0);
+
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = JSON.parse(dataId);
+            // this.setState({currentUserId: queryUserId});
+            console.log("Profile => queryUserId === " + queryUserId);
+            return queryUserId;
+        }).done();
+        // this.queryValue = this.fetchUserIdentity();
     }
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
@@ -154,20 +162,20 @@ class ProfileScreen extends React.Component{
             this.setState({refreshing: false});
         });
     };
-    fetchUserIdentity = async () =>{
+    fetchUserIdentity = async () => {
         await AsyncStorage.getItem("MyUserId").then( (dataId) => {
             queryUserId = JSON.parse(dataId);
             this.setState({currentUserId: queryUserId});
-            console.log("queryUserId === " + queryUserId);
+            console.log("Profile => queryUserId === " + queryUserId);
             return queryUserId;
         }).done();
         this.setState({isLoading: false});
     };
     componentDidMount(){
         //setTimeout(() => this.fetchUserIdentity(), 800);
-        this.fetchUserIdentity();
+        // this.fetchUserIdentity();
         this.spring();
-        setTimeout(() => this.setState({loading:false}), 2900);
+        setTimeout(() => this.setState({loading:false}), 2000);
 
     }
     jumpToUserCheckinHistory = (userIdentity) => {
@@ -209,10 +217,11 @@ class ProfileScreen extends React.Component{
         console.log('queryUserId:  ' + queryUserId);
         console.log("@render: currentUserId: " + currentUserId);
 
-        if (loading) return <View style={{marginTop: 50}}>
-            <ActivityIndicator size={'large'} color={'#fff'}/>
-        </View>;
-        if(error){
+        // if (loading) return <View style={{marginTop: 50}}>
+        //     <ActivityIndicator size={'large'} color={'#fff'}/>
+        // </View>;
+        if(loading || error){
+            console.log("err: "+error);
             const spin = this.spinValue.interpolate({
                 inputRange: [0, 1],
                 outputRange: ['0deg', '720deg']
@@ -273,7 +282,7 @@ class ProfileScreen extends React.Component{
                                 this.jumpToUserCheckinHistory(User.id);
                             }}
                         >
-                            <Text style={{textAlign:"center", color: "#fff", marginRight: 0}}>All Workout & GroupFit Records</Text>
+                            <Text style={{textAlign:"center", color: "#fff", marginRight: 0}}>All Workout, GroupFit & Event Records</Text>
                             <MaterialCommunityIcons
                                 name={"library-books"} type={"MaterialCommunityIcons"} size={35} color={'#fff'}
                                 style={{textAlign:"center"}}

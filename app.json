@@ -2,8 +2,8 @@
   "expo": {
     "name": "MiamiOHFit",
     "icon": "./assets/images/MiamiFitnessSplash.png",
-    "version": "1.4.2",
-    "slug": "MiamiOH-Rec-Fit-App",
+    "version": "1.4.4",
+    "slug": "MiamiOH-Fit",
     "sdkVersion": "25.0.0",
     "orientation": "portrait",
     "splash": {

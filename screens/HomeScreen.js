@@ -45,12 +45,12 @@ const CreateCommentByUser = gql`
 
 let queryUserId;
 
-AsyncStorage.getItem("MyUserId").then( (dataId) => {
-    queryUserId = dataId;
-    console.log(JSON.stringify(dataId));
-    console.log("queryUserId:" + queryUserId);
-    return queryUserId;
-}).done();
+// AsyncStorage.getItem("MyUserId").then( (dataId) => {
+//     queryUserId = dataId;
+//     console.log(JSON.stringify(dataId));
+//     console.log("HomeScreen => queryUserId:" + queryUserId);
+//     return queryUserId;
+// }).done();
 
 
 class NewsItemWindow extends React.Component{
@@ -163,18 +163,24 @@ class HomeScreen extends React.Component{
         this._createComment = this._createComment.bind(this);
         this.checkCommentCredentials = this.checkCommentCredentials.bind(this);
         this.findYourFitModal=this.findYourFitModal.bind(this);
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = JSON.parse(dataId);
+            this.setState({currentUserId: queryUserId, isLoading: false});
+            console.log("Home Screen => queryUserId === " + queryUserId);
+            return queryUserId;
+        }).done();
     }
     findYourFitModal(visible){
         this.setState({showModal: visible})
     }
 
     componentDidMount(){
-        AsyncStorage.getItem("MyUserId").then( (dataId) => {
-            queryUserId = JSON.parse(dataId);
-            this.setState({currentUserId: queryUserId, isLoading: false});
-            console.log("queryUserId === " + queryUserId);
-            return queryUserId;
-        }).done();
+        // AsyncStorage.getItem("MyUserId").then( (dataId) => {
+        //     queryUserId = JSON.parse(dataId);
+        //     this.setState({currentUserId: queryUserId, isLoading: false});
+        //     console.log("Home Screen => queryUserId === " + queryUserId);
+        //     return queryUserId;
+        // }).done();
     }
     _createComment = async () => {
         const {userComment} = this.state;
@@ -184,7 +190,7 @@ class HomeScreen extends React.Component{
                 userCommentId: queryUserId,
             }
         });
-        console.log(userComment);
+        console.log('user comment: ' + userComment);
         this.setState({userComment: ""});
         this.findYourFitModal(!this.state.showModal)
     };

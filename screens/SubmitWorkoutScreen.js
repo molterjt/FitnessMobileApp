@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {Text, View, TextInput, TouchableOpacity, ScrollView, StyleSheet, KeyboardAvoidingView, Alert, AsyncStorage} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
@@ -48,12 +49,12 @@ const CREATE_WORKOUT_RECORD = gql`
 
 let queryUserId;
 
-AsyncStorage.getItem("MyUserId").then( (dataId) => {
-    queryUserId = dataId;
-    console.log(JSON.stringify(dataId));
-    console.log("queryUserId:" + queryUserId);
-    return queryUserId;
-}).done();
+// AsyncStorage.getItem("MyUserId").then( (dataId) => {
+//     queryUserId = dataId;
+//     console.log(JSON.stringify(dataId));
+//     console.log("queryUserId:" + queryUserId);
+//     return queryUserId;
+// }).done();
 
 class SubmitWorkoutScreen extends React.Component{
     constructor(props){
@@ -78,6 +79,8 @@ class SubmitWorkoutScreen extends React.Component{
             setName: undefined,
             exerciseIds: [],
             userIds: [],
+            // isLoading:true,
+            // currentUserId: '',
         };
 
         this.createExerciseSet = this.createExerciseSet.bind(this);
@@ -86,6 +89,13 @@ class SubmitWorkoutScreen extends React.Component{
         this.submitUserWorkoutRecord = this.submitUserWorkoutRecord.bind(this);
         this._submitWorkoutCheckIn = this._submitWorkoutCheckIn.bind(this);
         this._CheckinThenSubmitMyWorkoutRecord = this._CheckinThenSubmitMyWorkoutRecord.bind(this);
+
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = dataId;
+            console.log(JSON.stringify(dataId));
+            console.log("queryUserId:" + queryUserId);
+            return queryUserId;
+        }).done();
     }
 
     _submitWorkoutCheckIn = async (workoutId) => {
@@ -102,6 +112,7 @@ class SubmitWorkoutScreen extends React.Component{
             timeCheck: subTime
         });
         const UserSet = JSON.parse(queryUserId);
+
         await this.props.CreateWorkoutCheckInByUser({
             variables: {
                 checked: checked,
@@ -149,7 +160,7 @@ class SubmitWorkoutScreen extends React.Component{
         const {ExSets} = this.state;
         ExSets.map((obj, index) => {
             if(obj.SetId === id){
-               return obj.weightUse = weightHit;
+                return obj.weightUse = weightHit;
             } else {
                 return obj;
             }
@@ -170,7 +181,7 @@ class SubmitWorkoutScreen extends React.Component{
             setTimeCheck: subTime
         });
         const UserSet = JSON.parse(queryUserId);
-        console.log(UserSet);
+        console.log("userSet: "+UserSet);
         let OrderOfSets = 0;
         ExSets.map((obj, index) => {
             if(obj.weightUse > 0  || obj.repUse > 0){
@@ -213,6 +224,15 @@ class SubmitWorkoutScreen extends React.Component{
             { cancelable: true},
         );
     };
+    // componentDidMount(){
+    //     AsyncStorage.getItem("MyUserId").then( (dataId) => {
+    //         queryUserId = JSON.parse(dataId);
+    //         this.setState({currentUserId: queryUserId, isLoading: false});
+    //         console.log(" SubmitWorkout Screen -> ComponentDidMount => queryUserId === " + queryUserId);
+    //         //console.log('SubmitWorkout Screen -> ComponentDidMount => currentUserid: ' + this.state.currentUserId);
+    //         return queryUserId;
+    //     }).done();
+    // }
 
     render(){
         const { data: { loading, error, Workout } } = this.props;
@@ -321,15 +341,15 @@ class SubmitWorkoutScreen extends React.Component{
 
 export default compose(
     graphql(
-            GET_WORKOUT,
-            {options: ({navigation}) => {
-                    return {
-                     variables: {id: navigation.state.params.itemId},
-                    }
+        GET_WORKOUT,
+        {options: ({navigation}) => {
+                return {
+                    variables: {id: navigation.state.params.itemId},
                 }
-            },
-            {name: 'getWorkout'}
-        ),
+            }
+        },
+        {name: 'getWorkout'}
+    ),
     graphql(CreateWorkoutCheckIn, {name: 'CreateWorkoutCheckInByUser'}),
     graphql(CREATE_WORKOUT_RECORD, {name: 'createWorkoutRecord'})
 )(withNavigation(SubmitWorkoutScreen));

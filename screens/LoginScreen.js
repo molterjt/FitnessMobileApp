@@ -15,12 +15,12 @@ const H = Dimensions.get('window').height;
 
 let queryUserId;
 
-AsyncStorage.getItem("MyUserId").then( (dataId) => {
-    queryUserId = dataId;
-    console.log(JSON.stringify(dataId));
-    console.log("queryUserId:" + queryUserId);
-    return queryUserId;
-}).done();
+// AsyncStorage.getItem("MyUserId").then( (dataId) => {
+//     queryUserId = dataId;
+//     console.log(JSON.stringify(dataId));
+//     console.log("queryUserId:" + queryUserId);
+//     return queryUserId;
+// }).done();
 
 const constraints = {
     email:{
@@ -177,7 +177,14 @@ class Login extends React.Component{
     componentDidMount(){
         //this.animate();
         //this.spin();
+
         this.spring();
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = dataId;
+            // console.log(JSON.stringify(dataId));
+            console.log("Login ScreeN => queryUserId:" + queryUserId);
+            return queryUserId;
+        }).done();
         setTimeout(() => this.setState({loading:false}), 2900);
     };
     showRegisterActivity(){
@@ -208,8 +215,8 @@ class Login extends React.Component{
             const {id} = result.data.authenticateUser;
             this._saveUserToken(token);
             this._saveUserId(id);
-            console.log("Token: " +token);
-            console.log("ID: " + id);
+            console.log("LoginScreen => Token: " +token);
+            console.log("LoginScreen => ID: " + id);
 
             this.props.navigation.navigate('Intro', {itemId: id});
         } else {
@@ -223,8 +230,8 @@ class Login extends React.Component{
             const {token} = result.data.signupUser;
             const {id} = result.data.signupUser;
             Alert.alert('Good on ya! You have successfully registered. Now Login then update your Profile in Settings');
-            console.log('Token:' + token);
-            console.log('UserId:' + id);
+            console.log('LoginScreen => Token:' + token);
+            console.log('LoginScreen => UserId:' + id);
             this._saveUserToken(token);
             this._saveUserId(id);
 

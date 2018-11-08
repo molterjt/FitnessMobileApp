@@ -1,19 +1,91 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image, Modal, WebView} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Image, Modal, WebView, Alert, ActivityIndicator, AsyncStorage} from 'react-native';
 import { Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import gql from 'graphql-tag';
+import {graphql, compose} from 'react-apollo';
+import moment from 'moment';
+
+
+const CreateEventCheckIn = gql`
+    mutation CreateEventCheckInByUser($checked: Boolean, $eventsIds: [ID!], $usersIds: [ID!], $timeCheck:String){
+        createCheckin(checked: $checked, eventsIds: $eventsIds, usersIds: $usersIds, timeCheck: $timeCheck){
+            id
+            createdAt
+            timeCheck
+            events{name}
+            users{username}
+        }
+    }
+`
+let queryUserId;
 
 class Event extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            eventRegisterModal: false
-        }
+            isLoading: true,
+            eventRegisterModal: false,
+            checked: true,
+            timeCheck: undefined,
+            currentUserId: undefined,
+            setTimeCheck: undefined,
+        };
+        AsyncStorage.getItem("MyUserId").then( (dataId) => {
+            queryUserId = JSON.parse(dataId);
+            // this.setState({currentUserId: queryUserId, isLoading: false});
+            console.log(" Event Screen -> ComponentDidMount => queryUserId === " + queryUserId);
+            // console.log('Event Screen -> ComponentDidMount => currentUserId: ' + this.state.currentUserId);
+            return queryUserId;
+        }).done();
+        this.showEventRegisterModal = this.showEventRegisterModal.bind(this);
+        this._submitEventCheckIn = this._submitEventCheckIn.bind(this);
     }
     showEventRegisterModal(visible){
         this.setState({eventRegisterModal: visible})
     }
+    componentDidMount(){
+        // AsyncStorage.getItem("MyUserId").then( (dataId) => {
+        //     queryUserId = JSON.parse(dataId);
+        //     this.setState({currentUserId: queryUserId, isLoading: false});
+        //     console.log(" Event Screen -> ComponentDidMount => queryUserId === " + queryUserId);
+        //     console.log('Event Screen -> ComponentDidMount => currentUserId: ' + this.state.currentUserId);
+        //     return queryUserId;
+        // }).done();
+        this.setState({currentUserId: queryUserId, isLoading: false});
+    }
+    _submitEventCheckIn = async (eventIdentity) => {
+        const {checked, timeCheck, currentUserId} = this.state;
+        const currentTime = moment();
+        const customTime = moment({
+            year: moment(currentTime).year(),
+            month: moment(currentTime).month(),
+            day: moment(currentTime).date(),
+            hour: moment(currentTime).hours()
+        });
+        const subTime = customTime.toISOString();
+        this.setState({
+            timeCheck: subTime
+        });
+        // const UserSet = JSON.parse(queryUserId);
+        // console.log('UserSet: ' + UserSet);
+        await this.props.CreateEventCheckInByUser({
+            variables: {
+                checked: checked,
+                timeCheck: subTime,
+                usersIds: queryUserId,
+                eventsIds: eventIdentity,
+            }
+        });
+        console.log('Workout Check-In Mutation Complete');
+        console.log('timeCheck: ' + moment(timeCheck).format('M/D/Y h a'));
+    };
 
     render(){
+        if(this.state.isLoading){
+            return(
+                <ActivityIndicator size={'large'} color={'blue'} />
+            )
+        }
         return(
             <View style={styles.rowCard} key={this.props.id}>
                 <View style={styles.imageRowContainer}>
@@ -54,7 +126,11 @@ class Event extends React.Component{
                                     accessible={true}
                                     accessibilityLabel={'Show Registration Window Button'}
                                     accessibilityRole={'button'}
-                                    onPress={() => {this.showEventRegisterModal(true)}}
+                                    onPress={() => {
+                                        this._submitEventCheckIn(this.props.eventIdentity);
+                                        this.showEventRegisterModal(true);
+
+                                    }}
                                     style={{marginTop: 25, flexDirection: "row", justifyContent: 'center',
                                         alignItems: 'center', backgroundColor: "#931414", width: "50%", alignSelf: "center"
 
@@ -67,7 +143,46 @@ class Event extends React.Component{
                                     color={"white"}
                                 />
                             </TouchableOpacity>)
-                            : null
+                            : (<TouchableOpacity
+                                    accessible={true}
+                                    accessibilityLabel={'Show Registration Window Button'}
+                                    accessibilityRole={'button'}
+                                    onPress={() => {
+                                         Alert.alert(
+                                            '',
+                                            "Are you ready to check-in for this event?",
+                                            [
+                                                {
+                                                    text: 'Submit', onPress: () => {
+                                                        this._submitEventCheckIn(this.props.eventIdentity);
+                                                        Alert.alert('You successfully checked-in!');
+                                                    }
+                                                },
+                                                {
+                                                    text: 'Cancel',
+                                                }
+                                            ],
+                                            { cancelable: true},
+                                        );
+
+
+
+
+                                    }}
+                                    style={{marginTop: 25, flexDirection: "row", justifyContent: 'center',
+                                        alignItems: 'center', backgroundColor: "#931414", width: "50%", alignSelf: "center"
+
+                                    }}
+                                >
+                                    <Text style={{color: "#fff", fontSize: 12}}>Check-In</Text>
+                                    <MaterialCommunityIcons
+                                        name={"checkbox-marked-circle-outline"}
+                                        size={25}
+                                        color={"white"}
+                                    />
+                                </TouchableOpacity>
+
+                            )
                         }
                     </View>
                 </View>
@@ -108,7 +223,7 @@ class Event extends React.Component{
     }
 }
 
-export default Event;
+export default graphql(CreateEventCheckIn, {name: 'CreateEventCheckInByUser'})(Event);
 
 const styles = StyleSheet.create({
 
